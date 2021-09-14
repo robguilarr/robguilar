@@ -2,14 +2,14 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://robsite.netlify.com/posts/evga/</loc><lastmod>2021-08-01T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://robsite.netlify.com/about/</loc><lastmod>2021-08-02T11:04:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://robsite.netlify.com/categories/</loc><lastmod>2021-08-01T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://robsite.netlify.com/categories/data-infographics/</loc><lastmod>2021-08-01T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://robsite.netlify.com/tags/data-storytelling/</loc><lastmod>2021-08-01T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://robsite.netlify.com/tags/jupyther-notebook/</loc><lastmod>2021-08-01T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://robsite.netlify.com/posts/</loc><lastmod>2021-08-01T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://robsite.netlify.com/tags/python/</loc><lastmod>2021-08-01T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://robsite.netlify.com/</loc><lastmod>2021-08-01T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://robsite.netlify.com/tags/</loc><lastmod>2021-08-01T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://robsite.netlify.com/categories/documentation/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
+            <loc>https://robsite.media/posts/evga/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robsite.media/categories/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robsite.media/categories/data-infographics/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robsite.media/tags/data-storytelling/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robsite.media/tags/jupyther-notebook/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robsite.media/posts/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robsite.media/tags/python/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robsite.media/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robsite.media/tags/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robsite.media/about/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robsite.media/categories/documentation/</loc><lastmod>2021-09-13T22:50:53-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>

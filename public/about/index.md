@@ -3,21 +3,19 @@
 
 #### :(far fa-user fa-fw): Hi, I’m Roberto Aguilar
 
+I'm a Data Analyst, Senior Industrial Engineering Student and content developer at robsite.
 
+A few years ago the question arose of what approach I wanted to give to my career. I was always interested in statistics, research writing and in a short time of my life I got involved in OOP. Then I met people who were dedicated to extracting information and developing complex tools from Big Data, that's where I discovered the world of Data Science and how it is applied in our day to day.
 
-
-<p>
- <img align="right" width="310" height="310" src="images/profile_pic_about.jpg" hspace="8" vspace="5">I'm a Data Analyst, Senior Industrial Engineering Student and content developer at robsite.
- 
- A few years ago the question arose of what approach I wanted to give to my career. I was always interested in statistics, research writing and in a short time of my life I got involved in OOP. Then I met people who were dedicated to extracting information and developing complex tools from Big Data, that's where I discovered the world of Data Science and how it is applied in our day to day.
+<p align="center">
+ <img width="400" height="400" src="images/profile_pic_about.jpg?format=webpage" hspace="5" vspace="5">
 </p>
 
-
+---
 
 #### :(fas fa-user-graduate fa-fw): A little bit about my background
 
 I am a senior student of Industrial Engineering, and although at first glance I am not a Software Engineer or Master in Data Analytics, I am a person with a mentality of continuous learning, with a researcher perspective and looking for productive ways to improve every day, that is why I decided to advance a Postgraduate as a Data Analyst.
-
 
 {{< admonition type=abstract title="Industrial Production Engineering at TEC" open=false >}}
 Bachelor's degree accredited by the Canadian Engineering Accreditation Board ({{< link href="https://engineerscanada.ca/accreditation/accreditation-resources" content=CEAB >}}) in the area of Industrial Engineering. Covering areas such as industrial statistics (Minitab), process simulation, computer aided design (CAD, Solid Works), computer aided manufacturing (CAM), industrial process control and programming (CNC), IT project management fundamentals (SCRUM), continuous improvement processes (Lean Six Sigma).
@@ -41,13 +39,13 @@ Throughout my career I have had the opportunity to orient my career towards Busi
 <img width="75" height="75" src="images/vm_logo.png" align="left" hspace="10" vspace="10"> Creation and migration of data analytics reports of Customer Success area in whole SaaS cycle, embracing all the Customer 360° environment. As well as the CTA predictive analysis according to the PEME needs of early warnings subscription consumption; via commercial, and financial indicators applied to Big Data
 
 > June 2020 - September 2020
-  {{< /admonition >}}
+> {{< /admonition >}}
 
 {{< admonition type=info title="Business Intelligence Analyst at Belcorp" open=false >}}
 <img width="75" height="75" src="images/bel_logo.jpg" align="left" hspace="10" vspace="10"> Through prescriptive analytics applied in the field of BI within the B2C sales area, commercial sales variables were managed and reported. In order to create and consult dynamic and real-time reports / dashboards that will make timely decisions for Central American sales plans, according to the needs of sales management
 
 > February 2021 - July 2021
-{{< /admonition >}}
+> {{< /admonition >}}
 
 ---
 
@@ -84,28 +82,19 @@ Among other personal hobbies I like playing video games and practicing outdoor s
 
 This website intends to work as a portal for the author's most recent posts on each of the platforms, in case you want to follow the content directly, you can go to the contact links below.
 
+- GitHub | [https://github.com](https://github.com/robguilarr "Visit GitHub Overview")
 
-* GitHub | [https://github.com](https://github.com/robguilarr "Visit GitHub Overview")
+- Medium | [https://medium.com](https://medium.com/@robguilarr "Visit Medium Profile")
 
-* Medium | [https://medium.com](https://medium.com/@robguilarr "Visit Medium Profile")
+- Twitter | [https://twitter.com](https://twitter.com/robguilarr "Visit Twitter Profile")
 
-* Twitter | [https://twitter.com](https://twitter.com/robguilarr "Visit Twitter Profile")
+- Facebook | [https://facebook.com](https://www.facebook.com/robguilarr/ "Visit Facebook Profile")
 
-* Facebook | [https://facebook.com](https://www.facebook.com/robguilarr/ "Visit Facebook Profile")
+- Instagram | [https://instagram.com](https://www.instagram.com/robguilarr/ "Visit Instagram Profile")
 
-* Instagram | [https://instagram.com](https://www.instagram.com/robguilarr/ "Visit Instagram Profile") 
+- LinkedIn | [https://linkedin.com](https://www.linkedin.com/in/robguilarr/ "Visit LinkedIn Profile")
 
-* LinkedIn | [https://linkedin.com](https://www.linkedin.com/in/robguilarr/ "Visit LinkedIn Profile")
+- Kaggle | [https://kaggle.com](https://www.kaggle.com/razerhawk "Visit Kaggle Profile")
 
-* Kaggle | [https://kaggle.com](https://www.kaggle.com/razerhawk "Visit Kaggle Profile")
-
-* DataCamp | [https://datacamp.com](https://www.datacamp.com/profile/robguilarr "Visit DataCamp Profile")
-
-
-
-
-
-
-
-
+- DataCamp | [https://datacamp.com](https://www.datacamp.com/profile/robguilarr "Visit DataCamp Profile")
 

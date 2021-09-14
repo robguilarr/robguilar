@@ -61,4 +61,4 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-Sitemap: http://robsite.netlify.com/sitemap.xml
+Sitemap: https://robsite.media/sitemap.xml
