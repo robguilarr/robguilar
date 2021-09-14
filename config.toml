@@ -206,7 +206,7 @@ copyright = "This work is developed and posted only under robsite property"
     desktopMode = "fixed"
 
     # Mobile header mode ("fixed", "normal", "auto")
-    mobileMode = "auto"
+    mobileMode = "fixed"
 
     #---------------------------------------------------------------------
     # Header title config
