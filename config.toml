@@ -21,7 +21,7 @@ enableGitInfo = true
 enableEmoji = true
 
 # Deployment
-canonifyURLs = false
+canonifyURLs = true
 
 # copyright
 copyright = "This work is developed and posted only under robsite property"
