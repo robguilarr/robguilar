@@ -1,0 +1,699 @@
+baseURL = "http://robsite.netlify.com/"
+# [en, zh-cn, fr, it, ...] determines default content language
+defaultContentLanguage = "en"
+
+# Language code
+languageCode = "en"
+
+# Website title
+title = "> robsite"
+
+# Change the default theme to be use
+theme = "LoveIt"
+
+# Whether to use robots.txt
+enableRobotsTXT = true
+
+# Whether to use git commit log
+#enableGitInfo = true
+
+# whether to use emoji code
+enableEmoji = true
+
+# Deployment
+canonifyURLs = false
+
+
+
+#-------------------------------------------------------------------------
+# GENERAL PARAMETERS
+#-------------------------------------------------------------------------
+[params]
+  # "LoveIt" theme version
+  version = "0.2.X"
+
+  # Site description
+  description = "Beyond the personal information about Roberto Aguilar, here you can review the most recent publications of this author and contact details"
+
+  # Site keywords
+  keywords = ["Data Science", "Portfolio", "Roberto", "Aguilar", "Roberto Aguilar", "robsite"]
+
+  # Site default theme ("light", "dark", "auto")
+  defaultTheme = "dark"
+
+  # Date format
+  dateFormat = "2006-01-02"
+
+  # Website images for Open Graph and Twitter Cards
+  images = "/images/Thumbnail-Preview-End.png"
+
+  #-----------------------------------------------------------------------
+  # ICON Configuration
+  #-----------------------------------------------------------------------
+  [params.app]
+    # Optional site title override for the app when added to an iOS home screen or Android launcher
+    title = "> robsite"
+
+    # Whether to omit favicon resource links
+    noFavicon = false
+
+    # Modern SVG favicon to use in place of older style .png and .ico files
+    #svgFavicon = ""
+
+    # Android browser theme color
+    themeColor = "#ffffff"
+
+    # Safari mask icon color
+    iconColor = "#313536"
+
+    # Windows v8-10 tile color
+    tileColor = "#2c97da"
+
+  #-----------------------------------------------------------------------
+  # POSTS PAGES config
+  #-----------------------------------------------------------------------
+  [params.page]
+    # Whether to hide a page from home page
+    hiddenFromHomePage = false
+
+    # Whether to hide a page from search results
+    hiddenFromSearch = false
+
+    # Whether to enable twemoji
+    twemoji = true
+
+    # Whether to enable lightgallery
+    lightgallery = true
+
+    # Whether to enable the ruby extended syntax
+    ruby = true
+
+    # Whether to enable the fraction extended syntax
+    fraction = true
+
+    # Whether to enable the fontawesome extended syntax
+    fontawesome = true
+
+    # Whether to show link to Raw Markdown content of the content
+    linkToMarkdown = true
+
+    # Whether to show the full text content in RSS
+    rssFullText = false
+
+    #---------------------------------------------------------------------
+    # Third-party library config
+    #---------------------------------------------------------------------
+    [params.page.code]
+      # whether to show the copy button of the code block
+      copy = true
+      # the maximum number of lines of displayed code by default
+      maxShownLines = 10
+
+    #---------------------------------------------------------------------
+    # Third-party library config
+    #---------------------------------------------------------------------
+    [params.page.library]
+      [params.page.library.css]
+        # someCSS = "some.css"
+        # located in "assets/"
+        # Or
+        # someCSS = "https://cdn.example.com/some.css"
+      [params.page.library.js]
+        # someJavascript = "some.js"
+        # located in "assets/"
+        # Or
+        # someJavascript = "https://cdn.example.com/some.js"
+
+    #---------------------------------------------------------------------
+    # Table of Contents
+    #---------------------------------------------------------------------
+    [params.page.toc]
+      # Whether to enable the table of the contents
+      enable = true
+
+      # Whether to keep the static table of the contents in front of the post
+      keepStatic = false
+
+      # Whether to make the table of the contents in the sidebar automatically collapsed
+      auto = true
+
+    #---------------------------------------------------------------------
+    # KaTeX mathematical formulas config (KaTeX https://katex.org/)
+    #---------------------------------------------------------------------
+    [params.page.math]
+      enable = false
+      # Default block delimiter is $$ ... $$ and \\[ ... \\]
+      blockLeftDelimiter = ""
+      blockRightDelimiter = ""
+
+      # Default inline delimiter is $ ... $ and \\( ... \\)
+      inlineLeftDelimiter = ""
+      inlineRightDelimiter = ""
+
+      # KaTeX extension copy_tex
+      copyTex = true
+
+      # KaTeX extension mhchem
+      mhchem = true
+
+    #---------------------------------------------------------------------
+    # Mapbox GL JS config (Mapbox GL JS https://docs.mapbox.com/mapbox-gl-js)
+    #---------------------------------------------------------------------
+    [params.page.mapbox]
+      # Access token of Mapbox GL JS
+      accessToken = "pk.eyJ1IjoiZGlsbG9uenEiLCJhIjoiY2s2czd2M2x3MDA0NjNmcGxmcjVrZmc2cyJ9.aSjv2BNuZUfARvxRYjSVZQ"
+
+      # Style for the light theme
+      lightStyle = "mapbox://styles/mapbox/light-v10?optimize=true"
+
+      # Style for the dark theme
+      darkStyle = "mapbox://styles/mapbox/dark-v10?optimize=true"
+
+      # Whether to add NavigationControl (https://docs.mapbox.com/mapbox-gl-js/api/#navigationcontrol)
+      navigation = true
+
+      # Whether to add GeolocateControl (https://docs.mapbox.com/mapbox-gl-js/api/#geolocatecontrol)
+      geolocate = true
+
+      # Whether to add ScaleControl (https://docs.mapbox.com/mapbox-gl-js/api/#scalecontrol)
+      scale = true
+
+      # Whether to add FullscreenControl (https://docs.mapbox.com/mapbox-gl-js/api/#fullscreencontrol)
+      fullscreen = true
+
+    #---------------------------------------------------------------------
+    # Social share links in post page
+    #---------------------------------------------------------------------
+    [params.page.share]
+      enable = true
+      Twitter = true
+      Facebook = true
+      Linkedin = true
+      Whatsapp = false
+      Pinterest = false
+      HackerNews = true
+      Reddit = true
+      Flipboard = true
+      Blogger = false
+      Evernote = false
+
+    #---------------------------------------------------------------------
+    # Page SEO (Search Engine Optimization) config
+    #---------------------------------------------------------------------
+    [params.page.seo]
+      # image URL
+      # URL
+      images = ["Thumbnail-Preview.png"]
+
+      # Publisher info
+      [params.page.seo.publisher]
+        name = "Roberto Aguilar"
+        logoUrl = "/images/logo.png"
+
+
+  #-----------------------------------------------------------------------
+  # HEADER config
+  #-----------------------------------------------------------------------
+  [params.header]
+    # Desktop header mode ("fixed", "normal", "auto")
+    desktopMode = "fixed"
+
+    # Mobile header mode ("fixed", "normal", "auto")
+    mobileMode = "auto"
+
+    #---------------------------------------------------------------------
+    # Header title config
+    #---------------------------------------------------------------------
+    [params.header.title]
+      # URL of the LOGO
+      logo = ""
+
+      # title name
+      name = " > robsite"
+
+      # Add extra information before the name (HTML format is supported), such as icons
+      #pre = "<i class='fas fa-user-astronaut'></i>"
+
+      # Add extra information after the name (HTML format is supported), such as icons
+      post = ""
+
+      # Whether to use typeit animation for title name
+      typeit = true
+
+  #-----------------------------------------------------------------------
+  # FOOTER config
+  #-----------------------------------------------------------------------
+  [params.footer]
+    # Show footer
+    enable = true
+
+    # Custom content (HTML format is supported)
+    custom = 'Powered by Netlify'
+
+    # Whether to show Hugo and theme info
+    hugo = false
+
+    # Whether to show copyright info
+    copyright = true
+
+    # Whether to show the author
+    author = true
+
+    # Site creation time
+    since = 2021
+    
+    # License info (HTML format is supported)
+    license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+
+  #-----------------------------------------------------------------------
+  # POSTS/SECTION page config
+  #-----------------------------------------------------------------------
+  [params.section]
+    # Special amount of posts in each section page
+    paginate = 20
+
+    # Date format (month and day)
+    dateFormat = "01-02"
+
+    # Amount of RSS pages
+    rss = 10
+
+  #-----------------------------------------------------------------------
+  # CATEGORY/SECTION page config
+  #-----------------------------------------------------------------------
+  [params.list]
+    # Special amount of posts in each list page
+    paginate = 20
+
+    # Date format (month and day)
+    dateFormat = "01-02"
+
+    # Amount of RSS pages
+    rss = 10
+
+  #-----------------------------------------------------------------------
+  # HOME page config
+  #-----------------------------------------------------------------------
+  [params.home]
+    # Amount of RSS pages
+    rss = 10
+
+    #---------------------------------------------------------------------
+    # Home page PROFILE
+    #---------------------------------------------------------------------
+    [params.home.profile]
+      enable = true
+
+      # Gravatar Email for preferred avatar in home page
+      gravatarEmail = "roberto.aq@outlook.com"
+
+      # URL of avatar shown in home page
+      #avatarURL = "" # Gravatar in use
+
+      # Title shown in home page (HTML format is supported)
+      title = "Roberto Aguilar"
+
+      # Subtitle shown in home page
+      subtitle = "Data Analyst & Senior Student of Industrial Engineering"
+
+      # Whether to use typeit animation for subtitle
+      typeit = false
+
+      # Whether to show social links
+      social = true
+
+      # Disclaimer (HTML format is supported)
+      disclaimer = "Welcome to robsite, through this portal you will be able to see the <br>author's most recent content "
+
+    #---------------------------------------------------------------------
+    # Home page POSTS
+    #---------------------------------------------------------------------
+    [params.home.posts]
+      # Show posts in the home page
+      enable = true
+
+      # Special amount of posts in each home posts page
+      paginate = 6
+
+      # (DELETED IN VERSION | 0.2.0) replaced with hiddenFromHomePage in params.page
+      # Default behavior when you don't set "hiddenFromHomePage" in front matter
+      defaultHiddenFromHomePage = false
+
+  
+
+  #-----------------------------------------------------------------------
+  # TypeIt config
+  #-----------------------------------------------------------------------
+  [params.typeit]
+    # Typing speed between each step (measured in milliseconds)
+    speed = 90
+
+    # Blinking speed of the cursor (measured in milliseconds)
+    cursorSpeed = 900
+
+    # Character used for the cursor (HTML format is supported)
+    cursorChar = "|"
+
+    # Cursor duration after typing finishing (measured in milliseconds, "-1" means unlimited)
+    duration = -1
+
+  #-----------------------------------------------------------------------
+  # Site SEO config
+  #-----------------------------------------------------------------------
+  [params.seo]
+    # Image URL
+    image = "/images/Thumbnail-Preview-End.png"
+
+    # Thumbnail URL
+    thumbnailUrl = "/images/Thumbnail-Preview-End.png"
+
+  #-----------------------------------------------------------------------
+  # Site verification code for Google/Bing/Yandex/Pinterest/Baidu
+  #-----------------------------------------------------------------------
+  [params.verification]
+    #google = ""
+    #bing = ""
+    #yandex = ""
+    #pinterest = ""
+    #baidu = ""
+
+  #-----------------------------------------------------------------------
+  # SITE Analytics
+  #-----------------------------------------------------------------------
+  [params.analytics]
+    enable = true
+    # Google Analytics
+    [params.analytics.google]
+      id = "205346180"
+      # Whether to anonymize IP
+      anonymizeIP = false
+
+    # Fathom Analytics
+    [params.analytics.fathom]
+      #id = ""
+      # Server url for your tracker if you're self hosting
+      #server = ""
+
+  #---------------------------------------------------------------------
+  # COOKIE consent config
+  #---------------------------------------------------------------------
+  [params.cookieconsent]
+    enable = false
+
+    # Text strings used for Cookie consent banner
+    [params.cookieconsent.content]
+      #message = ""
+      #dismiss = ""
+      #link = ""
+
+  #---------------------------------------------------------------------
+  # CDN data
+  #---------------------------------------------------------------------
+  [params.cdn]
+  # CDN data file name, disabled by default
+  # ("jsdelivr.yml"), used to store Content Delievery Network Data
+    #data = ""
+
+  #---------------------------------------------------------------------
+  # COMPATIBILTY config
+  #---------------------------------------------------------------------
+  [params.compatibility]
+    # Whether to use Polyfill.io to be compatible with older browsers
+    polyfill = true
+
+    # Whether to use object-fit-images to be compatible with older browsers
+    objectFit = true
+
+
+  #---------------------------------------------------------------------
+  # SOCIAL Hyperlink parameters
+  #---------------------------------------------------------------------
+  [params.social]
+    Email = "roberto.aq@outlook.com"
+
+    #---------------------------------------------------------------------
+    # Twitter Specific config
+    #---------------------------------------------------------------------
+    [params.social.twitter]
+      # weight when arranging icons (the greater the weight, the later the icon is positioned)
+      weight = 1
+
+      # social ID
+      id = "robguilarr"
+
+      # prefix of your social link
+      prefix = "https://twitter.com/"
+
+      # content hovering on the icon
+      title = "Twitter"
+
+    #---------------------------------------------------------------------
+    # Medium Specific config
+    #---------------------------------------------------------------------
+    [params.social.medium]
+      # weight when arranging icons (the greater the weight, the later the icon is positioned)
+      weight = 2
+
+      # social ID
+      id = "@robguilarr"
+
+      # prefix of your social link
+      prefix = "https://medium.com/"
+
+      # content hovering on the icon
+      title = "Medium"
+
+
+    #---------------------------------------------------------------------
+    # Linkedin Specific config
+    #---------------------------------------------------------------------
+    [params.social.linkedin]
+      # weight when arranging icons (the greater the weight, the later the icon is positioned)
+      weight = 3
+
+      # social ID
+      id = "robguilarr"
+
+      # prefix of your social link
+      prefix = "https://linkedin.com/in/"
+
+      # content hovering on the icon
+      title = "Linkedin"
+
+
+
+
+  #---------------------------------------------------------------------
+  # SEARCH Engine
+  #---------------------------------------------------------------------
+  [params.search]
+  # Enable Search Engine
+  enable = true
+
+  # Type of search engine ("lunr", "algolia")
+  type = "lunr"
+
+  # Max index length of the chunked content
+  contentLength = 4000
+
+  # Placeholder of the search bar
+  placeholder = ""
+
+  # Max number of results length
+  maxResultLength = 10
+
+  # Snippet length of the result
+  snippetLength = 30
+
+  # HTML tag name of the highlight part in results
+  highlightTag = "em"
+
+  # Whether to use the absolute URL based on the baseURL in search index
+  absoluteURL = false
+  
+    #---------------------------------------------------------------------
+    # ALGOLIA SEARCH Engine (READY FOR SET UP)
+    #---------------------------------------------------------------------
+    [params.search.algolia]
+      #index = ""
+      #appID = ""
+      #searchKey = ""
+
+
+
+#-------------------------------------------------------------------------
+# LANGUAGES/PARAMETERS Set up
+#-------------------------------------------------------------------------
+[languages]
+
+  # English --------------------------------------------------------------
+  [languages.en]
+    weight = 1
+    title = "robsite"
+    languageCode = "en"
+    languageName = "English"
+
+    # English Top Bar Sections -------------------------------------------
+    [[languages.en.menu.main]]
+      identifier = "posts"
+      pre = ""
+      post = ""
+      name = "Posts"
+      url = "/posts/"
+      title = ""
+      weight = 1
+
+    [[languages.en.menu.main]]
+      identifier = "tags"
+      pre = ""
+      post = ""
+      name = "Tags"
+      url = "/tags/"
+      title = ""
+      weight = 2
+
+    [[languages.en.menu.main]]
+      identifier = "categories"
+      pre = ""
+      post = ""
+      name = "Categories"
+      url = "/categories/"
+      title = ""
+      weight = 3
+
+    [[languages.en.menu.main]]
+      identifier = "about"
+      pre = ""
+      post = ""
+      name = "About"
+      url = "/about/"
+      title = ""
+      weight = 4  
+
+    [[languages.en.menu.main]]
+      identifier = "github"
+      pre = "<i class='fab fa-github fa-fw'></i>"
+      post = ""
+      name = "GitHub"
+      url = "https://github.com/robguilarr/"
+      title = ""
+      weight = 5
+
+
+
+#-------------------------------------------------------------------------
+# MARKUP related configuration in Hugo
+#-------------------------------------------------------------------------
+[markup]
+  # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
+
+  #---------------------------------------------------------------------
+  # Highlight Set up, for Markdown Highlights
+  #---------------------------------------------------------------------
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = true
+    # false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/158)
+    noClasses = false
+
+  #---------------------------------------------------------------------
+  # Goldmark is from Hugo 0.60 the default library used for Markdown
+  #---------------------------------------------------------------------
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+
+    #---------------------------------------------------------------------
+    # Goldmark Renderer Set Up
+    #---------------------------------------------------------------------
+    [markup.goldmark.renderer]
+      # Whether to use HTML tags directly in the document
+      unsafe = true
+
+  #---------------------------------------------------------------------
+  # Table Of Contents Markup settings
+  #---------------------------------------------------------------------
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
+
+
+
+
+#-------------------------------------------------------------------------
+# SITEMAP config
+#-------------------------------------------------------------------------
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+
+
+
+#-------------------------------------------------------------------------
+# PERMALINKS config
+#-------------------------------------------------------------------------
+# Permalinks config (https://gohugo.io/content-management/urls/)
+[Permalinks]
+  posts = ":section/:filename"
+
+
+
+
+#-------------------------------------------------------------------------
+# PRIVACY config (https://gohugo.io/about/hugo-and-gdpr/)
+#-------------------------------------------------------------------------
+[privacy]
+  # Privacy of the Google Analytics (replaced by params.analytics.google)
+  [privacy.googleAnalytics]
+    # ...
+
+  # Privacy of twitter
+  [privacy.twitter]
+    enableDNT = true
+
+  # Privacy of youtube
+  [privacy.youtube]
+    privacyEnhanced = true
+
+
+
+
+#-------------------------------------------------------------------------
+# MEDIATYPES Options to make output .md files
+#-------------------------------------------------------------------------
+[mediaTypes]
+  [mediaTypes."text/plain"]
+    suffixes = ["md"]
+
+
+
+
+#-------------------------------------------------------------------------
+# Options to make output .md files
+#-------------------------------------------------------------------------
+[outputFormats.MarkDown]
+  mediaType = "text/plain"
+  isPlainText = true
+  isHTML = false
+
+
+
+#-------------------------------------------------------------------------
+# Options to make hugo output files
+#-------------------------------------------------------------------------
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML", "MarkDown"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  taxonomyTerm = ["HTML"]

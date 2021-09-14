@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>robsite</title>
+        <link>http://robsite.netlify.com/</link>
+        <description>Beyond the personal information about Roberto Aguilar, here you can review the most recent publications of this author and contact details</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 01 Apr 2021 21:57:40 &#43;0800</lastBuildDate>
+            <atom:link href="http://robsite.netlify.com/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>Video Games History plugged by Data</title>
+    <link>http://robsite.netlify.com/posts/evga/</link>
+    <pubDate>Thu, 01 Apr 2021 21:57:40 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://robsite.netlify.com/posts/evga/</guid>
+    <description><![CDATA[<p>The industry of video games revenues is reaching the $173.7 billion in value, with around 2.5 billion users enjoying them worldwide, with a forecasted value of $314.40 billion by 2026 according to Mordor Intelligence.</p>
+<p>Impressive facts, right? Nowadays this market is no longer considered a simple hobby for kids, it has become a constantly growing giant which attracts more and more customers as it takes advantage of the growth of streaming platforms. But this industry, as we well know, is taking more fields, born from ambitious expectations such as the Nintendo World Championships in the 90&rsquo;s to what today many have adopted as a lifestyle also known as <i>Esports</i>.</p>]]></description>
+</item></channel>
+</rss>
