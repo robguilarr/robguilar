@@ -1,14 +1,14 @@
 ---
 weight: 2
 title: "Video Games History plugged by Data"
-date: 2021-04-01T21:57:40+08:00
-lastmod: 2021-08-01T21:57:40+08:00
+date: 2021-09-01T21:57:40+08:00
+lastmod: 2021-09-01T21:57:40+08:00
 draft: false
 author: "Roberto Aguilar"
 authorLink: ""
 description: "This article shows the analytical approach of the video games industry history through a data storytelling"
 #featuredImage: "featured-image.jpg"
-featuredImagePreview: "featured-image.jpg"
+featuredImagePreview: "featured-image.jpg?format=webpage"
 
 tags: ["Data Storytelling", "Python", "Jupyther Notebook"]
 categories: ["Data Infographics"]
@@ -16,7 +16,6 @@ categories: ["Data Infographics"]
 lightgallery: true
 
 toc: true
-
 ---
 
 The industry of video games revenues is reaching the $173.7 billion in value, with around 2.5 billion users enjoying them worldwide, with a forecasted value of $314.40 billion by 2026 according to Mordor Intelligence.
@@ -31,9 +30,7 @@ Impressive facts, right? Nowadays this market is no longer considered a simple h
 The use of :rocket: Jupyter Notebooks is highly recommended, available <a href="https://nbviewer.jupyter.org/github/RAZERH4WK/Python-Projects/blob/main/Data-Storytelling/videogame_analysis/videogame-analysis.ipynb">here</a>
 {{< /admonition >}}
 
-
-{{< image src="https://images.squarespace-cdn.com/content/v1/56e33409d210b8a4c7e973c9/1478555451639-X93B00DM0O3LPZ9PBQ7Y/image-asset.gif?format=1500w" caption="Source: Designcollector" width="120%" height= "120%" alt="Pixel Cities by Waneella">}}
-
+{{< image src="https://images.squarespace-cdn.com/content/v1/56e33409d210b8a4c7e973c9/1478555451639-X93B00DM0O3LPZ9PBQ7Y/image-asset.gif?format=webpage" caption="Source: Designcollector" width="120%" height= "120%" alt="Pixel Cities by Waneella">}}
 
 We’ll take a tour through the history of videogames, starting from late 70s and early the 80s. However, as a way of clarification, if you are a member of the culture, it's important to mention that due to limitations of the scope of data available for analysis, <a href="https://gamicus.gamepedia.com/Tomohiro_Nishikado">Tomohiro Nishikado's</a> masterpiece, released as Space Invaders, will not be part of the analysis; and in case you’re not a member don’t worry this is for you as well.
 
@@ -42,7 +39,6 @@ From an optimistic point of view, we will analyze quite important historical dat
 ---
 
 Before starting our journey, like any exploratory data analysis we must import our libraries.
-
 
 ```python
 # To manage Dataframes
@@ -59,7 +55,6 @@ import plotly.figure_factory as ff
 
 Now, let's import our data. We must consider that we already prepared it, as shown in this articles's footnote[^1].
 
-
 ```python
 # Data frame of videogames
 df = pd.read_csv("data/videogames.csv", na_values=["N/A","", " ", "nan"],
@@ -67,7 +62,6 @@ df = pd.read_csv("data/videogames.csv", na_values=["N/A","", " ", "nan"],
 ```
 
 In addition to facilitate the management of dates in the visualizations, two extra columns will be generated, one as a <i>Timestamp</i> and another as a <i>String</i>, which will be used only if required.
-
 
 ```python
 # Transform Year column to a timestamp
@@ -87,35 +81,37 @@ First, we check our current dataset using the method <code>.info()</code>
 ```python
 df.info()
 ```
+
 ```Shell
 <class 'pandas.core.frame.DataFrame'>
 Int64Index: 16716 entries, 0 to 16718
 Data columns (total 20 columns):
- #   Column           Non-Null Count  Dtype         
----  ------           --------------  -----         
- 0   Name             16716 non-null  object        
- 1   Year_of_Release  16447 non-null  float64       
- 2   Publisher        16662 non-null  object        
- 3   Country          9280 non-null   object        
- 4   City             9279 non-null   object        
- 5   Developer        10096 non-null  object        
- 6   Platform         16716 non-null  object        
- 7   Genre            16716 non-null  object        
- 8   NA_Sales         16716 non-null  float64       
- 9   EU_Sales         16716 non-null  float64       
- 10  JP_Sales         16716 non-null  float64       
- 11  Other_Sales      16716 non-null  float64       
- 12  Global_Sales     16716 non-null  float64       
- 13  Critic_Score     8137 non-null   float64       
- 14  Critic_Count     8137 non-null   float64       
- 15  User_Score       7590 non-null   float64       
- 16  User_Count       7590 non-null   float64       
- 17  Rating           9950 non-null   object        
+ #   Column           Non-Null Count  Dtype
+---  ------           --------------  -----
+ 0   Name             16716 non-null  object
+ 1   Year_of_Release  16447 non-null  float64
+ 2   Publisher        16662 non-null  object
+ 3   Country          9280 non-null   object
+ 4   City             9279 non-null   object
+ 5   Developer        10096 non-null  object
+ 6   Platform         16716 non-null  object
+ 7   Genre            16716 non-null  object
+ 8   NA_Sales         16716 non-null  float64
+ 9   EU_Sales         16716 non-null  float64
+ 10  JP_Sales         16716 non-null  float64
+ 11  Other_Sales      16716 non-null  float64
+ 12  Global_Sales     16716 non-null  float64
+ 13  Critic_Score     8137 non-null   float64
+ 14  Critic_Count     8137 non-null   float64
+ 15  User_Score       7590 non-null   float64
+ 16  User_Count       7590 non-null   float64
+ 17  Rating           9950 non-null   object
  18  Year_ts          16447 non-null  datetime64[ns]
- 19  Year_str         16716 non-null  object        
+ 19  Year_str         16716 non-null  object
 dtypes: datetime64[ns](1), float64(10), object(9)
 memory usage: 2.7+ MB
 ```
+
 To one side we find a great variety of data and attributes, to the other one we see that of the total of 16,716 records there are several attributes with a significant number of null values, which we are going to see next, in percentage terms.
 
 ```python
@@ -123,18 +119,19 @@ To one side we find a great variety of data and attributes, to the other one we 
 def na_counter(df):
     print("NaN Values per column:")
     print("")
-    for i in df.columns: 
+    for i in df.columns:
         percentage = 100 - ((len(df[i]) - df[i].isna().sum())/len(df[i]))*100
-        
-        # Only return columns with more than 5% of NA values 
+
+        # Only return columns with more than 5% of NA values
         if percentage > 5:
             print(i+" has "+ str(round(percentage)) +"% of Null Values")
         else:
             continue
-            
-# Execute function            
+
+# Execute function
 na_counter(df)
 ```
+
 ```shell
 NaN Values per column:
 
@@ -151,7 +148,6 @@ Rating has 40% of Null Values
 These correspond to the attributes that hold more than 5% of the null values considering a confidence standard, which consists of having at least 95% of the data.
 
 In a visual way, we can look at it in the following graphic.
-
 
 ```python
 # Make a dataframe of the number of Missing Values per attribute
@@ -171,7 +167,7 @@ barna = px.bar(df_na[df_na["Missing_Values"] > 0].sort_values
 
 # layout for barchart
 layoutbar1 = {"font": {"size": 11,
-                    "color": "#959595", 
+                    "color": "#959595",
                     "family": "segoe ui light"},
             "title":{'y':0.935,
                     'x':0.4,
@@ -228,7 +224,7 @@ layoutbar1 = {"font": {"size": 11,
                         "opacity":0.7},
             "activeshape.opacity":0.7,
             "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered 
+                      "spikecolor":"#DEDEDE", # Horizontal line hovered
                       "spikethickness":1.5,
                       "showspikes": False,
                       "anchor":"free",
@@ -258,15 +254,14 @@ layoutbar1 = {"font": {"size": 11,
                             "x":1,
                             "y":-0.12,
                             "showarrow":False,
-                            "font.size":10}]}             
+                            "font.size":10}]}
 
-# Update layout                   
+# Update layout
 barna.update_layout(layoutbar1)
 barna.show()
 ```
 
-{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/barplot_1.png" width="150%" height= "150%" alt="Barplot of Missing Values">}}
-
+{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/barplot_1.png?format=webpage" width="150%" height= "150%" alt="Barplot of Missing Values">}}
 
 We see that there is a significant quantity of null values, predominantly in columns related to critics and their respective value (<a href="https://www.metacritic.com/browse/games/score/metascore/all/all/filtered">Metacritic</a>); as well as its content Rating made by <i>ESRB</i> (<a href="https://www.esrb.org/search/?searchKeyword= platform=Nintendo%203DS%2CWii%20U%2CPlayStation%204%2CPlayStation%203%2CXbox%20One%2CXbox%20360%2CPC%2COther&rating=E%2CE10%2B%2CT%2CM%2CAO&descriptor=All%20Content&pg=1&searchType=MostViewed">Entertainment Software Rating Board</a>).
 
@@ -297,7 +292,7 @@ From a historical point of view, it makes sense, that knowing that the focus of 
 <blockquote><b>1977</b> – Launch of Atari 2600</blockquote>
 
 <p align= center>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Atari-2600-Wood-4Sw-Set.jpg" width="600" height="400" alt="Atari_2600">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Atari-2600-Wood-4Sw-Set.jpg?format=webpage" width="600" height="400" alt="Atari_2600">
 </p>
 
 We will begin with the global view, I mean, the superficial perspective of the sales during this period.
@@ -315,7 +310,7 @@ top_pub = df[df["Year_of_Release"]<=1990].groupby("Publisher") \
 
 # Dataframe for Line Plot of most frequent companies
 df_sales_ts = df[games8090][df["Publisher"].isin(top_pub.index)] \
-                .pivot_table(values = "Global_Sales", 
+                .pivot_table(values = "Global_Sales",
                              index = ["Year_of_Release", "Year_str", "Year_ts",
                                       "Publisher","Platform"], aggfunc= np.sum) \
                 .reset_index() \
@@ -323,7 +318,7 @@ df_sales_ts = df[games8090][df["Publisher"].isin(top_pub.index)] \
                 .groupby(["Publisher","Year_ts"]) \
                 .sum() \
                 .reset_index()
-            
+
 
 # Plot a lineplot
 gline = px.line(df_sales_ts, x="Year_ts", y="Global_Sales", color='Publisher',
@@ -427,12 +422,12 @@ layoutline = {"font": {"size": fontimg,
 gline.update_layout(layoutline)
 gline.show()
 ```
-{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/lineplot_2.png" width="150%" height= "150%" alt="Lineplot of Golden Age">}}
+
+{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/lineplot_2.png?format=webpage" width="150%" height= "150%" alt="Lineplot of Golden Age">}}
 
 As we can see at the beginning of the decade and probably after 1977, the market was dominated by Atari Studios while Activision was its main competitor in terms of <a href= "https://twinfinite.net/2016/06/video-games-what-does-ip-mean/">IPs</a>, because these competitors eventually published their titles on the Atari 2600, example of this was Activision with <i>Kaboom!</i> or Parker Bros with <i>Frogger</i>.
 
 Another important fact is that in 1982 we can remember that it was one of the best times for Atari where they published titles that had a great impact such as Tod Frye's <i>Pac-Man</i>.
-
 
 ```python
 # Mask of 1982 games
@@ -552,16 +547,17 @@ layoutbar82 = {"font": {"size": fontimg,
 bar82.update_layout(layoutbar82)
 bar82.show()
 ```
-{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/barplot_3.png" width="150%" height= "150%" alt="Barplot of 1982">}}
+
+{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/barplot_3.png?format=webpage" width="150%" height= "150%" alt="Barplot of 1982">}}
 
 It is evident that the adaptation of this arcade game released in 1980, had outstanding sales, once it was introduced to the world of the Atari 2600. According to the documentary <i>"Ounce Upon Atari"</i>, episode 4 to be exactly, this title managed to sell more than 7 million copies, due to optimizations in the display and in the intelligence of the <a href="https://www.businessinsider.com/npc-meaning">NPCs</a>, compared to the original version.
 
-* <b>FYI:</b> The version of Mario Bros in the dataset corresponds to the Atari 2600 and Arcade version are different from the success that was later introduced to the NES.
+- <b>FYI:</b> The version of Mario Bros in the dataset corresponds to the Atari 2600 and Arcade version are different from the success that was later introduced to the NES.
 
 <blockquote><b>1983</b> – Crisis of the Video Game industry</blockquote>
 
 <p align= center>
-    <img src="http://uploads.neatorama.com/images/posts/677/89/89677/1460595792-0.jpg" width="600" height="300" alt="ET">
+    <img src="http://uploads.neatorama.com/images/posts/677/89/89677/1460595792-0.jpg?format=webpage" width="600" height="300" alt="ET">
 </p>
 
 Undoubtedly, the timeline above shows a clear drop in sales from 1983.
@@ -711,7 +707,8 @@ layoutreg = {"font": {"size": fontimg,
 regplot.update_layout(layoutreg)
 regplot.show()
 ```
-{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/lineplot_4.png" width="150%" height= "150%" alt="Lineplot Regional">}}
+
+{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/lineplot_4.png?format=webpage" width="150%" height= "150%" alt="Lineplot Regional">}}
 
 A conclusion that is worth mentioning is that even Nintendo's success today is not only due to its innovation and sense of affection for its IPs, but also because of the exclusivity of its titles. As shown, both the NES and the GameBoy had great sales in the North American market despite being Japanese companies.
 
@@ -721,14 +718,13 @@ A conclusion that is worth mentioning is that even Nintendo's success today is n
     <img src="https://images.squarespace-cdn.com/content/v1/5387c6c8e4b058cfb90dabb1/1508174421121-DD3XGEBDKOQUN8MSTFMK/ke17ZwdGBToddI8pDm48kIPMjyAxYAbEcFTs8zCKKJJ7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0qN_-Z3B7EvygvPOPmeOryX1pkXg-pKyyA7MDP6ZuEHmJuzC89-qxFpXVqq6ylzIAA/P1010414.jpg" width="600" height="400" alt="gandw">
 </p>
 
-
 ### I World Console War (WCWI)
 
 <blockquote><b>1989</b> - Sega Enterprises Inc. launches worldwide Sega Megadrive Genesis</blockquote>
 <blockquote><b>1991</b> - Nintendo launches worldwide Super Nintendo Entertainment system</blockquote>
 
 <p align= center>
-    <img src="https://chiscroller.files.wordpress.com/2016/07/mario-vs-sonic.png?w=1200" width="200%" height="200%" alt="gamingwar">
+    <img src="https://chiscroller.files.wordpress.com/2016/07/mario-vs-sonic.png?format=webpage" width="200%" height="200%" alt="gamingwar">
 </p>
 
 At the beginning of the 90s, after the launch of the SEGA and Nintendo consoles, the First World War of Videogames began. Mainly in two of their biggest titles, Sonic The Hedgedog and Super Mario Bros.
@@ -736,7 +732,6 @@ At the beginning of the 90s, after the launch of the SEGA and Nintendo consoles,
 During 1990, approximately 90% of the US market was controlled by Nintendo, until in 1992 SEGA began to push with strong marketing campaigns aimed at an older audience.
 
 One of the most remarkable fact of this period was the launch of Mortal Kombat in 1992, where Nintendo censored part of its content (<a href="https://en.wikipedia.org/wiki/Controversies_surrounding_Mortal_Kombat">blood-content</a>) since they had an initiative to be a <i>family friendly</i> company, and of course this became very annoying the followers of this series.
-
 
 ```python
 # Transform current dataframe as long format
@@ -761,7 +756,7 @@ df_long =  df_long[df_long["Sales"] > 0].dropna(subset = ["Sales"])
 df_gen90 = df_long[(df_long["Year_of_Release"] > 1989) & (df_long["Year_of_Release"] < 2000)] \
                             .pivot_table(values = "Sales", index = "Genre",
                                         columns = "Location", aggfunc = np.sum)
-                            
+
 # Image plot
 ima = px.imshow(df_gen90.reset_index(drop=True).T,
                 y= ["Europe","Japan","North America","Rest of the Worlds"],
@@ -867,7 +862,7 @@ ima.update_layout(layoutim)
 ima.show()
 ```
 
-{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/heatmap_5.png" width="150%" height= "150%" alt="Heatmap of WCWI">}}
+{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/heatmap_5.png?format=webpage" width="150%" height= "150%" alt="Heatmap of WCWI">}}
 
 Following the Mortal Kombat censorship, Nintendo was hit, noticing that fighting genres were among the most purchased during the 90s. However, the success of Nintendo IPs such as The Legend of Zelda and Super Mario, ended up destroying the SEGA console in 1998, in addition because of Nintendo grew stronger thanks to role-playing games during these years.
 
@@ -984,19 +979,19 @@ strip90.update_traces(jitter = 1)
 strip90.show()
 ```
 
-{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/scatterplot_6.png" width="150%" height= "150%" alt="Scatterplot of 90s">}}
+{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/scatterplot_6.png?format=webpage" width="150%" height= "150%" alt="Scatterplot of 90s">}}
 
 The first impression, when looking at this graph is that we notice the great dominance of Nintendo since the sales of the Sega Genesis collapsed in 1995, until during the Sega Dreamcast campaign, where the leadership was taken by the GameBoy and the <i>Nintendo 64</i>, followed by the new competitor <i>Play Station</i>, a topic that we will cover later.
 
 ### Role-playing game revolution
 
 <p align= center>
-    <img src="https://pokejungle.net/wp-content/uploads/2019/11/rby-banner.jpg" width="600" height="400" alt="pokemon">
+    <img src="https://pokejungle.net/wp-content/uploads/2019/11/rby-banner.jpg?format=webpage" width="600" height="400" alt="pokemon">
 </p>
 
 One of the most characteristic events of this time was the implementation of 16-bit graphic technologies, which at the time was double what was available. Along with this, the Japanese once again made another master move, which gave a decisive turn to a genre, after the expected fall of RPGs on the PC platform.
 
-Before highlighting the Japanese originality, it is necessary to know after successes of role-playing games such as <a href="https://en.wikipedia.org/wiki/Ultima_VIII:_Pagan">Ultima VIII: Pagan (PC)</a>, this genre had a slow development, since the CD-ROMs generated great graphic expectations for the developers, by the way prolonging the releases, and for sure this  caused a lack of interest from the community, and began to move towards action games or first person shooter such as <a href ="https://en.wikipedia.org/wiki/GoldenEye_007_(1997_video_game)">Golden Eye (1997)</a>. However, success stories continued to appear in this genre such as <a href="https://en.wikipedia.org/wiki/Diablo_(video_game)">Diablo (1996)</a>, developed by Blizzard Entertainment.
+Before highlighting the Japanese originality, it is necessary to know after successes of role-playing games such as <a href="https://en.wikipedia.org/wiki/Ultima_VIII:_Pagan">Ultima VIII: Pagan (PC)</a>, this genre had a slow development, since the CD-ROMs generated great graphic expectations for the developers, by the way prolonging the releases, and for sure this caused a lack of interest from the community, and began to move towards action games or first person shooter such as <a href ="https://en.wikipedia.org/wiki/GoldenEye_007_(1997_video_game)">Golden Eye (1997)</a>. However, success stories continued to appear in this genre such as <a href="https://en.wikipedia.org/wiki/Diablo_(video_game)">Diablo (1996)</a>, developed by Blizzard Entertainment.
 
 ```python
 # Dataframe for Genre lineplot
@@ -1115,7 +1110,7 @@ linegen.update_layout(layoutgen)
 linegen.show()
 ```
 
-{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/lineplot_7.png" width="150%" height= "150%" alt="Lineplot of 90s">}}
+{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/lineplot_7.png?format=webpage" width="150%" height= "150%" alt="Lineplot of 90s">}}
 
 Among all genres, the growth of RPGs over time must be underlined. The release of <a href = "https://en.wikipedia.org/wiki/Pok%C3%A9mon#:~:text=The%20third%20versi%C3%B3n%20(fourth%20en,1%20of%20october%20of%201999.">Pokémon</a> in 1996 for GameBoy by the developer Game Freak was a success for Nintendo, which swept everything in its path, with its first generation of Pokemon Blue, Red and Yellow that was released in 1999, the latter is the fourth Japanese version.
 
@@ -1124,7 +1119,7 @@ Among all genres, the growth of RPGs over time must be underlined. The release o
 <blockquote><b>1994</b> - Sony Computer Entertainment's PlayStation is born</blockquote>
 
 <p align= center>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/PSX-Console-wController.jpg" width="90%" height="90%" alt="ps1">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/PSX-Console-wController.jpg?format=webpage" width="90%" height="90%" alt="ps1">
 </p>
 
 RPGs not only boosted Nintendo, but multiplatform IPs like Final Fantasy VII gave companies such as Sony Computer Entertainment a boost during the introduction of their new 32-bit console and at the same time to publicize the <a href="https://mediawiki.middlebury.edu/FMMC0282/JRPG">JRPGs</a> within the western market.
@@ -1248,7 +1243,6 @@ piesony.show()
 
 {{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/piechart_8.png" width="150%" height= "150%" alt="PlayStation Piechart">}}
 
-
 As we can see in the graph, Sony's video game distribution during its first two years in the North American market. Even if we pay attention, titles like Tekken and Mortal Kombat had a significant presence by showing the highest levels of sales by genre (referring to "Fighting" genre).
 
 ### Content control warnings
@@ -1256,7 +1250,7 @@ As we can see in the graph, Sony's video game distribution during its first two 
 <blockquote><b>1994</b> - Foundation of Entertainment Software Rating Board</blockquote>
 
 <p align= center>
-    <img src="https://images-na.ssl-images-amazon.com/images/G/01/img17/video-games/esrb/esrb_ratings_categories.jpg" width="600" height="400" alt="ESRB">
+    <img src="https://images-na.ssl-images-amazon.com/images/G/01/img17/video-games/esrb/esrb_ratings_categories.jpg?format=webpage" width="600" height="400" alt="ESRB">
 </p>
 
 After titles like Doom, Wolfenstein and Mortal Kombat, an American system arises to classify the content of video games, and assign it a category depending on its potential audience maturity. It was established in 1994 by the Entertainment Software Association, the formerly called the Interactive Digital Software Association.
@@ -1380,7 +1374,7 @@ gesrb.update_layout(layoutim2)
 gesrb.show()
 ```
 
-{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/heatmap9.png" width="150%" height= "150%" alt="Heatmap ESRB">}}
+{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/heatmap9.png?format=webpage" width="150%" height= "150%" alt="Heatmap ESRB">}}
 
 Based on the classification established by the ESRB, from the data available it can be concluded that the video game console with more titles for universal use is the Nintendo DS, followed by the PS2 and then is the Wii, thus highlighting the impact they had on sales, which it will be shown later.
 
@@ -1518,14 +1512,14 @@ line20.update_layout(layoutplat)
 line20.show()
 ```
 
-{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/lineplot_10.png" width="150%" height= "150%" alt="Lineplot of 2000s">}}
+{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/lineplot_10.png?format=webpage" width="150%" height= "150%" alt="Lineplot of 2000s">}}
 
 The Japanese domain was becoming more and more determined, a situation that the software technology giant, Microsoft, takes as a challenge to enter a new market and start a contest with the PS2.
 
 <blockquote><b>2000</b> - The beginning of the longest rivalry in the console market</blockquote>
 
 <p align= center>
-    <img src="https://i.redd.it/ahya0h6b08941.jpg" width="600" height="400" alt="billandrock">
+    <img src="https://i.redd.it/ahya0h6b08941.jpg?format=webpage" width="600" height="400" alt="billandrock">
 </p>
 
 This famous image of Bill Gates with Dwayne Johnson was part of a great marketing strategy carried out by Microsoft, they were willing to do whatever it took to strengthen the presence of Xbox in the market.
@@ -1674,12 +1668,12 @@ bubpub3.add_layout_image(
 bubpub3.update_layout(layoutbub)
 bubpub3.show()
 ```
+
 {{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/scatterplot_11.png" width="150%" height= "150%" alt="Bubblechart of 2000s">}}
 
 In the graph we see that Microsoft, despite not becoming leaders in sales, were positioned by having very good reviews, specifically in Halo, with Metacritics above 95, including its title's sequels.
 
 However, Microsoft's step did not go unnoticed, the launch of <i>Halo: Combat Evolved</i> marked a before and after in the world of online multiplayer FPS, not only because of its online gaming capabilities or because of its smooth joystick mechanism, which was crucial for the attraction of PC FPS players to consoles, but for his amazing character, <i>Master Chief</i> who became an emblem of the brand.
-
 
 ### The "Non-competitor" takes the lead
 
@@ -1808,14 +1802,13 @@ bar2010.update_layout(layoutbar2005)
 bar2010.show()
 ```
 
-{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/barplot_12.png" width="150%" height= "150%" alt="Barchart of 2000s">}}
+{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/barplot_12.png?format=webpage" width="150%" height= "150%" alt="Barchart of 2000s">}}
 
 As you can see, from the start of the Wii sales, the strategy of Nintendo began to flourish, surpassing the sales of its rivals by 4 years in a row.
 
 An interesting aspect of Nintendo among the others, is that the success of their sales was due to exclusive titles involving their unique accessories with motion sensors.
 
 Referring to sales, among the most successful titles are the following.
-
 
 ```python
 # Dataframe for table with best-selling games
@@ -1938,7 +1931,7 @@ table10.update_traces({"header":{"font.color":"#fcfcfc",
 table10.show()
 ```
 
-{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/table_13.png" width="150%" height= "150%" alt="Table of 2000s">}}
+{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/table_13.png?format=webpage" width="150%" height= "150%" alt="Table of 2000s">}}
 
 Four of Wii's five most successful titles involve Nintendo Publishers, among its most famous IPs were Mario Kart and Wii Sports.
 
@@ -1949,7 +1942,6 @@ This innovation marked an era of hardware extensions and motion sensors, a situa
 After the success of some local-gaming titles, the decade from 2010 to 2020 took a more competitive or cooperative way in certain cases, guided by a new era of interconnectivity and mobility.
 
 This reason motivated developers with extraordinary visions to create not only multiplayer, but also online content that maintains high audience rates.
-
 
 ```python
 # Subset games from 2010 to 2015
@@ -2072,7 +2064,7 @@ bargen10.update_layout(layoutbar2010)
 bargen10.show()
 ```
 
-{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/barplot_14.png" width="150%" height= "150%" alt="Barchart of 2010s">}}
+{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/barplot_14.png?format=webpage" width="150%" height= "150%" alt="Barchart of 2010s">}}
 
 Between 2010 and 2015, the best-selling title was Kinect Adventures for Xbox 360, which had a focus on enhancing multiplayer gameplay and taking advantage of the latest technological innovation of the moment, the Microsoft’s Kinect.
 
@@ -2151,7 +2143,7 @@ pubmatrix.add_annotation(text=author,
 pubmatrix.show()
 ```
 
-{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/matrix_15.png" width="150%" height= "150%" alt="Historical Matrix">}}
+{{< image src="https://raw.githubusercontent.com/RAZERH4WK/Python-Projects/main/Data-Storytelling/videogame_analysis/plots-images/matrix_15.png?format=webpage" width="150%" height= "150%" alt="Historical Matrix">}}
 
 The fact that every day more <i>Free to Play</i> games are announced, does not indicate that this is the exclusive focus companies will have on the industry now on. Beyond this, as we see in the previous graph, each of the most recognized Publishers in history has its own style in exclusive series, despite having titles in many genres.
 
@@ -2167,27 +2159,27 @@ Through this article, my goal is to use data tools to inform the reader about cu
 
 ---
 
-## Additional Information 
+## Additional Information
 
-* <b>About the article</b> {{< version 0.1.1 >}}
+- <b>About the article</b> {{< version 0.1.1 >}}
 
-    This infographic article was adapted to a general public, I hope you enjoyed it. In case you are interested in learning more about the development of the script, I invite you to the contact section in my <i>About Page</i>, and with pleasure we can connect.
+  This infographic article was adapted to a general public, I hope you enjoyed it. In case you are interested in learning more about the development of the script, I invite you to the contact section in my <i>About Page</i>, and with pleasure we can connect.
 
 ---
 
- * <b>Related Content</b>
+- <b>Related Content</b>
 
-    As a recommendation I suggest a look at <a href="https://www.visualcapitalist.com/50-years-gaming-history-revenue-stream/">this</a> great article, published by
-     Omri Wallach on the Visual Capitalist infographic page, where many interesting
-     details about the industry's history are covered.
+  As a recommendation I suggest a look at <a href="https://www.visualcapitalist.com/50-years-gaming-history-revenue-stream/">this</a> great article, published by
+  Omri Wallach on the Visual Capitalist infographic page, where many interesting
+  details about the industry's history are covered.
 
+- <b>Datasets</b>
 
-* <b>Datasets</b>
+  - <a href="https://www.kaggle.com/sidtwr/videogames-sales-dataset?select=Video_Games_Sales_as_at_22_Dec_2016.csv">Videogames Dataset</a>
+  - <a href="https://www.kaggle.com/andreshg/videogamescompaniesregions?select=video-games-developers.csv">Videogames Developers Regions</a>
+  - <a href="https://www.kaggle.com/andreshg/videogamescompaniesregions?select=indie-games-developers.csv">Indie Developers Regions</a>
 
-    * <a href="https://www.kaggle.com/sidtwr/videogames-sales-dataset?select=Video_Games_Sales_as_at_22_Dec_2016.csv">Videogames Dataset</a>
-    * <a href="https://www.kaggle.com/andreshg/videogamescompaniesregions?select=video-games-developers.csv">Videogames Developers Regions</a>
-    * <a href="https://www.kaggle.com/andreshg/videogamescompaniesregions?select=indie-games-developers.csv">Indie Developers Regions</a>
-
-    [^1]:<b>Footnote:</b> Specific datasets contain information from Publishers, which they were
-        named in the source attribute as Developers, but not in all cases. For more details on the
-        data transformation, please visit my Github <a href="https://github.com/RAZERH4WK/Python-Projects/blob/main/Data-Storytelling/videogame_analysis/ETL_script.py">repository</a>.
+  [^1]:
+      <b>Footnote:</b> Specific datasets contain information from Publishers, which they were
+      named in the source attribute as Developers, but not in all cases. For more details on the
+      data transformation, please visit my Github <a href="https://github.com/RAZERH4WK/Python-Projects/blob/main/Data-Storytelling/videogame_analysis/ETL_script.py">repository</a>.

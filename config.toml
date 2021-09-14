@@ -1,4 +1,4 @@
-baseURL = "http://robsite.netlify.com/"
+baseURL = "https://robsite.media/"
 # [en, zh-cn, fr, it, ...] determines default content language
 defaultContentLanguage = "en"
 
@@ -15,7 +15,7 @@ theme = "LoveIt"
 enableRobotsTXT = true
 
 # Whether to use git commit log
-#enableGitInfo = true
+enableGitInfo = true
 
 # whether to use emoji code
 enableEmoji = true
@@ -23,6 +23,8 @@ enableEmoji = true
 # Deployment
 canonifyURLs = false
 
+# copyright
+copyright = "This work is developed and posted only under robsite property"
 
 
 #-------------------------------------------------------------------------
@@ -33,10 +35,10 @@ canonifyURLs = false
   version = "0.2.X"
 
   # Site description
-  description = "Beyond the personal information about Roberto Aguilar, here you can review the most recent publications of this author and contact details"
+  description = "Let's look at the most recent content posted on robsite, Roberto Aguilar's official hub"
 
   # Site keywords
-  keywords = ["Data Science", "Portfolio", "Roberto", "Aguilar", "Roberto Aguilar", "robsite"]
+  keywords = ["robsite", "Data Science", "Portfolio", "Roberto", "Aguilar", "Roberto Aguilar"]
 
   # Site default theme ("light", "dark", "auto")
   defaultTheme = "dark"
@@ -45,7 +47,10 @@ canonifyURLs = false
   dateFormat = "2006-01-02"
 
   # Website images for Open Graph and Twitter Cards
-  images = "/images/Thumbnail-Preview-End.png"
+  images = ["/logo.png"]
+
+  # Git Repository
+  gitRepo = "https://github.com/robguilarr/robsite"
 
   #-----------------------------------------------------------------------
   # ICON Configuration
@@ -137,24 +142,6 @@ canonifyURLs = false
       # Whether to make the table of the contents in the sidebar automatically collapsed
       auto = true
 
-    #---------------------------------------------------------------------
-    # KaTeX mathematical formulas config (KaTeX https://katex.org/)
-    #---------------------------------------------------------------------
-    [params.page.math]
-      enable = false
-      # Default block delimiter is $$ ... $$ and \\[ ... \\]
-      blockLeftDelimiter = ""
-      blockRightDelimiter = ""
-
-      # Default inline delimiter is $ ... $ and \\( ... \\)
-      inlineLeftDelimiter = ""
-      inlineRightDelimiter = ""
-
-      # KaTeX extension copy_tex
-      copyTex = true
-
-      # KaTeX extension mhchem
-      mhchem = true
 
     #---------------------------------------------------------------------
     # Mapbox GL JS config (Mapbox GL JS https://docs.mapbox.com/mapbox-gl-js)
@@ -203,12 +190,12 @@ canonifyURLs = false
     [params.page.seo]
       # image URL
       # URL
-      images = ["Thumbnail-Preview.png"]
+      images = []
 
       # Publisher info
       [params.page.seo.publisher]
         name = "Roberto Aguilar"
-        logoUrl = "/images/logo.png"
+        logoUrl = "/images/profile_pic.jpg"
 
 
   #-----------------------------------------------------------------------
@@ -248,7 +235,7 @@ canonifyURLs = false
     enable = true
 
     # Custom content (HTML format is supported)
-    custom = 'Powered by Netlify'
+    custom = ''
 
     # Whether to show Hugo and theme info
     hugo = false
@@ -263,7 +250,7 @@ canonifyURLs = false
     since = 2021
     
     # License info (HTML format is supported)
-    license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+    license = 'Hosted on Netlify'
 
   #-----------------------------------------------------------------------
   # POSTS/SECTION page config
@@ -323,7 +310,7 @@ canonifyURLs = false
       social = true
 
       # Disclaimer (HTML format is supported)
-      disclaimer = "Welcome to robsite, through this portal you will be able to see the <br>author's most recent content "
+      disclaimer = "Welcome to robsite, through this portal you will be<br>able to see the author's most recent content "
 
     #---------------------------------------------------------------------
     # Home page POSTS
@@ -362,10 +349,10 @@ canonifyURLs = false
   #-----------------------------------------------------------------------
   [params.seo]
     # Image URL
-    image = "/images/Thumbnail-Preview-End.png"
+    image = "/images/profile_pic.jpg"
 
     # Thumbnail URL
-    thumbnailUrl = "/images/Thumbnail-Preview-End.png"
+    thumbnailUrl = "/images/profile_pic.jpg"
 
   #-----------------------------------------------------------------------
   # Site verification code for Google/Bing/Yandex/Pinterest/Baidu
@@ -384,7 +371,7 @@ canonifyURLs = false
     enable = true
     # Google Analytics
     [params.analytics.google]
-      id = "205346180"
+      id = "283424495"
       # Whether to anonymize IP
       anonymizeIP = false
 
@@ -412,7 +399,7 @@ canonifyURLs = false
   [params.cdn]
   # CDN data file name, disabled by default
   # ("jsdelivr.yml"), used to store Content Delievery Network Data
-    #data = ""
+    data = "jsdelivr.yml"
 
   #---------------------------------------------------------------------
   # COMPATIBILTY config
@@ -532,6 +519,7 @@ canonifyURLs = false
     title = "robsite"
     languageCode = "en"
     languageName = "English"
+    
 
     # English Top Bar Sections -------------------------------------------
     [[languages.en.menu.main]]
