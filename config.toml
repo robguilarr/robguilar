@@ -86,7 +86,7 @@ copyright = "This work is developed and posted only under Rob's property"
   version = "0.2.X"
 
   # Site description
-  description = "Let's look at the most recent content posted on robsite, Roberto Aguilar's official hub"
+  description = "Come take a look at the most recent content posted by Roberto Aguilar"
 
   # Site keywords
   keywords = ["Roberto", "Aguilar", "Roberto Aguilar", "Data Science", "Portfolio", "robguilar"]
@@ -120,10 +120,10 @@ copyright = "This work is developed and posted only under Rob's property"
     themeColor = "#ffffff"
 
     # Safari mask icon color
-    iconColor = "#313536"
+    iconColor = "#525252"
 
     # Windows v8-10 tile color
-    tileColor = "#2c97da"
+    tileColor = "#525252"
 
   #-----------------------------------------------------------------------
   # POSTS PAGES config
