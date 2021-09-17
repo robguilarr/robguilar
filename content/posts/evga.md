@@ -27,7 +27,7 @@ Impressive facts, right? Nowadays this market is no longer considered a simple h
 ---
 
 {{< admonition info "Looking for an interactive experience?" true >}}
-The use of :rocket: Jupyter Notebooks is highly recommended, available <a href="https://nbviewer.jupyter.org/github/RAZERH4WK/Python-Projects/blob/main/Data-Storytelling/videogame_analysis/videogame-analysis.ipynb">here</a>
+The use of :rocket: Jupyter Notebooks is highly recommended, available <a href="https://nbviewer.jupyter.org/github/robguilarr/Python-Projects/blob/main/Data-Storytelling/videogame_analysis/videogame-analysis.ipynb">here</a>
 {{< /admonition >}}
 
 {{< image src="https://images.squarespace-cdn.com/content/v1/56e33409d210b8a4c7e973c9/1478555451639-X93B00DM0O3LPZ9PBQ7Y/image-asset.gif?format=webpage" caption="Source: Designcollector" width="120%" height= "120%" alt="Pixel Cities by Waneella">}}
