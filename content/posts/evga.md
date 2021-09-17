@@ -1,17 +1,17 @@
 ---
-weight: 2
+weight: 1
 title: "Video Games History plugged by Data"
 date: 2021-09-01T21:57:40+08:00
 lastmod: 2021-09-01T21:57:40+08:00
 draft: false
 author: "Roberto Aguilar"
 authorLink: ""
-description: "This article shows the analytical approach of the video games industry history through a data storytelling"
+description: "This article shows the analytical approach of the video games industry history through data"
 #featuredImage: "featured-image.jpg"
-featuredImagePreview: "featured-image.jpg?format=webpage"
+featuredImagePreview: "images/posts/retrogames.jpg"
 
 tags: ["Data Storytelling", "Python", "Jupyther Notebook"]
-categories: ["Data Infographics"]
+categories: ["Data Storytelling"]
 
 lightgallery: true
 

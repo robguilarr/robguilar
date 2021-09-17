@@ -1,4 +1,4 @@
-baseURL = "https://robsite.media/"
+baseURL = "https://robguilar.com/"
 # [en, zh-cn, fr, it, ...] determines default content language
 defaultContentLanguage = "en"
 
@@ -6,7 +6,7 @@ defaultContentLanguage = "en"
 languageCode = "en"
 
 # Website title
-title = "> robsite"
+title = "robguilar"
 
 # Change the default theme to be use
 theme = "LoveIt"
@@ -21,10 +21,61 @@ enableGitInfo = true
 enableEmoji = true
 
 # Deployment
-canonifyURLs = true
+#canonifyURLs = true
 
 # copyright
-copyright = "This work is developed and posted only under robsite property"
+copyright = "This work is developed and posted only under Rob's property"
+
+
+#-------------------------------------------------------------------------
+# MENU/PARAMETERS Set up
+#-------------------------------------------------------------------------
+[menu]  
+    # Bar Sections -------------------------------------------
+    [[menu.main]]
+      identifier = "posts"
+      pre = ""
+      post = ""
+      name = "Posts"
+      url = "/posts/"
+      title = ""
+      weight = 1
+
+    [[menu.main]]
+      identifier = "tags"
+      pre = ""
+      post = ""
+      name = "Tags"
+      url = "/tags/"
+      title = ""
+      weight = 2
+
+    [[menu.main]]
+      identifier = "categories"
+      pre = ""
+      post = ""
+      name = "Categories"
+      url = "/categories/"
+      title = ""
+      weight = 3
+
+    [[menu.main]]
+      identifier = "about"
+      pre = ""
+      post = ""
+      name = "About"
+      url = "/about/"
+      title = ""
+      weight = 4  
+
+    [[menu.main]]
+      identifier = "github"
+      pre = "<i class='fab fa-github fa-fw'></i>"
+      post = ""
+      name = "GitHub"
+      url = "https://github.com/robguilarr/"
+      title = ""
+      weight = 5
 
 
 #-------------------------------------------------------------------------
@@ -38,7 +89,7 @@ copyright = "This work is developed and posted only under robsite property"
   description = "Let's look at the most recent content posted on robsite, Roberto Aguilar's official hub"
 
   # Site keywords
-  keywords = ["robsite", "Data Science", "Portfolio", "Roberto", "Aguilar", "Roberto Aguilar"]
+  keywords = ["Data Science", "Portfolio", "Roberto", "Aguilar", "Roberto Aguilar"]
 
   # Site default theme ("light", "dark", "auto")
   defaultTheme = "dark"
@@ -47,17 +98,17 @@ copyright = "This work is developed and posted only under robsite property"
   dateFormat = "2006-01-02"
 
   # Website images for Open Graph and Twitter Cards
-  images = ["/logo.png"]
+  images = ["images/profile_pic.jpg"]
 
   # Git Repository
-  gitRepo = "https://github.com/robguilarr/robsite"
+  gitRepo = "https://github.com/robguilarr/robguilar"
 
   #-----------------------------------------------------------------------
   # ICON Configuration
   #-----------------------------------------------------------------------
   [params.app]
     # Optional site title override for the app when added to an iOS home screen or Android launcher
-    title = "> robsite"
+    title = "> robguilar"
 
     # Whether to omit favicon resource links
     noFavicon = false
@@ -190,12 +241,12 @@ copyright = "This work is developed and posted only under robsite property"
     [params.page.seo]
       # image URL
       # URL
-      images = []
+      images = ["images/profile_pic.jpg"]
 
       # Publisher info
       [params.page.seo.publisher]
         name = "Roberto Aguilar"
-        logoUrl = "/images/profile_pic.jpg"
+        logoUrl = "images/profile_pic.jpg"
 
 
   #-----------------------------------------------------------------------
@@ -216,7 +267,7 @@ copyright = "This work is developed and posted only under robsite property"
       logo = ""
 
       # title name
-      name = " > robsite"
+      name = " > robguilar"
 
       # Add extra information before the name (HTML format is supported), such as icons
       #pre = "<i class='fas fa-user-astronaut'></i>"
@@ -310,7 +361,7 @@ copyright = "This work is developed and posted only under robsite property"
       social = true
 
       # Disclaimer (HTML format is supported)
-      disclaimer = "Welcome to robsite, through this portal you will be<br>able to see the author's most recent content "
+      disclaimer = "Welcome to my website, through this portal you will be<br>able to see my most recent content published"
 
     #---------------------------------------------------------------------
     # Home page POSTS
@@ -349,10 +400,10 @@ copyright = "This work is developed and posted only under robsite property"
   #-----------------------------------------------------------------------
   [params.seo]
     # Image URL
-    image = "/images/profile_pic.jpg"
+    image = "images/profile_pic.jpg"
 
     # Thumbnail URL
-    thumbnailUrl = "/images/profile_pic.jpg"
+    thumbnailUrl = "images/profile_pic.jpg"
 
   #-----------------------------------------------------------------------
   # Site verification code for Google/Bing/Yandex/Pinterest/Baidu
@@ -505,67 +556,6 @@ copyright = "This work is developed and posted only under robsite property"
       #index = ""
       #appID = ""
       #searchKey = ""
-
-
-
-#-------------------------------------------------------------------------
-# LANGUAGES/PARAMETERS Set up
-#-------------------------------------------------------------------------
-[languages]
-
-  # English --------------------------------------------------------------
-  [languages.en]
-    weight = 1
-    title = "robsite"
-    languageCode = "en"
-    languageName = "English"
-    
-
-    # English Top Bar Sections -------------------------------------------
-    [[languages.en.menu.main]]
-      identifier = "posts"
-      pre = ""
-      post = ""
-      name = "Posts"
-      url = "/posts/"
-      title = ""
-      weight = 1
-
-    [[languages.en.menu.main]]
-      identifier = "tags"
-      pre = ""
-      post = ""
-      name = "Tags"
-      url = "/tags/"
-      title = ""
-      weight = 2
-
-    [[languages.en.menu.main]]
-      identifier = "categories"
-      pre = ""
-      post = ""
-      name = "Categories"
-      url = "/categories/"
-      title = ""
-      weight = 3
-
-    [[languages.en.menu.main]]
-      identifier = "about"
-      pre = ""
-      post = ""
-      name = "About"
-      url = "/about/"
-      title = ""
-      weight = 4  
-
-    [[languages.en.menu.main]]
-      identifier = "github"
-      pre = "<i class='fab fa-github fa-fw'></i>"
-      post = ""
-      name = "GitHub"
-      url = "https://github.com/robguilarr/"
-      title = ""
-      weight = 5
 
 
 
