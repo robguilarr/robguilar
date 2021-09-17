@@ -1,4 +1,4 @@
-baseURL = "https://robguilar.com/"
+baseURL = "https://robguilar.netlify.app/"
 # [en, zh-cn, fr, it, ...] determines default content language
 defaultContentLanguage = "en"
 
@@ -6,7 +6,7 @@ defaultContentLanguage = "en"
 languageCode = "en"
 
 # Website title
-title = "robguilar"
+title = "Roberto Aguilar"
 
 # Change the default theme to be use
 theme = "LoveIt"
@@ -21,7 +21,7 @@ enableGitInfo = true
 enableEmoji = true
 
 # Deployment
-#canonifyURLs = true
+canonifyURLs = true
 
 # copyright
 copyright = "This work is developed and posted only under Rob's property"
@@ -89,7 +89,7 @@ copyright = "This work is developed and posted only under Rob's property"
   description = "Let's look at the most recent content posted on robsite, Roberto Aguilar's official hub"
 
   # Site keywords
-  keywords = ["Data Science", "Portfolio", "Roberto", "Aguilar", "Roberto Aguilar"]
+  keywords = ["Roberto", "Aguilar", "Roberto Aguilar", "Data Science", "Portfolio", "robguilar"]
 
   # Site default theme ("light", "dark", "auto")
   defaultTheme = "dark"

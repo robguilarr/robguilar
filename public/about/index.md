@@ -3,7 +3,7 @@
 
 #### :(far fa-user fa-fw): Hi, I’m Roberto Aguilar
 
-I'm a Data Analyst, Senior Industrial Engineering Student and content developer at robsite.
+I'm a Data Analyst, Senior Industrial Engineering Student and content developer at this page.
 
 A few years ago the question arose of what approach I wanted to give to my career. I was always interested in statistics, research writing and in a short time of my life I got involved in OOP. Then I met people who were dedicated to extracting information and developing complex tools from Big Data, that's where I discovered the world of Data Science and how it is applied in our day to day.
 

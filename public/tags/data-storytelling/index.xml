@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Data Storytelling - Tag - robsite</title>
-        <link>https://robsite.media/tags/data-storytelling/</link>
-        <description>Data Storytelling - Tag - robsite</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under robsite property</copyright><lastBuildDate>Wed, 01 Sep 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robsite.media/tags/data-storytelling/" rel="self" type="application/rss+xml" /><item>
+        <title>Data Storytelling - Tag - Roberto Aguilar</title>
+        <link>https://robguilar.netlify.app/tags/data-storytelling/</link>
+        <description>Data Storytelling - Tag - Roberto Aguilar</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Rob&#39;s property</copyright><lastBuildDate>Wed, 01 Sep 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.netlify.app/tags/data-storytelling/" rel="self" type="application/rss+xml" /><item>
     <title>Video Games History plugged by Data</title>
-    <link>https://robsite.media/posts/evga/</link>
+    <link>https://robguilar.netlify.app/posts/evga/</link>
     <pubDate>Wed, 01 Sep 2021 21:57:40 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>https://robsite.media/posts/evga/</guid>
+    <guid>https://robguilar.netlify.app/posts/evga/</guid>
     <description><![CDATA[<p>The industry of video games revenues is reaching the $173.7 billion in value, with around 2.5 billion users enjoying them worldwide, with a forecasted value of $314.40 billion by 2026 according to Mordor Intelligence.</p>
 <p>Impressive facts, right? Nowadays this market is no longer considered a simple hobby for kids, it has become a constantly growing giant which attracts more and more customers as it takes advantage of the growth of streaming platforms. But this industry, as we well know, is taking more fields, born from ambitious expectations such as the Nintendo World Championships in the 90&rsquo;s to what today many have adopted as a lifestyle also known as <i>Esports</i>.</p>]]></description>
 </item></channel>

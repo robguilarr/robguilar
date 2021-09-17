@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Article - Tag - Roberto Aguilar</title>
+        <link>https://robguilar.netlify.app/tags/article/</link>
+        <description>Article - Tag - Roberto Aguilar</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Rob&#39;s property</copyright><lastBuildDate>Thu, 16 Sep 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.netlify.app/tags/article/" rel="self" type="application/rss+xml" /><item>
+    <title>My new side hobby</title>
+    <link>https://robguilar.netlify.app/posts/firstmediumpost/</link>
+    <pubDate>Thu, 16 Sep 2021 21:57:40 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://robguilar.netlify.app/posts/firstmediumpost/</guid>
+    <description><![CDATA[As not many would expect, today I decided to start a new journey in Medium.
+Perhaps you have noticed in my about section that I have always been an enthusiast of the gaming industry.
+Just to put you in context I will take this as a side hobby, so at the beginning, I suggest to don&rsquo;t expect me to be a highly active user in the early days.
+Thus for this moment, my main focus is to land a Data Analyst Job, so I will be preparing some posts on this page to let you know about my projects.]]></description>
+</item></channel>
+</rss>

@@ -2,14 +2,19 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://robsite.media/posts/evga/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robsite.media/categories/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robsite.media/categories/data-infographics/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robsite.media/tags/data-storytelling/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robsite.media/tags/jupyther-notebook/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robsite.media/posts/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robsite.media/tags/python/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robsite.media/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robsite.media/tags/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robsite.media/about/</loc><lastmod>2021-09-14T11:52:25-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robsite.media/categories/documentation/</loc><lastmod>2021-09-13T22:50:53-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>
+            <loc>https://robguilar.netlify.app/posts/evga/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/posts/firstmediumpost/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/tags/article/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/tags/blog/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/categories/blog/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/categories/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/tags/medium/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/posts/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/tags/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/tags/data-storytelling/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/categories/data-storytelling/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/tags/jupyther-notebook/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/tags/python/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/about/</loc><lastmod>2021-09-17T08:47:15-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.netlify.app/categories/documentation/</loc><lastmod>2021-09-13T22:50:53-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>
