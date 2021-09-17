@@ -1,4 +1,4 @@
-baseURL = "https://robguilar.netlify.app/"
+baseURL = "https://robguilar.com/"
 # [en, zh-cn, fr, it, ...] determines default content language
 defaultContentLanguage = "en"
 
