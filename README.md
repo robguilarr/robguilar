@@ -3,7 +3,7 @@ Repository for robguilar web page
 
 ## About the Author
 
-* Website | [https://robguilar.media](https://robguilar.media "Visit personal website")
+* Website | [https://robguilar.com](https://robguilar.com "Visit personal website")
 
 * GitHub | [https://github.com](https://github.com/robguilarr "Visit GitHub Overview")
 
