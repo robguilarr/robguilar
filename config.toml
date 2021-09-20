@@ -428,7 +428,7 @@ copyright = "This work is developed and posted only under Rob's property"
 
     # Fathom Analytics
     [params.analytics.fathom]
-      #id = ""
+      id = "G-H5TE6160FM"
       # Server url for your tracker if you're self hosting
       #server = ""
 
