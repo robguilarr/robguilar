@@ -21,7 +21,7 @@ enableGitInfo = true
 enableEmoji = true
 
 # Deployment
-#canonifyURLs = true
+canonifyURLs = true
 
 # copyright
 copyright = "This work is developed and posted only under Rob's property"
