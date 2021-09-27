@@ -86,13 +86,13 @@ copyright = "This work is developed and posted only under Rob's property"
   version = "0.2.X"
 
   # Site description
-  description = "Come take a look at the most recent content posted by Roberto Aguilar"
+  description = "Hello World! This is the new website published by Roberto Aguilar, where you can find his most recent posts, his personal interests, about and contact information"
 
   # Site keywords
   keywords = ["Roberto", "Aguilar", "Roberto Aguilar", "Data Science", "Portfolio", "robguilar"]
 
   # Site default theme ("light", "dark", "auto")
-  defaultTheme = "auto"
+  defaultTheme = "light"
 
   # Date format
   dateFormat = "2006-01-02"
