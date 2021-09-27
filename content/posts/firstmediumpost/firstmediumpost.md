@@ -33,10 +33,8 @@ Furthermore, if I have enough time I will write some other posts about other kin
 
 {{< image src="/images/posts/pm.jpeg" caption="Source: Author" width="100%" height= "100%" alt="Personal_Monopoly">}}
 
-Now my next challenge is to figure out how to merge each of these areas, and to follow my progress, here is the Medium <a href="https://medium.com/@robguilarr">link</a> or if you want in my Home Page will be a button for <i>quick access</i>, or in another case, I will leave here the most recent post of my Medium feed.
+Now my next challenge is to figure out how to merge each of these areas, and to follow my progress, here is the Medium <a href="https://medium.com/@robguilarr">link</a> or if you want in my Home Page will be a button for <i>quick access</i>, or in another case, I will leave here the most recent posts of my Medium feed.
 
 <div id="medium-widget"></div>
     <script src="https://medium-widget.pixelpoint.io/widget.js"></script>
-    <script>MediumWidget.Init({renderTo: '#medium-widget', params: {"resource":"https://medium.com/@robguilarr/what-we-dont-know-about-well-art-designed-video-games-df325c23be3a","postsPerLine":2,"limit":6,"picture":"big","fields":["description","likes","publishAt"],"ratio":"landscape"}})</script>
-
-<b>NOTE:</b> This widget is dinamic, so what you are seeing here is up to date.
+    <script>MediumWidget.Init({renderTo: '#medium-widget', params: {"resource":"https://medium.com/@robguilarr","postsPerLine":2,"limit":2,"picture":"big","fields":["description","claps","likes","publishAt"],"ratio":"landscape"}})</script>
