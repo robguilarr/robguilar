@@ -1,5 +1,22 @@
-# How will I use my new side blog?
+---
+weight: 2
+title: "How will I use my new side blog?"
+date: 2021-09-27T21:57:40+08:00
+lastmod: 2021-09-27T21:57:40+08:00
+draft: false
+author: "Roberto Aguilar"
+authorLink: ""
+description: "Rob stated a new side blog and here are all the details about it"
+#featuredImage: "featured-image.jpg"
+featuredImagePreview: "images/posts/Medium.jpeg"
 
+tags: ["Medium", "Blog"]
+categories: ["Blog"]
+
+lightgallery: true
+
+toc: false
+---
 
 Today I decided to start a new journey in <b>Medium</b>.
 
@@ -24,4 +41,3 @@ Now my next challenge is to figure out how to merge each of these areas, and to 
     <script>MediumWidget.Init({renderTo: '#medium-widget', params: {"resource":"https://medium.com/@robguilarr/what-we-dont-know-about-well-art-designed-video-games-df325c23be3a","postsPerLine":2,"limit":6,"picture":"big","fields":["description","likes","publishAt"],"ratio":"landscape"}})</script>
 
 <b>NOTE:</b> This widget is dinamic, so what you are seeing here is up to date.
-

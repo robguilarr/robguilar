@@ -12,7 +12,7 @@ title = "Roberto Aguilar"
 theme = "LoveIt"
 
 # Whether to use robots.txt
-enableRobotsTXT = true
+#enableRobotsTXT = true
 
 # Whether to use git commit log
 enableGitInfo = true
@@ -92,7 +92,7 @@ copyright = "This work is developed and posted only under Rob's property"
   keywords = ["Roberto", "Aguilar", "Roberto Aguilar", "Data Science", "Portfolio", "robguilar"]
 
   # Site default theme ("light", "dark", "auto")
-  defaultTheme = "dark"
+  defaultTheme = "auto"
 
   # Date format
   dateFormat = "2006-01-02"

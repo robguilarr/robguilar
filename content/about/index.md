@@ -77,7 +77,7 @@ I am a person attentive to issues related to the entertainment and video games i
 
 Without going too deep, I'm fascinated in following news from high-tech companies, about new launches, and market movements, especially at Google and Microsoft.
 
-I also like to read books about productivity and personal growth, in order to find methodologies to improve my work and the best way to achieve it, referring to authors such as Tom Rath, Austin Kleon and Dale Carnegie.
+I also like to read books about productivity and personal growth, in order to find methodologies to improve my work and the best way to achieve it, referring to authors such as Tom Rath, Austin Kleon, David Perell, James Clear and Dale Carnegie.
 
 Among other personal hobbies I like playing video games and practicing outdoor sports like trailrunning.
 

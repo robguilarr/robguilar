@@ -3,15 +3,14 @@
         <title>Blog - Category - Roberto Aguilar</title>
         <link>https://robguilar.com/categories/blog/</link>
         <description>Blog - Category - Roberto Aguilar</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Rob&#39;s property</copyright><lastBuildDate>Thu, 16 Sep 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/categories/blog/" rel="self" type="application/rss+xml" /><item>
-    <title>My new side hobby</title>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Rob&#39;s property</copyright><lastBuildDate>Mon, 27 Sep 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/categories/blog/" rel="self" type="application/rss+xml" /><item>
+    <title>How will I use my new side blog?</title>
     <link>https://robguilar.com/posts/firstmediumpost/</link>
-    <pubDate>Thu, 16 Sep 2021 21:57:40 &#43;0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 21:57:40 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://robguilar.com/posts/firstmediumpost/</guid>
-    <description><![CDATA[As not many would expect, today I decided to start a new journey in Medium.
-Perhaps you have noticed in my about section that I have always been an enthusiast of the gaming industry.
-Just to put you in context I will take this as a side hobby, so at the beginning, I suggest to don&rsquo;t expect me to be a highly active user in the early days.
-Thus for this moment, my main focus is to land a Data Analyst Job, so I will be preparing some posts on this page to let you know about my projects.]]></description>
+    <description><![CDATA[Today I decided to start a new journey in Medium.
+ Perhaps you have noticed in my about section that I have always been interested in documenting my work and write about it, or as Austin Kleon would have said, this is a &ldquo;Daily Dispatch&rdquo; where I will show pieces of work, or at least i will try to 🤔
+However, I will use this platform to keep track of the progress of my recent projects in Data Science and some Analytical stuff, in a not exactly final-product way, but like a notebook.]]></description>
 </item></channel>
 </rss>
