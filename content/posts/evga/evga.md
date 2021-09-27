@@ -1,5 +1,5 @@
 ---
-weight: 1
+weight: 2
 title: "Video Games History plugged by Data"
 date: 2021-09-01T21:57:40+08:00
 lastmod: 2021-09-01T21:57:40+08:00
@@ -9,12 +9,11 @@ authorLink: ""
 description: "This article shows the analytical approach of the video games industry history through data"
 #featuredImage: "featured-image.jpg"
 featuredImagePreview: "images/posts/retrogames.jpg"
-
+images: ["images/posts/retrogames.jpg"]
+thumbnail: "images/posts/retrogames.jpg"
 tags: ["Data Storytelling", "Python", "Jupyther Notebook"]
 categories: ["Data Storytelling"]
-
 lightgallery: true
-
 toc: true
 ---
 

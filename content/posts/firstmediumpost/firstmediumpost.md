@@ -1,5 +1,5 @@
 ---
-weight: 2
+weight: 1
 title: "How will I use my new side blog?"
 date: 2021-09-27T21:57:40+08:00
 lastmod: 2021-09-27T21:57:40+08:00
@@ -9,12 +9,11 @@ authorLink: ""
 description: "Rob stated a new side blog and here are all the details about it"
 #featuredImage: "featured-image.jpg"
 featuredImagePreview: "images/posts/Medium.jpeg"
-
+images: ["images/posts/Medium.jpeg"]
+thumbnail: "images/posts/Medium.jpeg"
 tags: ["Medium", "Blog"]
 categories: ["Blog"]
-
 lightgallery: true
-
 toc: false
 ---
 
