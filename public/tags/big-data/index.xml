@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Big Data - Tag - Roberto Aguilar</title>
+        <link>https://robguilar.com/tags/big-data/</link>
+        <description>Big Data - Tag - Roberto Aguilar</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Rob&#39;s property</copyright><lastBuildDate>Tue, 28 Sep 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/tags/big-data/" rel="self" type="application/rss+xml" /><item>
+    <title>Cloud Service Architecture for NLP in Google Cloud</title>
+    <link>https://robguilar.com/posts/gcp_academicsolution/</link>
+    <pubDate>Tue, 28 Sep 2021 21:57:40 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://robguilar.com/posts/gcp_academicsolution/</guid>
+    <description><![CDATA[The technological advance, forces the sustainability of the companies in order to adapt and compete
+  Summary   This academic article was developed through my postgraduate course, DAT-03 Data Analysis in Big Data Environments, which presents a business case in which a company is interested in combining and migrating relational databases in Microsoft SQL Server and Oracle DB. Given the need to feed them with an NLP system output of social networks such as Instagram, Telegram, and Facebook Messenger.]]></description>
+</item></channel>
+</rss>

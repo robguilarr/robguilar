@@ -3,17 +3,16 @@
         <title>Roberto Aguilar</title>
         <link>https://robguilar.com/</link>
         <description>Hello World! This is the new website published by Roberto Aguilar, where you can find his most recent posts, his personal interests, about and contact information</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Rob&#39;s property</copyright><lastBuildDate>Mon, 27 Sep 2021 21:57:40 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Rob&#39;s property</copyright><lastBuildDate>Tue, 28 Sep 2021 21:57:40 &#43;0800</lastBuildDate>
             <atom:link href="https://robguilar.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>How will I use my new side blog?</title>
-    <link>https://robguilar.com/posts/firstmediumpost/</link>
-    <pubDate>Mon, 27 Sep 2021 21:57:40 &#43;0800</pubDate>
+    <title>Cloud Service Architecture for NLP in Google Cloud</title>
+    <link>https://robguilar.com/posts/gcp_academicsolution/</link>
+    <pubDate>Tue, 28 Sep 2021 21:57:40 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>https://robguilar.com/posts/firstmediumpost/</guid>
-    <description><![CDATA[Today I decided to start a new journey in Medium.
- Perhaps you have noticed in my about section that I have always been interested in documenting my work and write about it, or as Austin Kleon would have said, this is a &ldquo;Daily Dispatch&rdquo; where I will show pieces of work, or at least i will try to 🤔
-However, I will use this platform to keep track of the progress of my recent projects in Data Science and some Analytical stuff, in a not exactly final-product way, but like a notebook.]]></description>
+    <guid>https://robguilar.com/posts/gcp_academicsolution/</guid>
+    <description><![CDATA[The technological advance, forces the sustainability of the companies in order to adapt and compete
+  Summary   This academic article was developed through my postgraduate course, DAT-03 Data Analysis in Big Data Environments, which presents a business case in which a company is interested in combining and migrating relational databases in Microsoft SQL Server and Oracle DB. Given the need to feed them with an NLP system output of social networks such as Instagram, Telegram, and Facebook Messenger.]]></description>
 </item><item>
     <title>Video Games History plugged by Data</title>
     <link>https://robguilar.com/posts/evga/</link>
@@ -22,5 +21,14 @@ However, I will use this platform to keep track of the progress of my recent pro
     <guid>https://robguilar.com/posts/evga/</guid>
     <description><![CDATA[<p>The industry of video games revenues is reaching the $173.7 billion in value, with around 2.5 billion users enjoying them worldwide, with a forecasted value of $314.40 billion by 2026 according to Mordor Intelligence.</p>
 <p>Impressive facts, right? Nowadays this market is no longer considered a simple hobby for kids, it has become a constantly growing giant which attracts more and more customers as it takes advantage of the growth of streaming platforms. But this industry, as we well know, is taking more fields, born from ambitious expectations such as the Nintendo World Championships in the 90&rsquo;s to what today many have adopted as a lifestyle also known as <i>Esports</i>.</p>]]></description>
+</item><item>
+    <title>How will I use my new side blog?</title>
+    <link>https://robguilar.com/posts/firstmediumpost/</link>
+    <pubDate>Mon, 27 Sep 2021 21:57:40 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://robguilar.com/posts/firstmediumpost/</guid>
+    <description><![CDATA[Today I decided to start a new journey in Medium.
+ Perhaps you have noticed in my about section that I have always been interested in documenting my work and write about it, or as Austin Kleon would have said, this is a &ldquo;Daily Dispatch&rdquo; where I will show pieces of work, or at least i will try to 🤔
+However, I will use this platform to keep track of the progress of my recent projects in Data Science and some Analytical stuff, in a not exactly final-product way, but like a notebook.]]></description>
 </item></channel>
 </rss>

@@ -1,5 +1,5 @@
 ---
-weight: 1
+weight: 3
 title: "How will I use my new side blog?"
 date: 2021-09-27T21:57:40+08:00
 lastmod: 2021-09-27T21:57:40+08:00
@@ -34,6 +34,8 @@ Furthermore, if I have enough time I will write some other posts about other kin
 {{< image src="/images/posts/pm.jpeg" caption="Source: Author" width="100%" height= "100%" alt="Personal_Monopoly">}}
 
 Now my next challenge is to figure out how to merge each of these areas, and to follow my progress, here is the Medium <a href="https://medium.com/@robguilarr">link</a> or if you want in my Home Page will be a button for <i>quick access</i>, or in another case, I will leave here the most recent posts of my Medium feed.
+
+---
 
 <div id="medium-widget"></div>
     <script src="https://medium-widget.pixelpoint.io/widget.js"></script>
