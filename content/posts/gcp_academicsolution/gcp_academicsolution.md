@@ -1,5 +1,4 @@
 ---
-weight: 1
 title: "Cloud Service Architecture for NLP in Google Cloud"
 date: 2021-09-28T21:57:40+08:00
 lastmod: 2021-09-28T21:57:40+08:00
@@ -38,5 +37,5 @@ In case you want to access it, next you will find a link where it was uploaded t
 ---
 
 <p align=center>
-    <img src="/images/posts/gcpcover.jpg">
+    {{< image src="/images/posts/gcpcover.jpg" width="70%" height= "70%">}}
 </p>

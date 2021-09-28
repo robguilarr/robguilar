@@ -22,6 +22,6 @@ In case you want to access it, next you will find a link where it was uploaded t
 ---
 
 <p align=center>
-    <img src="/images/posts/gcpcover.jpg">
+    {{< image src="/images/posts/gcpcover.jpg" width="70%" height= "70%">}}
 </p>
 

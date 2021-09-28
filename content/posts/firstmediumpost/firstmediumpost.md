@@ -1,5 +1,5 @@
 ---
-weight: 3
+#weight: 2
 title: "How will I use my new side blog?"
 date: 2021-09-27T21:57:40+08:00
 lastmod: 2021-09-27T21:57:40+08:00
@@ -19,7 +19,7 @@ toc: false
 
 Today I decided to start a new journey in <b>Medium</b>.
 
-{{< image src="/images/posts/Medium.jpeg" width="100%" height= "100%" alt="Medium_Logo">}}
+{{< image src="/images/posts/Medium.jpeg" width="100%" height= "100%">}}
 
 Perhaps you have noticed in my about section that I have always been interested in documenting my work and write about it, or as Austin Kleon would have said, this is a "Daily Dispatch" where I will show pieces of work, or at least i will try to :thinking:
 
@@ -31,7 +31,7 @@ Furthermore, if I have enough time I will write some other posts about other kin
 
 > As one of my favorite writers <a href="https://perell.com/">David Perell</a> mentions on his course "Write of Passage", as we want to show our work we need to define our Personal Monopoly, that skills and areas that are so specific that we can use together to leave our footprint (quick overview <a href="https://www.youtube.com/watch?v=08S67KEb6hQ">here</a> at minute 45), although my main focus is not being a writer, an aspiring Data Scientist needs to do it too, and here is mine.
 
-{{< image src="/images/posts/pm.jpeg" caption="Source: Author" width="100%" height= "100%" alt="Personal_Monopoly">}}
+{{< image src="/images/posts/pm.jpeg" caption="Source: Author" width="100%" height= "100%" alt="Personal Monopoly">}}
 
 Now my next challenge is to figure out how to merge each of these areas, and to follow my progress, here is the Medium <a href="https://medium.com/@robguilarr">link</a> or if you want in my Home Page will be a button for <i>quick access</i>, or in another case, I will leave here the most recent posts of my Medium feed.
 

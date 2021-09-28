@@ -1,5 +1,4 @@
 ---
-weight: 2
 title: "Video Games History plugged by Data"
 date: 2021-09-01T21:57:40+08:00
 lastmod: 2021-09-01T21:57:40+08:00
