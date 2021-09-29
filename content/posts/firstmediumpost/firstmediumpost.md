@@ -6,7 +6,7 @@ lastmod: 2021-09-27T21:57:40+08:00
 draft: false
 author: "Roberto Aguilar"
 authorLink: ""
-description: "Rob stated a new side blog and here are all the details about it"
+description: "Just started a new side blog and here are all the details about it"
 #featuredImage: "featured-image.jpg"
 featuredImagePreview: "images/posts/Medium.jpeg"
 images: ["images/posts/Medium.jpeg"]
