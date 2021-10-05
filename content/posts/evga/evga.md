@@ -5,7 +5,7 @@ lastmod: 2021-09-01T21:57:40+08:00
 draft: false
 author: "Roberto Aguilar"
 authorLink: ""
-description: "This article shows the analytical approach of the video games industry history through data"
+description: "Article that shows the analytical approach of the video games history through sales data, using Python and Jupyter Notebooks"
 #featuredImage: "featured-image.jpg"
 featuredImagePreview: "images/posts/retrogames.jpg"
 images: ["images/posts/retrogames.jpg"]

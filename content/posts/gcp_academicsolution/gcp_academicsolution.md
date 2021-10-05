@@ -5,7 +5,7 @@ lastmod: 2021-09-28T21:57:40+08:00
 draft: false
 author: "Roberto Aguilar"
 authorLink: ""
-description: "Academic article developed during the postgraduate course as a Data Analyst"
+description: "Academic article about a Business Case in which a Natural Language Processing system is deployed in Google Cloud Platform"
 #featuredImage: "featured-image.jpg"
 featuredImagePreview: "images/posts/gcp.jpg"
 images: ["images/posts/gcp.jpg"]
