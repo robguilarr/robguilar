@@ -521,6 +521,17 @@ copyright = "This work is developed and posted only under Rob's property"
       title = "Linkedin"
 
 
+    #---------------------------------------------------------------------
+    # Calendly Specific config
+    #---------------------------------------------------------------------
+    [params.social.calendly]
+      # weight when arranging icons (the greater the weight, the later the icon is positioned)
+      weight = 4
+
+      # content hovering on the icon
+      title = "Calendly"
+
+
 
 
   #---------------------------------------------------------------------

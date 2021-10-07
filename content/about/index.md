@@ -103,3 +103,11 @@ This website intends to work as a portal for the author's most recent posts on e
 - Kaggle | [https://kaggle.com](https://www.kaggle.com/razerhawk "Visit Kaggle Profile")
 
 - DataCamp | [https://datacamp.com](https://www.datacamp.com/profile/robguilarr "Visit DataCamp Profile")
+
+---
+
+> <b>Looking for a personal Meeting?</b>
+>
+> Schedule a space to chat through Calendly.
+>
+> - Calendly | [https://calendly.com](https://calendly.com/robguilarr "Visit Calendly Portal")
