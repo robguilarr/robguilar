@@ -2,22 +2,26 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://robguilar.com/categories/articles/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/tags/big-data/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/categories/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/posts/gcp_academicsolution/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/tags/google-cloud-services/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/posts/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/tags/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/tags/blog/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/categories/blog/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/posts/firstmediumpost/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/tags/medium/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/tags/data-storytelling/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/categories/data-storytelling/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/tags/jupyther-notebook/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/tags/python/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/posts/evga/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/about/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/categories/documentation/</loc><lastmod>2021-09-13T22:50:53-06:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url></urlset>
+            <loc>https://robguilar.com/categories/</loc><lastmod>2022-02-02T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.com/posts/</loc><lastmod>2022-02-02T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.com/categories/projects/</loc><lastmod>2022-02-02T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.com/tags/python/</loc><lastmod>2022-02-02T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.com/</loc><lastmod>2022-02-02T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.com/posts/ab_testing_cookiecats/</loc><lastmod>2022-02-02T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.com/tags/</loc><lastmod>2022-02-02T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.com/tags/exploratory-analysis/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/posts/evga/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/categories/articles/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/big-data/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/posts/gcp_academicsolution/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/google-cloud-services/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/blog/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/medium/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/posts/firstmediumpost/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/categories/others/</loc><lastmod>2021-10-05T13:40:57-06:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/infographics/</loc><lastmod>2021-09-01T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/posts/firstpinterestpost/</loc><lastmod>2021-09-01T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/pinterest/</loc><lastmod>2021-09-01T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/about/</loc><lastmod>2021-10-06T21:59:14-06:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/a/b-testing/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/categories/documentation/</loc><lastmod>2021-09-13T22:50:53-06:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>

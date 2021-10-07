@@ -36,10 +36,19 @@ copyright = "This work is developed and posted only under Rob's property"
       identifier = "posts"
       pre = ""
       post = ""
-      name = "Posts"
+      name = "Timeline"
       url = "/posts/"
       title = ""
       weight = 1
+
+    [[menu.main]]
+      identifier = "categories"
+      pre = ""
+      post = ""
+      name = "Projects"
+      url = "/categories/"
+      title = ""
+      weight = 2
 
     [[menu.main]]
       identifier = "tags"
@@ -47,15 +56,6 @@ copyright = "This work is developed and posted only under Rob's property"
       post = ""
       name = "Tags"
       url = "/tags/"
-      title = ""
-      weight = 2
-
-    [[menu.main]]
-      identifier = "categories"
-      pre = ""
-      post = ""
-      name = "Categories"
-      url = "/categories/"
       title = ""
       weight = 3
 
@@ -86,7 +86,7 @@ copyright = "This work is developed and posted only under Rob's property"
   version = "0.2.X"
 
   # Site description
-  description = "Hello World! This is the new website published by Roberto Aguilar, where you can find his most recent posts, his personal interests, about and contact information"
+  description = "Hello World! This is the new website published by Roberto Aguilar, where you can find his projects, his personal interests, and contact information"
 
   # Site keywords
   keywords = ["Roberto", "Aguilar", "Roberto Aguilar", "Data Science", "Portfolio", "robguilar"]
@@ -353,7 +353,7 @@ copyright = "This work is developed and posted only under Rob's property"
       title = "Roberto Aguilar"
 
       # Subtitle shown in home page
-      subtitle = "Data Analyst & Senior Student of Industrial Engineering"
+      subtitle = "Data Analyst @"
 
       # Whether to use typeit animation for subtitle
       typeit = false
@@ -362,7 +362,7 @@ copyright = "This work is developed and posted only under Rob's property"
       social = true
 
       # Disclaimer (HTML format is supported)
-      disclaimer = "Welcome to my website, through this portal you will be<br>able to see my most recent content published"
+      disclaimer = "Welcome to my website, through this portal you will be<br>able to see my most recent content published & projects"
 
     #---------------------------------------------------------------------
     # Home page POSTS
@@ -524,12 +524,18 @@ copyright = "This work is developed and posted only under Rob's property"
     #---------------------------------------------------------------------
     # Calendly Specific config
     #---------------------------------------------------------------------
-    [params.social.calendly]
+    [params.social.pinterest]
       # weight when arranging icons (the greater the weight, the later the icon is positioned)
       weight = 4
 
+      # social ID
+      id = "robguilarr"
+
+      # prefix of your social link
+      prefix = "https://www.pinterest.com/"
+
       # content hovering on the icon
-      title = "Calendly"
+      title = "Pinterest"
 
 
 

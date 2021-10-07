@@ -1,7 +1,7 @@
 ---
 title: "Video Games History plugged by Data"
-date: 2021-09-01T21:57:40+08:00
-lastmod: 2021-09-01T21:57:40+08:00
+date: 2021-11-01T21:57:40+08:00
+lastmod: 2021-11-01T21:57:40+08:00
 draft: false
 author: "Roberto Aguilar"
 authorLink: ""
@@ -10,8 +10,8 @@ description: "Article that shows the analytical approach of the video games hist
 featuredImagePreview: "images/posts/retrogames.jpg"
 images: ["images/posts/retrogames.jpg"]
 thumbnail: "images/posts/retrogames.jpg"
-tags: ["Data Storytelling", "Python", "Jupyther Notebook"]
-categories: ["Data Storytelling"]
+tags: ["Exploratory Analysis", "Python"]
+categories: ["Projects"]
 lightgallery: true
 toc: true
 ---
@@ -25,7 +25,7 @@ Impressive facts, right? Nowadays this market is no longer considered a simple h
 ---
 
 {{< admonition info "Looking for an interactive experience?" true >}}
-The use of :rocket: Jupyter Notebooks is highly recommended, available <a href="https://nbviewer.jupyter.org/github/robguilarr/videogames-eda/blob/main/videogame_analysis/videogame-analysis.ipynb">here</a>
+:rocket: Use or Download the Jupyter Notebook, available <a href="https://nbviewer.jupyter.org/github/robguilarr/videogames-eda/blob/main/videogame_analysis/videogame-analysis.ipynb">here</a>
 {{< /admonition >}}
 
 {{< image src="https://images.squarespace-cdn.com/content/v1/56e33409d210b8a4c7e973c9/1478555451639-X93B00DM0O3LPZ9PBQ7Y/image-asset.gif?format=webpage" caption="Source: Designcollector" width="120%" height= "120%" alt="Pixel Cities by Waneella">}}
@@ -80,7 +80,7 @@ First, we check our current dataset using the method <code>.info()</code>
 df.info()
 ```
 
-```Shell
+```Code
 <class 'pandas.core.frame.DataFrame'>
 Int64Index: 16716 entries, 0 to 16718
 Data columns (total 20 columns):
@@ -130,7 +130,7 @@ def na_counter(df):
 na_counter(df)
 ```
 
-```shell
+```Code
 NaN Values per column:
 
 Country has 44% of Null Values
@@ -278,6 +278,9 @@ pd.options.display.float_format = "{:.2f}".format
 # Print description
 df.describe()
 ```
+
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/describe.png" style="width: 900px"></p>
+
 
 The numerical attributes show us that we have a total of 40 years of records (from 1980 to 2020) of sales in North America, Europe, Japan, and other parts of the world. Where the median indicates that 50% of the years recorded are less than or equal to 2007, and we did not find outliers.
 

@@ -5,7 +5,7 @@
 
 I'm a Data Analyst, Senior Industrial Engineering Student and content developer at this website.
 
-A few years ago the question arose of what approach I wanted to give to my career. I was always interested in statistics, research writing and in a short time of my life I got involved in OOP. Then I met people who were dedicated to extracting information and developing complex tools from Big Data, that's where I discovered the world of Data Science and how it is applied in our day to day.
+A few years ago the question arose of what approach I wanted to give to my career. I was always interested in statistics and in a short time of my life I got involved in OOP. Then I met people who were dedicated to extracting information and developing complex tools from Big Data, that's where I discovered the world of Data Science and how it is applied in our day to day.
 
 <p align="center">
  <img width="400" height="400" src="images/profile_pic_about.jpg?format=webpage" hspace="5" vspace="5">
@@ -24,7 +24,7 @@ More info {{< link href="https://www.tec.ac.cr/programas-academicos/licenciatura
 {{< /admonition >}}
 
 {{< admonition type=abstract title="Data Analyst at Cenfotec" open=false >}}
-Postgraduate program as Data Analyst, managing topics such as Data Storytelling in Python with Jupyter Notebooks, ETL with Azure Data Factory, Web Scraping & API connections with Python Selenium, Data Governance fundamentals, data modeling in Apache Hadoop using HiveQL, and visualization of statistical models with D3.js, Tableau and Power BI.
+Postgraduate as Data Analyst, managing topics such as Data Storytelling in Python with Jupyter Notebooks, ETL with Azure Data Factory, Web Scraping & API connections with Python Selenium, Data Governance fundamentals, data modeling in Apache Hadoop using HiveQL and  visualization of statistical models with D3.js, Tableau and Power BI
 
 More info {{< link href="https://global-uploads.webflow.com/5ca2bcb83aece284fe8c6ada/6036752071cd3551f32c9f8d_Programa%20Analista%20de%20Datos.pdf" content=here >}}.
 {{< /admonition >}}
@@ -54,13 +54,13 @@ Created and migrated data analytics reports of Customer Success area in whole Sa
 
 As one of my favorite authors Austin Kleon mentions, _*"You don't have to be a genius .... Sometimes amateurs have more to teach us than experts"*_, their mindset is different, and they are always willing to learn without looking at limitations. For this reason, I want to show my work, eager to get feedback from people or groups who share the same interests as me.
 
-So do you think we share the same interests or at least similar? Regardless of your area feel free to follow me on Medium or contact me at one of the links below, let's build a <i>Scenius</i>.
+So do you think we share the same interests or at least similar? Regardless of your area, feel free to follow me on Social Media or contact me at one of the links below.
 
 ---
 
 #### :(fas fa-hand-holding-medical fa-fw): What can I offer?
 
-As a Data Analytics trainee, I know how you can use data in terms of exploratory analysis as well as the applicability of basic Supervised Machine Learning models within your business.
+As a Data Analyst, I know how you can use data in terms of exploratory analysis as well as the applicability of basic Supervised Machine Learning models within your business.
 Aligning the needs of the business, I offer my knowledge in Agile Methods to optimize processes actively and continuously.
 
 I also offer my collaboration and I am open to participate in collaborative projects, for which I invite you to approach to the contact section below.
@@ -69,13 +69,16 @@ I also offer my collaboration and I am open to participate in collaborative proj
 
 #### :(fas fa-hiking fa-fw): Personal life & Hobbies
 
-I am a person attentive to issues related to the entertainment and video games industry, in matters of marketing and applicability of Data Analysis in RPGs, as well as I like to read infographic articles about this type of companies such as Activision Blizzard, Ubisoft, among others.
+I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why my goal is to become a **Game Analyst** one day.
 
-Without going too deep, I'm fascinated in following news from high-tech companies, about new launches, and market movements, especially at Google and Microsoft.
+As well as I like to design infographic charts in Adobe Illustrator, related to this topic, sometimes I do it as a Hobby, which I will be posting on Pinterest. 
 
-I also like to read books about productivity and personal growth, in order to find methodologies to improve my work and the best way to achieve it, referring to authors such as Tom Rath, Austin Kleon, David Perell, James Clear and Dale Carnegie.
+Without going too deep, I'm fascinated in following news from high-tech companies, about new product releases, and market movements, especially at Google and Microsoft.
 
-Among other personal hobbies I like playing video games and practicing outdoor sports like trailrunning.
+I also like to read books about Productivity, Personal Growth, Video Games and Game Analytics. Referring to authors such as Tom Rath, Austin Kleon, James Clear, David Goggins, Anders Drachen and Jason Schreier.
+
+Among other personal hobbies I like playing video games and practicing outdoor sports like trail running.
+
 
 ---
 
@@ -91,11 +94,11 @@ This website intends to work as a portal for the author's most recent posts on e
 
 - Facebook | [https://facebook.com](https://www.facebook.com/robguilarr/ "Visit Facebook Profile")
 
+- Pinterest | [https://www.pinterest.com](https://www.pinterest.com/robguilarr/ "Visit Pinterest Profile")
+
 - Instagram | [https://instagram.com](https://www.instagram.com/robguilarr/ "Visit Instagram Profile")
 
 - LinkedIn | [https://linkedin.com](https://www.linkedin.com/in/robguilarr/ "Visit LinkedIn Profile")
-
-- Kaggle | [https://kaggle.com](https://www.kaggle.com/razerhawk "Visit Kaggle Profile")
 
 - DataCamp | [https://datacamp.com](https://www.datacamp.com/profile/robguilarr "Visit DataCamp Profile")
 

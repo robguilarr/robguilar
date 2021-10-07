@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>A/B Testing - Tag - Roberto Aguilar</title>
+        <link>https://robguilar.com/tags/a/b-testing/</link>
+        <description>A/B Testing - Tag - Roberto Aguilar</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Rob&#39;s property</copyright><atom:link href="https://robguilar.com/tags/a/b-testing/" rel="self" type="application/rss+xml" /><item>
+    <title>Tactical Analytics: A/B Testing with Cookie Cats Game</title>
+    <link>https://robguilar.com/posts/ab_testing_cookiecats/</link>
+    <pubDate>Wed, 02 Feb 2022 21:57:40 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://robguilar.com/posts/ab_testing_cookiecats/</guid>
+    <description><![CDATA[What are Tactical Analytics? A type of user-oriented game analytics, with the purpose to &ldquo;aim to inform game design at the short-term, for example, an A/B test of a new game feature&rdquo; (A. Dranchen, 2013).
+The applicability of statistics in new fields can be considered as one of the greatest advances for humanity. Nowadays, human-machine interactions are being monitored, in a good way in most cases.
+The main purpose is not just to increase the companies revenue, one of the main objectives is to give a benefit in terms of User Experience (UX) and Engagement, and this can be covered using Data Science.]]></description>
+</item></channel>
+</rss>
