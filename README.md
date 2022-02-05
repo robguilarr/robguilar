@@ -15,6 +15,11 @@ Repository for robguilar web page
 
 - LinkedIn | [https://linkedin.com](https://www.linkedin.com/in/robguilarr/ "Visit LinkedIn Profile")
 
+<<<<<<< HEAD
+=======
+- Kaggle | [https://kaggle.com](https://www.kaggle.com/razerhawk "Visit Kaggle Profile")
+
+>>>>>>> 1f2b7f45df6605821a3c5b0eac3f75760aa451e8
 - DataCamp | [https://datacamp.com](https://www.datacamp.com/profile/robguilarr "Visit DataCamp Profile")
 
 - Calendly | [https://calendly.com](https://calendly.com/robguilarr "Visit Calendly Portal")
