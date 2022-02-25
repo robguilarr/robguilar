@@ -521,24 +521,6 @@ copyright = "This work is developed and posted only under Rob's property"
       title = "Linkedin"
 
 
-    #---------------------------------------------------------------------
-    # Calendly Specific config
-    #---------------------------------------------------------------------
-    [params.social.pinterest]
-      # weight when arranging icons (the greater the weight, the later the icon is positioned)
-      weight = 4
-
-      # social ID
-      id = "robguilarr"
-
-      # prefix of your social link
-      prefix = "https://www.pinterest.com/"
-
-      # content hovering on the icon
-      title = "Pinterest"
-
-
-
 
   #---------------------------------------------------------------------
   # SEARCH Engine

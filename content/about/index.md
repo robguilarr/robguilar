@@ -76,8 +76,6 @@ I also offer my collaboration and I am open to participate in collaborative proj
 
 I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why my goal is to become a **Game Analyst** one day.
 
-As well as I like to design infographic charts in Adobe Illustrator, related to this topic, sometimes I do it as a Hobby, which I will be posting on Pinterest. 
-
 Without going too deep, I'm fascinated in following news from high-tech companies, about new product releases, and market movements, especially at Google and Microsoft.
 
 I also like to read books about Productivity, Personal Growth, Video Games and Game Analytics. Referring to authors such as Tom Rath, Austin Kleon, James Clear, David Goggins, Anders Drachen and Jason Schreier.
@@ -98,8 +96,6 @@ This website intends to work as a portal for the author's most recent posts on e
 - Twitter | [https://twitter.com](https://twitter.com/robguilarr "Visit Twitter Profile")
 
 - Facebook | [https://facebook.com](https://www.facebook.com/robguilarr/ "Visit Facebook Profile")
-
-- Pinterest | [https://www.pinterest.com](https://www.pinterest.com/robguilarr/ "Visit Pinterest Profile")
 
 - Instagram | [https://instagram.com](https://www.instagram.com/robguilarr/ "Visit Instagram Profile")
 
