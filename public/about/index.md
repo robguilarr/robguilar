@@ -75,7 +75,7 @@ I also offer my collaboration and I am open to participate in collaborative proj
 
 #### :(fas fa-hiking fa-fw): Personal life & Hobbies
 
-I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why my goal is to become a **Game Data Scientist** one day.
+I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why my goal is to become a **Game Data Scientist**.
 
 Without going too deep, I'm fascinated in following news from high-tech companies, about new product releases, and market movements, especially from Google and Microsoft.
 

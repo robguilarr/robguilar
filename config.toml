@@ -98,7 +98,7 @@ paginate = 20
   defaultTheme = "light"
 
   # Date format
-  dateFormat = "January 1, 2021"
+  dateFormat = "2006-01-02"
 
   # Website images for Open Graph and Twitter Cards
   twitter_cards = true
