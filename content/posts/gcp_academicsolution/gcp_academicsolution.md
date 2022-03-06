@@ -7,20 +7,25 @@ author: "Roberto Aguilar"
 authorLink: ""
 description: "Academic article about a Business Case in which a Natural Language Processing system is deployed in Google Cloud Platform"
 #featuredImage: "featured-image.jpg"
-featuredImagePreview: "images/posts/gcp.jpg"
+#featuredImagePreview: "images/posts/gcp.jpg"
 images: ["images/posts/gcp.jpg"]
 thumbnail: "images/posts/gcp.jpg"
 tags: ["Big Data", "Google Cloud Services"]
 categories: ["Articles"]
 lightgallery: true
 toc: false
+
+resources:
+- name: "featured-image"
+  src: "images/posts/gcp.jpg"
+featuredImagePreview: "images/posts/gcp.jpg"
 ---
 
-> <i>The technological advance, forces the sustainability of the companies in order to adapt and compete</i>
+
 
 ---
 
-### Summary
+### Summary:
 
 - This academic article was developed through my postgraduate course, <i>DAT-03 Data Analysis in Big Data Environments</i>, which presents a business case in which a company is interested in combining and migrating relational databases in <b>Microsoft SQL Server</b> and <b>Oracle DB</b>. Given the need to feed them with an NLP system output of social networks such as Instagram, Telegram, and Facebook Messenger.
 
@@ -32,10 +37,10 @@ toc: false
 
 ---
 
-In case you want to access it, next you will find a link where it was uploaded to my LinkedIn. Click <a href="https://www.linkedin.com/in/robguilarr/detail/overlay-view/urn:li:fsd_profileTreasuryMedia:(ACoAACSsDBsBM7H-Q5Tz9-WYWvdrkSDSIqbUdms,1635470662045)/">HERE</a> to access or download.
+In case you want to access it, next you will find a link where it was uploaded to my LinkedIn. Click <a href="https://www.linkedin.com/in/robguilarr/overlay/1635470662045/single-media-viewer/">HERE</a> to access or download.
 
 ---
 
 <p align=center>
-    {{< image src="/images/posts/gcpcover.jpg" width="70%" height= "70%">}}
+    {{< image src="/images/posts/gcpcover.jpg" width="40%" height= "40%">}}
 </p>

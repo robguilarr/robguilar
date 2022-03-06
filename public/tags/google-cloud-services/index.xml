@@ -3,13 +3,12 @@
         <title>Google Cloud Services - Tag - Roberto Aguilar</title>
         <link>https://robguilar.com/tags/google-cloud-services/</link>
         <description>Google Cloud Services - Tag - Roberto Aguilar</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Rob&#39;s property</copyright><lastBuildDate>Mon, 04 Oct 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/tags/google-cloud-services/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Mon, 04 Oct 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/tags/google-cloud-services/" rel="self" type="application/rss+xml" /><item>
     <title>Cloud Service Architecture for NLP in Google Cloud</title>
     <link>https://robguilar.com/posts/gcp_academicsolution/</link>
-    <pubDate>Mon, 04 Oct 2021 21:57:40 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://robguilar.com/posts/gcp_academicsolution/</guid>
-    <description><![CDATA[The technological advance, forces the sustainability of the companies in order to adapt and compete
-  Summary   This academic article was developed through my postgraduate course, DAT-03 Data Analysis in Big Data Environments, which presents a business case in which a company is interested in combining and migrating relational databases in Microsoft SQL Server and Oracle DB. Given the need to feed them with an NLP system output of social networks such as Instagram, Telegram, and Facebook Messenger.]]></description>
-</item></channel>
+    <pubDate>Mon, 04 Oct 2021 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/gcp_academicsolution/</guid>
+    <description><![CDATA[Summary:   This academic article was developed through my postgraduate course, DAT-03 Data Analysis in Big Data Environments, which presents a business case in which a company is interested in combining and migrating relational databases in Microsoft SQL Server and Oracle DB. Given the need to feed them with an NLP system output of social networks such as Instagram, Telegram, and Facebook Messenger.
+  Initially, the vulnerabilities that the company has when managing its data in a Local Storage are shown, where it is compared with the advantages of implementing a Cloud Service.]]></description>
+</item>
+</channel>
 </rss>

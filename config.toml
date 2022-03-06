@@ -9,7 +9,8 @@ languageCode = "en"
 title = "Roberto Aguilar"
 
 # Change the default theme to be use
-theme = "LoveIt"
+themesDir = "themes"
+theme = "FeelIt"
 
 # Whether to use robots.txt
 enableRobotsTXT = true
@@ -24,8 +25,10 @@ enableEmoji = true
 canonifyURLs = true
 
 # copyright
-copyright = "This work is developed and posted only under Rob's property"
+copyright = "This work is developed and posted only under Roberto's property"
 
+# default amount of posts in each pages
+paginate = 20
 
 #-------------------------------------------------------------------------
 # MENU/PARAMETERS Set up
@@ -34,20 +37,20 @@ copyright = "This work is developed and posted only under Rob's property"
     # Bar Sections -------------------------------------------
     [[menu.main]]
       identifier = "posts"
-      pre = ""
-      post = ""
+      #pre = ""
+      #post = ""
       name = "Timeline"
       url = "/posts/"
-      title = ""
+      title = "Timeline"
       weight = 1
 
     [[menu.main]]
       identifier = "categories"
-      pre = ""
-      post = ""
+      #pre = ""
+      #post = ""
       name = "Projects"
       url = "/categories/"
-      title = ""
+      title = "Projects"
       weight = 2
 
     [[menu.main]]
@@ -56,7 +59,7 @@ copyright = "This work is developed and posted only under Rob's property"
       post = ""
       name = "Tags"
       url = "/tags/"
-      title = ""
+      title = "Tags"
       weight = 3
 
     [[menu.main]]
@@ -65,7 +68,7 @@ copyright = "This work is developed and posted only under Rob's property"
       post = ""
       name = "About"
       url = "/about/"
-      title = ""
+      title = "About"
       weight = 4  
 
     [[menu.main]]
@@ -82,8 +85,8 @@ copyright = "This work is developed and posted only under Rob's property"
 # GENERAL PARAMETERS
 #-------------------------------------------------------------------------
 [params]
-  # "LoveIt" theme version
-  version = "0.2.X"
+  # FeelIt theme version
+  version = "1.0.X"
 
   # Site description
   description = "Hello World! This is the new website published by Roberto Aguilar, where you can find his projects, his personal interests, and contact information"
@@ -95,7 +98,7 @@ copyright = "This work is developed and posted only under Rob's property"
   defaultTheme = "light"
 
   # Date format
-  dateFormat = "2006-01-02"
+  dateFormat = "January 1, 2021"
 
   # Website images for Open Graph and Twitter Cards
   twitter_cards = true
@@ -103,6 +106,15 @@ copyright = "This work is developed and posted only under Rob's property"
 
   # Git Repository
   gitRepo = "https://github.com/robguilarr/robguilar"
+
+  #-------------------------------------------------------------------------
+  # PWA config
+  #-------------------------------------------------------------------------
+  [params.pwa]
+    # whether to enable PWA support
+    enable = true
+    # service-worker version
+    version = "1.0.1"
 
   #-----------------------------------------------------------------------
   # ICON Configuration
@@ -143,13 +155,14 @@ copyright = "This work is developed and posted only under Rob's property"
     lightgallery = true
 
     # Whether to enable the ruby extended syntax
-    ruby = true
+    #ruby = true
 
     # Whether to enable the fraction extended syntax
     fraction = true
 
     # Whether to enable the fontawesome extended syntax
     fontawesome = true
+    cdnfontawesome = true
 
     # Whether to show link to Raw Markdown content of the content
     linkToMarkdown = true
@@ -163,6 +176,7 @@ copyright = "This work is developed and posted only under Rob's property"
     [params.page.code]
       # whether to show the copy button of the code block
       copy = true
+
       # the maximum number of lines of displayed code by default
       maxShownLines = 10
 
@@ -229,10 +243,10 @@ copyright = "This work is developed and posted only under Rob's property"
       Facebook = true
       Linkedin = true
       Whatsapp = false
-      Pinterest = false
-      HackerNews = true
+      Pinterest = true
+      HackerNews = false
       Reddit = true
-      Flipboard = true
+      Flipboard = false
       Blogger = false
       Evernote = false
 
@@ -265,7 +279,7 @@ copyright = "This work is developed and posted only under Rob's property"
     #---------------------------------------------------------------------
     [params.header.title]
       # URL of the LOGO
-      logo = ""
+      #logo = ""
 
       # title name
       name = " > robguilar"
@@ -312,20 +326,20 @@ copyright = "This work is developed and posted only under Rob's property"
     paginate = 20
 
     # Date format (month and day)
-    dateFormat = "01-02"
+    dateFormat = "January, 1"
 
     # Amount of RSS pages
     rss = 10
 
   #-----------------------------------------------------------------------
-  # CATEGORY/SECTION page config
+  # Projects/SECTION page config
   #-----------------------------------------------------------------------
   [params.list]
     # Special amount of posts in each list page
     paginate = 20
 
     # Date format (month and day)
-    dateFormat = "01-02"
+    dateFormat = "January, 1"
 
     # Amount of RSS pages
     rss = 10
@@ -362,12 +376,15 @@ copyright = "This work is developed and posted only under Rob's property"
       social = true
 
       # Disclaimer (HTML format is supported)
-      disclaimer = "Welcome to my website, through this portal you will be<br>able to see my most recent content published & projects"
+      disclaimer = "Welcome to my portfolio website, through this portal you will be<br>able to see my most recent content & projects published"
 
     #---------------------------------------------------------------------
     # Home page POSTS
     #---------------------------------------------------------------------
     [params.home.posts]
+       # display image-preview
+      imagePreview = true
+
       # Show posts in the home page
       enable = true
 
@@ -378,7 +395,55 @@ copyright = "This work is developed and posted only under Rob's property"
       # Default behavior when you don't set "hiddenFromHomePage" in front matter
       defaultHiddenFromHomePage = false
 
-  
+  #---------------------------------------------------------------------
+  # About page config
+  #---------------------------------------------------------------------
+  [params.about]
+    # whether to enable profile on about page
+    # depends on .Site.Params.home.profile.enable
+    enable = true
+
+    # whether to enable param layout
+    param = true
+
+    # title for param layout
+    paramTitle = "Data Toolbox"
+
+    # general description of your site
+    # can be write with markdown style
+    description = "Hi, I’m Roberto! <br> <br> Welcome to my <b>About section</b>, here you are going to see details about my career, aspirations interests, personal life, and more. <br>If you want to know more about me, I encourage you to contact me by one of my contact mediums at the end of this page."
+    
+    # description of your status
+    [[params.about.status]]
+      faIcon = "fas fa-building"
+      title = "Company"
+      desc = ""
+
+    [[params.about.status]]
+      faIcon = "fas fa-briefcase fa-fw"
+      title = "Occupation"
+      desc = "Data Analyst"
+
+    [[params.about.status]]
+      title = "Location"
+      faIcon = "fas fa-map-marker-alt"
+      desc = "Costa Rica"
+
+    # description of your parameter
+    [[params.about.parameter]]
+      language = "Visualization"
+      level = "85"
+
+    [[params.about.parameter]]
+      language = "Modeling"
+      level = "65"
+
+    [[params.about.parameter]]
+      language = "Cleaning"
+      level = "75"
+
+
+
 
   #-----------------------------------------------------------------------
   # TypeIt config
@@ -519,6 +584,23 @@ copyright = "This work is developed and posted only under Rob's property"
 
       # content hovering on the icon
       title = "Linkedin"
+
+    
+    #---------------------------------------------------------------------
+    # Facebook Specific config
+    #---------------------------------------------------------------------
+    [params.social.Facebook]
+      # weight when arranging icons (the greater the weight, the later the icon is positioned)
+      weight = 4
+
+      # social ID
+      id = "robguilarr"
+
+      # prefix of your social link
+      prefix = "https://www.facebook.com/"
+
+      # content hovering on the icon
+      title = "Facebook"
 
 
 
@@ -676,3 +758,14 @@ copyright = "This work is developed and posted only under Rob's property"
   section = ["HTML", "RSS"]
   taxonomy = ["HTML", "RSS"]
   taxonomyTerm = ["HTML"]
+
+
+#-------------------------------------------------------------------------
+# JavaScript and CSS Minifier
+#-------------------------------------------------------------------------
+# Minify config
+[minify]
+  [minify.tdewolff]
+    [minify.tdewolff.html]
+      # ignore the whitespace as we don't have text around the span tag (https://github.com/khusika/FeelIt/issues/40)
+      #keepWhitespace = false

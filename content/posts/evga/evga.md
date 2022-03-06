@@ -7,13 +7,18 @@ author: "Roberto Aguilar"
 authorLink: ""
 description: "Article that shows the analytical approach of the video games history through sales data, using Python and Jupyter Notebooks"
 #featuredImage: "featured-image.jpg"
-featuredImagePreview: "images/posts/retrogames.jpg"
+#featuredImagePreview: "images/posts/retrogames.jpg"
 images: ["images/posts/retrogames.jpg"]
 thumbnail: "images/posts/retrogames.jpg"
 tags: ["Exploratory Analysis", "Python"]
 categories: ["Projects"]
 lightgallery: true
 toc: true
+
+resources:
+- name: "featured-image"
+  src: "images/posts/retrogames.jpg"
+featuredImagePreview: "images/posts/retrogames.jpg"
 ---
 
 The industry of video games revenues is reaching the $173.7 billion in value, with around 2.5 billion users enjoying them worldwide, with a forecasted value of $314.40 billion by 2026 according to Mordor Intelligence.
@@ -28,7 +33,7 @@ Impressive facts, right? Nowadays this market is no longer considered a simple h
 :rocket: Use or Download the Jupyter Notebook, available <a href="https://nbviewer.jupyter.org/github/robguilarr/videogames-eda/blob/main/videogame_analysis/videogame-analysis.ipynb">here</a>
 {{< /admonition >}}
 
-{{< image src="https://images.squarespace-cdn.com/content/v1/56e33409d210b8a4c7e973c9/1478555451639-X93B00DM0O3LPZ9PBQ7Y/image-asset.gif?format=webpage" caption="Source: Designcollector" width="120%" height= "120%" alt="Pixel Cities by Waneella">}}
+{{< image src="https://images.squarespace-cdn.com/content/v1/56e33409d210b8a4c7e973c9/1478555451639-X93B00DM0O3LPZ9PBQ7Y/image-asset.gif?format=webpage" caption="Source: Designcollector" width="90%" height= "90%" alt="Pixel Cities by Waneella">}}
 
 We’ll take a tour through the history of videogames, starting from late 70s and early the 80s. However, as a way of clarification, if you are a member of the culture, it's important to mention that due to limitations of the scope of data available for analysis, <a href="https://gamicus.gamepedia.com/Tomohiro_Nishikado">Tomohiro Nishikado's</a> masterpiece, released as Space Invaders, will not be part of the analysis; and in case you’re not a member don’t worry this is for you as well.
 
@@ -258,8 +263,9 @@ layoutbar1 = {"font": {"size": 11,
 barna.update_layout(layoutbar1)
 barna.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_1.png?format=webpage" width="150%" height= "150%" alt="Barplot of Missing Values">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_1.png?format=webpage" width="75%" height= "75%" alt="Barplot of Missing Values">}}
+</p>
 
 We see that there is a significant quantity of null values, predominantly in columns related to critics and their respective value (<a href="https://www.metacritic.com/browse/games/score/metascore/all/all/filtered">Metacritic</a>); as well as its content Rating made by <i>ESRB</i> (<a href="https://www.esrb.org/search/?searchKeyword= platform=Nintendo%203DS%2CWii%20U%2CPlayStation%204%2CPlayStation%203%2CXbox%20One%2CXbox%20360%2CPC%2COther&rating=E%2CE10%2B%2CT%2CM%2CAO&descriptor=All%20Content&pg=1&searchType=MostViewed">Entertainment Software Rating Board</a>).
 
@@ -423,8 +429,9 @@ layoutline = {"font": {"size": fontimg,
 gline.update_layout(layoutline)
 gline.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_2.png?format=webpage" width="150%" height= "150%" alt="Lineplot of Golden Age">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_2.png?format=webpage" width="75%" height= "75%" alt="Lineplot of Golden Age">}}
+</p>
 
 As we can see at the beginning of the decade and probably after 1977, the market was dominated by Atari Studios while Activision was its main competitor in terms of <a href= "https://twinfinite.net/2016/06/video-games-what-does-ip-mean/">IPs</a>, because these competitors eventually published their titles on the Atari 2600, example of this was Activision with <i>Kaboom!</i> or Parker Bros with <i>Frogger</i>.
 
@@ -548,8 +555,9 @@ layoutbar82 = {"font": {"size": fontimg,
 bar82.update_layout(layoutbar82)
 bar82.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_3.png?format=webpage" width="150%" height= "150%" alt="Barplot of 1982">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_3.png?format=webpage" width="75%" height= "75%" alt="Barplot of 1982">}}
+</p>
 
 It is evident that the adaptation of this arcade game released in 1980, had outstanding sales, once it was introduced to the world of the Atari 2600. According to the documentary <i>"Ounce Upon Atari"</i>, episode 4 to be exactly, this title managed to sell more than 7 million copies, due to optimizations in the display and in the intelligence of the <a href="https://www.businessinsider.com/npc-meaning">NPCs</a>, compared to the original version.
 
@@ -558,7 +566,7 @@ It is evident that the adaptation of this arcade game released in 1980, had outs
 <blockquote><b>1983</b> – Crisis of the Video Game industry</blockquote>
 
 <p align= center>
-    <img src="http://uploads.neatorama.com/images/posts/677/89/89677/1460595792-0.jpg?format=webpage" width="600" height="300" alt="ET">
+    <img src="http://uploads.neatorama.com/images/posts/677/89/89677/1460595792-0.jpg?format=webpage" width="700" height="400" alt="ET">
 </p>
 
 Undoubtedly, the timeline above shows a clear drop in sales from 1983.
@@ -708,8 +716,9 @@ layoutreg = {"font": {"size": fontimg,
 regplot.update_layout(layoutreg)
 regplot.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_4.png?format=webpage" width="150%" height= "150%" alt="Lineplot Regional">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_4.png?format=webpage" width="75%" height= "75%" alt="Lineplot Regional">}}
+</p>
 
 A conclusion that is worth mentioning is that even Nintendo's success today is not only due to its innovation and sense of affection for its IPs, but also because of the exclusivity of its titles. As shown, both the NES and the GameBoy had great sales in the North American market despite being Japanese companies.
 
@@ -725,7 +734,7 @@ A conclusion that is worth mentioning is that even Nintendo's success today is n
 <blockquote><b>1991</b> - Nintendo launches worldwide Super Nintendo Entertainment system</blockquote>
 
 <p align= center>
-    <img src="https://chiscroller.files.wordpress.com/2016/07/mario-vs-sonic.png?format=webpage" width="200%" height="200%" alt="gamingwar">
+    <img src="https://chiscroller.files.wordpress.com/2016/07/mario-vs-sonic.png?format=webpage" width="90%" height="90%" alt="gamingwar">
 </p>
 
 At the beginning of the 90s, after the launch of the SEGA and Nintendo consoles, the First World War of Videogames began. Mainly in two of their biggest titles, Sonic The Hedgedog and Super Mario Bros.
@@ -862,8 +871,9 @@ layoutim = {"font": {"size": fontimg,
 ima.update_layout(layoutim)
 ima.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/heatmap_5.png?format=webpage" width="150%" height= "150%" alt="Heatmap of WCWI">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/heatmap_5.png?format=webpage" width="75%" height= "75%" alt="Heatmap of WCWI">}}
+</p>
 
 Following the Mortal Kombat censorship, Nintendo was hit, noticing that fighting genres were among the most purchased during the 90s. However, the success of Nintendo IPs such as The Legend of Zelda and Super Mario, ended up destroying the SEGA console in 1998, in addition because of Nintendo grew stronger thanks to role-playing games during these years.
 
@@ -979,8 +989,9 @@ strip90.update_layout(layoutstrip)
 strip90.update_traces(jitter = 1)
 strip90.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/scatterplot_6.png?format=webpage" width="150%" height= "150%" alt="Scatterplot of 90s">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/scatterplot_6.png?format=webpage" width="75%" height= "75%" alt="Scatterplot of 90s">}}
+</p>
 
 The first impression, when looking at this graph is that we notice the great dominance of Nintendo since the sales of the Sega Genesis collapsed in 1995, until during the Sega Dreamcast campaign, where the leadership was taken by the GameBoy and the <i>Nintendo 64</i>, followed by the new competitor <i>Play Station</i>, a topic that we will cover later.
 
@@ -1110,8 +1121,9 @@ layoutgen = {"font": {"size": fontimg,
 linegen.update_layout(layoutgen)
 linegen.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_7.png?format=webpage" width="150%" height= "150%" alt="Lineplot of 90s">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_7.png?format=webpage" width="75%" height= "75%" alt="Lineplot of 90s">}}
+</p>
 
 Among all genres, the growth of RPGs over time must be underlined. The release of <a href = "https://en.wikipedia.org/wiki/Pok%C3%A9mon#:~:text=The%20third%20versi%C3%B3n%20(fourth%20en,1%20of%20october%20of%201999.">Pokémon</a> in 1996 for GameBoy by the developer Game Freak was a success for Nintendo, which swept everything in its path, with its first generation of Pokemon Blue, Red and Yellow that was released in 1999, the latter is the fourth Japanese version.
 
@@ -1120,7 +1132,7 @@ Among all genres, the growth of RPGs over time must be underlined. The release o
 <blockquote><b>1994</b> - Sony Computer Entertainment's PlayStation is born</blockquote>
 
 <p align= center>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/PSX-Console-wController.jpg?format=webpage" width="90%" height="90%" alt="ps1">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/PSX-Console-wController.jpg?format=webpage" width="60%" height="60%" alt="ps1">
 </p>
 
 RPGs not only boosted Nintendo, but multiplatform IPs like Final Fantasy VII gave companies such as Sony Computer Entertainment a boost during the introduction of their new 32-bit console and at the same time to publicize the <a href="https://mediawiki.middlebury.edu/FMMC0282/JRPG">JRPGs</a> within the western market.
@@ -1241,8 +1253,9 @@ piesony.update_traces({"textinfo":"label+text+percent",
                        "hole":0.15})
 piesony.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/piechart_8.png" width="150%" height= "150%" alt="PlayStation Piechart">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/piechart_8.png" width="75%" height= "75%" alt="PlayStation Piechart">}}
+</p>
 
 As we can see in the graph, Sony's video game distribution during its first two years in the North American market. Even if we pay attention, titles like Tekken and Mortal Kombat had a significant presence by showing the highest levels of sales by genre (referring to "Fighting" genre).
 
@@ -1374,8 +1387,9 @@ layoutim2 = {"font": {"size": fontimg,
 gesrb.update_layout(layoutim2)
 gesrb.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/heatmap9.png?format=webpage" width="150%" height= "150%" alt="Heatmap ESRB">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/heatmap9.png?format=webpage" width="75%" height= "75%" alt="Heatmap ESRB">}}
+</p>
 
 Based on the classification established by the ESRB, from the data available it can be concluded that the video game console with more titles for universal use is the Nintendo DS, followed by the PS2 and then is the Wii, thus highlighting the impact they had on sales, which it will be shown later.
 
@@ -1512,8 +1526,9 @@ layoutplat = {"font": {"size": fontimg,
 line20.update_layout(layoutplat)
 line20.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_10.png?format=webpage" width="150%" height= "150%" alt="Lineplot of 2000s">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_10.png?format=webpage" width="75%" height= "75%" alt="Lineplot of 2000s">}}
+</p>
 
 The Japanese domain was becoming more and more determined, a situation that the software technology giant, Microsoft, takes as a challenge to enter a new market and start a contest with the PS2.
 
@@ -1669,8 +1684,9 @@ bubpub3.add_layout_image(
 bubpub3.update_layout(layoutbub)
 bubpub3.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/scatterplot_11.png" width="150%" height= "150%" alt="Bubblechart of 2000s">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/scatterplot_11.png" width="75%" height= "75%" alt="Bubblechart of 2000s">}}
+</p>
 
 In the graph we see that Microsoft, despite not becoming leaders in sales, were positioned by having very good reviews, specifically in Halo, with Metacritics above 95, including its title's sequels.
 
@@ -1802,8 +1818,9 @@ layoutbar2005 = {"font": {"size": fontimg,
 bar2010.update_layout(layoutbar2005)
 bar2010.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_12.png?format=webpage" width="150%" height= "150%" alt="Barchart of 2000s">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_12.png?format=webpage" width="75%" height= "75%" alt="Barchart of 2000s">}}
+</p>
 
 As you can see, from the start of the Wii sales, the strategy of Nintendo began to flourish, surpassing the sales of its rivals by 4 years in a row.
 
@@ -1931,8 +1948,9 @@ table10.update_traces({"header":{"font.color":"#fcfcfc",
                                  "font.size":fontimg+3}})
 table10.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/table_13.png?format=webpage" width="150%" height= "150%" alt="Table of 2000s">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/table_13.png?format=webpage" width="75%" height= "75%" alt="Table of 2000s">}}
+</p>
 
 Four of Wii's five most successful titles involve Nintendo Publishers, among its most famous IPs were Mario Kart and Wii Sports.
 
@@ -2064,8 +2082,9 @@ layoutbar2010 = {"font": {"size": fontimg,
 bargen10.update_layout(layoutbar2010)
 bargen10.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_14.png?format=webpage" width="150%" height= "150%" alt="Barchart of 2010s">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_14.png?format=webpage" width="75%" height= "75%" alt="Barchart of 2010s">}}
+</p>
 
 Between 2010 and 2015, the best-selling title was Kinect Adventures for Xbox 360, which had a focus on enhancing multiplayer gameplay and taking advantage of the latest technological innovation of the moment, the Microsoft’s Kinect.
 
@@ -2143,8 +2162,9 @@ pubmatrix.add_annotation(text=author,
                          x= 1, y= -0.11, showarrow=False, font={"size":fontimg-1})
 pubmatrix.show()
 ```
-
-{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/matrix_15.png?format=webpage" width="150%" height= "150%" alt="Historical Matrix">}}
+<p align="center">
+{{< image src="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/matrix_15.png?format=webpage" width="75%" height= "75%" alt="Historical Matrix">}}
+</p>
 
 The fact that every day more <i>Free to Play</i> games are announced, does not indicate that this is the exclusive focus companies will have on the industry now on. Beyond this, as we see in the previous graph, each of the most recognized Publishers in history has its own style in exclusive series, despite having titles in many genres.
 

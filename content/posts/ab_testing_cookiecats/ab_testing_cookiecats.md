@@ -8,13 +8,18 @@ author: "Roberto Aguilar"
 authorLink: ""
 description: "Roberto started a new side blog and here are all the details about it"
 #featuredImage: "featured-image.jpg"
-featuredImagePreview: "images/posts/cookie_cats.jpg"
+#featuredImagePreview: "images/posts/cookie_cats.jpg"
 images: ["images/posts/cookie_cats.jpg"]
 thumbnail: "images/posts/cookie_cats.jpg"
 tags: ["A/B Testing", "Python"]
 categories: ["Projects"]
 lightgallery: true
 toc: true
+
+resources:
+- name: "featured-image"
+  src: "images/posts/retrogames.jpg"
+featuredImagePreview: "images/posts/cookie_cats.jpg"
 ---
 
 ## What are Tactical Analytics?
@@ -485,7 +490,7 @@ So, by pushing players to take a break when they reach a gate, the fun of the ga
 
 ## Aditional Information
 
-### About the Article
+### About the Article {{< version 0.1.1 >}}
 
 With acknowledgment to Rasmus Baraath for guiding this project. Which was developed for sharing knowledge while using cited sources of the material used.
 

@@ -1,21 +1,27 @@
-# 
+# About
 
 
-#### :(far fa-user fa-fw): Hi, I’m Roberto Aguilar
+#### :(far fa-user fa-fw): About my career
 
-I'm a Data Analyst, Senior Industrial Engineering Student and content developer at this website.
+<div>
 
-A few years ago the question arose of what approach I wanted to give to my career. I was always interested in statistics and in a short time of my life I got involved in OOP. Then I met people who were dedicated to extracting information and developing complex tools from Big Data, that's where I discovered the world of Data Science and how it is applied in our day to day.
+<img width="320" height="320" src="images/profile_pic_about.jpg?format=webpage" hspace="25" vspace="0" align="right">
 
-<p align="center">
- <img width="400" height="400" src="images/profile_pic_about.jpg?format=webpage" hspace="5" vspace="5">
-</p>
+A few years ago I started studying Industrial Engineering, meanwhile, as a hobby, I started learning how to develop mobile games with Unity, because video games have always been one of my favorite hobbies.
+
+After a year I started to lose interest in development and continued with my career. Shortly after, a friend told me about Data Science which I was a bit skeptical about at first, since I didn't have a clear idea of what it really was. However, one of my favorite subjects was always statistics and probability, so I saw an opportunity to find a new career path.
+
+Later I started to learn to use Python, which was made easier for me thanks to my basic knowledge learned in Unity of OOP in C# and since then I started to learn on my own.
+
+
+</div>
 
 ---
 
 #### :(fas fa-user-graduate fa-fw): A little bit about my background
 
-Before starting the Data Analyst program, I started as a self-taught programmer. This describes a very important attribute of me, and it is the motivation to self-learn and never settle, also my researcher perspective has helped me to take new challenges and looking for productive ways to improve every day, that is why I decided to advance a Postgraduate Program as a Data Analyst.
+
+The last section describes a very important attribute of me, and it is the motivation to self-learn and never settle, also my researcher perspective has helped me to take new challenges and looking for productive ways to improve every day, that is why I decided to advance a Data Analytics Professional Program.
 
 {{< admonition type=abstract title="Industrial Production Engineering at TEC" open=false >}}
 Bachelor's degree accredited by the Canadian Engineering Accreditation Board ({{< link href="https://engineerscanada.ca/accreditation/accreditation-resources" content=CEAB >}}) in the area of Industrial Engineering. Covering areas such as industrial statistics (Minitab), process simulation, computer aided design (CAD, Solid Works), computer aided manufacturing (CAM), industrial process control and programming (CNC), IT project management fundamentals (SCRUM), continuous improvement processes (Lean Six Sigma).
@@ -24,7 +30,7 @@ More info {{< link href="https://www.tec.ac.cr/programas-academicos/licenciatura
 {{< /admonition >}}
 
 {{< admonition type=abstract title="Data Analyst at Cenfotec" open=false >}}
-Postgraduate as Data Analyst, managing topics such as Data Storytelling in Python with Jupyter Notebooks, ETL with Azure Data Factory, Web Scraping & API connections with Python Selenium, Data Governance fundamentals, data modeling in Apache Hadoop using HiveQL and  visualization of statistical models with D3.js, Tableau and Power BI
+Postgraduate as Data Analyst, managing topics such as Data Storytelling in Python with Jupyter Notebooks, ETL with Azure Data Factory, Web Scraping & API connections with Python Selenium, Data Governance fundamentals, data modeling in Apache Hadoop using HiveQL and  visualization of statistical models with D3.js, Tableau and Power BI.
 
 More info {{< link href="https://global-uploads.webflow.com/5ca2bcb83aece284fe8c6ada/6036752071cd3551f32c9f8d_Programa%20Analista%20de%20Datos.pdf" content=here >}}.
 {{< /admonition >}}
@@ -69,9 +75,9 @@ I also offer my collaboration and I am open to participate in collaborative proj
 
 #### :(fas fa-hiking fa-fw): Personal life & Hobbies
 
-I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why my goal is to become a **Game Analyst** one day.
+I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why my goal is to become a **Game Data Scientist** one day.
 
-Without going too deep, I'm fascinated in following news from high-tech companies, about new product releases, and market movements, especially at Google and Microsoft.
+Without going too deep, I'm fascinated in following news from high-tech companies, about new product releases, and market movements, especially from Google and Microsoft.
 
 I also like to read books about Productivity, Personal Growth, Video Games and Game Analytics. Referring to authors such as Tom Rath, Austin Kleon, James Clear, David Goggins, Anders Drachen and Jason Schreier.
 
