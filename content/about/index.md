@@ -7,6 +7,10 @@ description: "Contact platforms and information about the author from his backgr
 lightgallery: true
 ---
 
+<p align='center'> :(fas fa-exclamation-circle fa-fw): <b>Important: Any views, material or statements expressed are mines and not those of my employer</b> </p>
+
+---
+
 #### :(far fa-user fa-fw): About my career
 
 <div>

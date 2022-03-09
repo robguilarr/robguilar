@@ -89,7 +89,7 @@ paginate = 20
   version = "1.0.X"
 
   # Site description
-  description = "Hello World! This is the new website published by Roberto Aguilar, where you can find his projects, his personal interests, and contact information"
+  description = "Welcome to Roberto's portfolio website, through this portal you will be able to see his most recent content & projects published"
 
   # Site keywords
   keywords = ["Roberto", "Aguilar", "Roberto Aguilar", "Data Science", "Portfolio", "robguilar"]
@@ -367,7 +367,7 @@ paginate = 20
       title = "Roberto Aguilar"
 
       # Subtitle shown in home page
-      subtitle = "Data Analyst @"
+      subtitle = "Data Analyst @ " # McKinsey & Co.
 
       # Whether to use typeit animation for subtitle
       typeit = false
@@ -376,7 +376,7 @@ paginate = 20
       social = true
 
       # Disclaimer (HTML format is supported)
-      disclaimer = "Welcome to my portfolio website, through this portal you will be<br>able to see my most recent content & projects published"
+      disclaimer = "Welcome to my portfolio website, any views, material or statements<br>expressed are mines and not those of my employer"
 
     #---------------------------------------------------------------------
     # Home page POSTS
@@ -417,7 +417,7 @@ paginate = 20
     [[params.about.status]]
       faIcon = "fas fa-building"
       title = "Company"
-      desc = ""
+      desc = "" # McKinsey & Co.
 
     [[params.about.status]]
       faIcon = "fas fa-briefcase fa-fw"
