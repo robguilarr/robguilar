@@ -47,15 +47,27 @@ Throughout my career I have had the opportunity to orient my career towards Busi
 
 {{< admonition type=info title="Enterprise Data & Analytics Intern at VMware" open=false >}}
 <img width="75" height="75" src="images/vm_logo.png" align="left" hspace="10" vspace="10">
-Created and migrated data analytics reports of Customer Success area in whole SaaS cycle, embracing all the Customer 360° environment. As well as the CTA predictive analysis according to the PEME needs of early warnings subscription consumption; via commercial, and financial indicators applied to Big Data. More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}
+Created and migrated data analytics reports of Customer Success area in whole SaaS cycle, embracing all the Customer 360° environment. As well as the CTA predictive analysis according to the PEME needs of early warnings subscription consumption; via commercial, and financial indicators applied to Big Data. 
+
+More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}
 
 > June 2020 - September 2020
 > {{< /admonition >}}
 
 {{< admonition type=info title="Business Intelligence Analyst at Belcorp" open=false >}}
-<img width="75" height="75" src="images/bel_logo.jpg" align="left" hspace="10" vspace="10"> Through prescriptive analytics applied in the field of BI within the B2C sales area, commercial sales variables were managed and reported. In order to create and consult dynamic and real-time reports / dashboards that will make timely decisions for Central American sales plans, according to the needs of sales management. More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}
+<img width="75" height="75" src="images/bel_logo.jpg" align="left" hspace="10" vspace="10"> Through prescriptive analytics applied in the field of BI within the B2C sales area, commercial sales variables were managed and reported. In order to create and consult dynamic and real-time reports / dashboards that will make timely decisions for Central American sales plans, according to the needs of sales management. 
+
+More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}
 
 > February 2021 - July 2021
+> {{< /admonition >}}
+
+{{< admonition type=info title="Junior Data Analyst at McKinsey & Company" open=false >}}
+<img width="75" height="75" src="images/mckinsey_logo.jpg" align="left" hspace="10" vspace="10"> Analyst in charge of coding/scripting (SQL, Python, etc.) for automating data transformation and loading. Also, responsible for performing data ingestion, transformation, and uploading into applications. This entailed the use of application administration tools (combination of proprietary tools), validated raw data quality (develop test cases, battery of QA scripts), and took corrective measures in case of issues.
+
+More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}
+
+> March 2022 - Present
 > {{< /admonition >}}
 
 ---

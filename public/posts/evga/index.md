@@ -26,14 +26,14 @@ Before starting our journey, like any exploratory data analysis we must import o
 ```python
 # To manage Dataframes
 import pandas as pd
-
 # To manage number operators
 import numpy as np
-
 # To do interactive visualizations
 import plotly.express as px
 import plotly.graph_objects as go
 import plotly.figure_factory as ff
+# Format
+from vizformatter.standards import layout_plotly
 ```
 
 Now, let's import our data. We must consider that we already prepared it, as shown in this articles's footnote[^1].
@@ -54,6 +54,13 @@ df["Year_ts"] = pd.to_datetime(df["Year_of_Release"], format='%Y')
 df["Year_str"] = df["Year_of_Release"].apply(str) \
                                         .str.slice(stop=-2)
 ```
+
+Also we can import the layout format as a variable from my <a href="https://github.com/robguilarr/vizformatter/blob/master/vizformatter/standards.py">repository</a>.
+
+```python
+sign, layout = layout_plotly(height= 720, width= 1000, font_size= 15)
+```
+
 
 ---
 
@@ -147,100 +154,9 @@ barna = px.bar(df_na[df_na["Missing_Values"] > 0].sort_values
                "teal",
               labels = {"Missing_Values":"Missing Values"})
 
-
-# layout for barchart
-layoutbar1 = {"font": {"size": 11,
-                    "color": "#959595",
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'x':0.4,
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":17,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": True,
-            "legend":{"font.size": 11,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": 13,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": 1000,
-            "height": 600,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            #"colorway": ["#10214A", "#172568", "#1F2685", "#2E28A1", "#4831BD",
-              # "#663AD8", "#7249DE", "#7E58E4"],
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select","togglespikelines"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":11},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "anchor":"free",
-                      "position":0,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "tickprefix": "", #Label prefix
-                      "ticksuffix": "", # Label sufix
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "zeroline": True,
-                      "zerolinecolor": "#3D5165",
-                      "zerolinewidth": 1.5,
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.12,
-                            "showarrow":False,
-                            "font.size":10}]}
-
 # Update layout
-barna.update_layout(layoutbar1)
+barna.update_layout(layout)
+barna.update_annotations(sign)
 barna.show()
 ```
 <p align="center">
@@ -316,97 +232,9 @@ gline = px.line(df_sales_ts, x="Year_ts", y="Global_Sales", color='Publisher',
 for i in np.arange(0,10):
     gline.data[i].update(mode='markers+lines')
 
-# Line Layout
-layoutline = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'x':0.4,
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": True,
-            "legend":{"font.size": fontimg,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": fontimg+2,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": widthimg,
-            "height": heightimg,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hovermode":"x unified",
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "linecolor":"#3D5165", # Bottom colored line, zeroline on yaxis is preferred
-                      "linewidth":1.5,
-                      "anchor":"free",
-                      "position":0.02,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "tickprefix": "", #Label prefix
-                      "ticksuffix": "M", # Label sufix
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.11,
-                            "showarrow":False,
-                            "font.size":fontimg-1}]}
-
 # Update Layout
-gline.update_layout(layoutline)
+gline.update_layout(layout)
+gline.update_annotations(sign)
 gline.show()
 ```
 <p align="center">
@@ -440,99 +268,9 @@ bar82 = px.bar(games82, y='Distribution', text='Distribution', x='Name', color =
 # Adding text of percentages
 bar82.update_traces(texttemplate='%{text:.3s}%', textposition='outside')
 
-# layout for barchart
-layoutbar82 = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'x':0.4,
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": True,
-            "legend":{"font.size": fontimg,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": fontimg+2,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": widthimg,
-            "height": heightimg,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select","togglespikelines"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hovermode":False,
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "anchor":"free",
-                      "position":0,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "showticklabels":False,
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "tickprefix": "", #Label prefix
-                      "ticksuffix": "", # Label sufix
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "zeroline": True,
-                      "zerolinecolor": "#3D5165",
-                      "zerolinewidth": 1.5,
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.11,
-                            "showarrow":False,
-                            "font.size":fontimg-1}]}
-
 # Update layout
-bar82.update_layout(layoutbar82)
+bar82.update_layout(layout)
+bar82.update_annotations(sign)
 bar82.show()
 ```
 <p align="center">
@@ -599,101 +337,9 @@ for region in regions:
     reg8090[region+region_suffix], mode='markers+lines', name=region_names[i]))
     i += 1
 
-# Line Layout
-layoutreg = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'text': "Millions of units sold during 80s by region",
-                    'x':0.4,
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": True,
-            "legend":{"font.size": fontimg,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": fontimg+2,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": widthimg,
-            "height": heightimg,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            "colorway": ["#996E3F", "#E05040", "#7B82C1", "#A1C790"],
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hovermode":"x unified",
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "title":"Year",
-                      "showspikes": False,
-                      "linecolor":"#3D5165", # Bottom colored line, zeroline on yaxis is preferred
-                      "linewidth":1.5,
-                      "anchor":"free",
-                      "position":0.02,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "title":"Millions of units",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "tickprefix": "", #Label prefix
-                      "ticksuffix": "M",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.11,
-                            "showarrow":False,
-                            "font.size":fontimg-1}]}
-
 # Update layout
-regplot.update_layout(layoutreg)
+regplot.update_layout(layout)
+regplot.update_annotations(sign)
 regplot.show()
 ```
 <p align="center">
@@ -756,99 +402,9 @@ ima = px.imshow(df_gen90.reset_index(drop=True).T,
                color_continuous_scale='RdBu_r',
                title = "Heatmap of Location vs Genre during WCWI")
 
-# Image Layout
-layoutim = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'x':0.4,
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": True,
-            "legend":{"font.size": fontimg,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": fontimg+2,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": widthimg,
-            "height": heightimg,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "title":"Genre",
-                      "showspikes": False,
-                      "linecolor":"#3D5165", # Bottom colored line, zeroline on yaxis is preferred
-                      "linewidth":1.5,
-                      "anchor":"free",
-                      "position":0.02,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "title":"",
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "tickprefix": "", #Label prefix
-                      "ticksuffix": "",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "zeroline": True,
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.11,
-                            "showarrow":False,
-                            "font.size":fontimg-1}]}
-
 # Update layout
-ima.update_layout(layoutim)
+ima.update_layout(layout)
+ima.update_annotations(sign)
 ima.show()
 ```
 <p align="center">
@@ -870,103 +426,10 @@ strip90 = px.strip(df_sn, x = "Year_of_Release", y = "Sales", color = "Platform"
                   labels={"Name":"Title", "Year_of_Release":"Year"},
                  hover_data=["Country"])
 
-# Strip Layout
-layoutstrip = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'text': "Millions of units sold during 90s by platform",
-                    'x':0.4,
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": True,
-            "legend":{"font.size": fontimg,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": fontimg+2,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": widthimg,
-            "height": heightimg,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            "colorway": ["#996E3F", "#E05040", "#7B82C1", "#A1C790"],
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hovermode":"x unified",
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "title":"Years",
-                      "showspikes": False,
-                      "anchor":"free",
-                      "position":0.02,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10,
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "title":"Millions of units",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "tickprefix": "", #Label prefix
-                      "ticksuffix": "M",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "zeroline": True,
-                      "zerolinecolor": "#3D5165",
-                      "zerolinewidth": 1.5,
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.11,
-                            "showarrow":False,
-                            "font.size":fontimg-1}]}
-
 # Update layout
-strip90.update_layout(layoutstrip)
+strip90.update_layout(layout)
 strip90.update_traces(jitter = 1)
+strip90.update_annotations(sign)
 strip90.show()
 ```
 <p align="center">
@@ -1004,101 +467,9 @@ linegen = px.line(df90G,
 for i in np.arange(0,4):
     linegen.data[i].update(mode='markers+lines')
 
-# Line Layout
-layoutgen = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'x':0.4,
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": True,
-            "legend":{"font.size": fontimg,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": fontimg+2,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": widthimg,
-            "height": heightimg,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            "colorway": ["#996E3F", "#E05040", "#7B82C1", "#A1C790"],
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hovermode":"x unified",
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "title":"Years",
-                      "showspikes": False,
-                      "anchor":"free",
-                      "position":0.02,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "title":"Millions of units",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "tickprefix": "", #Label prefix
-                      "ticksuffix": "M",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "zeroline": True,
-                      "zerolinecolor": "#3D5165",
-                      "zerolinewidth": 1.5,
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.11,
-                            "showarrow":False,
-                            "font.size":fontimg-1}]}
-
 # Update layout
-linegen.update_layout(layoutgen)
+linegen.update_layout(layout)
+linegen.update_annotations(sign)
 linegen.show()
 ```
 <p align="center">
@@ -1133,104 +504,11 @@ piesony = px.pie(df_sony, values= "Global_Sales",
             color_discrete_sequence = px.colors.sequential.Blues_r,
                  labels={"Global_Sales":"Sales"})
 
-# Pie layout
-layoutpie = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'text': "Games Genre Distribution during PlayStation launch",
-                    'x':0.4,
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": False,
-            "legend":{"font.size": fontimg,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": fontimg+2,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": widthimg,
-            "height": heightimg,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            "colorway": ["#996E3F", "#E05040", "#7B82C1", "#A1C790"],
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hovermode":False,
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "title":"Years",
-                      "showspikes": False,
-                      "anchor":"free",
-                      "position":0.02,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "title":"Millions of units",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "tickprefix": "", #Label prefix
-                      "ticksuffix": "M",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "zeroline": True,
-                      "zerolinecolor": "#3D5165",
-                      "zerolinewidth": 1.5,
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.11,
-                            "showarrow":False,
-                            "font.size":fontimg-1}]}
-
 # Update layout
-piesony.update_layout(layoutpie)
+piesony.update_layout(layout)
 piesony.update_traces({"textinfo":"label+text+percent",
                        "hole":0.15})
+piesony.update_annotations(sign)
 piesony.show()
 ```
 <p align="center">
@@ -1271,100 +549,9 @@ gesrb = px.imshow(df_r.reset_index(drop=True),
                color_continuous_scale='BuGn',
                title = "Heatmap of ESRB Rating vs Consoles updated to 2016")
 
-# Image 2 Layout
-layoutim2 = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'x':0.4,
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": True,
-            "legend":{"font.size": fontimg,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": fontimg+2,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": widthimg,
-            "height": heightimg,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "title":"Platform",
-                      "showspikes": False,
-                      "linecolor":"#3D5165", # Bottom colored line, zeroline on yaxis is preferred
-                      "linewidth":1.5,
-                      "anchor":"free",
-                      "position":0.02,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "title":"Millions of units",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "title":"ESRB Classification",
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "tickprefix": "", #Label prefix
-                      "ticksuffix": "",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "zeroline": True,
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.11,
-                            "showarrow":False,
-                            "font.size":fontimg-1}]}
-
 # Update layout
-gesrb.update_layout(layoutim2)
+gesrb.update_layout(layout)
+gesrb.update_annotations(sign)
 gesrb.show()
 ```
 <p align="center">
@@ -1408,102 +595,9 @@ for platform in Platforms:
     line20.add_trace(go.Scatter(x = games20["Year_of_Release"], y = games20[platform],
                                 name=platform, line_shape='linear'))
 
-# Line Layout
-layoutplat = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'text': "Millions of units sold during 2000s by platform",
-                    'x':0.4,
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": True,
-            "legend":{"font.size": fontimg,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": fontimg+2,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": widthimg,
-            "height": heightimg,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            "colorway": ["#8d42f5", "#7d7d7d", "#d90000", "#00d9bc","#2893f7",
-                         "#ff8e2b","#0e4bcf","#0bbf41","#bfaa0b"],
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hovermode":"x unified",
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "title":"Years",
-                      "showspikes": False,
-                      "linecolor":"#3D5165", # Bottom colored line, zeroline on yaxis is preferred
-                      "linewidth":1.5,
-                      "anchor":"free",
-                      "position":0.02,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10,
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "title":"Millions of units",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "tickprefix": "", #Label prefix
-                      "ticksuffix": "M",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.11,
-                            "showarrow":False,
-                            "font.size":fontimg-1}]}
-
 # Update layout
-line20.update_layout(layoutplat)
+line20.update_layout(layout)
+line20.update_annotations(sign)
 line20.show()
 ```
 <p align="center">
@@ -1559,98 +653,6 @@ bubpub3 = px.scatter(toppub3, y="Publisher", x="Global_Sales", size="Critic_Scor
 bubpub3.add_vrect(x0 = 8.0, x1 = 8.98, y0= 0.32, y1=0.44, line_width=0,
                   fillcolor="#fff152", opacity=0.5)
 
-# Bubble plot Layout
-layoutbub = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'text': "Early 2000s Top Videogames Sales by Publisher",
-                    'x':0.4,
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": True,
-            "legend":{"font.size": fontimg,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": fontimg+2,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": widthimg,
-            "height": heightimg,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            "colorway": ["#8d42f5", "#7d7d7d", "#d90000", "#00d9bc","#2893f7",
-                         "#ff8e2b","#0e4bcf","#0bbf41","#bfaa0b"],
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "title":"Millions of units sold",
-                      "showspikes": False,
-                      "linecolor":"#3D5165", # Bottom colored line, zeroline on yaxis is preferred
-                      "linewidth":1.5,
-                      "anchor":"free",
-                      "ticksuffix": "M",
-                      "position":0.02,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10,
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "title":"Publisher",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.11,
-                            "showarrow":False,
-                            "font.size":fontimg-1}]}
-
 # Master Chief image
 bubpub3.add_layout_image(
     dict(
@@ -1661,7 +663,8 @@ bubpub3.add_layout_image(
         xanchor="right", yanchor="bottom") )
 
 # Update layout
-bubpub3.update_layout(layoutbub)
+bubpub3.update_layout(layout)
+bubpub3.update_annotations(sign)
 bubpub3.show()
 ```
 <p align="center">
@@ -1704,98 +707,9 @@ bar2010 = px.bar(df2010, color="Platform", y="Global_Sales", x="Year_str",
              pattern_shape="Platform", pattern_shape_sequence=["", "", "", "", "."],
              color_discrete_sequence=["#00DEB7","#0082C2","#1333A7","#5849B6"])
 
-# Bar Layout
-layoutbar2005 = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'x':0.4,
-                    "text":"Mid 2000s sales by platform",
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": True,
-            "legend":{"font.size": fontimg,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": fontimg+2,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": widthimg,
-            "height": heightimg,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select","togglespikelines"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "anchor":"free",
-                      "position":0,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "tickprefix": "", #Label prefix
-                      "ticksuffix": "M", # Label sufix
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "zeroline": True,
-                      "zerolinecolor": "#3D5165",
-                      "zerolinewidth": 1.5,
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.11,
-                            "showarrow":False,
-                            "font.size":fontimg-1}]}
-
 # Update layout
-bar2010.update_layout(layoutbar2005)
+bar2010.update_layout(layout)
+bar2010.update_annotations(sign)
 bar2010.show()
 ```
 <p align="center">
@@ -1832,100 +746,11 @@ table10 = go.Figure(data=[go.Table(
                fill_color='lavender',
                align=list(['center', 'left', 'center', 'left', 'right'])))])
 
-# Table Layout
-layoutab2005 = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'x':0.4,
-                    "text":"Table of Mid 2000s sales by platform",
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": True,
-            "legend":{"font.size": fontimg,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": fontimg+2,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": widthimg,
-            "height": heightimg,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select","togglespikelines"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "anchor":"free",
-                      "position":0,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "tickprefix": "", #Label prefix
-                      "ticksuffix": "", # Label sufix
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "zeroline": True,
-                      "zerolinecolor": "#3D5165",
-                      "zerolinewidth": 1.5,
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.11,
-                            "showarrow":False,
-                            "font.size":fontimg-1}]}
-
 # Update layout
-table10.update_layout(layoutab2005)
+table10.update_layout(layout)
 table10.update_traces({"header":{"font.color":"#fcfcfc",
                                  "font.size":fontimg+3}})
+table10.update_annotations(sign)
 table10.show()
 ```
 <p align="center">
@@ -1968,98 +793,9 @@ bargen10.update_traces(textposition='inside',
                        textfont = {"color":"#FFFFFF","family": "segoe ui"},
                         marker_line_width=1, opacity=0.7)
 
-# Bar Layout
-layoutbar2010 = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'x':0.4,
-                    "text":"Top Title sold sales by Genre, from 2010 to 2015",
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "showlegend": False,
-            "legend":{"font.size": fontimg,
-                      "bordercolor": "#F70000",
-                      "itemclick":"toggleothers",
-                      "itemwidth": 30,
-                      "itemdoubleclick":False,
-                      "title.side": "top",
-                      "title.font.color": "#202020",
-                      "title.font.size": fontimg+2,
-                      "x":1.05}, # distance with the plot default to 1.02
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "autosize":True,
-            "width": widthimg,
-            "height": heightimg,
-            "separators": ". ",
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "autotypenumbers": "convert types",
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select","togglespikelines"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg},
-            "grid":{"pattern":"coupled",
-                    "roworder":"bottom to top",
-                    "xgap":0.5,
-                    "ygap":0.5,
-                    "xside":"bottom"},
-            "newshape":{"line.color":"#3D5165",
-                        "line.width":1.5,
-                        "opacity":0.7},
-            "activeshape.opacity":0.7,
-            "xaxis": {"gridcolor":"#fff",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "tickprefix": "", #Label prefix
-                      "ticksuffix": "M", # Label sufix
-                      "showspikes": False,
-                      "anchor":"free",
-                      "position":0,
-                      "showgrid":False,
-                      "tickcolor":"#FD0000",
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "automargin": True},
-            "yaxis": {"gridcolor":"#EDEDED",
-                      "spikecolor":"#DEDEDE", # Horizontal line hovered
-                      "spikethickness":1.5,
-                      "showspikes": False,
-                      "ticklabelposition": "outside",
-                      "title.standoff": 10, #Distance between axis title and axis labels
-                      "zeroline": True,
-                      "zerolinecolor": "#3D5165",
-                      "zerolinewidth": 1.5,
-                      "automargin": True},
-            "annotations":[{"text":author,
-                            "align": "right",
-                            "visible":True,
-                            "xref":"paper",
-                            "yref":"paper",
-                            "x":1,
-                            "y":-0.11,
-                            "showarrow":False,
-                            "font.size":fontimg-1}]}
-
 # Update layout
-bargen10.update_layout(layoutbar2010)
+bargen10.update_layout(layout)
+bargen10.update_annotations(sign)
 bargen10.show()
 ```
 <p align="center">
@@ -2097,49 +833,14 @@ pubmatrix = ff.create_annotated_heatmap(puball.values, x=puball.columns.tolist()
                                   annotation_text= np.around(puball.values, decimals=0),
                                   colorscale='sunset')
 
-# Matrix Layout
-layoutmatrix = {"font": {"size": fontimg,
-                    "color": colorfont,
-                    "family": "segoe ui light"},
-            "title":{'y':0.935,
-                    'x':0.4,
-                    "text":"Historic number of titles released, 1978-2016",
-                    "yref":"container",
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    "font.family":"bahnschrift light",
-                    "font.color":"#202020",
-                    "font.size":fontimg+5,
-                    "pad.b":15, # to avoid overlap with graph
-                    "pad.l":1},
-            "margin":{"b": 65,
-                      "l": 65,
-                      "r": 65,
-                      "t": 80,
-                      "pad": 0},
-            "width": widthimg,
-            "height": heightimg,
-            "paper_bgcolor": "#fff",
-            "plot_bgcolor": "#fff",
-            "modebar":{"add":["togglespikelines"], #"drawline","eraseshape"
-                       "orientation":"v",
-                       "remove":["zoomin","zoomout","zoom","lasso","select","togglespikelines"],
-                       "activecolor":"#171717"},
-            "hoverdistance":50, #Distance between cursor and hover announce
-            "hoverlabel":{"align":"left",
-                          "bordercolor":"#fff",
-                          "bgcolor":"#3D5165",
-                          "font.color":"#FFFFFF",
-                          "font.family":"segoe ui light",
-                          "font.size":fontimg}}
-
 # Update layout
-pubmatrix.update_layout(layoutmatrix)
+pubmatrix.update_layout(layout)
 
 # Extra annotation to avoid overlapping of layers
 pubmatrix.add_annotation(text=author,
                         align= "right", visible = True, xref="paper", yref="paper",
                          x= 1, y= -0.11, showarrow=False, font={"size":fontimg-1})
+pubmatrix.update_annotations(sign)
 pubmatrix.show()
 ```
 <p align="center">
