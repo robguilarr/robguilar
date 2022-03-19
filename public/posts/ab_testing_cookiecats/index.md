@@ -26,7 +26,7 @@ All this data is being collected through telemetry systems, according to Anders 
 
 ## About the data collected
 
-<p> <img src="https://raw.githubusercontent.com/robguilarr/ab_testing_cookie_cats/main/images_jup/berry.png" style="width:150px; float:left" hspace="50"> 
+<p> <img src="https://raw.githubusercontent.com/robguilarr/ab_testing_cookie_cats/main/images_jup/berry.png" style="width:120px; float:left" hspace="30" vspace="20"> 
 
 Given the introduction of the telemetry systems, in this case, we are going to see a <i>"User-facing"</i> that provided us data from <a href="https://tactilegames.com/cookie-cats/">Cookie Cats</a> game, a mobile puzzle game of <i>"connect-three"</i>-style developed by <a href="https://tactilegames.com/">Tactile Entertainment</a>.  
 
@@ -469,25 +469,25 @@ So, by pushing players to take a break when they reach a gate, the fun of the ga
 
 ## Aditional Information
 
-### About the Article {{< version 0.1.1 >}}
+- <b>About the article</b> {{< version 0.1.1 >}}
 
 With acknowledgment to Rasmus Baraath for guiding this project. Which was developed for sharing knowledge while using cited sources of the material used.
 
 Thanks to you for reading as well. <i class="far fa-grin"></i>
 
-### Related content
+- <b>Related content</b>
 
 For more content related to the authors mentioned, I invite you to visit the next sources:
 
-- Anders Drachen personal <a href="https://andersdrachen.com/">website</a>.
+-- Anders Drachen personal <a href="https://andersdrachen.com/">website</a>.
 
-- Rasmus Baath personal <a href="https://www.sumsar.net/">blog</a>.
+-- Rasmus Baath personal <a href="https://www.sumsar.net/">blog</a>.
 
-- Georg Zoeller personal <a href="https://keybase.io/georgzoeller">keybase</a>.
+-- Georg Zoeller personal <a href="https://keybase.io/georgzoeller">keybase</a>.
 
 Also in case you want to share some ideas, please visit the <a href="https://www.robguilar.com/about/">About</a> section and contact me. 
 
-### Datasets
+- <b>Datasets</b>
 
 This project was developed with a dataset provided by Rasmus Baath, which also can be downloaded at my <a href="https://github.com/robguilarr/ab_testing_cookie_cats/tree/main/datasets">Github</a> repository. 
 

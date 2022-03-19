@@ -881,13 +881,12 @@ Through this article, my goal is to use data tools to inform the reader about cu
 
 ---
 
-## Additional Information
+# Additional Information
 
 - <b>About the article</b> {{< version 0.1.1 >}}
 
-  This infographic article was adapted to a general public, I hope you enjoyed it. In case you are interested in learning more about the development of the script, I invite you to the contact section in my <i>About Page</i>, and with pleasure we can connect.
+  This infographic article was adapted to a general public, I hope you enjoyed it. In case you are interested in learning more about the development of the script, I invite you to the contact section in my <b>About Page</b>, and with pleasure we can connect.
 
----
 
 - <b>Related Content</b>
 
