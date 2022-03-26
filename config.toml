@@ -102,7 +102,7 @@ paginate = 20
 
   # Website images for Open Graph and Twitter Cards
   twitter_cards = true
-  images = ["images/logo.png"]
+  images = ["images/thumbnail.jpg"]
 
   # Git Repository
   gitRepo = "https://github.com/robguilarr/robguilar"
@@ -261,7 +261,7 @@ paginate = 20
       # Publisher info
       [params.page.seo.publisher]
         name = "Roberto Aguilar"
-        logoUrl = "images/profile_pic.jpg"
+        logoUrl = "images/logo.png" 
 
 
   #-----------------------------------------------------------------------
@@ -466,11 +466,11 @@ paginate = 20
   #-----------------------------------------------------------------------
   [params.seo]
     # Image URL
-    images = ["images/profile_pic.jpg"]
+    images = ["images/thumbnail.jpg"]
     image = "images/logo.png"
 
     # Thumbnail URL
-    thumbnailUrl = "images/logo.png"
+    thumbnailUrl = "images/thumbnail.jpg"
 
   #-----------------------------------------------------------------------
   # Site verification code for Google/Bing/Yandex/Pinterest/Baidu

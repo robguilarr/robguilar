@@ -9,8 +9,6 @@
 
 <div>
 
-<img width="320" height="320" src="images/profile_pic_about.jpg?format=webpage" hspace="25" vspace="0" align="right">
-
 A few years ago I started studying Industrial Engineering, meanwhile, as a hobby, I started learning how to develop mobile games with Unity, because video games have always been one of my favorite hobbies.
 
 After a year I started to lose interest in development and continued with my career. Shortly after, a friend told me about Data Science which I was a bit skeptical about at first, since I didn't have a clear idea of what it really was. However, one of my favorite subjects was always statistics and probability, so I saw an opportunity to find a new career path.
@@ -91,11 +89,11 @@ I also offer my collaboration and I am open to participate in collaborative proj
 
 #### :(fas fa-hiking fa-fw): Personal life & Hobbies
 
-I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why my goal is to become a **Game Data Scientist**.
+I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why one of my main appeals is **Game Data Science**.
 
 Without going too deep, I'm fascinated in following news from high-tech companies, about new product releases, and market movements, especially from Google and Microsoft.
 
-I also like to read books about Productivity, Personal Growth, Video Games and Game Analytics. Referring to authors such as Tom Rath, Austin Kleon, James Clear, David Goggins, Anders Drachen and Jason Schreier.
+I also like to read books about Business, Productivity, Personal Growth, Video Games and Game Analytics. Referring to authors such as Tom Rath, Austin Kleon, James Clear, David Goggins, Anders Drachen and Jason Schreier.
 
 Among other personal hobbies I like playing video games and practicing outdoor sports like trail running.
 
