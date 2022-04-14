@@ -13,7 +13,7 @@ A few years ago I started studying Industrial Engineering, meanwhile, as a hobby
 
 After a year I started to lose interest in development and continued with my career. Shortly after, a friend told me about Data Science which I was a bit skeptical about at first, since I didn't have a clear idea of what it really was. However, one of my favorite subjects was always statistics and probability, so I saw an opportunity to find a new career path.
 
-Later I started to learn to use Python, which was made easier for me thanks to my basic knowledge learned in Unity of OOP in C# and since then I started to learn on my own.
+Later I started to learn to use Python, which was made easier for me thanks to my basic OOP knowledge in C# learned in Unity, then I started to learn on my own.
 
 
 </div>
@@ -89,7 +89,7 @@ I also offer my collaboration and I am open to participate in collaborative proj
 
 #### :(fas fa-hiking fa-fw): Personal life & Hobbies
 
-I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why one of my main appeals is **Game Data Science**.
+I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why one of my main appeals is **Game Data Science** and **AR**.
 
 Without going too deep, I'm fascinated in following news from high-tech companies, about new product releases, and market movements, especially from Google and Microsoft.
 

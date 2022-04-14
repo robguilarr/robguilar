@@ -1,4 +1,4 @@
-# Video Games History plugged by Data
+# Video Games History explained with Pandas
 
 
 The industry of video games revenues is reaching the $173.7 billion in value, with around 2.5 billion users enjoying them worldwide, with a forecasted value of $314.40 billion by 2026 according to Mordor Intelligence.
@@ -863,7 +863,7 @@ Through this article, my goal is to use data tools to inform the reader about cu
 
 # Additional Information
 
-- <b>About the article</b> {{< version 0.1.1 >}}
+- <b>About the article</b>
 
   This infographic article was adapted to a general public, I hope you enjoyed it. In case you are interested in learning more about the development of the script, I invite you to the contact section in my <b>About Page</b>, and with pleasure we can connect.
 

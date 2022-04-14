@@ -469,7 +469,7 @@ So, by pushing players to take a break when they reach a gate, the fun of the ga
 
 ## Aditional Information
 
-- <b>About the article</b> {{< version 0.1.1 >}}
+- <b>About the article</b>
 
 With acknowledgment to Rasmus Baraath for guiding this project. Which was developed for sharing knowledge while using cited sources of the material used.
 

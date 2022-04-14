@@ -9,8 +9,8 @@ authorLink: ""
 description: "Roberto started a new side blog and here are all the details about it"
 #featuredImage: "featured-image.jpg"
 #featuredImagePreview: "images/posts/cookie_cats.jpg"
-images: ["images/posts/cookie_cats.jpg"]
-thumbnail: "images/posts/cookie_cats.jpg"
+images: ["images/posts/ab_testing_cookiecats.jpg"]
+thumbnail: "images/posts/ab_testing_cookiecats.jpg"
 tags: ["A/B Testing", "Python"]
 categories: ["Projects"]
 lightgallery: true
@@ -18,8 +18,8 @@ toc: true
 
 resources:
 - name: "featured-image"
-  src: "images/posts/retrogames.jpg"
-featuredImagePreview: "images/posts/cookie_cats.jpg"
+  src: "images/posts/ab_testing_cookiecats.jpg"
+featuredImagePreview: "images/posts/ab_testing_cookiecats.jpg"
 ---
 
 ## What are Tactical Analytics?
@@ -490,7 +490,7 @@ So, by pushing players to take a break when they reach a gate, the fun of the ga
 
 ## Aditional Information
 
-- <b>About the article</b> {{< version 0.1.1 >}}
+- <b>About the article</b>
 
 With acknowledgment to Rasmus Baraath for guiding this project. Which was developed for sharing knowledge while using cited sources of the material used.
 

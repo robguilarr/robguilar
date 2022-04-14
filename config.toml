@@ -18,6 +18,9 @@ enableRobotsTXT = true
 # Whether to use git commit log
 enableGitInfo = true
 
+# Public git repo url only then enableGitInfo is true
+gitRepo = "https://github.com/robguilarr/robguilar-website"
+
 # whether to use emoji code
 enableEmoji = true
 
@@ -367,7 +370,7 @@ paginate = 20
       title = "Roberto Aguilar"
 
       # Subtitle shown in home page
-      subtitle = "Data Analyst @ McKinsey & Co."
+      subtitle = "Jr. Data Analyst @ McKinsey & Co."
 
       # Whether to use typeit animation for subtitle
       typeit = false

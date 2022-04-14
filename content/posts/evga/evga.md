@@ -1,5 +1,5 @@
 ---
-title: "Video Games History plugged by Data"
+title: "Video Games History explained with Pandas"
 date: 2021-11-01T21:57:40+08:00
 lastmod: 2021-11-01T21:57:40+08:00
 draft: false
@@ -8,8 +8,8 @@ authorLink: ""
 description: "Article that shows the analytical approach of the video games history through sales data, using Python and Jupyter Notebooks"
 #featuredImage: "featured-image.jpg"
 #featuredImagePreview: "images/posts/retrogames.jpg"
-images: ["images/posts/retrogames.jpg"]
-thumbnail: "images/posts/retrogames.jpg"
+images: ["images/posts/evga.jpg"]
+thumbnail: "images/posts/evga.jpg"
 tags: ["Exploratory Analysis", "Python"]
 categories: ["Projects"]
 lightgallery: true
@@ -17,8 +17,8 @@ toc: true
 
 resources:
 - name: "featured-image"
-  src: "images/posts/retrogames.jpg"
-featuredImagePreview: "images/posts/retrogames.jpg"
+  src: "images/posts/evga.jpg"
+featuredImagePreview: "images/posts/evga.jpg"
 ---
 
 The industry of video games revenues is reaching the $173.7 billion in value, with around 2.5 billion users enjoying them worldwide, with a forecasted value of $314.40 billion by 2026 according to Mordor Intelligence.
@@ -883,7 +883,7 @@ Through this article, my goal is to use data tools to inform the reader about cu
 
 # Additional Information
 
-- <b>About the article</b> {{< version 0.1.1 >}}
+- <b>About the article</b>
 
   This infographic article was adapted to a general public, I hope you enjoyed it. In case you are interested in learning more about the development of the script, I invite you to the contact section in my <b>About Page</b>, and with pleasure we can connect.
 

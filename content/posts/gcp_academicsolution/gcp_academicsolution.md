@@ -8,8 +8,8 @@ authorLink: ""
 description: "Academic article about a Business Case in which a Natural Language Processing system is deployed in Google Cloud Platform"
 #featuredImage: "featured-image.jpg"
 #featuredImagePreview: "images/posts/gcp.jpg"
-images: ["images/posts/gcp.jpg"]
-thumbnail: "images/posts/gcp.jpg"
+images: ["images/posts/gcp_academicsolution.jpg"]
+thumbnail: "images/posts/gcp_academicsolution.jpg"
 tags: ["Big Data", "Google Cloud Services"]
 categories: ["Articles"]
 lightgallery: true
@@ -17,8 +17,8 @@ toc: false
 
 resources:
 - name: "featured-image"
-  src: "images/posts/gcp.jpg"
-featuredImagePreview: "images/posts/gcp.jpg"
+  src: "images/posts/gcp_academicsolution.jpg"
+featuredImagePreview: "images/posts/gcp_academicsolution.jpg"
 ---
 
 

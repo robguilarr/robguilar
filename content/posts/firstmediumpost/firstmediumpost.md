@@ -7,8 +7,8 @@ draft: false
 author: "Roberto Aguilar"
 authorLink: ""
 description: "Roberto started a new side blog and here are all the details about it"
-images: ["images/posts/Medium.jpeg"]
-thumbnail: "images/posts/Medium.jpeg"
+images: ["images/posts/firstmediumpost.jpg"]
+thumbnail: "images/posts/firstmediumpost.jpg"
 tags: ["Medium", "Blog"]
 categories: ["Others"]
 lightgallery: true
@@ -16,8 +16,8 @@ toc: false
 
 resources:
 - name: "featured-image"
-  src: "images/posts/Medium.jpeg"
-featuredImagePreview: "images/posts/Medium.jpeg"
+  src: "images/posts/firstmediumpost.jpg"
+featuredImagePreview: "images/posts/firstmediumpost.jpg"
 ---
 
 <p align="center">
