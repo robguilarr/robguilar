@@ -20,10 +20,6 @@ resources:
 featuredImagePreview: "images/posts/firstmediumpost.jpg"
 ---
 
-<p align="center">
-{{< image src="/images/posts/Medium.jpeg" width="50%" height= "50%">}}
-</p>
-
 Perhaps you have noticed in my about section that I have always been interested in documenting my work and write about topics of interest.
 
 However, I will use this platform to write about <b>Data Science</b> and <b>Game Analytics</b> plus other interesting topics.
