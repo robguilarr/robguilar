@@ -492,15 +492,8 @@ paginate = 20
     enable = true
     # Google Analytics
     [params.analytics.google]
-      id = "G-VFQ5L5VZLY"   
-      # Whether to anonymize IP
-      #anonymizeIP = false # Old G-H5TE6160FM
+      id = "G-VFQ5L5VZLY" #For CMS website: "UA-205346180-1", we are using GAv3
 
-    # Fathom Analytics
-    [params.analytics.fathom]
-      #id = ""
-      # Server url for your tracker if you're self hosting
-      #server = ""
 
   #---------------------------------------------------------------------
   # COOKIE consent config
@@ -719,7 +712,10 @@ paginate = 20
 [privacy]
   # Privacy of the Google Analytics (replaced by params.analytics.google)
   [privacy.googleAnalytics]
-    # ...
+    anonymizeIP = false
+    disable = false
+    respectDoNotTrack = false
+    useSessionStorage = false
 
   # Privacy of twitter
   [privacy.twitter]
