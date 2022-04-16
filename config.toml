@@ -492,7 +492,15 @@ paginate = 20
     enable = true
     # Google Analytics
     [params.analytics.google]
-      id = "G-VFQ5L5VZLY" #For CMS website: "UA-205346180-1", we are using GAv3
+      id = "G-VFQ5L5VZLY" #For Not CMS website: "UA-205346180-1"(GAv3), we are using GA4
+
+    # GoatCounter Analytics
+    [params.analytics.goatcounter]
+      # GoatCounter code
+      code = "robguilar"
+
+
+
 
 
   #---------------------------------------------------------------------
