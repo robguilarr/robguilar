@@ -492,9 +492,9 @@ paginate = 20
     enable = true
     # Google Analytics
     [params.analytics.google]
-      id = "G-H5TE6160FM"
+      id = "G-VFQ5L5VZLY"   
       # Whether to anonymize IP
-      anonymizeIP = false
+      #anonymizeIP = false # Old G-H5TE6160FM
 
     # Fathom Analytics
     [params.analytics.fathom]
