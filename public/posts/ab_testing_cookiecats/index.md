@@ -10,7 +10,7 @@ The applicability of statistics in new fields can be considered as one of the gr
 The main purpose is not just to increase the companies revenue, one of the main objectives is to give a benefit in terms of User Experience (UX) and Engagement, and this can be covered using Data Science.
 
 {{< admonition info "Looking for an interactive experience?" true >}}
-:rocket: Use or Download the Jupyter Notebook, available <a href="https://nbviewer.org/github/robguilarr/ab_testing_cookie_cats/blob/main/ab_notebook.ipynb">here</a>
+:rocket: Download the Jupyter Notebook, available <a href="https://nbviewer.org/github/robguilarr/ab_testing_cookie_cats/blob/main/ab_notebook.ipynb">here</a>
 {{< /admonition >}}
 
 
@@ -467,7 +467,7 @@ So, by pushing players to take a break when they reach a gate, the fun of the ga
 
 ---
 
-## Aditional Information
+## Additional Information
 
 - <b>About the article</b>
 
@@ -489,7 +489,4 @@ Also in case you want to share some ideas, please visit the <a href="https://www
 
 - <b>Datasets</b>
 
-This project was developed with a dataset provided by Rasmus Baath, which also can be downloaded at my <a href="https://github.com/robguilarr/ab_testing_cookie_cats/tree/main/datasets">Github</a> repository. 
-
-
-
+This project was developed with a dataset provided by Rasmus Baath, which also can be downloaded at my <a href="https://github.com/robguilarr/ab_testing_cookie_cats/tree/main/datasets">Github</a> repository.
