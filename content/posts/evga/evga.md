@@ -12,7 +12,7 @@ tags: ["Exploratory Analysis", "Python"]
 categories: ["Projects"]
 lightgallery: true
 toc: true
-math: true
+math: false
 resources:
 - name: "featured-image"
   src: "images/posts/evga.jpg"
