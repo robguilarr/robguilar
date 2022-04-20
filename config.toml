@@ -184,6 +184,17 @@ paginate = 20
       maxShownLines = 10
 
     #---------------------------------------------------------------------
+    # KaTeX Functions config
+    #---------------------------------------------------------------------
+    [params.page.math]
+      # wheather to enable KATEX support
+      enable = true
+      # KaTeX extension copy_tex
+      copyTex = true
+      # KaTeX extension mhchem
+      mhchem = true
+
+    #---------------------------------------------------------------------
     # Third-party library config
     #---------------------------------------------------------------------
     [params.page.library]

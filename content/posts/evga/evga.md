@@ -6,15 +6,13 @@ draft: false
 author: "Roberto Aguilar"
 authorLink: ""
 description: "Article that shows the analytical approach of the video games history through sales data, using Python and Jupyter Notebooks"
-#featuredImage: "featured-image.jpg"
-#featuredImagePreview: "images/posts/retrogames.jpg"
 images: ["images/posts/evga.jpg"]
 thumbnail: "images/posts/evga.jpg"
 tags: ["Exploratory Analysis", "Python"]
 categories: ["Projects"]
 lightgallery: true
 toc: true
-
+math: true
 resources:
 - name: "featured-image"
   src: "images/posts/evga.jpg"

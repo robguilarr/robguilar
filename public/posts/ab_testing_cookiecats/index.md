@@ -1,4 +1,4 @@
-# Tactical Analytics: A/B Testing with Cookie Cats Game
+# A/B Testing with Cookie Cats Game
 
 
 ## What are Tactical Analytics?

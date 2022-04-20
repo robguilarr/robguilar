@@ -1,21 +1,19 @@
 ---
 #weight: 2
-title: "Tactical Analytics: A/B Testing with Cookie Cats Game"
+title: "A/B Testing with Cookie Cats Game"
 date: 2022-02-02T21:57:40+08:00
 lastmod: 2022-02-02T21:57:40+08:00
 draft: false
 author: "Roberto Aguilar"
 authorLink: ""
-description: "Roberto started a new side blog and here are all the details about it"
-#featuredImage: "featured-image.jpg"
-#featuredImagePreview: "images/posts/cookie_cats.jpg"
+description: "In this project we'll see how to perform an A/B testing on Cookie Cats Mobile Game with Python and Jupyter Notebooks"
 images: ["images/posts/ab_testing_cookiecats.jpg"]
 thumbnail: "images/posts/ab_testing_cookiecats.jpg"
 tags: ["A/B Testing", "Python"]
 categories: ["Projects"]
 lightgallery: true
 toc: true
-
+math: true
 resources:
 - name: "featured-image"
   src: "images/posts/ab_testing_cookiecats.jpg"
