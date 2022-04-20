@@ -24,6 +24,8 @@ We'll review a game that potentially can lead any developer to many unseen probl
 1. The game is too easy so it became boring over time
 2. The game is too hard so the players leave it and become frustrated
 
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/map.png" style="width: 700px"></p>
+
 ### Potential Stakeholders
 
 None of the past hypotheses are the main intentions of the developers. So they require a Data Analyst to help with this task since the developers are seeing only the backend factors affecting the game, but it's also critical to consider those external ones that affect the experience for the player and the sustainability of this game for the company. Among the main stakeholders could be:
