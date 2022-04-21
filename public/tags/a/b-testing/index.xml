@@ -7,9 +7,8 @@
     <title>A/B Testing with Cookie Cats Game</title>
     <link>https://robguilar.com/posts/ab_testing_cookiecats/</link>
     <pubDate>Wed, 02 Feb 2022 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/ab_testing_cookiecats/</guid>
-    <description><![CDATA[What are Tactical Analytics? A type of user-oriented game analytics, with the purpose to &ldquo;aim to inform game design at the short-term, for example, an A/B test of a new game feature&rdquo; (A. Dranchen, 2013).
-The applicability of statistics in new fields can be considered as one of the greatest advances for humanity. Nowadays, human-machine interactions are being monitored, in a good way in most cases.
-The main purpose is not just to increase the companies revenue, one of the main objectives is to give a benefit in terms of User Experience (UX) and Engagement, and this can be covered using Data Science.]]></description>
+    <description><![CDATA[A lot of things come to mind when we hear the name Cookie Cats, and probably is not what we think since is hard to associate both words, it’s about meow-sicians (Belle, Ziggy, Smokey, Rita, Berry).
+Anyway, Cookie Cats is a mobile puzzle game of “connect-three”-style developed by Tactile Entertainment, a mobile games developer from Copenhagen. To be in context, this game’s main objective is to align 3 cookies of the same kind to feed a cat, and in this way finish each level.]]></description>
 </item>
 </channel>
 </rss>
