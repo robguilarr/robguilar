@@ -6,7 +6,7 @@ lastmod: 2021-09-27T21:57:40+08:00
 draft: false
 author: "Roberto Aguilar"
 authorLink: ""
-description: "Roberto started a new side blog and here are all the details about it"
+description: "Medium Blog for Analytics and more"
 images: ["images/posts/firstmediumpost.jpg"]
 thumbnail: "images/posts/firstmediumpost.jpg"
 tags: ["Medium", "Blog"]

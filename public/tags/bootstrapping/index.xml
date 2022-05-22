@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Bootstrapping - Tag - Roberto Aguilar</title>
+        <link>https://robguilar.com/tags/bootstrapping/</link>
+        <description>Bootstrapping - Tag - Roberto Aguilar</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Sun, 22 May 2022 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/tags/bootstrapping/" rel="self" type="application/rss+xml" /><item>
+    <title>Inspecting Control Mechanics using T-Tests on Fallout New Vegas</title>
+    <link>https://robguilar.com/posts/control_mechanics_fallout/</link>
+    <pubDate>Sun, 22 May 2022 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/control_mechanics_fallout/</guid>
+    <description><![CDATA[The plot of the sequel of Fallout 3 takes context in the year 2281, 4 years after the first escape from Vault 101, within a post-apocalyptic world after the Great War.
+This RPG has an open world inspired by cities such as Nevada, California, Arizona, and Utah, allowing users to have a large number of places to explore and a world with NPCs to interact with, ideal for developing behavioral and exploratory analysis.]]></description>
+</item>
+<item>
+    <title>A/B Testing with Cookie Cats Game</title>
+    <link>https://robguilar.com/posts/ab_testing_cookiecats/</link>
+    <pubDate>Wed, 02 Feb 2022 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/ab_testing_cookiecats/</guid>
+    <description><![CDATA[A lot of things come to mind when we hear the name Cookie Cats, and probably is not what we think since is hard to associate both words, it’s about meow-sicians (Belle, Ziggy, Smokey, Rita, Berry).
+Anyway, Cookie Cats is a mobile puzzle game of “connect-three”-style developed by Tactile Entertainment, a mobile games developer from Copenhagen. To be in context, this game’s main objective is to align 3 cookies of the same kind to feed a cat, and in this way finish each level.]]></description>
+</item>
+</channel>
+</rss>

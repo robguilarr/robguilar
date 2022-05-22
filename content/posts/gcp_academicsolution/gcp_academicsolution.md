@@ -5,7 +5,7 @@ lastmod: 2021-10-04T21:57:40+08:00
 draft: false
 author: "Roberto Aguilar"
 authorLink: ""
-description: "Academic article about a Business Case in which a Natural Language Processing system is deployed in Google Cloud Platform"
+description: "Cloud Service Architecture for NLP in Google Cloud"
 images: ["images/posts/gcp_academicsolution.jpg"]
 thumbnail: "images/posts/gcp_academicsolution.jpg"
 tags: ["Big Data", "Google Cloud Services"]

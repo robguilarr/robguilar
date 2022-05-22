@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Leveling Difficulty in Candy Crush Saga - Roberto Aguilar</title><meta name="description" content="From 15 levels of a Candy Crush episode we&#39;ll see how to level the difficulty using Bernoulli principles with Python and Jupyter Notebooks"><meta property="og:title" content="Leveling Difficulty in Candy Crush Saga" />
-<meta property="og:description" content="From 15 levels of a Candy Crush episode we&#39;ll see how to level the difficulty using Bernoulli principles with Python and Jupyter Notebooks" />
+        <title>Leveling Difficulty in Candy Crush Saga - Roberto Aguilar</title><meta name="description" content="Leveling Difficulty in Candy Crush Saga"><meta property="og:title" content="Leveling Difficulty in Candy Crush Saga" />
+<meta property="og:description" content="Leveling Difficulty in Candy Crush Saga" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://robguilar.com/posts/candy_crush_difficulty/" /><meta property="og:image" content="https://robguilar.com/images/posts/candy_crush_difficulty.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-04-19T21:57:40+08:00" />
@@ -15,11 +15,11 @@
 <meta name="twitter:image" content="https://robguilar.com/images/posts/candy_crush_difficulty.jpg"/>
 
 <meta name="twitter:title" content="Leveling Difficulty in Candy Crush Saga"/>
-<meta name="twitter:description" content="From 15 levels of a Candy Crush episode we&#39;ll see how to level the difficulty using Bernoulli principles with Python and Jupyter Notebooks"/>
+<meta name="twitter:description" content="Leveling Difficulty in Candy Crush Saga"/>
 <meta name="application-name" content="&gt; robguilar">
 <meta name="apple-mobile-web-app-title" content="&gt; robguilar"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#525252"><link rel="shortcut icon" type="image/x-icon" href="https://robguilar.com/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="https://robguilar.com/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="https://robguilar.com/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="https://robguilar.com/apple-touch-icon.png"><link rel="mask-icon" href="https://robguilar.com/safari-pinned-tab.svg" color="#525252"><link rel="manifest" href="https://robguilar.com/site.webmanifest"><link rel="canonical" href="https://robguilar.com/posts/candy_crush_difficulty/" /><link rel="prev" href="https://robguilar.com/posts/ab_testing_cookiecats/" /><link rel="stylesheet" href="https://robguilar.com/css/page.min.css"><link rel="stylesheet" href="https://robguilar.com/css/home.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://robguilar.com/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="https://robguilar.com/apple-touch-icon.png"><link rel="mask-icon" href="https://robguilar.com/safari-pinned-tab.svg" color="#525252"><link rel="manifest" href="https://robguilar.com/site.webmanifest"><link rel="canonical" href="https://robguilar.com/posts/candy_crush_difficulty/" /><link rel="prev" href="https://robguilar.com/posts/ab_testing_cookiecats/" /><link rel="next" href="https://robguilar.com/posts/control_mechanics_fallout/" /><link rel="stylesheet" href="https://robguilar.com/css/page.min.css"><link rel="stylesheet" href="https://robguilar.com/css/home.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -44,7 +44,7 @@
                 }},"author": {
                 "@type": "Person",
                 "name": "Roberto Aguilar"
-            },"description": "From 15 levels of a Candy Crush episode we'll see how to level the difficulty using Bernoulli principles with Python and Jupyter Notebooks"
+            },"description": "Leveling Difficulty in Candy Crush Saga"
     }
     </script></head><body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
@@ -174,7 +174,7 @@
 
 <h2 id="-introduction-to-problem">⚠️ Introduction to problem</h2>
 <h3 id="hypothesis">Hypothesis</h3>
-<p>We&rsquo;ll review a game that potentially can lead any developer to many unseen problems, considering the abundance of levels. From the perspective of a customer, there can be several points of view that can emerge and, at the same time, can become unnoticed. That&rsquo;s why our diagnosis will start from 2 potential hypothesis</p>
+<p>We&rsquo;ll review a game that potentially can lead any developer to many unseen problems, considering the abundance of levels. From the perspective of a customer, there can be several points of view that can emerge and, at the same time, can become unnoticed. That&rsquo;s why our diagnosis will start from 2 potential hypothesis:</p>
 <ol>
 <li>The game is too easy so it became boring over time</li>
 <li>The game is too hard so the players leave it and become frustrated</li>
@@ -183,10 +183,10 @@
 <h3 id="potential-stakeholders">Potential Stakeholders</h3>
 <p>None of the past hypotheses are the main intentions of the developers. So they require a Data Analyst to help with this task since the developers are seeing only the backend factors affecting the game, but it&rsquo;s also critical to consider those external ones that affect the experience for the player and the sustainability of this game for the company. Among the main stakeholders could be:</p>
 <ul>
-<li>Level Designers: as they worked aligned with the rest of the Development Team, they still have a backend perspective and their feedback depends on a <a href="https://grux.org/what-is-gurux/#:~:text=Games%20User%20Research%2FExperience%20focuses,the%20best%20gaming%20experience%20possible." target="_blank" rel="noopener noreffer">UX Research team</a>. To avoid this, they need a report of the player&rsquo;s behavior to adopt a constant-reactive improvement during the post-production stage</li>
+<li>Level Designers: as they worked aligned with the rest of the Development Team, they still have a backend perspective and their feedback depends on a <a href="https://grux.org/what-is-gurux/#:~:text=Games%20User%20Research%2FExperience%20focuses,the%20best%20gaming%20experience%20possible." target="_blank" rel="noopener noreffer">UX Research team</a>. To avoid this, they need a report of the player&rsquo;s behavior to adopt a constant-reactive improvement during the post-production stage.</li>
 <li>Parent Company: Besides Candy Crush being an IP with internal producers since it&rsquo;s developed and published by King, the <a href="https://www.activisionblizzard.com/" target="_blank" rel="noopener noreffer">Parent company</a> will expect to have an <a href="https://www.forbes.com/advisor/investing/roi-return-on-investment/" target="_blank" rel="noopener noreffer">ROI</a> aligned with their expectations.
-This is a game whose main income input is in-game purchases because it’s a <a href="https://en.wikipedia.org/wiki/Free-to-play" target="_blank" rel="noopener noreffer">F2P</a>, reason why their main investors are extremely focused in retain the engagement in the game and keeping the consumers on the screen</li>
-<li>Players community: they expect to have an endurable and great experience and a brief response in case of problems</li>
+This is a game whose main income input is in-game purchases because it’s a <a href="https://en.wikipedia.org/wiki/Free-to-play" target="_blank" rel="noopener noreffer">F2P</a>, reason why their main investors are extremely focused in retain the engagement in the game and keeping the consumers on the screen.</li>
+<li>Players community: they expect to have an endurable and great experience and a brief response in case of problems.</li>
 </ul>
 <h2 id="-about-the-data">📥 About the data</h2>
 <h3 id="collection-process-and-structure">Collection process and structure</h3>
@@ -225,8 +225,8 @@ This is a game whose main income input is in-game purchases because it’s a <a 
 <span class="n">sign</span><span class="p">,</span> <span class="n">layout</span> <span class="o">=</span> <span class="n">layout_plotly</span><span class="p">(</span><span class="n">height</span><span class="o">=</span> <span class="mi">720</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>Due to the extensive size of possible episodes to analyze, we’ll limit the analysis to just one of them, which exactly will have data available for 15 levels. To do this, the analysts need to request a sample from the telemetry systems to get data related to the number of attempts per player in each episode level</p>
-<p>Also, it’s important to mention that in terms of privacy, this analysis requires importing the data with the <em>player_id</em> codified for privacy reasons. Fortunately, in this case, Rasmus Baath, Data Science Lead at <a href="https://castle.io/" target="_blank" rel="noopener noreffer">castle.io</a>, provided us with a Dataset with a sample gathered in 2014</p>
+</div><p>Due to the extensive size of possible episodes to analyze, we’ll limit the analysis to just one of them, which exactly will have data available for 15 levels. To do this, the analysts need to request a sample from the telemetry systems to get data related to the number of attempts per player in each episode level.</p>
+<p>Also, it’s important to mention that in terms of privacy, this analysis requires importing the data with the <em>player_id</em> codified for privacy reasons. Fortunately, in this case, Rasmus Baath, Data Science Lead at <a href="https://castle.io/" target="_blank" rel="noopener noreffer">castle.io</a>, provided us with a Dataset with a sample gathered in 2014.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -237,14 +237,7 @@ This is a game whose main income input is in-game purchases because it’s a <a 
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img
-        class="lazyload"
-        src="https://robguilar.com/svg/loading.min.svg"
-        data-src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table1.png"
-        data-srcset="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table1.png, https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table1.png 1.5x, https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table1.png 2x"
-        data-sizes="auto"
-        alt="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table1.png"
-        title="table1" /></p>
+</div><p align="left"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table1.png" style="width: 600px"></p>
 <p>We can see that our data is <strong>structured</strong> and consists of 5 attributes:</p>
 <ul>
 <li><em>player_id</em>: a unique player id</li>
@@ -254,7 +247,7 @@ This is a game whose main income input is in-game purchases because it’s a <a 
 <li><em>num_success</em>: number of level attempts that resulted in a success/win for the player on that level and date</li>
 </ul>
 <h2 id="-data-preprocessing">🔧 Data Preprocessing</h2>
-<p>Before starting the analysis we need to do some validations on the dataset</p>
+<p>Before starting the analysis we need to do some validations on the dataset.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -296,7 +289,7 @@ From:  2014-01-01  To: 2014-01-07
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="data-cleaning">Data Cleaning</h3>
-<p>The data doesn’t require any kind of transformation and the data types are aligned with their purpose</p>
+<p>The data doesn’t require any kind of transformation and the data types are aligned with their purpose.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -324,7 +317,7 @@ dtype: object
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="data-consistency">Data Consistency</h3>
-<p>The usability of the data it’s rather good, since we don’t count with “NAN” (Not A Number), “NA” (Not Available), or “NULL” (an empty set) values</p>
+<p>The usability of the data it’s rather good, since we don’t count with “NAN” (Not A Number), “NA” (Not Available), or “NULL” (an empty set) values.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -371,10 +364,10 @@ dtype: object
  None
 </code></pre></td></tr></table>
 </div>
-</div><p>By this way, we can conclude that there were not errors in our telemetry logs during the data collection</p>
+</div><p>By this way, we can conclude that there were not errors in our telemetry logs during the data collection.</p>
 <h3 id="normalization">Normalization</h3>
-<p>Next, we can conclude there were no impossible numbers, except for a player that tried to complete the level 11 in 258 attempts with just 1 success. This is the only registry we exclude since it can be an influential outlier and we don’t rely on more attributes about him to create conclusions</p>
-<p>Noticing the distribution of the quartiles and comprehending the purpose of our analysis, we can validate that the data is comparable and doesn’t need transformations</p>
+<p>Next, we can conclude there were no impossible numbers, except for a player that tried to complete the level 11 in 258 attempts with just 1 success. This is the only registry we exclude since it can be an influential outlier and we don’t rely on more attributes about him to create conclusions.</p>
+<p>Noticing the distribution of the quartiles and comprehending the purpose of our analysis, we can validate that the data is comparable and doesn’t need transformations.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -385,14 +378,7 @@ dtype: object
 <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img
-        class="lazyload"
-        src="https://robguilar.com/svg/loading.min.svg"
-        data-src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table2.png"
-        data-srcset="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table2.png, https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table2.png 1.5x, https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table2.png 2x"
-        data-sizes="auto"
-        alt="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table2.png"
-        title="table2" /></p>
+</div><p align="left"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table2.png" style="width: 350px"></p>
 <h2 id="-exploratory-analysis--in-game-interpretations">🔍 Exploratory Analysis &amp; In-game interpretations</h2>
 <h3 id="summary-statistics">Summary statistics</h3>
 <p>Excluding the outliers we mentioned before, we got the next conclusions about their distribution and measurement:</p>
@@ -434,8 +420,8 @@ dtype: object
 </li>
 </ul>
 <h3 id="levels-played-in-episode">Levels played in Episode</h3>
-<p>First, let’s examine the number of registries per player</p>
-<p>This will tell us, from the episode how many levels have each player recorded in the lapse of 7 days</p>
+<p>First, let’s examine the number of registries per player.</p>
+<p>This will tell us, from the episode how many levels have each player recorded in the lapse of 7 days.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -525,12 +511,12 @@ dtype: object
 </code></pre></td></tr></table>
 </div>
 </div><p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/pareto.png" style="width: 900px"></p>
-<p>From the last Pareto chart, we can deduce that 80% of the 6814 players just count with 3 levels recorded of 15. But, since this was extracted from a random sample, this won’t affect our study</p>
+<p>From the last Pareto chart, we can deduce that 80% of the 6814 players just count with 3 levels recorded of 15. But, since this was extracted from a random sample, this won’t affect our study.</p>
 <h3 id="difficulty-of-completing-a-level-in-a-single-try">Difficulty of completing a level in a single try</h3>
-<p>There is a combination of easier and challenging levels. Chance and skills make the number of attempts required to pass a level different from one player to another. The presumption is that difficult levels demand more tries on average than easier ones. That is, the harder a level is the lower the likelihood to pass that level in a single try</p>
+<p>There is a combination of easier and challenging levels. Chance and skills make the number of attempts required to pass a level different from one player to another. The presumption is that difficult levels demand more tries on average than easier ones. That is, the harder a level is the lower the likelihood to pass that level in a single try.</p>
 <p>In these circumstances, the <a href="https://en.wikipedia.org/wiki/Bernoulli_process" target="_blank" rel="noopener noreffer">Bernoulli process</a> might be useful. As a <em>Boolean</em> result, there are only two possibilities, win or lose. This can be measured by a single parameter:</p>
 <p>$p_{win} = \frac{\Sigma wins }{\Sigma attempts }$:  the probability of completing the level in a single attempt</p>
-<p>Let&rsquo;s calculate the difficulty $p_{win}$ individually for each of the 15 levels</p>
+<p>Let&rsquo;s calculate the difficulty $p_{win}$ individually for each of the 15 levels.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -546,7 +532,7 @@ dtype: object
 </code></pre></td></tr></table>
 </div>
 </div><p align="left"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table3.png" style="width: 250px"></p>
-<p>We have levels where 50% of players finished on the first attempt and others that are the opposite. But let’s visualize it through the episode, to make it clear</p>
+<p>We have levels where 50% of players finished on the first attempt and others that are the opposite. But let’s visualize it through the episode, to make it clear.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -575,7 +561,7 @@ dtype: object
 </div>
 </div><p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/line1.png" style="width: 900px"></p>
 <h3 id="defining-hard-levels">Defining hard levels</h3>
-<p>It’s subjective what we can consider a hard level because not consistently depends on a single factor and for all player profile groups this can be different. So, for the outcomes of this study, we will arbitrarily assume that a difficult level is the one that has a probability to be completed in the first attempt of a 10% ($p_{win} &lt; 10%$)</p>
+<p>It’s subjective what we can consider a hard level because not consistently depends on a single factor and for all player profile groups this can be different. So, for the outcomes of this study, we will arbitrarily assume that a difficult level is the one that has a probability to be completed in the first attempt of a 10% ($p_{win} &lt; 10%$).</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -611,7 +597,7 @@ dtype: object
 </code></pre></td></tr></table>
 </div>
 </div><p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/line2.png" style="width: 900px"></p>
-<p>From our predefined threshold, we see that the level digit is not aligned with its difficulty. While we have hard levels as 5, 8, 9, and 15; others like 13 and 15 are unleveraged and need to be rebalanced by the level designers</p>
+<p>From our predefined threshold, we see that the level digit is not aligned with its difficulty. While we have hard levels as 5, 8, 9, and 15; others like 13 and 15 are unleveraged and need to be rebalanced by the level designers.</p>
 <h3 id="measuring-the-uncertainty-of-success">Measuring the uncertainty of success</h3>
 <p>We should always report some calculation of the uncertainty of any provided numbers. Simply, because another sample will give us little different values for the difficulties measured by level.</p>
 <p>Here we will simply use the <a href="https://en.wikipedia.org/wiki/Standard_error" target="_blank" rel="noopener noreffer">Standard error</a> as a measure of uncertainty:</p>
@@ -620,7 +606,7 @@ dtype: object
 <p>$\sigma_{sample} = \sqrt{p_{win}(1-p_{win})}$</p>
 <p>Therefore, we can calculate the standard error like this:</p>
 <p>$\sigma_{error} \approx \sqrt{\frac{p_{win}(1-p_{win})}{n} }$</p>
-<p>Consider that every level has been played <em>n</em> number of times and we have their difficulty $p_{win}$. Now, let&rsquo;s calculate the standard error for each level of this episode</p>
+<p>Consider that every level has been played <em>n</em> number of times and we have their difficulty $p_{win}$. Now, let&rsquo;s calculate the standard error for each level of this episode.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -633,14 +619,7 @@ dtype: object
 <span class="n">difficulty</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img
-        class="lazyload"
-        src="https://robguilar.com/svg/loading.min.svg"
-        data-src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table4.png"
-        data-srcset="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table4.png, https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table4.png 1.5x, https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table4.png 2x"
-        data-sizes="auto"
-        alt="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table4.png"
-        title="table4" /></p>
+</div><p align="left"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table4.png" style="width: 300px"></p>
 <p>We have a measure of uncertainty for each levels' difficulty. As always, this would be more appealing if we plot it.</p>
 <p>Let&rsquo;s use <em>error bars</em> to show this uncertainty in the plot. We will set the height of the error bars to one standard error. The upper limit and the lower limit of each error bar should be defined by:</p>
 <p>$p_{win}  \pm \sigma_{error}$</p>
@@ -675,8 +654,8 @@ dtype: object
 </code></pre></td></tr></table>
 </div>
 </div><p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/line3.png" style="width: 900px"></p>
-<p>Looks like the difficulty estimates a very exact. Furthermore, for the hardest levels, the measure is even more precise, and that’s a good point because from this we can make valid conclusions based on that levels</p>
-<p>As a curious fact, also we can measure the probability of completing all the levels of that episode in a single attempt, just for fun</p>
+<p>Looks like the difficulty estimates a very exact. Furthermore, for the hardest levels, the measure is even more precise, and that’s a good point because from this we can make valid conclusions based on that levels.</p>
+<p>As a curious fact, also we can measure the probability of completing all the levels of that episode in a single attempt, just for fun.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -711,11 +690,11 @@ for whole episode:  9.889123140886191e-10 %
 </div>
 </div><h2 id="-final-thoughts--takeaways">🗒️ Final thoughts &amp; takeaways</h2>
 <p><strong>What can the stakeholders understand and take into consideration?</strong></p>
-<p>From the sample extracted we conclude that just 33% of the levels are considered of high difficulty, which it’s acceptable since each episode counts with 15 levels, so by now the level designer should not worry about leveling the difficulty</p>
+<p>From the sample extracted we conclude that just 33% of the levels are considered of high difficulty, which it’s acceptable since each episode counts with 15 levels, so by now the level designer should not worry about leveling the difficulty.</p>
 <p><strong>What could the stakeholders do to take action ?</strong></p>
-<p>As a suggestion, in the case that the Publisher decides to invest more in in-game mechanics, a solution for a long-time and reactive engagement could be the use of Machine Learning to generate a <a href="https://en.wikipedia.org/wiki/Dynamic_game_difficulty_balancing" target="_blank" rel="noopener noreffer">DGDB</a> as some competitors have adapted in IPs like EA Sports FIFA, Madden NFL or the “AI Director” of Left 4 Dead</p>
+<p>As a suggestion, in the case that the Publisher decides to invest more in in-game mechanics, a solution for a long-time and reactive engagement could be the use of Machine Learning to generate a <a href="https://en.wikipedia.org/wiki/Dynamic_game_difficulty_balancing" target="_blank" rel="noopener noreffer">DGDB</a> as some competitors have adapted in IPs like EA Sports FIFA, Madden NFL or the “AI Director” of Left 4 Dead.</p>
 <p><strong>What can stakeholders keep working on?</strong></p>
-<p>The way their level difficulty design work today is precise since our first hypothesis was that the game wasn’t too linear to unengaged the player and churn as consequence. Because as we saw, the game has drastic variations in the levels 5-6 and 8-10, which can help to avoid frustrations in players</p>
+<p>The way their level difficulty design work today is precise since our first hypothesis was that the game wasn’t too linear to unengaged the player and churn as consequence. Because as we saw, the game has drastic variations in the levels 5-6 and 8-10, which can help to avoid frustrations in players.</p>
 <hr>
 <h2 id="ℹ-additional-information">ℹ️ Additional Information</h2>
 <ul>
@@ -743,8 +722,9 @@ for whole episode:  9.889123140886191e-10 %
                             <a class="link-to-markdown" href="https://robguilar.com/posts/candy_crush_difficulty/index.md" target="_blank">Read Markdown</a>
                         </span></div>
         </div><div class="post-info-share">
-            <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://robguilar.com/posts/candy_crush_difficulty/" data-title="Leveling Difficulty in Candy Crush Saga" data-via="map[id:robguilarr prefix:https://twitter.com/ title:Twitter weight:1]" data-hashtags="Bernoulli,Python"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://robguilar.com/posts/candy_crush_difficulty/" data-hashtag="Bernoulli"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://robguilar.com/posts/candy_crush_difficulty/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Pinterest" data-sharer="pinterest" data-url="https://robguilar.com/posts/candy_crush_difficulty/" data-description="From 15 levels of a Candy Crush episode we&#39;ll see how to level the difficulty using Bernoulli principles with Python and Jupyter Notebooks"><i class="fab fa-pinterest fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://robguilar.com/posts/candy_crush_difficulty/"><i class="fab fa-reddit fa-fw"></i></a></span>
-        </div></div><div class="post-nav"><a href="https://robguilar.com/posts/ab_testing_cookiecats/" class="prev" rel="prev" title="A/B Testing with Cookie Cats Game"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a></div></div>
+            <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://robguilar.com/posts/candy_crush_difficulty/" data-title="Leveling Difficulty in Candy Crush Saga" data-via="map[id:robguilarr prefix:https://twitter.com/ title:Twitter weight:1]" data-hashtags="Bernoulli,Python"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://robguilar.com/posts/candy_crush_difficulty/" data-hashtag="Bernoulli"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://robguilar.com/posts/candy_crush_difficulty/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Pinterest" data-sharer="pinterest" data-url="https://robguilar.com/posts/candy_crush_difficulty/" data-description="Leveling Difficulty in Candy Crush Saga"><i class="fab fa-pinterest fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://robguilar.com/posts/candy_crush_difficulty/"><i class="fab fa-reddit fa-fw"></i></a></span>
+        </div></div><div class="post-nav"><a href="https://robguilar.com/posts/ab_testing_cookiecats/" class="prev" rel="prev" title="A/B Testing with Cookie Cats Game"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="https://robguilar.com/posts/control_mechanics_fallout/" class="next" rel="next" title="Inspecting Control Mechanics using T-Tests on Fallout New Vegas">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
 </div></article></div>
             </main>
             <footer class="footer"><div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://robguilar.com/"></a></span>&nbsp;|&nbsp;<span class="license">Hosted on Netlify</span></div>
@@ -769,7 +749,7 @@ if ('serviceWorker' in navigator) {
 
         <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
                 <i class="fas fa-chevron-up fa-fw"></i>
-            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/copy-tex.min.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="https://cdn.jsdelivr.net/npm/object-fit-images@3.2.4/dist/ofi.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/twemoji@13.1.0/dist/twemoji.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.1/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"data":{"id-1":" \u003e robguilar","id-2":" \u003e robguilar"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":900,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":90}};</script><script src="https://robguilar.com/js/theme.min.js"></script><script type="text/javascript">
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/copy-tex.min.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="https://cdn.jsdelivr.net/npm/object-fit-images@3.2.4/dist/ofi.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/twemoji@13.1.0/dist/twemoji.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.1/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":" \u003e robguilar","id-2":" \u003e robguilar"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":900,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":90}};</script><script src="https://robguilar.com/js/theme.min.js"></script><script type="text/javascript">
             window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
             gtag('config', 'G-VFQ5L5VZLY');
         </script><script src="https://www.googletagmanager.com/gtag/js?id=G-VFQ5L5VZLY" async></script><script data-goatcounter="https://robguilar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

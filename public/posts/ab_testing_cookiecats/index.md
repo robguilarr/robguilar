@@ -107,7 +107,7 @@ dtype: object
 
 ### Data Consistency
 
-The usability of the data it’s rather good, since we don’t count with “NAN” (Not A Number), “NA” (Not Available), or “NULL” (an empty set) values
+The usability of the data it’s rather good, since we don’t count with “NAN” (Not A Number), “NA” (Not Available), or “NULL” (an empty set) values.
 
 ```python
 # Function the plot the percentage of missing values
@@ -132,11 +132,11 @@ NaN Values per column:
 	None
 ```
 
-By this way, we can conclude that there were not errors in our telemetry logs during the data collection
+By this way, we can conclude that there were not errors in our telemetry logs during the data collection.
 
 ### Normalization
 
-Noticing the distribution of the quartiles and comprehending the purpose of our analysis, where we only require *sum_gamerounds* as numeric, we can validate that the data is comparable and doesn’t need transformations
+Noticing the distribution of the quartiles and comprehending the purpose of our analysis, where we only require *sum_gamerounds* as numeric, we can validate that the data is comparable and doesn’t need transformations.
 
 ```python
 df.describe()
@@ -151,23 +151,23 @@ df.describe()
 We got the next conclusions about their distribution and measurement:
 
 - *userid*
-    - Interpretation: Player identifier with distinct records in the whole dataset which can be transformed as a factor.
+    - Interpretation: Player identifier with distinct records in the whole dataset which can be transformed as a factor
     - Data type: Nominal
     - Measurement type: Discrete/String
 - *version*
-    - Interpretation: Just two possible values to evaluate, time gate at level 30 or level 40.
+    - Interpretation: Just two possible values to evaluate, time gate at level 30 or level 40
     - Data type: Ordinal
     - Measurement type: Discrete/String
 - *sum_gamerounds*
-    - Interpretation: Number of game rounds played by the user, where 50% of the users played between 5 and 51 sessions.
+    - Interpretation: Number of game rounds played by the user, where 50% of the users played between 5 and 51 sessions
     - Data type: Numerical
     - Measurement type: Integer
 - *retention_1*
-    - Interpretation: Boolean measure to verify that the player retention was effective for 1 day at least.
+    - Interpretation: Boolean measure to verify that the player retention was effective for 1 day at least
     - Data type: Nominal
     - Measurement type: Discrete/String
 - *retention_7*
-    - Interpretation: Boolean measure to verify that the player retention was effective for 7 days at least.
+    - Interpretation: Boolean measure to verify that the player retention was effective for 7 days at least
     - Data type: Nominal
     - Measurement type: Discrete/String
 

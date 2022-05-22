@@ -6,7 +6,7 @@ lastmod: 2022-04-19T21:57:40+08:00
 draft: false
 author: "Roberto Aguilar"
 authorLink: ""
-description: "From 15 levels of a Candy Crush episode we'll see how to level the difficulty using Bernoulli principles with Python and Jupyter Notebooks"
+description: "Leveling Difficulty in Candy Crush Saga"
 images: ["images/posts/candy_crush_difficulty.jpg"]
 thumbnail: "images/posts/candy_crush_difficulty.jpg"
 tags: ["Bernoulli", "Python"]
@@ -39,7 +39,7 @@ If you are one of the few that haven't played Candy Crush, here's a short intro:
 
 ### Hypothesis
 
-We'll review a game that potentially can lead any developer to many unseen problems, considering the abundance of levels. From the perspective of a customer, there can be several points of view that can emerge and, at the same time, can become unnoticed. That's why our diagnosis will start from 2 potential hypothesis
+We'll review a game that potentially can lead any developer to many unseen problems, considering the abundance of levels. From the perspective of a customer, there can be several points of view that can emerge and, at the same time, can become unnoticed. That's why our diagnosis will start from 2 potential hypothesis:
 
 1. The game is too easy so it became boring over time
 2. The game is too hard so the players leave it and become frustrated
@@ -50,10 +50,10 @@ We'll review a game that potentially can lead any developer to many unseen probl
 
 None of the past hypotheses are the main intentions of the developers. So they require a Data Analyst to help with this task since the developers are seeing only the backend factors affecting the game, but it's also critical to consider those external ones that affect the experience for the player and the sustainability of this game for the company. Among the main stakeholders could be:
 
-- Level Designers: as they worked aligned with the rest of the Development Team, they still have a backend perspective and their feedback depends on a [UX Research team](https://grux.org/what-is-gurux/#:~:text=Games%20User%20Research%2FExperience%20focuses,the%20best%20gaming%20experience%20possible.). To avoid this, they need a report of the player's behavior to adopt a constant-reactive improvement during the post-production stage
+- Level Designers: as they worked aligned with the rest of the Development Team, they still have a backend perspective and their feedback depends on a [UX Research team](https://grux.org/what-is-gurux/#:~:text=Games%20User%20Research%2FExperience%20focuses,the%20best%20gaming%20experience%20possible.). To avoid this, they need a report of the player's behavior to adopt a constant-reactive improvement during the post-production stage.
 - Parent Company: Besides Candy Crush being an IP with internal producers since it's developed and published by King, the [Parent company](https://www.activisionblizzard.com/) will expect to have an [ROI](https://www.forbes.com/advisor/investing/roi-return-on-investment/) aligned with their expectations.
-This is a game whose main income input is in-game purchases because it’s a [F2P](https://en.wikipedia.org/wiki/Free-to-play), reason why their main investors are extremely focused in retain the engagement in the game and keeping the consumers on the screen
-- Players community: they expect to have an endurable and great experience and a brief response in case of problems
+This is a game whose main income input is in-game purchases because it’s a [F2P](https://en.wikipedia.org/wiki/Free-to-play), reason why their main investors are extremely focused in retain the engagement in the game and keeping the consumers on the screen.
+- Players community: they expect to have an endurable and great experience and a brief response in case of problems.
 
 ## 📥 About the data
 
@@ -78,16 +78,16 @@ from vizformatter.standards import layout_plotly
 sign, layout = layout_plotly(height= 720, width= 1000, font_size= 15)
 ```
 
-Due to the extensive size of possible episodes to analyze, we’ll limit the analysis to just one of them, which exactly will have data available for 15 levels. To do this, the analysts need to request a sample from the telemetry systems to get data related to the number of attempts per player in each episode level
+Due to the extensive size of possible episodes to analyze, we’ll limit the analysis to just one of them, which exactly will have data available for 15 levels. To do this, the analysts need to request a sample from the telemetry systems to get data related to the number of attempts per player in each episode level.
 
-Also, it’s important to mention that in terms of privacy, this analysis requires importing the data with the *player_id* codified for privacy reasons. Fortunately, in this case, Rasmus Baath, Data Science Lead at [castle.io](https://castle.io/), provided us with a Dataset with a sample gathered in 2014
+Also, it’s important to mention that in terms of privacy, this analysis requires importing the data with the *player_id* codified for privacy reasons. Fortunately, in this case, Rasmus Baath, Data Science Lead at [castle.io](https://castle.io/), provided us with a Dataset with a sample gathered in 2014.
 
 ```python
 df = pd.read_csv("datasets/candy_crush.csv")
 df.head()
 ```
 
-![table1](https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table1.png)
+<p align="left"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table1.png" style="width: 600px"></p>
 
 We can see that our data is **structured** and consists of 5 attributes:
 
@@ -99,7 +99,7 @@ We can see that our data is **structured** and consists of 5 attributes:
 
 ## 🔧 Data Preprocessing
 
-Before starting the analysis we need to do some validations on the dataset
+Before starting the analysis we need to do some validations on the dataset.
 
 ```python
 # Count and display the number of unique players
@@ -123,7 +123,7 @@ From:  2014-01-01  To: 2014-01-07
 
 ### Data Cleaning
 
-The data doesn’t require any kind of transformation and the data types are aligned with their purpose
+The data doesn’t require any kind of transformation and the data types are aligned with their purpose.
 
 ```python
 print(df.dtypes)
@@ -140,7 +140,7 @@ dtype: object
 
 ### Data Consistency
 
-The usability of the data it’s rather good, since we don’t count with “NAN” (Not A Number), “NA” (Not Available), or “NULL” (an empty set) values
+The usability of the data it’s rather good, since we don’t count with “NAN” (Not A Number), “NA” (Not Available), or “NULL” (an empty set) values.
 
 ```python
 # Function the plot the percentage of missing values
@@ -165,21 +165,20 @@ NaN Values per column:
  None
 ```
 
-By this way, we can conclude that there were not errors in our telemetry logs during the data collection
+By this way, we can conclude that there were not errors in our telemetry logs during the data collection.
 
 ### Normalization
 
-Next, we can conclude there were no impossible numbers, except for a player that tried to complete the level 11 in 258 attempts with just 1 success. This is the only registry we exclude since it can be an influential outlier and we don’t rely on more attributes about him to create conclusions
+Next, we can conclude there were no impossible numbers, except for a player that tried to complete the level 11 in 258 attempts with just 1 success. This is the only registry we exclude since it can be an influential outlier and we don’t rely on more attributes about him to create conclusions.
 
-Noticing the distribution of the quartiles and comprehending the purpose of our analysis, we can validate that the data is comparable and doesn’t need transformations
+Noticing the distribution of the quartiles and comprehending the purpose of our analysis, we can validate that the data is comparable and doesn’t need transformations.
 
 ```python
 df = df[df.num_attempts != 258]
 df.describe()
 ```
 
-![table2](https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table2.png)
-
+<p align="left"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table2.png" style="width: 350px"></p>
 
 ## 🔍 Exploratory Analysis & In-game interpretations
 
@@ -210,9 +209,9 @@ Excluding the outliers we mentioned before, we got the next conclusions about th
 
 ### Levels played in Episode
 
-First, let’s examine the number of registries per player
+First, let’s examine the number of registries per player.
 
-This will tell us, from the episode how many levels have each player recorded in the lapse of 7 days
+This will tell us, from the episode how many levels have each player recorded in the lapse of 7 days.
 
 ```python
 from plotly.subplots import make_subplots
@@ -260,17 +259,17 @@ linec.show()
 
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/pareto.png" style="width: 900px"></p>
 
-From the last Pareto chart, we can deduce that 80% of the 6814 players just count with 3 levels recorded of 15. But, since this was extracted from a random sample, this won’t affect our study
+From the last Pareto chart, we can deduce that 80% of the 6814 players just count with 3 levels recorded of 15. But, since this was extracted from a random sample, this won’t affect our study.
 
 ### Difficulty of completing a level in a single try
 
-There is a combination of easier and challenging levels. Chance and skills make the number of attempts required to pass a level different from one player to another. The presumption is that difficult levels demand more tries on average than easier ones. That is, the harder a level is the lower the likelihood to pass that level in a single try
+There is a combination of easier and challenging levels. Chance and skills make the number of attempts required to pass a level different from one player to another. The presumption is that difficult levels demand more tries on average than easier ones. That is, the harder a level is the lower the likelihood to pass that level in a single try.
 
 In these circumstances, the [Bernoulli process](https://en.wikipedia.org/wiki/Bernoulli_process) might be useful. As a *Boolean* result, there are only two possibilities, win or lose. This can be measured by a single parameter:
 
 $p_{win} = \frac{\Sigma wins }{\Sigma attempts }$:  the probability of completing the level in a single attempt
 
-Let's calculate the difficulty $p_{win}$ individually for each of the 15 levels
+Let's calculate the difficulty $p_{win}$ individually for each of the 15 levels.
 
 ```python
 difficulty = df.groupby('level').agg(attempts = ('num_attempts', 'sum'),
@@ -281,7 +280,7 @@ difficulty
 
 <p align="left"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table3.png" style="width: 250px"></p>
 
-We have levels where 50% of players finished on the first attempt and others that are the opposite. But let’s visualize it through the episode, to make it clear
+We have levels where 50% of players finished on the first attempt and others that are the opposite. But let’s visualize it through the episode, to make it clear.
 
 ```python
 # Lineplot of Success Probability per Level
@@ -301,7 +300,7 @@ line1.show()
 
 ### Defining hard levels
 
-It’s subjective what we can consider a hard level because not consistently depends on a single factor and for all player profile groups this can be different. So, for the outcomes of this study, we will arbitrarily assume that a difficult level is the one that has a probability to be completed in the first attempt of a 10% ($p_{win} < 10\%$)
+It’s subjective what we can consider a hard level because not consistently depends on a single factor and for all player profile groups this can be different. So, for the outcomes of this study, we will arbitrarily assume that a difficult level is the one that has a probability to be completed in the first attempt of a 10% ($p_{win} < 10\%$).
 
 ```python
 # Lineplot of Success Probability per Level
@@ -322,7 +321,7 @@ line2.show()
 
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/line2.png" style="width: 900px"></p>
 
-From our predefined threshold, we see that the level digit is not aligned with its difficulty. While we have hard levels as 5, 8, 9, and 15; others like 13 and 15 are unleveraged and need to be rebalanced by the level designers
+From our predefined threshold, we see that the level digit is not aligned with its difficulty. While we have hard levels as 5, 8, 9, and 15; others like 13 and 15 are unleveraged and need to be rebalanced by the level designers.
 
 ### Measuring the uncertainty of success
 
@@ -340,7 +339,7 @@ Therefore, we can calculate the standard error like this:
 
 $\sigma_{error} \approx \sqrt{\frac{p_{win}(1-p_{win})}{n} }$
 
-Consider that every level has been played *n* number of times and we have their difficulty $p_{win}$. Now, let's calculate the standard error for each level of this episode
+Consider that every level has been played *n* number of times and we have their difficulty $p_{win}$. Now, let's calculate the standard error for each level of this episode.
 
 ```python
 # Computing the standard error of p_win for each level
@@ -348,8 +347,7 @@ difficulty['error'] = np.sqrt(difficulty.p_win * (1 - difficulty.p_win) / diffic
 difficulty
 ```
 
-![table4](https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table4.png)
-
+<p align="left"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/table4.png" style="width: 300px"></p>
 
 We have a measure of uncertainty for each levels' difficulty. As always, this would be more appealing if we plot it.
 
@@ -374,9 +372,9 @@ line3.show()
 
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/line3.png" style="width: 900px"></p>
 
-Looks like the difficulty estimates a very exact. Furthermore, for the hardest levels, the measure is even more precise, and that’s a good point because from this we can make valid conclusions based on that levels
+Looks like the difficulty estimates a very exact. Furthermore, for the hardest levels, the measure is even more precise, and that’s a good point because from this we can make valid conclusions based on that levels.
 
-As a curious fact, also we can measure the probability of completing all the levels of that episode in a single attempt, just for fun
+As a curious fact, also we can measure the probability of completing all the levels of that episode in a single attempt, just for fun.
 
 ```python
 # The probability of completing the episode without losing a single time
@@ -398,15 +396,15 @@ for whole episode:  9.889123140886191e-10 %
 
 **What can the stakeholders understand and take into consideration?**
 
-From the sample extracted we conclude that just 33% of the levels are considered of high difficulty, which it’s acceptable since each episode counts with 15 levels, so by now the level designer should not worry about leveling the difficulty
+From the sample extracted we conclude that just 33% of the levels are considered of high difficulty, which it’s acceptable since each episode counts with 15 levels, so by now the level designer should not worry about leveling the difficulty.
 
 **What could the stakeholders do to take action ?**
 
-As a suggestion, in the case that the Publisher decides to invest more in in-game mechanics, a solution for a long-time and reactive engagement could be the use of Machine Learning to generate a [DGDB](https://en.wikipedia.org/wiki/Dynamic_game_difficulty_balancing) as some competitors have adapted in IPs like EA Sports FIFA, Madden NFL or the “AI Director” of Left 4 Dead
+As a suggestion, in the case that the Publisher decides to invest more in in-game mechanics, a solution for a long-time and reactive engagement could be the use of Machine Learning to generate a [DGDB](https://en.wikipedia.org/wiki/Dynamic_game_difficulty_balancing) as some competitors have adapted in IPs like EA Sports FIFA, Madden NFL or the “AI Director” of Left 4 Dead.
 
 **What can stakeholders keep working on?** 
 
-The way their level difficulty design work today is precise since our first hypothesis was that the game wasn’t too linear to unengaged the player and churn as consequence. Because as we saw, the game has drastic variations in the levels 5-6 and 8-10, which can help to avoid frustrations in players
+The way their level difficulty design work today is precise since our first hypothesis was that the game wasn’t too linear to unengaged the player and churn as consequence. Because as we saw, the game has drastic variations in the levels 5-6 and 8-10, which can help to avoid frustrations in players.
 
 ---
 

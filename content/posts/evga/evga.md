@@ -5,7 +5,7 @@ lastmod: 2021-11-01T21:57:40+08:00
 draft: false
 author: "Roberto Aguilar"
 authorLink: ""
-description: "Article that shows the analytical approach of the video games history through sales data, using Python and Jupyter Notebooks"
+description: "Video Games History explained with Pandas"
 images: ["images/posts/evga.jpg"]
 thumbnail: "images/posts/evga.jpg"
 tags: ["Exploratory Analysis", "Python"]
