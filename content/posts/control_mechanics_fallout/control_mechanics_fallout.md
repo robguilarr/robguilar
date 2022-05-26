@@ -29,7 +29,7 @@ After its launch in 2010, like many titles of this IP, they have been exposed to
 
 In this case, the data was obtained from a mod developed at the PLAIT (Playable interactive technologies) at Northeastern University. The game is called VPAL: Virtual Personality Assessment Lab, and also can be accessed to the raw telemetry data in the Game Data Science [book](https://global.oup.com/academic/product/game-data-science-9780192897879?cc=cr&lang=en&).
 
-It’s important to keep in mid that the game has been already released, we will require to develop a post-production analysis with a help of a mod, so the main conclusions will be focused on a fictional patch improvement made by the programming team.
+It’s important to keep in mind that the game has been already released, so we'll require to develop a post-production analysis with a help of a mod, so the main conclusions will be focused on a fictional patch improvement made by the Programming team.
 
 {{< admonition info "Looking for an interactive experience?" true >}}
 
