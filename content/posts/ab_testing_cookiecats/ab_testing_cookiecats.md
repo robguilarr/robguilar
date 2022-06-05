@@ -51,9 +51,13 @@ So seeing this viewpoint, a decision like this can impact not only user retentio
 
 ### Potential Stakeholders
 
-- Game Designer: as the scene of levels is under review, the game designers need to take action on time to guarantee to pitch a stage concept for the narrative and the in-game credits. For the last reason, is important to consider that, if we extend the time gate, the credits should or should not remain at the same quantity required. This also depends on the earning expectations of the producer.
-- Game Producer: As we mentioned before, a potential change requires a redesign of the earnings strategy and an alignment in the business expectation like funding, agreements, marketing, and patching deadlines.
-- Players community: this stakeholder can be affected by the **theory of hedonic adaptation**, which is according to Rasmus Baath is *“the tendency for people to get less and less enjoyment out of a fun activity over time if that activity is undertaken continuously”*, meaning that if we prolong the time gate, this can affect the engagement in an unfavorable way, which in this case require an evaluation.
+- Mobile Designer & User Retention Expert: They must be aligned with the final statement of the analyst, and make a final judgment to improve user retention.
+- Level Designer: As the scene of levels is under study, the level designers need to take action on time to guarantee the storyline of the levels has a correct sequence, and to add it in a new patch. 
+- System Designer & System Engineer: If we extend the time gate, the credits should or should not remain at the same quantity required, which also needs to be implemented in the tracking system of the user progress.
+- Executive Game Producer: As we mentioned before, a potential change requires a redesign of the earnings strategy and an alignment in the business expectation like funding, agreements, marketing, and patching deadlines.
+- Players community: This stakeholder can be affected by the **theory of hedonic adaptation**, which is according to Rasmus Baath is *“the tendency for people to get less and less enjoyment out of a fun activity over time if that activity is undertaken continuously”*, meaning that if we prolong the time gate, this can affect the engagement in an unfavorable way, which in this case require an evaluation.
+
+**Note:** To facilitate the understanding of the roles of the development team, I invite you to take a look at **[this](https://miro.com/app/board/uXjVOwQVsRk=/?share_link_id=215280076044)** diagram that I designed.
 
 ## 📥 About the data
 

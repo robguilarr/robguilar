@@ -30,10 +30,14 @@ We'll review a game that potentially can lead any developer to many unseen probl
 
 None of the past hypotheses are the main intentions of the developers. So they require a Data Analyst to help with this task since the developers are seeing only the backend factors affecting the game, but it's also critical to consider those external ones that affect the experience for the player and the sustainability of this game for the company. Among the main stakeholders could be:
 
-- Level Designers: as they worked aligned with the rest of the Development Team, they still have a backend perspective and their feedback depends on a [UX Research team](https://grux.org/what-is-gurux/#:~:text=Games%20User%20Research%2FExperience%20focuses,the%20best%20gaming%20experience%20possible.). To avoid this, they need a report of the player's behavior to adopt a constant-reactive improvement during the post-production stage.
-- Parent Company: Besides Candy Crush being an IP with internal producers since it's developed and published by King, the [Parent company](https://www.activisionblizzard.com/) will expect to have an [ROI](https://www.forbes.com/advisor/investing/roi-return-on-investment/) aligned with their expectations.
-This is a game whose main income input is in-game purchases because it’s a [F2P](https://en.wikipedia.org/wiki/Free-to-play), reason why their main investors are extremely focused in retain the engagement in the game and keeping the consumers on the screen.
-- Players community: they expect to have an endurable and great experience and a brief response in case of problems.
+- Level Designers: They work aligned with the rest of the Engineering Team because they still have a backend perspective and their next patch release needs to be aligned with the insights given by the analyst.
+- Mobile Designer & User Retention Expert: This is a game whose main income input is in-game purchases because it’s a [F2P](https://en.wikipedia.org/wiki/Free-to-play), the main source of income is centered in retain the engagement in the game and keeping the consumers on the platform.
+- Gameplay Engineer: They require to start working on the difficulty adjustment patch as soon as they receive the final statement.
+- Executive Producer: Besides Candy Crush being an IP with internal producers since it's developed and published by King, the [parent company](https://www.activisionblizzard.com/) will expect to have an [ROI](https://www.forbes.com/advisor/investing/roi-return-on-investment/) aligned with their expectations.
+- Players' community: They expect to have an endurable and great experience with a brief response in case of disconformities.
+
+
+**Note:** To facilitate the understanding of the roles of the development team, I invite you to take a look at **[this](https://miro.com/app/board/uXjVOwQVsRk=/?share_link_id=215280076044)** diagram that I designed.
 
 ## 📥 About the data
 

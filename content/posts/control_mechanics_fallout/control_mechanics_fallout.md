@@ -60,10 +60,12 @@ From all the KPIs that you will see next, it’s important to mention that we’
 
 There is an unconformity in the changes made in the control mechanics, the team requires the assistance of a Data Analyst to perform a test and validate if the QA tester's statements make sense. On the other side of the table we have some stakeholders on the development and testing side:
 
-- Programmers: They need to know if the control mechanics are affecting the interactions of the NPCs and the progress of the players since the release of the last patch
-- Level Designers: As the whole RPG is designed as quests on an isolated map, they need to know if these are balanced in the sequence or chapter located, or if there is a significant change in the patch that can explain the unconformity
-- Testers: They are a key source of information while communicating the QA statement to the UX team.
-- UX research team: They are working side by side with the consumer insights team and the testers to find a clear current situation and take immediate actions if required, by giving the final report to the level designers and the programmers
+- Gameplay Engineers: They need to know if the control mechanics are affecting the interactions of the NPCs with the progress of the players since the release of the last patch.
+- Level Designer: As the whole RPG is designed as quests on an isolated map, they need to know if these are balanced in the sequence or chapter located, or if there is a significant change in the patch that can explain the unconformity.
+- QA Testers: They are a key source of information while communicating the QA statement to the UX Designer.
+- UX Designer: They are working side by side with the consumer insights team and the testers to find a clear current situation and take immediate actions if required, by giving the final report to the level designers and the programmers.
+
+**Note:** To facilitate the understanding of the roles of the development team, I invite you to take a look at **[this](https://miro.com/app/board/uXjVOwQVsRk=/?share_link_id=215280076044)** diagram that I designed.
 
 ## 📥 About the data & preprocessing reference
 
