@@ -425,8 +425,7 @@ paginate = 20
 
     # general description of your site
     # can be write with markdown style
-    description = "Hi, I’m Roberto! <br> <br> Welcome to my <b>About section</b>, here you are going to see details about my career, aspirations interests, personal life, and more. <br>If you want to know more about me, I encourage you to contact me by one of my contact mediums at the end of this page."
-    
+    description = "Dear guest, I'm Roberto and welcome to the about section.<br><br>Here you are going to see some details about my career, my experience, and my personal life. For any inquiries, you are invited to visit the contact section at the bottom of this page."
     # description of your status
     [[params.about.status]]
       faIcon = "fas fa-building"
@@ -573,7 +572,7 @@ paginate = 20
     #---------------------------------------------------------------------
     [params.social.medium]
       # weight when arranging icons (the greater the weight, the later the icon is positioned)
-      weight = 2
+      weight = 3
 
       # social ID
       id = "@robguilarr"
@@ -590,7 +589,7 @@ paginate = 20
     #---------------------------------------------------------------------
     [params.social.linkedin]
       # weight when arranging icons (the greater the weight, the later the icon is positioned)
-      weight = 3
+      weight = 2
 
       # social ID
       id = "robguilarr"
