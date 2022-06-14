@@ -31,7 +31,7 @@ Impressive facts, right? Nowadays this market is no longer considered a simple h
 :rocket: Download the Jupyter Notebook, available <a href="https://nbviewer.jupyter.org/github/robguilarr/videogames-eda/blob/main/videogame_analysis/videogame-analysis.ipynb">here</a>
 {{< /admonition >}}
 
-{{< image src="https://images.squarespace-cdn.com/content/v1/56e33409d210b8a4c7e973c9/1478555451639-X93B00DM0O3LPZ9PBQ7Y/image-asset.gif?format=webpage" caption="Source: Designcollector" width="90%" height= "90%" alt="Pixel Cities by Waneella">}}
+{{< youtube K-NBcP0YUQI >}}
 
 We’ll take a tour through the history of videogames, starting from late 70s and early the 80s. However, as a way of clarification, if you are a member of the culture, it's important to mention that due to limitations of the scope of data available for analysis, <a href="https://gamicus.gamepedia.com/Tomohiro_Nishikado">Tomohiro Nishikado's</a> masterpiece, released as Space Invaders, will not be part of the analysis; and in case you’re not a member don’t worry this is for you as well.
 
