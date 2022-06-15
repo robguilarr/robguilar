@@ -5,6 +5,8 @@ The industry of video games revenues is reaching the $173.7 billion in value, wi
 
 Impressive facts, right? Nowadays this market is no longer considered a simple hobby for kids, it has become a constantly growing giant which attracts more and more customers as it takes advantage of the growth of streaming platforms. But this industry, as we well know, is taking more fields, born from ambitious expectations such as the Nintendo World Championships in the 90's to what today many have adopted as a lifestyle also known as <i>Esports</i>.
 
+In this exploratory analysis, we will also see one of the events that marked the industry in the 80s. Here is a preview.
+
 <!--more-->
 
 ---
@@ -13,7 +15,7 @@ Impressive facts, right? Nowadays this market is no longer considered a simple h
 :rocket: Download the Jupyter Notebook, available <a href="https://nbviewer.jupyter.org/github/robguilarr/videogames-eda/blob/main/videogame_analysis/videogame-analysis.ipynb">here</a>
 {{< /admonition >}}
 
-{{< youtube K-NBcP0YUQI >}}
+{{< youtube y2xfuTRnpns >}}
 
 We’ll take a tour through the history of videogames, starting from late 70s and early the 80s. However, as a way of clarification, if you are a member of the culture, it's important to mention that due to limitations of the scope of data available for analysis, <a href="https://gamicus.gamepedia.com/Tomohiro_Nishikado">Tomohiro Nishikado's</a> masterpiece, released as Space Invaders, will not be part of the analysis; and in case you’re not a member don’t worry this is for you as well.
 
