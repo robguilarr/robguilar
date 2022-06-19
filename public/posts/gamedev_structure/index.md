@@ -18,16 +18,16 @@ Important: not all of them are a necessity for development, depending on the sca
 
 ### More content & resources
 
-- The Game Designer's Playbook by Samantha Stahlke and Pejman Mirza-Babaei at [Oxford University](https://global.oup.com/academic/product/the-game-designers-playbook-9780198845911?lang=en&cc=nl).
-- Introductory and visual explained resources at [Ask Gamedev](https://www.askgamedev.com/category/game-design/)
+- The Game Designer's Playbook by Samantha Stahlke and Pejman Mirza-Babaei at [Oxford University Press](https://global.oup.com/academic/product/the-game-designers-playbook-9780198845911?lang=en&cc=nl).
+- Introductory and visual explained resources at [Ask Gamedev](https://www.askgamedev.com/category/game-design/).
 
 ---
 
 {{< admonition type=warning title="Note" open=true >}}
-For a more engaging experience, the **desktop** vista is highly recommended. In such case the viewer doesn’t load, you can access my Figma content **[here](https://www.figma.com/@robguilarr)**.
+For a more engaging experience, the **desktop** mode is highly recommended. In such case the viewer doesn’t load, you can access my Figma content **[here](https://www.figma.com/@robguilarr)**.
 {{< /admonition >}}
 
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="1275" height="1000" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FOpjP1EKAhJRupQqxqQeyNM%2FGame-Development-Team-Structure%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="750" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FOpjP1EKAhJRupQqxqQeyNM%2FGame-Development-Team-Structure%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
 
 
