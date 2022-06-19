@@ -534,3 +534,11 @@ kaggle:
   Title: Kaggle
   Icon:
     Class: fab fa-kaggle fa-fw
+
+# 068: Figma
+figma:
+  Weight: 68
+  Prefix: https://www.figma.com/
+  Title: Figma
+  Icon:
+    Class: fab fa-figma fa-fw

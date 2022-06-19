@@ -568,23 +568,6 @@ paginate = 20
       title = "Twitter"
 
     #---------------------------------------------------------------------
-    # Medium Specific config
-    #---------------------------------------------------------------------
-    [params.social.medium]
-      # weight when arranging icons (the greater the weight, the later the icon is positioned)
-      weight = 3
-
-      # social ID
-      id = "@robguilarr"
-
-      # prefix of your social link
-      prefix = "https://medium.com/"
-
-      # content hovering on the icon
-      title = "Medium"
-
-
-    #---------------------------------------------------------------------
     # Linkedin Specific config
     #---------------------------------------------------------------------
     [params.social.linkedin]
@@ -599,14 +582,45 @@ paginate = 20
 
       # content hovering on the icon
       title = "Linkedin"
-
     
+    #---------------------------------------------------------------------
+    # Figma Specific config
+    #---------------------------------------------------------------------
+    [params.social.figma]
+      # weight when arranging icons (the greater the weight, the later the icon is positioned)
+      weight = 3
+
+      # social ID
+      id = "@robguilarr"
+
+      # prefix of your social link
+      prefix = "https://www.figma.com/"
+
+      # content hovering on the icon
+      title = "Figma"
+
+    #---------------------------------------------------------------------
+    # Medium Specific config
+    #---------------------------------------------------------------------
+    [params.social.medium]
+      # weight when arranging icons (the greater the weight, the later the icon is positioned)
+      weight = 4
+
+      # social ID
+      id = "@robguilarr"
+
+      # prefix of your social link
+      prefix = "https://medium.com/"
+
+      # content hovering on the icon
+      title = "Medium"
+
     #---------------------------------------------------------------------
     # Facebook Specific config
     #---------------------------------------------------------------------
     [params.social.Facebook]
       # weight when arranging icons (the greater the weight, the later the icon is positioned)
-      weight = 4
+      weight = 5
 
       # social ID
       id = "robguilarr"

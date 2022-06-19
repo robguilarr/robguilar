@@ -92,6 +92,8 @@ Among other personal hobbies I like playing video games and practicing outdoor s
 
 - GitHub | [https://github.com](https://github.com/robguilarr "Visit GitHub Overview")
 
+- Figma | [https://www.figma.com](https://www.figma.com/@robguilarr "Visit Figma Profile")
+
 - Medium | [https://medium.com](https://medium.com/@robguilarr "Visit Medium Profile")
 
 - Twitter | [https://twitter.com](https://twitter.com/robguilarr "Visit Twitter Profile")
