@@ -57,7 +57,7 @@ None of the past hypotheses are the main intentions of the developers. So they r
 - Players' community: They expect to have an endurable and great experience with a brief response in case of disconformities.
 
 
-**Note:** To facilitate the understanding of the roles of the development team, I invite you to take a look at **[this](https://miro.com/app/board/uXjVOwQVsRk=/?share_link_id=215280076044)** diagram that I designed.
+**Note:** To facilitate the understanding of the roles of the development team, I invite you to take a look at **[this](https://www.robguilar.com/posts/gamedev_structure/)** diagram that I designed.
 
 ## 📥 About the data
 

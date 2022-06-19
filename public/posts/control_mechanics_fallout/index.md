@@ -45,7 +45,7 @@ There is an unconformity in the changes made in the control mechanics, the team 
 - QA Testers: They are a key source of information while communicating the QA statement to the UX Designer.
 - UX Designer: They are working side by side with the consumer insights team and the testers to find a clear current situation and take immediate actions if required, by giving the final report to the level designers and the programmers.
 
-**Note:** To facilitate the understanding of the roles of the development team, I invite you to take a look at **[this](https://miro.com/app/board/uXjVOwQVsRk=/?share_link_id=215280076044)** diagram that I designed.
+**Note:** To facilitate the understanding of the roles of the development team, I invite you to take a look at **[this](https://www.robguilar.com/posts/gamedev_structure/)** diagram that I designed.
 
 ## 📥 About the data & preprocessing reference
 

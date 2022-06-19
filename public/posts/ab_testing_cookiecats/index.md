@@ -38,7 +38,7 @@ So seeing this viewpoint, a decision like this can impact not only user retentio
 - Executive Game Producer: As we mentioned before, a potential change requires a redesign of the earnings strategy and an alignment in the business expectation like funding, agreements, marketing, and patching deadlines.
 - Players community: This stakeholder can be affected by the **theory of hedonic adaptation**, which is according to Rasmus Baath is *“the tendency for people to get less and less enjoyment out of a fun activity over time if that activity is undertaken continuously”*, meaning that if we prolong the time gate, this can affect the engagement in an unfavorable way, which in this case require an evaluation.
 
-**Note:** To facilitate the understanding of the roles of the development team, I invite you to take a look at **[this](https://miro.com/app/board/uXjVOwQVsRk=/?share_link_id=215280076044)** diagram that I designed.
+**Note:** To facilitate the understanding of the roles of the development team, I invite you to take a look at **[this](https://www.robguilar.com/posts/gamedev_structure/)** diagram that I designed.
 
 ## 📥 About the data
 
