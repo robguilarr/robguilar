@@ -49,13 +49,5 @@ This section intends that as you read the Stakeholders section in each of my pro
     <description><![CDATA[Summary:   This academic article was developed through my postgraduate course, DAT-03 Data Analysis in Big Data Environments, which presents a business case in which a company is interested in combining and migrating relational databases in Microsoft SQL Server and Oracle DB. Given the need to feed them with an NLP system output of social networks such as Instagram, Telegram, and Facebook Messenger.
   Initially, the vulnerabilities that the company has when managing its data in a Local Storage are shown, where it is compared with the advantages of implementing a Cloud Service.]]></description>
 </item>
-<item>
-    <title>Medium Blog for Analytics</title>
-    <link>https://robguilar.com/posts/firstmediumpost/</link>
-    <pubDate>Mon, 27 Sep 2021 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/firstmediumpost/</guid>
-    <description><![CDATA[Perhaps you have noticed in my about section that I have always been interested in documenting my work and write about topics of interest.
-However, I will use this platform to write about Data Science and Game Analytics plus other interesting topics.
-Source: Author" Source: Author Just to be in context, I&rsquo;ll use Medium as side blog for Data Analytics related topics, so on this Website, I will post my projects.]]></description>
-</item>
 </channel>
 </rss>

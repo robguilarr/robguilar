@@ -15,8 +15,8 @@
             <loc>https://robguilar.com/tags/bernoulli/</loc><lastmod>2022-06-18T23:16:43-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://robguilar.com/posts/candy_crush_difficulty/</loc><lastmod>2022-06-18T23:16:43-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://robguilar.com/posts/ab_testing_cookiecats/</loc><lastmod>2022-06-18T23:16:43-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/tags/exploratory-analysis/</loc><lastmod>2022-06-14T18:33:31-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://robguilar.com/posts/evga/</loc><lastmod>2022-06-14T18:33:31-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://robguilar.com/tags/exploratory-analysis/</loc><lastmod>2022-06-14T18:33:31-06:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>https://robguilar.com/posts/evga/</loc><lastmod>2022-06-14T18:33:31-06:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>https://robguilar.com/tags/figma/</loc><lastmod>2022-06-19T15:06:35-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://robguilar.com/tags/game-development/</loc><lastmod>2022-06-19T15:06:35-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://robguilar.com/posts/gamedev_structure/</loc><lastmod>2022-06-19T15:06:35-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -25,9 +25,6 @@
             <loc>https://robguilar.com/tags/big-data/</loc><lastmod>2022-05-22T14:24:28-06:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
             <loc>https://robguilar.com/posts/gcp_academicsolution/</loc><lastmod>2022-05-22T14:24:28-06:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
             <loc>https://robguilar.com/tags/google-cloud-services/</loc><lastmod>2022-05-22T14:24:28-06:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>https://robguilar.com/tags/blog/</loc><lastmod>2022-05-22T14:24:28-06:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>https://robguilar.com/tags/medium/</loc><lastmod>2022-05-22T14:24:28-06:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>https://robguilar.com/posts/firstmediumpost/</loc><lastmod>2022-05-22T14:24:28-06:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
             <loc>https://robguilar.com/about/</loc><lastmod>2022-06-19T11:41:22-06:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://robguilar.com/tags/a/b-testing/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://robguilar.com/categories/documentation/</loc><lastmod>2021-09-13T22:50:53-06:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
