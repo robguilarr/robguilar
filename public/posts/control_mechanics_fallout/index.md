@@ -7,7 +7,7 @@ This RPG has an open world inspired by cities such as Nevada, California, Arizon
 
 After its launch in 2010, like many titles of this IP, they have been exposed to mods developed by their community, some of them for Serious-Game purposes and others as non-Serious games. According to Anders Drachen et al. (2021, p. 5), it's "a term used to describe games developed for purposes other than entertainment, such as training, promoting health, citizen science, or psychological experiments".
 
-In this case, the data was obtained from a mod developed at the PLAIT (Playable interactive technologies) at Northeastern University. The game is called VPAL: Virtual Personality Assessment Lab, and also can be accessed to the raw telemetry data in the Game Data Science [book](https://global.oup.com/academic/product/game-data-science-9780192897879?cc=cr&lang=en&).
+In this case, the data was obtained from a mod developed at the PLAIT (Playable Interactive Technologies) by Northeastern University. The mod is called VPAL: Virtual Personality Assessment Lab, and also can be accessed to the raw telemetry data in the Game Data Science [book](https://global.oup.com/academic/product/game-data-science-9780192897879?cc=cr&lang=en&).
 
 It’s important to keep in mind that the game has been already released, so we'll require to develop a post-production analysis with a help of a mod, so the main conclusions will be focused on a fictional patch improvement made by the Programming team.
 

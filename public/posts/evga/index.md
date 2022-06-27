@@ -12,12 +12,14 @@ In this exploratory analysis, we will also see one of the events that marked the
 ---
 
 {{< admonition info "Looking for an interactive experience?" true >}}
+
 :rocket: Download the Jupyter Notebook, available <a href="https://nbviewer.jupyter.org/github/robguilarr/videogames-eda/blob/main/videogame_analysis/videogame-analysis.ipynb">here</a>
+
 {{< /admonition >}}
 
 {{< youtube y2xfuTRnpns >}}
 
-We’ll take a tour through the history of videogames, starting from late 70s and early the 80s. However, as a way of clarification, if you are a member of the culture, it's important to mention that due to limitations of the scope of data available for analysis, <a href="https://gamicus.gamepedia.com/Tomohiro_Nishikado">Tomohiro Nishikado's</a> masterpiece, released as Space Invaders, will not be part of the analysis; and in case you’re not a member don’t worry this is for you as well.
+We’ll take a tour through the history of videogames, starting from the late 70s and the early 80s. However, as a way of clarification, if you are a member of the culture, it's important to mention that due to limitations of the scope of data available for analysis, <a href="https://gamicus.gamepedia.com/Tomohiro_Nishikado">Tomohiro Nishikado's</a> masterpiece, released as Space Invaders, will not be part of the analysis; and in case you’re not a member don’t worry this is for you as well.
 
 From an optimistic point of view, we will analyze quite important historical data, because is difficult to even think about getting the 70s data like <i>Pong</i>; and another advantage is that we can start our journey from the market revolution in the early 80s.
 
