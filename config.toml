@@ -281,12 +281,12 @@ paginate = 20
     [params.page.seo]
       # image URL
       # URL
-      images = ["images/logo.png"]
+      images = ["/images/logo.png"]
 
       # Publisher info
       [params.page.seo.publisher]
         name = "Roberto Aguilar"
-        logoUrl = "images/logo.png" 
+        logoUrl = "/images/logo.png" 
 
 
   #-----------------------------------------------------------------------
