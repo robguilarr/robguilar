@@ -1,14 +1,38 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Others - Category - Roberto Aguilar</title>
+        <title>Others - Category - Roberto Aguilar Portfolio</title>
         <link>https://robguilar.com/categories/others/</link>
-        <description>Others - Category - Roberto Aguilar</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Fri, 29 Oct 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/categories/others/" rel="self" type="application/rss+xml" /><item>
+        <description>Others - Category - Roberto Aguilar Portfolio</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Mon, 29 Nov 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/categories/others/" rel="self" type="application/rss+xml" /><item>
     <title>Game Development Team Structure</title>
     <link>https://robguilar.com/posts/gamedev_structure/</link>
-    <pubDate>Fri, 29 Oct 2021 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/gamedev_structure/</guid>
-    <description><![CDATA[In the next portal, you will find a frame with a diagram. This one displays the distinct roles and sub-roles in a video game development team.
-This section intends that as you read the Stakeholders section in each of my projects, you can learn about the operations, roles, and skills that each team member must possess. For this, you can read the details at the bottom of the card made for each.]]></description>
+    <pubDate>Mon, 29 Nov 2021 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/gamedev_structure/</guid>
+    <description><![CDATA[<p>In the next portal, you will find a frame with a diagram. This one displays the distinct roles and sub-roles in a video game development team.</p>
+<p>This section intends that as you read the <strong>Stakeholders</strong> section in each of my projects, you can learn about the operations, roles, and skills that each team member must possess. For this, you can read the details at the bottom of the card made for each.</p>
+<p>Important: not all of them are a necessity for development, depending on the scale of the project some are required and others are not. Also, within different branches, you will find positions that may only be necessary for mobile game development, in addition to PR and marketing roles.</p>
+<hr>
+<h3 id="navigation-instructions">Navigation instructions</h3>
+<ul>
+<li><i class="fas fa-mouse fa-fw"></i>&nbsp;Keep pressed left click to <strong>navigate</strong> inside the frame.</li>
+<li><i class="fas fa-arrows-alt-v fa-fw"></i>&nbsp;Keep pressed Ctrl + Scroll to <strong>zoom</strong> in/out.</li>
+</ul>
+<hr>
+<h3 id="more-content--resources">More content &amp; resources</h3>
+<ul>
+<li>The Game Designer&rsquo;s Playbook by Samantha Stahlke and Pejman Mirza-Babaei at <a href="https://global.oup.com/academic/product/the-game-designers-playbook-9780198845911?lang=en&amp;cc=nl" target="_blank" rel="noopener noreffer">Oxford University Press</a>.</li>
+<li>Introductory and visual explained resources at <a href="https://www.askgamedev.com/category/game-design/" target="_blank" rel="noopener noreffer">Ask Gamedev</a>.</li>
+</ul>
+<hr>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">For a more engaging experience, the <strong>desktop</strong> mode is highly recommended. In such case the viewer doesn’t load, you can access my Figma content <strong><a href="https://www.figma.com/@robguilarr" target="_blank" rel="noopener noreffer">here</a></strong>.</div>
+        </div>
+    </div>
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="750" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FOpjP1EKAhJRupQqxqQeyNM%2FGame-Development-Team-Structure%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
+]]></description>
 </item>
 </channel>
 </rss>

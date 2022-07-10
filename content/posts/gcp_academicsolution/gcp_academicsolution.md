@@ -1,26 +1,30 @@
 ---
+#weight: 2
 title: "Cloud Service Architecture for NLP in Google Cloud"
-date: 2021-10-04T21:57:40+08:00
-lastmod: 2021-10-04T21:57:40+08:00
+date: 2021-11-04T21:57:40+08:00
+lastmod: 2021-11-04T21:57:40+08:00
 draft: false
-author: "Roberto Aguilar"
-authorLink: ""
+
 description: "Cloud Service Architecture for NLP in Google Cloud"
 images: ["images/posts/gcp_academicsolution.jpg"]
 thumbnail: "images/posts/gcp_academicsolution.jpg"
 tags: ["Big Data", "Google Cloud Services"]
 categories: ["Articles"]
+
+author: "Roberto Aguilar"
+authorLink: "https://www.linkedin.com/in/robguilarr/"
+hiddenFromHomePage: true
+hiddenFromSearch: false
+
 lightgallery: true
 toc: false
-
-resources:
-- name: "featured-image"
-  src: "images/posts/gcp_academicsolution.jpg"
+math: false
+featured-image: "images/posts/gcp_academicsolution.jpg"
 featuredImagePreview: "images/posts/gcp_academicsolution.jpg"
----
-
-
-
+seo:
+  images: ["images/posts/gcp_academicsolution.jpg"]
+  image: "images/posts/gcp_academicsolution.jpg"
+  thumbnailUrl: "images/posts/gcp_academicsolution.jpg"
 ---
 
 ### Summary:

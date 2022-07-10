@@ -1,23 +1,30 @@
 ---
 #weight: 2
 title: "Game Development Team Structure"
-date: 2021-10-29T21:57:40+08:00
-lastmod: 2021-10-29T21:57:40+08:00
+date: 2021-11-29T21:57:40+08:00
+lastmod: 2021-11-29T21:57:40+08:00
 draft: false
-author: "Roberto Aguilar"
-authorLink: ""
+
 description: "Generic Game Development Team Structure"
 images: ["images/posts/gamedev_structure.jpg"]
 thumbnail: "images/posts/gamedev_structure.jpg"
 tags: ["Game Development","Figma"]
 categories: ["Others"]
+
+author: "Roberto Aguilar"
+authorLink: "https://www.linkedin.com/in/robguilarr/"
+hiddenFromHomePage: false
+hiddenFromSearch: false
+
 lightgallery: true
 toc: false
-
-resources:
-- name: "featured-image"
-  src: "images/posts/gamedev_structure.jpg"
+math: false
+featured-image: "images/posts/gamedev_structure.jpg"
 featuredImagePreview: "images/posts/gamedev_structure.jpg"
+seo:
+  images: ["images/posts/gamedev_structure.jpg"]
+  image: "images/posts/gamedev_structure.jpg"
+  thumbnailUrl: "images/posts/gamedev_structure.jpg"
 ---
 
 In the next portal, you will find a frame with a diagram. This one displays the distinct roles and sub-roles in a video game development team.

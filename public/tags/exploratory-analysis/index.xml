@@ -1,15 +1,1393 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Exploratory Analysis - Tag - Roberto Aguilar</title>
+        <title>Exploratory Analysis - Tag - Roberto Aguilar Portfolio</title>
         <link>https://robguilar.com/tags/exploratory-analysis/</link>
-        <description>Exploratory Analysis - Tag - Roberto Aguilar</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Mon, 01 Nov 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/tags/exploratory-analysis/" rel="self" type="application/rss+xml" /><item>
+        <description>Exploratory Analysis - Tag - Roberto Aguilar Portfolio</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Wed, 01 Dec 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/tags/exploratory-analysis/" rel="self" type="application/rss+xml" /><item>
     <title>Video Games History explained with Pandas</title>
     <link>https://robguilar.com/posts/evga/</link>
-    <pubDate>Mon, 01 Nov 2021 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/evga/</guid>
+    <pubDate>Wed, 01 Dec 2021 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/evga/</guid>
     <description><![CDATA[<p>The industry of video games revenues is reaching the $173.7 billion in value, with around 2.5 billion users enjoying them worldwide, with a forecasted value of $314.40 billion by 2026 according to Mordor Intelligence.</p>
 <p>Impressive facts, right? Nowadays this market is no longer considered a simple hobby for kids, it has become a constantly growing giant which attracts more and more customers as it takes advantage of the growth of streaming platforms. But this industry, as we well know, is taking more fields, born from ambitious expectations such as the Nintendo World Championships in the 90&rsquo;s to what today many have adopted as a lifestyle also known as <i>Esports</i>.</p>
-<p>In this exploratory analysis, we will also see one of the events that marked the industry in the 80s. Here is a preview.</p>]]></description>
+<p>In this exploratory analysis, we will also see one of the events that marked the industry in the 80s. Here is a preview.</p>
+<hr>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>Looking for an interactive experience?<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">🚀 Download the Jupyter Notebook, available <a href="https://nbviewer.jupyter.org/github/robguilarr/videogames-eda/blob/main/videogame_analysis/videogame-analysis.ipynb">here</a></div>
+        </div>
+    </div>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/y2xfuTRnpns" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>We’ll take a tour through the history of videogames, starting from the late 70s and the early 80s. However, as a way of clarification, if you are a member of the culture, it&rsquo;s important to mention that due to limitations of the scope of data available for analysis, <a href="https://gamicus.gamepedia.com/Tomohiro_Nishikado">Tomohiro Nishikado&rsquo;s</a> masterpiece, released as Space Invaders, will not be part of the analysis; and in case you’re not a member don’t worry this is for you as well.</p>
+<p>From an optimistic point of view, we will analyze quite important historical data, because is difficult to even think about getting the 70s data like <i>Pong</i>; and another advantage is that we can start our journey from the market revolution in the early 80s.</p>
+<hr>
+<p>Before starting our journey, like any exploratory data analysis we must import our libraries.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># To manage Dataframes</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="c1"># To manage number operators</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># To do interactive visualizations</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">plotly.figure_factory</span> <span class="k">as</span> <span class="nn">ff</span>
+<span class="c1"># Format</span>
+<span class="kn">from</span> <span class="nn">vizformatter.standards</span> <span class="kn">import</span> <span class="n">layout_plotly</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now, let&rsquo;s import our data. We must consider that we already prepared it, as shown in this articles&rsquo;s footnote<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Data frame of videogames</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;data/videogames.csv&#34;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;N/A&#34;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="s2">&#34;nan&#34;</span><span class="p">],</span>
+                 <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In addition to facilitate the management of dates in the visualizations, two extra columns will be generated, one as a <i>Timestamp</i> and another as a <i>String</i>, which will be used only if required.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Transform Year column to a timestamp</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&#34;Year_ts&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y&#39;</span><span class="p">)</span>
+
+<span class="c1"># Transform Year column to a string</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&#34;Year_str&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> \
+                                        <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">stop</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Also we can import the layout format as a variable from my <a href="https://github.com/robguilarr/vizformatter/blob/master/vizformatter/standards.py">repository</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">sign</span><span class="p">,</span> <span class="n">layout</span> <span class="o">=</span> <span class="n">layout_plotly</span><span class="p">(</span><span class="n">height</span><span class="o">=</span> <span class="mi">720</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="data-integrity-validation">Data integrity validation</h2>
+<p>First, we check our current dataset using the method <code>.info()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 16716 entries, 0 to 16718
+Data columns (total 20 columns):
+ #   Column           Non-Null Count  Dtype
+---  ------           --------------  -----
+ 0   Name             16716 non-null  object
+ 1   Year_of_Release  16447 non-null  float64
+ 2   Publisher        16662 non-null  object
+ 3   Country          9280 non-null   object
+ 4   City             9279 non-null   object
+ 5   Developer        10096 non-null  object
+ 6   Platform         16716 non-null  object
+ 7   Genre            16716 non-null  object
+ 8   NA_Sales         16716 non-null  float64
+ 9   EU_Sales         16716 non-null  float64
+ 10  JP_Sales         16716 non-null  float64
+ 11  Other_Sales      16716 non-null  float64
+ 12  Global_Sales     16716 non-null  float64
+ 13  Critic_Score     8137 non-null   float64
+ 14  Critic_Count     8137 non-null   float64
+ 15  User_Score       7590 non-null   float64
+ 16  User_Count       7590 non-null   float64
+ 17  Rating           9950 non-null   object
+ 18  Year_ts          16447 non-null  datetime64[ns]
+ 19  Year_str         16716 non-null  object
+dtypes: datetime64[ns](1), float64(10), object(9)
+memory usage: 2.7+ MB
+</code></pre></td></tr></table>
+</div>
+</div><p>To one side we find a great variety of data and attributes, to the other one we see that of the total of 16,716 records there are several attributes with a significant number of null values, which we are going to see next, in percentage terms.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Function the plot the percentage of missing values</span>
+<span class="k">def</span> <span class="nf">na_counter</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;NaN Values per column:&#34;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">percentage</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">-</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="o">*</span><span class="mi">100</span>
+
+        <span class="c1"># Only return columns with more than 5% of NA values</span>
+        <span class="k">if</span> <span class="n">percentage</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="s2">&#34; has &#34;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">percentage</span><span class="p">))</span> <span class="o">+</span><span class="s2">&#34;</span><span class="si">% o</span><span class="s2">f Null Values&#34;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+<span class="c1"># Execute function</span>
+<span class="n">na_counter</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">NaN Values per column:
+
+Country has 44% of Null Values
+City has 44% of Null Values
+Developer has 40% of Null Values
+Critic_Score has 51% of Null Values
+Critic_Count has 51% of Null Values
+User_Score has 55% of Null Values
+User_Count has 55% of Null Values
+Rating has 40% of Null Values
+</code></pre></td></tr></table>
+</div>
+</div><p>These correspond to the attributes that hold more than 5% of the null values considering a confidence standard, which consists of having at least 95% of the data.</p>
+<p>In a visual way, we can look at it in the following graphic.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Make a dataframe of the number of Missing Values per attribute</span>
+<span class="n">df_na</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Rename our dataframe columns</span>
+<span class="n">df_na</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Column&#34;</span><span class="p">,</span><span class="s2">&#34;Missing_Values&#34;</span><span class="p">]</span>
+
+<span class="c1"># Plot barchart of Missing Values</span>
+<span class="n">barna</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df_na</span><span class="p">[</span><span class="n">df_na</span><span class="p">[</span><span class="s2">&#34;Missing_Values&#34;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span>
+               <span class="p">(</span><span class="s2">&#34;Missing_Values&#34;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">),</span>
+               <span class="n">y</span><span class="o">=</span><span class="s2">&#34;Missing_Values&#34;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&#34;Column&#34;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;Missing_Values&#34;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+              <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;Total of Missing Values per attribute&#34;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span>
+               <span class="s2">&#34;teal&#34;</span><span class="p">,</span>
+              <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;Missing_Values&#34;</span><span class="p">:</span><span class="s2">&#34;Missing Values&#34;</span><span class="p">})</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">barna</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">barna</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">barna</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_1.png?format=webpage" title="Barplot of Missing Values" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_1.png?format=webpage">
+        
+    </a>
+</p>
+<p>We see that there is a significant quantity of null values, predominantly in columns related to critics and their respective value (<a href="https://www.metacritic.com/browse/games/score/metascore/all/all/filtered">Metacritic</a>); as well as its content Rating made by <i>ESRB</i> (<a href="https://www.esrb.org/search/?searchKeyword= platform=Nintendo%203DS%2CWii%20U%2CPlayStation%204%2CPlayStation%203%2CXbox%20One%2CXbox%20360%2CPC%2COther&rating=E%2CE10%2B%2CT%2CM%2CAO&descriptor=All%20Content&pg=1&searchType=MostViewed">Entertainment Software Rating Board</a>).</p>
+<p>Still, since these are not categorical variables, they won’t have an identifier role, in which case our main interest will be <i>&ldquo;Name&rdquo;</i> and <i>&ldquo;Year_of_Release&rdquo;</i>, and subsequently their elimination or omission will be evaluated if necessary.</p>
+<hr>
+<h2 id="exploratory-video-game-analysis-evga">Exploratory Video Game Analysis (EVGA)</h2>
+<p>Before starting with our expedition we should begin by understanding the behavior of the data with which our analysis will be built, for this we’ll use the <code>.describe()</code> method.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Modify decimal number attribute</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">{:.2f}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span>
+
+<span class="c1"># Print description</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>The numerical attributes show us that we have a total of 40 years of records (from 1980 to 2020) of sales in North America, Europe, Japan, and other parts of the world. Where the median indicates that 50% of the years recorded are less than or equal to 2007, and we did not find outliers.</p>
+<p>Also, the average sales value is higher in North America despite the fact that the average sale of the titles is around 263,000 units, but its variation is quite high, so it should be compared more exhaustively.</p>
+<p>From a historical point of view, it makes sense, that knowing that the focus of sales is North America, cause even during the 60s the head of <i>Nintendo of America</i>, <a href ="https://en.wikipedia.org/wiki/Minoru_Arakawa">Minoru Arakawa</a>, decided to expand their operations in the United States starting from the world of the arcade, so we can have the hypothesis to see this as a place of opportunities for this market.</p>
+<h3 id="golden-age-of-videogames">Golden Age of Videogames</h3>
+<blockquote><b>1977</b> – Launch of Atari 2600</blockquote>
+<p align= center>
+    
+</p>
+<p>We will begin with the global view, I mean, the superficial perspective of the sales during this period.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Mask to subset games from 1980 to 1990</span>
+<span class="n">games8090</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1980</span><span class="p">,</span><span class="mi">1991</span><span class="p">))</span>
+
+
+<span class="c1"># Top publishers between 1980 and 1990</span>
+<span class="n">top_pub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">1990</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;Publisher&#34;</span><span class="p">)</span> \
+                                        <span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">)</span> \
+                                        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)[</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">]</span> \
+                                        <span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Dataframe for Line Plot of most frequent companies</span>
+<span class="n">df_sales_ts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">games8090</span><span class="p">][</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;Publisher&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">top_pub</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span> \
+                <span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="s2">&#34;Global_Sales&#34;</span><span class="p">,</span>
+                             <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span> <span class="s2">&#34;Year_str&#34;</span><span class="p">,</span> <span class="s2">&#34;Year_ts&#34;</span><span class="p">,</span>
+                                      <span class="s2">&#34;Publisher&#34;</span><span class="p">,</span><span class="s2">&#34;Platform&#34;</span><span class="p">],</span> <span class="n">aggfunc</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">)</span> \
+                <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> \
+                <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;Publisher&#34;</span><span class="p">,</span><span class="s2">&#34;Year_ts&#34;</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">sum</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+
+<span class="c1"># Plot a lineplot</span>
+<span class="n">gline</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df_sales_ts</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&#34;Year_ts&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Publisher&#39;</span><span class="p">,</span>
+               <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;Year_ts&#34;</span><span class="p">:</span> <span class="s2">&#34;Years&#34;</span><span class="p">,</span>  <span class="s2">&#34;Global_Sales&#34;</span><span class="p">:</span> <span class="s2">&#34;Millions of Units Sold&#34;</span><span class="p">,</span> <span class="s2">&#34;total_bill&#34;</span><span class="p">:</span> <span class="s2">&#34;Receipts&#34;</span><span class="p">},</span>
+               <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;Millions of units during Golden Age sold by Publisher&#34;</span><span class="p">)</span>
+
+<span class="c1"># To plot markers</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">gline</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers+lines&#39;</span><span class="p">)</span>
+
+<span class="c1"># Update Layout</span>
+<span class="n">gline</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">gline</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">gline</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_2.png?format=webpage" title="Lineplot of Golden Age" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_2.png?format=webpage">
+        
+    </a>
+</p>
+<p>As we can see at the beginning of the decade and probably after 1977, the market was dominated by Atari Studios while Activision was its main competitor in terms of <a href= "https://twinfinite.net/2016/06/video-games-what-does-ip-mean/">IPs</a>, because these competitors eventually published their titles on the Atari 2600, example of this was Activision with <i>Kaboom!</i> or Parker Bros with <i>Frogger</i>.</p>
+<p>Another important fact is that in 1982 we can remember that it was one of the best times for Atari where they published titles that had a great impact such as Tod Frye&rsquo;s <i>Pac-Man</i>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Mask of 1982 games</span>
+<span class="n">games82</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Year_of_Release</span> <span class="o">==</span> <span class="mi">1982</span><span class="p">]</span>
+
+<span class="c1"># Distribution column</span>
+<span class="n">games82</span><span class="p">[</span><span class="s1">&#39;Distribution&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">games82</span><span class="o">.</span><span class="n">Global_Sales</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">games82</span><span class="o">.</span><span class="n">Global_Sales</span><span class="p">))</span><span class="o">*</span><span class="mi">100</span>
+
+<span class="c1"># Extracting top titles of 1982</span>
+<span class="n">games82</span> <span class="o">=</span> <span class="n">games82</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Distribution&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Fix Publisher Issue of Mario Bros., this game was originally published by</span>
+<span class="c1"># Nintendo for arcades</span>
+<span class="n">games82</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">games82</span><span class="o">.</span><span class="n">Name</span> <span class="o">==</span> <span class="s1">&#39;Mario Bros.&#39;</span><span class="p">,</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Nintendo&#39;</span>
+
+<span class="c1"># Distribution</span>
+<span class="n">bar82</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">games82</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Distribution&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Distribution&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span>
+<span class="s1">&#39;Publisher&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Distribution of total sales in 1982 by Publisher&#39;</span><span class="p">,</span>
+               <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;Distribution&#34;</span><span class="p">:</span><span class="s2">&#34;Market Participation distribution&#34;</span><span class="p">,</span>
+                       <span class="s2">&#34;Name&#34;</span><span class="p">:</span><span class="s2">&#34;Videogame title&#34;</span><span class="p">})</span>
+
+<span class="c1"># Adding text of percentages</span>
+<span class="n">bar82</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">texttemplate</span><span class="o">=</span><span class="s1">&#39;%</span><span class="si">{text:.3s}</span><span class="s1">%&#39;</span><span class="p">,</span> <span class="n">textposition</span><span class="o">=</span><span class="s1">&#39;outside&#39;</span><span class="p">)</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">bar82</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">bar82</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">bar82</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_3.png?format=webpage" title="Barplot of 1982" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_3.png?format=webpage">
+        
+    </a>
+</p>
+<p>It is evident that the adaptation of this arcade game released in 1980, had outstanding sales, once it was introduced to the world of the Atari 2600. According to the documentary <i>&ldquo;Ounce Upon Atari&rdquo;</i>, episode 4 to be exactly, this title managed to sell more than 7 million copies, due to optimizations in the display and in the intelligence of the <a href="https://www.businessinsider.com/npc-meaning">NPCs</a>, compared to the original version.</p>
+<ul>
+<li><b>FYI:</b> The version of Mario Bros in the dataset corresponds to the Atari 2600 and Arcade version are different from the success that was later introduced to the NES.</li>
+</ul>
+<blockquote><b>1983</b> – Crisis of the Video Game industry</blockquote>
+<p align= center>
+    
+</p>
+<p>Undoubtedly, the timeline above shows a clear drop in sales from 1983.</p>
+<p>And yes, I&rsquo;m sure they want to know what happened here.</p>
+<p>For sure, if we had <a href="https://en.wikipedia.org/wiki/Howard_Scott_Warshaw">Howard Scott Warshaw</a> talking with us, we would surely understand one of the crudest realities in this industry’s history, since he lived this in his own flesh. But in this case, I will explain.</p>
+<p>In summary, he was one of the greatest designers of that moment, who was hired to design a video game based on one of the biggest hits in cinema, <i>E.T. the Extra-Terrestrial</i>. At the time Steven Spielberg shares the vision of a game very similar to Pac-Man, something extremely strange, and by the way a release date is designated just a few months after this.</p>
+<p>As you may have thought, it was a complete disaster. Like this case, many developers saw the accelerated growth of the industry as an opportunity to launch titles in large numbers and with a very low quality content, as evidenced by the second quartile of our initial analysis.</p>
+<p>There were many other causes such as the massive appearance of consoles and the flexibility of the guidelines for <i>third party developers</i>, but if you want a quick perspective, I recommend <a href = "https://www.ign.com/articles/2011/09/21/ten-facts-about-the-great-video-game-crash-of-83">this</a> IGN article.</p>
+<blockquote><b>1984</b> – A new foe has appeared! Challenger approaching</blockquote>
+<p align= center>
+    
+</p>
+<p>After the drop because of the oversupply of titles, Nintendo Entertainment saw a chance to take over the American market with its local bestseller the
+<i>Famicom</i>. This was transformed through a redesign adapted for the North American public, being renamed as <a href="https://en.wikipedia.org/wiki/Nintendo_Entertainment_System#North_American_release">NES</a> (Nintendo Entertainment System), previously named Nintendo Advanced Video System.</p>
+<p>Also, thanks to the great success known as Donkey Kong, the mastermind <a href="https://en.wikipedia.org/wiki/Shigeru_Miyamoto">Shigeru Miyamoto</a>, takes advantage of the success of Jumpman and Pauline; in 1983 he released Mario Bros and the rest is history.</p>
+<p>The Donkey Kong game despite being called referring to the antagonist of the video game, was not the most interesting character for consumers, instead it was Jumpman, also
+known as Mario.</p>
+<p>The importance of Nintendo for the North American market can be seen through the following graph, where the global sales of titles are generally seen in the four regions, in which North America covers the largest numbers by far.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Aggregation dictionary for each region</span>
+<span class="n">agg_region</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;NA_Sales&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;JP_Sales&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;EU_Sales&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;Other_Sales&#39;</span><span class="p">:</span>
+    <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;Global_Sales&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">}</span>
+
+<span class="c1"># Dataframe of regions 80-90s</span>
+<span class="n">reg8090</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">games8090</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">agg_region</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>\
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># To loop and place the traces</span>
+<span class="n">region_suffix</span> <span class="o">=</span> <span class="s1">&#39;_Sales&#39;</span>
+<span class="n">regions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;NA&#39;</span><span class="p">,</span> <span class="s1">&#39;JP&#39;</span><span class="p">,</span> <span class="s1">&#39;EU&#39;</span><span class="p">,</span> <span class="s1">&#39;Other&#39;</span><span class="p">]</span>
+<span class="n">region_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;North America&#39;</span><span class="p">,</span> <span class="s1">&#39;Japan&#39;</span><span class="p">,</span> <span class="s1">&#39;Europe&#39;</span><span class="p">,</span> <span class="s1">&#39;Other&#39;</span><span class="p">]</span>
+<span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="c1"># Generate graph object</span>
+<span class="n">regplot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">region</span> <span class="ow">in</span> <span class="n">regions</span><span class="p">:</span>
+    <span class="n">regplot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">reg8090</span><span class="p">[</span><span class="s1">&#39;Year_of_Release&#39;</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span>
+    <span class="n">reg8090</span><span class="p">[</span><span class="n">region</span><span class="o">+</span><span class="n">region_suffix</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers+lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">region_names</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">regplot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">regplot</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">regplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_4.png?format=webpage" title="Lineplot Regional" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_4.png?format=webpage">
+        
+    </a>
+</p>
+<p>A conclusion that is worth mentioning is that even Nintendo&rsquo;s success today is not only due to its innovation and sense of affection for its IPs, but also because of the exclusivity of its titles. As shown, both the NES and the GameBoy had great sales in the North American market despite being Japanese companies.</p>
+<blockquote><b>1989</b> – Gunpei Yokoi, father of the Game & Watch series, creates the GameBoy, the ultimate portable console</blockquote>
+<p align= center>
+    
+</p>
+<h3 id="i-world-console-war-wcwi">I World Console War (WCWI)</h3>
+<blockquote><b>1989</b> - Sega Enterprises Inc. launches worldwide Sega Megadrive Genesis</blockquote>
+<blockquote><b>1991</b> - Nintendo launches worldwide Super Nintendo Entertainment system</blockquote>
+<p align= center>
+    
+</p>
+<p>At the beginning of the 90s, after the launch of the SEGA and Nintendo consoles, the First World War of Videogames began. Mainly in two of their biggest titles, Sonic The Hedgedog and Super Mario Bros.</p>
+<p>During 1990, approximately 90% of the US market was controlled by Nintendo, until in 1992 SEGA began to push with strong marketing campaigns aimed at an older audience.</p>
+<p>One of the most remarkable fact of this period was the launch of Mortal Kombat in 1992, where Nintendo censored part of its content (<a href="https://en.wikipedia.org/wiki/Controversies_surrounding_Mortal_Kombat">blood-content</a>) since they had an initiative to be a <i>family friendly</i> company, and of course this became very annoying the followers of this series.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Transform current dataframe as long format</span>
+<span class="n">df_long</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Name&#34;</span><span class="p">,</span><span class="s2">&#34;Platform&#34;</span><span class="p">,</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span><span class="s2">&#34;Genre&#34;</span><span class="p">,</span>
+                           <span class="s2">&#34;Publisher&#34;</span><span class="p">,</span> <span class="s2">&#34;Developer&#34;</span><span class="p">,</span> <span class="s2">&#34;Rating&#34;</span><span class="p">,</span> <span class="s2">&#34;Year_str&#34;</span><span class="p">,</span> <span class="s2">&#34;Year_ts&#34;</span><span class="p">,</span>
+                           <span class="s2">&#34;Country&#34;</span><span class="p">,</span> <span class="s2">&#34;City&#34;</span><span class="p">,</span><span class="s2">&#34;Critic_Score&#34;</span><span class="p">,</span><span class="s2">&#34;User_Score&#34;</span><span class="p">],</span>
+                  <span class="n">value_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;NA_Sales&#34;</span><span class="p">,</span> <span class="s2">&#34;EU_Sales&#34;</span><span class="p">,</span><span class="s2">&#34;JP_Sales&#34;</span><span class="p">,</span><span class="s2">&#34;Other_Sales&#34;</span><span class="p">],</span>
+                  <span class="n">var_name</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Location&#34;</span><span class="p">],</span>
+                  <span class="n">value_name</span> <span class="o">=</span> <span class="s2">&#34;Sales&#34;</span><span class="p">)</span>
+
+
+<span class="c1"># Giving a better format to the location&#39;s Name</span>
+<span class="n">df_long</span> <span class="o">=</span> <span class="n">df_long</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&#34;Location&#34;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&#34;NA_Sales&#34;</span><span class="p">:</span> <span class="s2">&#34;North America&#34;</span><span class="p">,</span>
+                                        <span class="s2">&#34;EU_Sales&#34;</span><span class="p">:</span> <span class="s2">&#34;Europe&#34;</span><span class="p">,</span>
+                                        <span class="s2">&#34;JP_Sales&#34;</span><span class="p">:</span> <span class="s2">&#34;Japan&#34;</span><span class="p">,</span>
+                                        <span class="s2">&#34;Other_Sales&#34;</span><span class="p">:</span> <span class="s2">&#34;Rest of the World&#34;</span><span class="p">}</span> <span class="p">})</span>
+
+<span class="c1"># To delete columns without sales registry</span>
+<span class="n">df_long</span> <span class="o">=</span>  <span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&#34;Sales&#34;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Sales&#34;</span><span class="p">])</span>
+
+<span class="c1"># Dataframe</span>
+<span class="n">df_gen90</span> <span class="o">=</span> <span class="n">df_long</span><span class="p">[(</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1989</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">)]</span> \
+                            <span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="s2">&#34;Sales&#34;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="s2">&#34;Genre&#34;</span><span class="p">,</span>
+                                        <span class="n">columns</span> <span class="o">=</span> <span class="s2">&#34;Location&#34;</span><span class="p">,</span> <span class="n">aggfunc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">)</span>
+
+<span class="c1"># Image plot</span>
+<span class="n">ima</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">df_gen90</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Europe&#34;</span><span class="p">,</span><span class="s2">&#34;Japan&#34;</span><span class="p">,</span><span class="s2">&#34;North America&#34;</span><span class="p">,</span><span class="s2">&#34;Rest of the Worlds&#34;</span><span class="p">],</span>
+                <span class="n">x</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Action&#39;</span><span class="p">,</span> <span class="s1">&#39;Adventure&#39;</span><span class="p">,</span> <span class="s1">&#39;Fighting&#39;</span><span class="p">,</span> <span class="s1">&#39;Misc&#39;</span><span class="p">,</span> <span class="s1">&#39;Platform&#39;</span><span class="p">,</span> <span class="s1">&#39;Puzzle&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Racing&#39;</span><span class="p">,</span> <span class="s1">&#39;Role-Playing&#39;</span><span class="p">,</span> <span class="s1">&#39;Shooter&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation&#39;</span><span class="p">,</span> <span class="s1">&#39;Sports&#39;</span><span class="p">,</span><span class="s1">&#39;Strategy&#39;</span><span class="p">],</span>
+               <span class="n">labels</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&#34;Total Sales in Millions&#34;</span><span class="p">),</span>
+               <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
+               <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;Heatmap of Location vs Genre during WCWI&#34;</span><span class="p">)</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">ima</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">ima</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">ima</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/heatmap_5.png?format=webpage" title="Heatmap of WCWI" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/heatmap_5.png?format=webpage">
+        
+    </a>
+</p>
+<p>Following the Mortal Kombat censorship, Nintendo was hit, noticing that fighting genres were among the most purchased during the 90s. However, the success of Nintendo IPs such as The Legend of Zelda and Super Mario, ended up destroying the SEGA console in 1998, in addition because of Nintendo grew stronger thanks to role-playing games during these years.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Dataframe with just SNES and GEN, Super Mario was removed to avoid outliers</span>
+<span class="n">df_sn</span> <span class="o">=</span> <span class="n">df_long</span><span class="p">[(</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1989</span><span class="p">)</span> <span class="o">&amp;</span>
+                <span class="p">(</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">)</span> <span class="o">&amp;</span>
+               <span class="p">((</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&#34;Platform&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&#34;GB&#34;</span><span class="p">,</span><span class="s2">&#34;NES&#34;</span><span class="p">,</span><span class="s2">&#34;SNES&#34;</span><span class="p">,</span><span class="s2">&#34;GEN&#34;</span><span class="p">,</span><span class="s2">&#34;PC&#34;</span><span class="p">,</span><span class="s2">&#34;PS&#34;</span><span class="p">,</span><span class="s2">&#34;N64&#34;</span><span class="p">,</span><span class="s2">&#34;DC&#34;</span><span class="p">]))</span>
+               <span class="p">)]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="c1"># Plot of sales during 90s</span>
+<span class="n">strip90</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="n">df_sn</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&#34;Sales&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&#34;Platform&#34;</span><span class="p">,</span>
+                  <span class="n">hover_name</span><span class="o">=</span><span class="s2">&#34;Name&#34;</span><span class="p">,</span>
+                  <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;Name&#34;</span><span class="p">:</span><span class="s2">&#34;Title&#34;</span><span class="p">,</span> <span class="s2">&#34;Year_of_Release&#34;</span><span class="p">:</span><span class="s2">&#34;Year&#34;</span><span class="p">},</span>
+                 <span class="n">hover_data</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;Country&#34;</span><span class="p">])</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">strip90</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">strip90</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">jitter</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">strip90</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">strip90</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/scatterplot_6.png?format=webpage" title="Scatterplot of 90s" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/scatterplot_6.png?format=webpage">
+        
+    </a>
+</p>
+<p>The first impression, when looking at this graph is that we notice the great dominance of Nintendo since the sales of the Sega Genesis collapsed in 1995, until during the Sega Dreamcast campaign, where the leadership was taken by the GameBoy and the <i>Nintendo 64</i>, followed by the new competitor <i>Play Station</i>, a topic that we will cover later.</p>
+<h3 id="role-playing-game-revolution">Role-playing game revolution</h3>
+<p align= center>
+    
+</p>
+<p>One of the most characteristic events of this time was the implementation of 16-bit graphic technologies, which at the time was double what was available. Along with this, the Japanese once again made another master move, which gave a decisive turn to a genre, after the expected fall of RPGs on the PC platform.</p>
+<p>Before highlighting the Japanese originality, it is necessary to know after successes of role-playing games such as <a href="https://en.wikipedia.org/wiki/Ultima_VIII:_Pagan">Ultima VIII: Pagan (PC)</a>, this genre had a slow development, since the CD-ROMs generated great graphic expectations for the developers, by the way prolonging the releases, and for sure this caused a lack of interest from the community, and began to move towards action games or first person shooter such as <a href ="https://en.wikipedia.org/wiki/GoldenEye_007_(1997_video_game)">Golden Eye (1997)</a>. However, success stories continued to appear in this genre such as <a href="https://en.wikipedia.org/wiki/Diablo_(video_game)">Diablo (1996)</a>, developed by Blizzard Entertainment.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Dataframe for Genre lineplot</span>
+<span class="n">df90G</span> <span class="o">=</span> <span class="n">df_long</span><span class="p">[(</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1989</span><span class="p">)</span> <span class="o">&amp;</span>
+                <span class="p">(</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">)</span> <span class="o">&amp;</span>
+               <span class="p">((</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&#34;Genre&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;Role-Playing&#34;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&#34;Genre&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;Action&#34;</span><span class="p">)</span> <span class="o">|</span>
+                <span class="p">(</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&#34;Genre&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;Platform&#34;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&#34;Genre&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;Fighting&#34;</span><span class="p">)</span>
+               <span class="p">)]</span> \
+               <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;Genre&#34;</span><span class="p">,</span> <span class="s2">&#34;Year_ts&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">&#34;Sales&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Plot an animated lineplot</span>
+<span class="n">linegen</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df90G</span><span class="p">,</span>
+                 <span class="n">x</span><span class="o">=</span><span class="s2">&#34;Year_ts&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;Sales&#34;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;Genre&#34;</span><span class="p">,</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;Millions of units sold during 90s by Genre &#34;</span><span class="p">,</span>
+                 <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;Sales&#34;</span><span class="p">:</span> <span class="s2">&#34;Millions of Units Sold&#34;</span><span class="p">,</span> <span class="s2">&#34;Year_ts&#34;</span><span class="p">:</span><span class="s2">&#34;Years&#34;</span><span class="p">})</span>
+
+<span class="c1"># To plot markers</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">linegen</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers+lines&#39;</span><span class="p">)</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">linegen</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">linegen</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">linegen</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_7.png?format=webpage" title="Lineplot of 90s" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_7.png?format=webpage">
+        
+    </a>
+</p>
+<p>Among all genres, the growth of RPGs over time must be underlined. The release of <a href = "https://en.wikipedia.org/wiki/Pok%C3%A9mon#:~:text=The%20third%20versi%C3%B3n%20(fourth%20en,1%20of%20october%20of%201999.">Pokémon</a> in 1996 for GameBoy by the developer Game Freak was a success for Nintendo, which swept everything in its path, with its first generation of Pokemon Blue, Red and Yellow that was released in 1999, the latter is the fourth Japanese version.</p>
+<h3 id="a-new-japanese-ruler-takes-the-throne">A new Japanese Ruler takes the throne</h3>
+<blockquote><b>1994</b> - Sony Computer Entertainment's PlayStation is born</blockquote>
+<p align= center>
+    
+</p>
+<p>RPGs not only boosted Nintendo, but multiplatform IPs like Final Fantasy VII gave companies such as Sony Computer Entertainment a boost during the introduction of their new 32-bit console and at the same time to publicize the <a href="https://mediawiki.middlebury.edu/FMMC0282/JRPG">JRPGs</a> within the western market.</p>
+<p>In 1995, when Sony planned their introduction of the PlayStation to America, they chose not to focus their Video Game market on a single type of genre or audience, but instead diversified their video game portfolio and memorable titles such as Crash Bandicoot, Metal Gear Solid and Tekken emerged.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Subset only PS games</span>
+<span class="n">df_sony</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">1995</span><span class="p">,</span><span class="mi">1996</span><span class="p">]))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;Platform&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;PS&#34;</span><span class="p">)]</span>
+
+<span class="c1"># Subset the columns needed</span>
+<span class="n">df_sony</span> <span class="o">=</span> <span class="n">df_sony</span><span class="p">[[</span><span class="s2">&#34;Name&#34;</span><span class="p">,</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span><span class="s2">&#34;Publisher&#34;</span><span class="p">,</span><span class="s2">&#34;Platform&#34;</span><span class="p">,</span><span class="s2">&#34;Genre&#34;</span><span class="p">,</span>
+                     <span class="s2">&#34;Global_Sales&#34;</span><span class="p">]]</span>
+
+<span class="c1"># Pie plot</span>
+<span class="n">piesony</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">df_sony</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span> <span class="s2">&#34;Global_Sales&#34;</span><span class="p">,</span>
+             <span class="n">names</span><span class="o">=</span><span class="s1">&#39;Genre&#39;</span><span class="p">,</span>
+            <span class="n">color_discrete_sequence</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Blues_r</span><span class="p">,</span>
+                 <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">:</span><span class="s2">&#34;Sales&#34;</span><span class="p">})</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">piesony</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">piesony</span><span class="o">.</span><span class="n">update_traces</span><span class="p">({</span><span class="s2">&#34;textinfo&#34;</span><span class="p">:</span><span class="s2">&#34;label+text+percent&#34;</span><span class="p">,</span>
+                       <span class="s2">&#34;hole&#34;</span><span class="p">:</span><span class="mf">0.15</span><span class="p">})</span>
+<span class="n">piesony</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">piesony</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/piechart_8.png" title="PlayStation Piechart" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/piechart_8.png">
+        
+    </a>
+</p>
+<p>As we can see in the graph, Sony&rsquo;s video game distribution during its first two years in the North American market. Even if we pay attention, titles like Tekken and Mortal Kombat had a significant presence by showing the highest levels of sales by genre (referring to &ldquo;Fighting&rdquo; genre).</p>
+<h3 id="content-control-warnings">Content control warnings</h3>
+<blockquote><b>1994</b> - Foundation of Entertainment Software Rating Board</blockquote>
+<p align= center>
+    
+</p>
+<p>After titles like Doom, Wolfenstein and Mortal Kombat, an American system arises to classify the content of video games, and assign it a category depending on its potential audience maturity. It was established in 1994 by the Entertainment Software Association, the formerly called the Interactive Digital Software Association.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># ESRB Rating Dataframe</span>
+<span class="n">df_r</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;Rating&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">==</span> <span class="kc">False</span><span class="p">]</span>
+
+<span class="n">df_r</span> <span class="o">=</span> <span class="n">df_r</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;Rating&#34;</span><span class="p">,</span><span class="s2">&#34;Platform&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s2">&#34;Name&#34;</span><span class="p">]</span> \
+                                    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+                                    <span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="s2">&#34;Name&#34;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="s2">&#34;Rating&#34;</span><span class="p">,</span>
+                                                 <span class="n">columns</span> <span class="o">=</span> <span class="s2">&#34;Platform&#34;</span><span class="p">,</span> <span class="n">aggfunc</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">])</span> \
+                                    <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Drop empty classifications</span>
+<span class="n">df_r</span> <span class="o">=</span> <span class="n">df_r</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&#34;AO&#34;</span><span class="p">,</span><span class="s2">&#34;EC&#34;</span><span class="p">,</span><span class="s2">&#34;K-A&#34;</span><span class="p">,</span><span class="s2">&#34;RP&#34;</span><span class="p">])</span>
+
+<span class="c1"># Heatmap of ESRB Rating vs Consoles</span>
+<span class="n">gesrb</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">df_r</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                <span class="n">x</span><span class="o">=</span> <span class="p">[</span><span class="s2">&#34;3DS&#34;</span><span class="p">,</span><span class="s2">&#34;DC&#34;</span><span class="p">,</span><span class="s2">&#34;DS&#34;</span><span class="p">,</span><span class="s2">&#34;GBA&#34;</span><span class="p">,</span><span class="s2">&#34;GC&#34;</span><span class="p">,</span><span class="s2">&#34;PC&#34;</span><span class="p">,</span><span class="s2">&#34;PS&#34;</span><span class="p">,</span><span class="s2">&#34;PS2&#34;</span><span class="p">,</span><span class="s2">&#34;PS3&#34;</span><span class="p">,</span><span class="s2">&#34;PS4&#34;</span><span class="p">,</span><span class="s2">&#34;PSP&#34;</span><span class="p">,</span><span class="s2">&#34;PSV&#34;</span><span class="p">,</span>
+                    <span class="s2">&#34;Wii&#34;</span><span class="p">,</span><span class="s2">&#34;WiiU&#34;</span><span class="p">,</span><span class="s2">&#34;Xbox 360&#34;</span><span class="p">,</span><span class="s2">&#34;Xbox&#34;</span><span class="p">,</span><span class="s2">&#34;Xbox One&#34;</span><span class="p">],</span>
+                <span class="n">y</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;E10+&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">],</span>
+               <span class="n">labels</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;Console&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;ESRB Rating&#34;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;Number of Titles&#34;</span><span class="p">),</span>
+               <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s1">&#39;BuGn&#39;</span><span class="p">,</span>
+               <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;Heatmap of ESRB Rating vs Consoles updated to 2016&#34;</span><span class="p">)</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">gesrb</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">gesrb</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">gesrb</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/heatmap9.png?format=webpage" title="Heatmap ESRB" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/heatmap9.png?format=webpage">
+        
+    </a>
+</p>
+<p>Based on the classification established by the ESRB, from the data available it can be concluded that the video game console with more titles for universal use is the Nintendo DS, followed by the PS2 and then is the Wii, thus highlighting the impact they had on sales, which it will be shown later.</p>
+<p>Meanwhile, the Xbox 360 and PS3 were geared towards a more mature audience with a significant presence of M-rated titles.</p>
+<h3 id="last-years-of-32-bit-era">Last years of 32 bit era</h3>
+<p>In the early 2000s, after the launch of the PS1, Sony continued leading the console market and diversifying its portfolio of games. On the other side of the coin SEGA, despite having launched the first console with an online system, in 2002 they retired their console from the market and dedicated itself exclusively to third-party development and Arcade, a situation that is outlined in the following graph.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Lineplot sales by platform before 2005</span>
+<span class="c1"># Extract columns</span>
+<span class="n">games20</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span><span class="s2">&#34;Platform&#34;</span><span class="p">,</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">]]</span>
+
+<span class="c1"># Subset dates</span>
+<span class="n">games20</span> <span class="o">=</span> <span class="n">games20</span><span class="p">[(</span><span class="n">games20</span><span class="o">.</span><span class="n">Year_of_Release</span> <span class="o">&gt;</span> <span class="mi">1998</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">games20</span><span class="o">.</span><span class="n">Year_of_Release</span> <span class="o">&lt;</span> <span class="mi">2005</span><span class="p">)]</span>
+
+<span class="c1"># Omit WonderSwan by Bandai, SEGA Saturn due low sales profiles and NDS that is not</span>
+<span class="c1"># relevant yet</span>
+<span class="n">games20</span> <span class="o">=</span> <span class="n">games20</span><span class="p">[</span><span class="o">~</span><span class="n">games20</span><span class="o">.</span><span class="n">Platform</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&#34;WS&#34;</span><span class="p">,</span><span class="s2">&#34;DS&#34;</span><span class="p">,</span><span class="s2">&#34;SAT&#34;</span><span class="p">,</span><span class="s2">&#34;SNES&#34;</span><span class="p">,</span><span class="s2">&#34;PSP&#34;</span><span class="p">])]</span>
+
+<span class="c1"># Group and summarize</span>
+<span class="n">games20</span> <span class="o">=</span> <span class="n">games20</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span><span class="s2">&#34;Platform&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>\
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span><span class="s2">&#34;Platform&#34;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Save an Array of Platforms</span>
+<span class="n">Platforms</span> <span class="o">=</span> <span class="n">games20</span><span class="o">.</span><span class="n">Platform</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Pivot to put in long format</span>
+<span class="n">games20</span> <span class="o">=</span> <span class="n">games20</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span>
+                              <span class="n">columns</span><span class="o">=</span><span class="s2">&#34;Platform&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Assemble lineplot</span>
+<span class="n">line20</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">platform</span> <span class="ow">in</span> <span class="n">Platforms</span><span class="p">:</span>
+    <span class="n">line20</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">games20</span><span class="p">[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">games20</span><span class="p">[</span><span class="n">platform</span><span class="p">],</span>
+                                <span class="n">name</span><span class="o">=</span><span class="n">platform</span><span class="p">,</span> <span class="n">line_shape</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">))</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">line20</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">line20</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">line20</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_10.png?format=webpage" title="Lineplot of 2000s" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/lineplot_10.png?format=webpage">
+        
+    </a>
+</p>
+<p>The Japanese domain was becoming more and more determined, a situation that the software technology giant, Microsoft, takes as a challenge to enter a new market and start a contest with the PS2.</p>
+<blockquote><b>2000</b> - The beginning of the longest rivalry in the console market</blockquote>
+<p align= center>
+    
+</p>
+<p>This famous image of Bill Gates with Dwayne Johnson was part of a great marketing strategy carried out by Microsoft, they were willing to do whatever it took to strengthen the presence of Xbox in the market.</p>
+<p>Microsoft&rsquo;s vision was to standardize the game <a href="https://en.wikipedia.org/wiki/Xbox_technical_specifications">hardware</a> so that it was as similar as possible to a PC, so they implemented Direct X, an Intel Pentium III, a 7.3GFLOPS Nvidia GPU and an 8GB hard drive, trying to secure a significant advantage over the competitors.</p>
+<p>At this time, Nintendo announced the GameCube as a console contender, but it was not very successful, a situation that was neutralized with the sales of the Game Boy Advance within the portable market.</p>
+<p>Nevertheless, the PS2 led the first part of the decade in terms of sales, while Xbox got the second place as we saw in the last graph. And of course, that was a very expensive silver medal, according to Vladimir Cole from <i>Joystiq</i>, Forbes estimated around $4 billion in total lost after that trip, but at the same time they proved that they could compete with the <i>Japanese Ruler</i> of that time.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Mask of 2000-2004 games</span>
+<span class="n">games2004</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Year_of_Release</span> <span class="o">&gt;</span> <span class="mi">1999</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Year_of_Release</span> <span class="o">&lt;</span> <span class="mi">2005</span><span class="p">)</span>
+
+<span class="c1"># Array to Subset publishers with hightest sales from 2000 to 2004</span>
+<span class="n">toppub2004</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">games2004</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span>\
+    <span class="p">([</span><span class="s2">&#34;Publisher&#34;</span><span class="p">])[</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>\
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># New DF with top  Titles per Publisher</span>
+<span class="n">toppub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">games2004</span> <span class="o">&amp;</span> <span class="n">df</span><span class="o">.</span><span class="n">Publisher</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">toppub2004</span><span class="o">.</span><span class="n">Publisher</span><span class="p">)]</span>\
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&#34;Publisher&#34;</span><span class="p">,</span><span class="s2">&#34;Name&#34;</span><span class="p">])</span>
+
+<span class="c1"># Substitute empty scores with the mean</span>
+<span class="n">toppub</span><span class="o">.</span><span class="n">Critic_Score</span> <span class="o">=</span> <span class="n">toppub</span><span class="o">.</span><span class="n">Critic_Score</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">toppub</span><span class="o">.</span><span class="n">Critic_Score</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="c1"># Top 3</span>
+<span class="n">toppub3</span> <span class="o">=</span> <span class="n">toppub</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&#34;Publisher&#34;</span><span class="p">,</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;Publisher&#34;</span><span class="p">)[</span><span class="s2">&#34;Name&#34;</span><span class="p">,</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span><span class="s2">&#34;Publisher&#34;</span><span class="p">,</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">,</span>
+                          <span class="s2">&#34;Critic_Score&#34;</span><span class="p">,</span> <span class="s2">&#34;Country&#34;</span><span class="p">,</span><span class="s2">&#34;City&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Bubble plot</span>
+<span class="n">bubpub3</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">toppub3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;Publisher&#34;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&#34;Critic_Score&#34;</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s2">&#34;Critic_Score&#34;</span><span class="p">,</span> <span class="n">hover_name</span><span class="o">=</span><span class="s2">&#34;Name&#34;</span><span class="p">,</span>
+                 <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Greens</span><span class="p">,</span>
+                 <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">:</span><span class="s2">&#34;Millions of units sold&#34;</span><span class="p">,</span>
+                         <span class="s2">&#34;Critic_Score&#34;</span><span class="p">:</span><span class="s2">&#34;Metacritic value&#34;</span><span class="p">})</span>
+
+<span class="c1"># Add reference line</span>
+<span class="n">bubpub3</span><span class="o">.</span><span class="n">add_vrect</span><span class="p">(</span><span class="n">x0</span> <span class="o">=</span> <span class="mf">8.0</span><span class="p">,</span> <span class="n">x1</span> <span class="o">=</span> <span class="mf">8.98</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span> <span class="mf">0.32</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="mf">0.44</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                  <span class="n">fillcolor</span><span class="o">=</span><span class="s2">&#34;#fff152&#34;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Master Chief image</span>
+<span class="n">bubpub3</span><span class="o">.</span><span class="n">add_layout_image</span><span class="p">(</span>
+    <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">source</span><span class="o">=</span><span class="s2">&#34;https://media.fortniteapi.io/images/7bf522a34af664a172ce581441985e75/featured.png&#34;</span><span class="p">,</span>
+        <span class="n">xref</span><span class="o">=</span><span class="s2">&#34;paper&#34;</span><span class="p">,</span> <span class="n">yref</span><span class="o">=</span><span class="s2">&#34;paper&#34;</span><span class="p">,</span>
+        <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.021</span><span class="p">,</span>
+        <span class="n">sizex</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">sizey</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+        <span class="n">xanchor</span><span class="o">=</span><span class="s2">&#34;right&#34;</span><span class="p">,</span> <span class="n">yanchor</span><span class="o">=</span><span class="s2">&#34;bottom&#34;</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">bubpub3</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">bubpub3</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">bubpub3</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/scatterplot_11.png" title="Bubblechart of 2000s" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/scatterplot_11.png">
+        
+    </a>
+</p>
+<p>In the graph we see that Microsoft, despite not becoming leaders in sales, were positioned by having very good reviews, specifically in Halo, with Metacritics above 95, including its title&rsquo;s sequels.</p>
+<p>However, Microsoft&rsquo;s step did not go unnoticed, the launch of <i>Halo: Combat Evolved</i> marked a before and after in the world of online multiplayer FPS, not only because of its online gaming capabilities or because of its smooth joystick mechanism, which was crucial for the attraction of PC FPS players to consoles, but for his amazing character, <i>Master Chief</i> who became an emblem of the brand.</p>
+<h3 id="the-non-competitor-takes-the-lead">The &ldquo;Non-competitor&rdquo; takes the lead</h3>
+<blockquote><b>2005</b> - Microsoft launch the Xbox 360</blockquote>
+<blockquote><b>2006</b> - PS3 and Nintendo Wii are released</blockquote>
+<p align= center>
+    
+</p>
+<p>As Microsoft and Sony continued competing for a market with high-definition titles, online connection services like Xbox Live and PSN, and high-capacity hard drives, Nintendo chose to follow a <a href="https://www.blueoceanstrategy.com/what-is-blue-ocean-strategy/">Blue Ocean Strategy</a> after the failure of the GameCube, who tried to compete in the big leagues.</p>
+<p>Their strategy consisted of offering something new and innovative, instead of competing to be better in the characteristics offered by the competition, becoming the fastest selling console, reaching to sell 50 million units around the world according to D. Melanson from <a href="https://www.engadget.com 2009-06-12-nintendo-wii-sets-record-as-fastest-selling-console-in-the-us.html">Verizon Media</a>, so this is the best way to describe the Wii console.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Mask of 2005-2010 games</span>
+<span class="n">games2010</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Year_of_Release</span> <span class="o">&gt;</span> <span class="mi">2004</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Year_of_Release</span> <span class="o">&lt;</span> <span class="mi">2011</span><span class="p">)</span>
+
+<span class="c1"># Dataframe of games</span>
+<span class="n">df2010</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">games2010</span><span class="p">]</span>
+
+<span class="c1"># Excluding data to focus on new consoles</span>
+<span class="n">df2010</span> <span class="o">=</span> <span class="n">df2010</span><span class="p">[</span><span class="n">df2010</span><span class="o">.</span><span class="n">Platform</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Wii&#39;</span><span class="p">,</span><span class="s1">&#39;DS&#39;</span><span class="p">,</span><span class="s1">&#39;X360&#39;</span><span class="p">,</span><span class="s1">&#39;PS3&#39;</span><span class="p">])]</span>\
+        <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;Platform&#34;</span><span class="p">,</span><span class="s2">&#34;Year_str&#34;</span><span class="p">])[</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>\
+        <span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&#34;Year_str&#34;</span><span class="p">,</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">])</span>
+
+<span class="c1"># Plot of Sales by Platform</span>
+<span class="n">bar2010</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df2010</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;Platform&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&#34;Year_str&#34;</span><span class="p">,</span>
+             <span class="n">barmode</span><span class="o">=</span><span class="s2">&#34;group&#34;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;Year_str&#34;</span><span class="p">:</span><span class="s2">&#34;Year&#34;</span><span class="p">,</span>
+                                      <span class="s2">&#34;Global_Sales&#34;</span><span class="p">:</span><span class="s2">&#34;Millions of Units&#34;</span><span class="p">},</span>
+             <span class="n">pattern_shape</span><span class="o">=</span><span class="s2">&#34;Platform&#34;</span><span class="p">,</span> <span class="n">pattern_shape_sequence</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="s2">&#34;.&#34;</span><span class="p">],</span>
+             <span class="n">color_discrete_sequence</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;#00DEB7&#34;</span><span class="p">,</span><span class="s2">&#34;#0082C2&#34;</span><span class="p">,</span><span class="s2">&#34;#1333A7&#34;</span><span class="p">,</span><span class="s2">&#34;#5849B6&#34;</span><span class="p">])</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">bar2010</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">bar2010</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">bar2010</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_12.png?format=webpage" title="Barchart of 2000s" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_12.png?format=webpage">
+        
+    </a>
+</p>
+<p>As you can see, from the start of the Wii sales, the strategy of Nintendo began to flourish, surpassing the sales of its rivals by 4 years in a row.</p>
+<p>An interesting aspect of Nintendo among the others, is that the success of their sales was due to exclusive titles involving their unique accessories with motion sensors.</p>
+<p>Referring to sales, among the most successful titles are the following.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Dataframe for table with best-selling games</span>
+<span class="n">table_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">games2010</span><span class="p">]</span>
+<span class="n">table_data</span> <span class="o">=</span> <span class="n">table_data</span><span class="p">[</span><span class="n">table_data</span><span class="o">.</span><span class="n">Platform</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Wii&#39;</span><span class="p">,</span><span class="s1">&#39;DS&#39;</span><span class="p">,</span><span class="s1">&#39;X360&#39;</span><span class="p">,</span><span class="s1">&#39;PS3&#39;</span><span class="p">])]</span>\
+                <span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&#34;Year_str&#34;</span><span class="p">,</span><span class="s2">&#34;Platform&#34;</span><span class="p">,</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>\
+                <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>\
+                <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;Platform&#34;</span><span class="p">,</span><span class="s2">&#34;Year_str&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>\
+                <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&#34;Platform&#34;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="n">table_data</span> <span class="o">=</span> <span class="n">table_data</span><span class="p">[[</span><span class="s2">&#34;Year_str&#34;</span><span class="p">,</span><span class="s2">&#34;Name&#34;</span><span class="p">,</span><span class="s2">&#34;Publisher&#34;</span><span class="p">,</span><span class="s2">&#34;Platform&#34;</span><span class="p">,</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">]]</span>
+
+
+<span class="c1"># Plot of Table</span>
+<span class="n">table10</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span>
+    <span class="n">header</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">([</span><span class="s2">&#34;Year&#34;</span><span class="p">,</span><span class="s2">&#34;Game title&#34;</span><span class="p">,</span> <span class="s2">&#34;Platform&#34;</span><span class="p">,</span>
+                             <span class="s2">&#34;Publisher&#34;</span><span class="p">,</span><span class="s2">&#34;Units Sold&#34;</span><span class="p">]),</span>
+                <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;#5849B6&#39;</span><span class="p">,</span>
+                <span class="n">align</span><span class="o">=</span><span class="s2">&#34;center&#34;</span><span class="p">),</span>
+    <span class="n">cells</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">table_data</span><span class="o">.</span><span class="n">Year_str</span><span class="p">,</span> <span class="n">table_data</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">table_data</span><span class="o">.</span><span class="n">Platform</span><span class="p">,</span>
+                       <span class="n">table_data</span><span class="o">.</span><span class="n">Publisher</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">table_data</span><span class="o">.</span><span class="n">Global_Sales</span> <span class="o">*</span>
+                                                      <span class="mi">1000000</span><span class="p">,</span><span class="mi">0</span><span class="p">)],</span>
+               <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;lavender&#39;</span><span class="p">,</span>
+               <span class="n">align</span><span class="o">=</span><span class="nb">list</span><span class="p">([</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">])))])</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">table10</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">table10</span><span class="o">.</span><span class="n">update_traces</span><span class="p">({</span><span class="s2">&#34;header&#34;</span><span class="p">:{</span><span class="s2">&#34;font.color&#34;</span><span class="p">:</span><span class="s2">&#34;#fcfcfc&#34;</span><span class="p">,</span>
+                                 <span class="s2">&#34;font.size&#34;</span><span class="p">:</span><span class="n">fontimg</span><span class="o">+</span><span class="mi">3</span><span class="p">}})</span>
+<span class="n">table10</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">table10</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/table_13.png?format=webpage" title="Table of 2000s" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/table_13.png?format=webpage">
+        
+    </a>
+</p>
+<p>Four of Wii&rsquo;s five most successful titles involve Nintendo Publishers, among its most famous IPs were Mario Kart and Wii Sports.</p>
+<p>This innovation marked an era of hardware extensions and motion sensors, a situation that Activision was able to take advantage of, when acquiring <a href="https://www.gamesindustry.biz/articles/sec-filing-shows-activision-paid-100m-for-redoctane">Red Octane</a>, reaching around 13 titles of the IP known as Guitar Hero until 2009, being sold with its flagship item that imitated a Gibson SG.</p>
+<h3 id="prevalence-of-social-gaming">Prevalence of Social Gaming</h3>
+<p>After the success of some local-gaming titles, the decade from 2010 to 2020 took a more competitive or cooperative way in certain cases, guided by a new era of interconnectivity and mobility.</p>
+<p>This reason motivated developers with extraordinary visions to create not only multiplayer, but also online content that maintains high audience rates.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Subset games from 2010 to 2015</span>
+<span class="n">games2010</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">Year_of_Release</span> <span class="o">&gt;</span> <span class="mi">2009</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Year_of_Release</span> <span class="o">&lt;</span> <span class="mi">2016</span><span class="p">)]</span>\
+                <span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&#34;Year_str&#34;</span><span class="p">,</span><span class="s2">&#34;Platform&#34;</span><span class="p">,</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">])</span>
+
+<span class="c1"># Subset games with more sales from 2010 to 2015</span>
+<span class="n">topgames2010</span> <span class="o">=</span> <span class="n">games2010</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&#34;Genre&#34;</span><span class="p">,</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>\
+      <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;Genre&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">topgames2010</span> <span class="o">=</span> <span class="n">topgames2010</span><span class="p">[[</span><span class="s2">&#34;Year_of_Release&#34;</span><span class="p">,</span><span class="s2">&#34;Name&#34;</span><span class="p">,</span><span class="s2">&#34;Platform&#34;</span><span class="p">,</span><span class="s2">&#34;Publisher&#34;</span><span class="p">,</span><span class="s2">&#34;Genre&#34;</span><span class="p">,</span>
+                             <span class="s2">&#34;Global_Sales&#34;</span><span class="p">]]</span>
+
+<span class="c1"># Barplot Base</span>
+<span class="n">bargen10</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">topgames2010</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;Genre&#34;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&#34;h&#34;</span><span class="p">,</span>
+                  <span class="n">text</span><span class="o">=</span><span class="s2">&#34;Name&#34;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;Name&#34;</span><span class="p">:</span><span class="s2">&#34;Title&#34;</span><span class="p">,</span>
+                                       <span class="s2">&#34;Global_Sales&#34;</span><span class="p">:</span><span class="s2">&#34;Millions of units sold&#34;</span><span class="p">},</span>
+                  <span class="n">color</span><span class="o">=</span><span class="s2">&#34;Genre&#34;</span><span class="p">,</span>
+                  <span class="n">color_discrete_sequence</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;#8B58B0&#34;</span><span class="p">,</span><span class="s2">&#34;#58B081&#34;</span><span class="p">,</span><span class="s2">&#34;#B0B058&#34;</span><span class="p">,</span><span class="s2">&#34;#535353&#34;</span><span class="p">,</span>
+                                           <span class="s2">&#34;#B05858&#34;</span><span class="p">,</span><span class="s2">&#34;#58B09E&#34;</span><span class="p">,</span><span class="s2">&#34;#B05890&#34;</span><span class="p">,</span><span class="s2">&#34;#587FB0&#34;</span><span class="p">,</span>
+                                           <span class="s2">&#34;#B05858&#34;</span><span class="p">,</span><span class="s2">&#34;#58B0AA&#34;</span><span class="p">,</span><span class="s2">&#34;#686868&#34;</span><span class="p">,</span><span class="s2">&#34;#C3A149&#34;</span><span class="p">])</span>
+<span class="n">bargen10</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">textposition</span><span class="o">=</span><span class="s1">&#39;inside&#39;</span><span class="p">,</span>
+                       <span class="n">marker_line_color</span><span class="o">=</span><span class="s1">&#39;#404040&#39;</span><span class="p">,</span>
+                       <span class="n">textfont</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;color&#34;</span><span class="p">:</span><span class="s2">&#34;#FFFFFF&#34;</span><span class="p">,</span><span class="s2">&#34;family&#34;</span><span class="p">:</span> <span class="s2">&#34;segoe ui&#34;</span><span class="p">},</span>
+                        <span class="n">marker_line_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">bargen10</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">bargen10</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">bargen10</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_14.png?format=webpage" title="Barchart of 2010s" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/barplot_14.png?format=webpage">
+        
+    </a>
+</p>
+<p>Between 2010 and 2015, the best-selling title was Kinect Adventures for Xbox 360, which had a focus on enhancing multiplayer gameplay and taking advantage of the latest technological innovation of the moment, the Microsoft’s Kinect.</p>
+<p>The second best-selling title at that time was Grand Theft Auto V for PS3, which to this day continues to prevail as one of the online systems with the largest number of users in the industry. Their vision went beyond creating an Open-World game, they had the intention of creating a dynamic online content structure, which provides seasonal content.</p>
+<p>This type of model also motivated Publishers such as Epic Games and Activision, to innovate but in this case not selling games but focusing on aesthetics, where game content is offered as an extra to the online service without having to be paid as a <a href="https://en.wikipedia.org/wiki/Downloadable_content">DLC</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#pubgen</span>
+<span class="c1"># Publishers with more sales in history</span>
+<span class="n">toppubarray</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;Publisher&#34;</span><span class="p">)[</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>\
+                <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&#34;Global_Sales&#34;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span> <span class="kc">False</span><span class="p">)</span>\
+                <span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Genre</span><span class="o">.</span><span class="n">unique</span><span class="p">()))[</span><span class="s2">&#34;Publisher&#34;</span><span class="p">]</span>
+
+<span class="c1"># Extract publisher from raw df</span>
+<span class="n">puball</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Publisher</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">toppubarray</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;Publisher&#34;</span><span class="p">,</span><span class="s2">&#34;Name&#34;</span><span class="p">,</span><span class="s2">&#34;Genre&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+
+<span class="c1"># Add a column of 1s</span>
+<span class="n">puball</span><span class="p">[</span><span class="s2">&#34;counter&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">puball</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Create the pivot table</span>
+<span class="n">puball</span> <span class="o">=</span> <span class="n">puball</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s2">&#34;counter&#34;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="s2">&#34;Publisher&#34;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&#34;Genre&#34;</span><span class="p">,</span>
+                            <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&#34;sum&#34;</span><span class="p">)</span>
+<span class="c1"># Display rounded values</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
+
+
+<span class="n">pubmatrix</span> <span class="o">=</span> <span class="n">ff</span><span class="o">.</span><span class="n">create_annotated_heatmap</span><span class="p">(</span><span class="n">puball</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">puball</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                                  <span class="n">y</span><span class="o">=</span><span class="n">puball</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                                  <span class="n">annotation_text</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">puball</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                                  <span class="n">colorscale</span><span class="o">=</span><span class="s1">&#39;sunset&#39;</span><span class="p">)</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">pubmatrix</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+
+<span class="c1"># Extra annotation to avoid overlapping of layers</span>
+<span class="n">pubmatrix</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">author</span><span class="p">,</span>
+                        <span class="n">align</span><span class="o">=</span> <span class="s2">&#34;right&#34;</span><span class="p">,</span> <span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">xref</span><span class="o">=</span><span class="s2">&#34;paper&#34;</span><span class="p">,</span> <span class="n">yref</span><span class="o">=</span><span class="s2">&#34;paper&#34;</span><span class="p">,</span>
+                         <span class="n">x</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.11</span><span class="p">,</span> <span class="n">showarrow</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;size&#34;</span><span class="p">:</span><span class="n">fontimg</span><span class="o">-</span><span class="mi">1</span><span class="p">})</span>
+<span class="n">pubmatrix</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">pubmatrix</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="center">
+<a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/matrix_15.png?format=webpage" title="Historical Matrix" data-thumbnail="https://raw.githubusercontent.com/robguilarr/videogames-eda/main/videogame_analysis/plots-images/matrix_15.png?format=webpage">
+        
+    </a>
+</p>
+<p>The fact that every day more <i>Free to Play</i> games are announced, does not indicate that this is the exclusive focus companies will have on the industry now on. Beyond this, as we see in the previous graph, each of the most recognized Publishers in history has its own style in exclusive series, despite having titles in many genres.</p>
+<p>Even today, large companies like Microsoft offer services such as Xbox GamePass, with subscriptions that offer big catalogs of games, which even include titles from Independent Developers, supporting their growth through advertising systems, helping to increasingly expand a growing industry.</p>
+<hr>
+<h2 id="summary">Summary</h2>
+<p>The video game industry, beyond having started as a simple experiment at MIT, is a lifestyle for many. Like any market, it has had its moments of glory and its difficulties, but if we can rescue something, it is that the secret of its success lies in the emotional bond it generates with its customers.</p>
+<p>Through this article, my goal is to use data tools to inform the reader about curious events, which perhaps they did not know. I want to thank you for taking the time to read carefully. As a curious detail, there are no <strong>easter eggs</strong> 😉 Good luck!</p>
+<hr>
+<h1 id="additional-information">Additional Information</h1>
+<ul>
+<li>
+<p><b>About the article</b></p>
+<p>This infographic article was adapted to a general public, I hope you enjoyed it. In case you are interested in learning more about the development of the script, I invite you to the contact section in my <b>About Page</b>, and with pleasure we can connect.</p>
+</li>
+<li>
+<p><b>Related Content</b></p>
+<p>As a recommendation I suggest a look at <a href="https://www.visualcapitalist.com/50-years-gaming-history-revenue-stream/">this</a> great article, published by
+Omri Wallach on the Visual Capitalist infographic page, where many interesting
+details about the industry&rsquo;s history are covered.</p>
+</li>
+<li>
+<p><b>Datasets</b></p>
+<ul>
+<li><a href="https://www.kaggle.com/sidtwr/videogames-sales-dataset?select=Video_Games_Sales_as_at_22_Dec_2016.csv">Videogames Dataset</a></li>
+<li><a href="https://www.kaggle.com/andreshg/videogamescompaniesregions?select=video-games-developers.csv">Videogames Developers Regions</a></li>
+<li><a href="https://www.kaggle.com/andreshg/videogamescompaniesregions?select=indie-games-developers.csv">Indie Developers Regions</a></li>
+</ul>
+</li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><b>Footnote:</b> Specific datasets contain information from Publishers, which they were
+named in the source attribute as Developers, but not in all cases. For more details on the
+data transformation, please visit my Github <a href="https://github.com/robguilarr/videogames-eda/blob/main/videogame_analysis/ETL_script.py">repository</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>]]></description>
 </item>
 </channel>
 </rss>

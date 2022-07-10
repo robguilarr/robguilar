@@ -1,23 +1,30 @@
 ---
 #weight: 2
 title: "A/B Testing with Cookie Cats Game"
-date: 2022-02-02T21:57:40+08:00
-lastmod: 2022-02-02T21:57:40+08:00
+date: 2022-03-02T21:57:40+08:00
+lastmod: 2022-03-02T21:57:40+08:00
 draft: false
-author: "Roberto Aguilar"
-authorLink: ""
+
 description: "A/B Testing with Cookie Cats Game"
 images: ["images/posts/ab_testing_cookiecats.jpg"]
 thumbnail: "images/posts/ab_testing_cookiecats.jpg"
 tags: ["A/B Testing", "Python", "Bootstrapping"]
 categories: ["Projects"]
+
+author: "Roberto Aguilar"
+authorLink: "https://www.linkedin.com/in/robguilarr/"
+hiddenFromHomePage: false
+hiddenFromSearch: false
+
 lightgallery: true
 toc: true
 math: true
-resources:
-- name: "featured-image"
-  src: "images/posts/ab_testing_cookiecats.jpg"
+featured-image: "images/posts/ab_testing_cookiecats.jpg"
 featuredImagePreview: "images/posts/ab_testing_cookiecats.jpg"
+seo:
+  images: ["images/posts/ab_testing_cookiecats.jpg"]
+  image: "images/posts/ab_testing_cookiecats.jpg"
+  thumbnailUrl: "images/posts/ab_testing_cookiecats.jpg"
 ---
 
 A lot of things come to mind when we hear the name [Cookie Cats](https://tactilegames.com/cookie-cats/), and probably is not what we think since is hard to associate both words, it’s about meow-sicians (Belle, Ziggy, Smokey, Rita, Berry).

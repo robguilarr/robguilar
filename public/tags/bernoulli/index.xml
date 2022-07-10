@@ -1,15 +1,572 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Bernoulli - Tag - Roberto Aguilar</title>
+        <title>Bernoulli - Tag - Roberto Aguilar Portfolio</title>
         <link>https://robguilar.com/tags/bernoulli/</link>
-        <description>Bernoulli - Tag - Roberto Aguilar</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Tue, 19 Apr 2022 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/tags/bernoulli/" rel="self" type="application/rss+xml" /><item>
+        <description>Bernoulli - Tag - Roberto Aguilar Portfolio</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Thu, 19 May 2022 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/tags/bernoulli/" rel="self" type="application/rss+xml" /><item>
     <title>Leveling Difficulty in Candy Crush Saga</title>
     <link>https://robguilar.com/posts/candy_crush_difficulty/</link>
-    <pubDate>Tue, 19 Apr 2022 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/candy_crush_difficulty/</guid>
-    <description><![CDATA[Today&rsquo;s analysis will lead us to a world fulfilled with divine puzzle adventures at the side of Tiffi and Mr. Toffee, in which we&rsquo;ll glimpse the success rate of more than 6800 peers with eagerness for treats.
-The game is Candy Crush Saga a record-breaking mobile game developed by King, a subsidiary of Activision Blizzard since 2016.
-In terms of its gameplay, this game used to have a total of 816 episodes, until one of the major add-ons was removed (Dreamworld).]]></description>
+    <pubDate>Thu, 19 May 2022 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/candy_crush_difficulty/</guid>
+    <description><![CDATA[<p>Today&rsquo;s analysis will lead us to a world fulfilled with divine puzzle adventures at the side of Tiffi and Mr. Toffee, in which we&rsquo;ll glimpse the success rate of more than 6800 peers with eagerness for treats.</p>
+<p>The game is <a href="https://www.king.com/game/candycrush" target="_blank" rel="noopener noreffer">Candy Crush Saga</a> a record-breaking mobile game developed by King, a subsidiary of Activision Blizzard since 2016.</p>
+<p>In terms of its gameplay, this game used to have a total of 816 episodes, until one of the major add-ons was removed (Dreamworld). The point is that now the game has 771 episodes, in which the player has 5 episodes per world, and, each episode contains contain 15 levels approximately.</p>
+<p>If you are one of the few that haven&rsquo;t played Candy Crush, here&rsquo;s a short intro:</p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>Looking for an interactive experience?<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">🚀 Download the Jupyter Notebook, available <a href="https://nbviewer.org/github/robguilarr/candy_crush_difficulty/blob/master/notebook.ipynb">here</a></div>
+        </div>
+    </div>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/HGLGxnfs_t8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h2 id="-introduction-to-problem">⚠️ Introduction to problem</h2>
+<h3 id="hypothesis">Hypothesis</h3>
+<p>We&rsquo;ll review a game that potentially can lead any developer to many unseen problems, considering the abundance of levels. From the perspective of a customer, there can be several points of view that can emerge and, at the same time, can become unnoticed. That&rsquo;s why our diagnosis will start from 2 potential hypothesis:</p>
+<ol>
+<li>The game is too easy so it became boring over time</li>
+<li>The game is too hard so the players leave it and become frustrated</li>
+</ol>
+<p align="middle"></p>
+<h3 id="potential-stakeholders">Potential Stakeholders</h3>
+<p>None of the past hypotheses are the main intentions of the developers. So they require a Data Analyst to help with this task since the developers are seeing only the backend factors affecting the game, but it&rsquo;s also critical to consider those external ones that affect the experience for the player and the sustainability of this game for the company. Among the main stakeholders could be:</p>
+<ul>
+<li>Level Designers: They work aligned with the rest of the Engineering Team because they still have a backend perspective and their next patch release needs to be aligned with the insights given by the analyst.</li>
+<li>Mobile Designer &amp; User Retention Expert: This is a game whose main income input is in-game purchases because it’s a <a href="https://en.wikipedia.org/wiki/Free-to-play" target="_blank" rel="noopener noreffer">F2P</a>, the main source of income is centered in retain the engagement in the game and keeping the consumers on the platform.</li>
+<li>Gameplay Engineer: They require to start working on the difficulty adjustment patch as soon as they receive the final statement.</li>
+<li>Executive Producer: Besides Candy Crush being an IP with internal producers since it&rsquo;s developed and published by King, the <a href="https://www.activisionblizzard.com/" target="_blank" rel="noopener noreffer">parent company</a> will expect to have an <a href="https://www.forbes.com/advisor/investing/roi-return-on-investment/" target="_blank" rel="noopener noreffer">ROI</a> aligned with their expectations.</li>
+<li>Players' community: They expect to have an endurable and great experience with a brief response in case of disconformities.</li>
+</ul>
+<p><strong>Note:</strong> To facilitate the understanding of the roles of the development team, I invite you to take a look at <strong><a href="https://www.robguilar.com/posts/gamedev_structure/" target="_blank" rel="noopener noreffer">this</a></strong> diagram that I designed.</p>
+<h2 id="-about-the-data">📥 About the data</h2>
+<h3 id="collection-process-and-structure">Collection process and structure</h3>
+<p>Before start let’s import the libraries we’re going to need</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># For visualization</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+
+<span class="c1"># Own layout design library</span>
+<span class="kn">from</span> <span class="nn">vizformatter.standards</span> <span class="kn">import</span> <span class="n">layout_plotly</span>
+
+<span class="c1"># Load layout base objects</span>
+<span class="n">sign</span><span class="p">,</span> <span class="n">layout</span> <span class="o">=</span> <span class="n">layout_plotly</span><span class="p">(</span><span class="n">height</span><span class="o">=</span> <span class="mi">720</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Due to the extensive size of possible episodes to analyze, we’ll limit the analysis to just one of them, which exactly will have data available for 15 levels. To do this, the analysts need to request a sample from the telemetry systems to get data related to the number of attempts per player in each episode level.</p>
+<p>Also, it’s important to mention that in terms of privacy, this analysis requires importing the data with the <em>player_id</em> codified for privacy reasons. Fortunately, in this case, Rasmus Baath, Data Science Lead at <a href="https://castle.io/" target="_blank" rel="noopener noreffer">castle.io</a>, provided us with a Dataset with a sample gathered in 2014.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;datasets/candy_crush.csv&#34;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="left"></p>
+<p>We can see that our data is <strong>structured</strong> and consists of 5 attributes:</p>
+<ul>
+<li><em>player_id</em>: a unique player id</li>
+<li><em>dt</em>: the date</li>
+<li><em>level</em>: the level number within the episode, from 1 to 15</li>
+<li><em>num_attempts</em>: number of level attempts for the player on that level and date</li>
+<li><em>num_success</em>: number of level attempts that resulted in a success/win for the player on that level and date</li>
+</ul>
+<h2 id="-data-preprocessing">🔧 Data Preprocessing</h2>
+<p>Before starting the analysis we need to do some validations on the dataset.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Count and display the number of unique players</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Number of players: </span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">player_id</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="s2">&#34;Number of records: </span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">player_id</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the date range of the data</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Period for which we have data: </span><span class="se">\n</span><span class="s2">From: &#34;</span><span class="p">,</span>
+        <span class="nb">min</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dt</span><span class="p">),</span> <span class="s1">&#39; To:&#39;</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dt</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Number of players: 
+ 6814 
+ Number of records: 
+ 16865 
+
+Period for which we have data: 
+From:  2014-01-01  To: 2014-01-07
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="data-cleaning">Data Cleaning</h3>
+<p>The data doesn’t require any kind of transformation and the data types are aligned with their purpose.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">player_id       object
+dt              object
+level            int64
+num_attempts     int64
+num_success      int64
+dtype: object
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="data-consistency">Data Consistency</h3>
+<p>The usability of the data it’s rather good, since we don’t count with “NAN” (Not A Number), “NA” (Not Available), or “NULL” (an empty set) values.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Function the plot the percentage of missing values</span>
+<span class="k">def</span> <span class="nf">na_counter</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;NaN Values per column:&#34;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">percentage</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">-</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="o">*</span><span class="mi">100</span>
+
+        <span class="c1"># Only return columns with more than 5% of NA values</span>
+        <span class="k">if</span> <span class="n">percentage</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="s2">&#34; has &#34;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">percentage</span><span class="p">))</span> <span class="o">+</span><span class="s2">&#34;</span><span class="si">% o</span><span class="s2">f Null Values&#34;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+<span class="c1"># Execute function</span>
+<span class="n">na_counter</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">NaN Values per column:
+ None
+</code></pre></td></tr></table>
+</div>
+</div><p>By this way, we can conclude that there were not errors in our telemetry logs during the data collection.</p>
+<h3 id="normalization">Normalization</h3>
+<p>Next, we can conclude there were no impossible numbers, except for a player that tried to complete the level 11 in 258 attempts with just 1 success. This is the only registry we exclude since it can be an influential outlier and we don’t rely on more attributes about him to create conclusions.</p>
+<p>Noticing the distribution of the quartiles and comprehending the purpose of our analysis, we can validate that the data is comparable and doesn’t need transformations.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">num_attempts</span> <span class="o">!=</span> <span class="mi">258</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="left"></p>
+<h2 id="-exploratory-analysis--in-game-interpretations">🔍 Exploratory Analysis &amp; In-game interpretations</h2>
+<h3 id="summary-statistics">Summary statistics</h3>
+<p>Excluding the outliers we mentioned before, we got the next conclusions about their distribution and measurement:</p>
+<ul>
+<li><em>player_id</em>
+<ul>
+<li>Interpretation: Not unique and counts with 6814 distinct values which make sense since there is a player with records of multiple levels</li>
+<li>Data type: Nominal</li>
+<li>Measurement type: Discrete/String</li>
+</ul>
+</li>
+<li><em>dt</em>
+<ul>
+<li>Interpretation: Only includes data from January 1st to January 7th of 2014. Also, the analysis won’t consider this as a lapse per player since the records per player are not continuous, so they will be limited as a timestamp</li>
+<li>Data type: Ordinal</li>
+<li>Measurement type: Temporal</li>
+</ul>
+</li>
+<li><em>level</em>
+<ul>
+<li>Interpretation: They&rsquo;re registered as numbers, but for further analysis will be transformed as factors. 50% of the records are equal to or less than level 9</li>
+<li>Data type: Ordinal</li>
+<li>Measurement type: Discrete/String</li>
+</ul>
+</li>
+<li><em>num_attempts</em>
+<ul>
+<li>Interpretation: The registries are consistent, the interquartile range mention that half of the players try between 1 and 7 time to complete each level. Furthermore, there are players with 0 attempts, so we need to evaluate if this is present at level 1, which can explain a problem in retention rate for that episode</li>
+<li>Data type: Numerical</li>
+<li>Measurement type: Integer</li>
+</ul>
+</li>
+<li><em>num_success</em>
+<ul>
+<li>Interpretation: Most of the players are casual gamers because 75% of them complete the level and don’t repeat it</li>
+<li>Data type: Numerical</li>
+<li>Measurement type: Integer</li>
+</ul>
+</li>
+</ul>
+<h3 id="levels-played-in-episode">Levels played in Episode</h3>
+<p>First, let’s examine the number of registries per player.</p>
+<p>This will tell us, from the episode how many levels have each player recorded in the lapse of 7 days.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
+
+<span class="c1"># Group data of amount of levels recorded by player id</span>
+<span class="n">countdf</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;player_id&#39;</span><span class="p">)[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Count the number amount of players according to amount of levels recorded by player</span>
+<span class="n">countdf</span> <span class="o">=</span> <span class="n">countdf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;level&#39;</span><span class="p">)[</span><span class="s1">&#39;player_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Arrange data according to amount of levels</span>
+<span class="n">countdf</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;s&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">countdf</span><span class="o">.</span><span class="n">level</span><span class="p">]</span>
+<span class="n">countdf</span> <span class="o">=</span> <span class="n">countdf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;player_id&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Generate CumSum</span>
+<span class="n">cumulative_per</span> <span class="o">=</span>  <span class="n">countdf</span><span class="o">.</span><span class="n">player_id</span> <span class="o">/</span> <span class="n">countdf</span><span class="o">.</span><span class="n">player_id</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">cumulative_per</span> <span class="o">=</span> <span class="n">cumulative_per</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+
+<span class="c1"># Format new DF</span>
+<span class="n">countdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">countdf</span><span class="p">,</span> <span class="n">cumulative_per</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">countdf</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;levels&#34;</span><span class="p">,</span><span class="s2">&#34;players&#34;</span><span class="p">,</span><span class="s2">&#34;Cum_per&#34;</span><span class="p">]</span>
+
+<span class="c1"># Pareto Chart</span>
+<span class="n">linec</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span><span class="n">specs</span><span class="o">=</span><span class="p">[[{</span><span class="s2">&#34;secondary_y&#34;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}]])</span>
+
+<span class="c1"># Bar plot graphic object</span>
+<span class="n">linec</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">countdf</span><span class="o">.</span><span class="n">levels</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">countdf</span><span class="o">.</span><span class="n">players</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;Players&#34;</span><span class="p">,</span> <span class="n">marker_color</span><span class="o">=</span> <span class="s2">&#34;#007FFF&#34;</span><span class="p">),</span>
+                        <span class="n">secondary_y</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Scatter plot graphic object</span>
+<span class="n">linec</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">countdf</span><span class="o">.</span><span class="n">levels</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">countdf</span><span class="o">.</span><span class="n">Cum_per</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines+markers&#39;</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;Percentage&#34;</span><span class="p">,</span> <span class="n">marker_color</span><span class="o">=</span> <span class="s2">&#34;#FF5A5F&#34;</span><span class="p">),</span>
+                        <span class="n">secondary_y</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Layout</span>
+<span class="n">linec</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span><span class="s1">&#39;Pareto Chart of Number of Levels recorded by player&#39;</span><span class="p">},</span>
+                    <span class="n">xaxis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;title&#34;</span><span class="p">:</span><span class="s2">&#34;Number of Levels recorded&#34;</span><span class="p">},</span>
+                    <span class="n">yaxis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;title&#34;</span><span class="p">:</span><span class="s2">&#34;Unique players&#34;</span><span class="p">})</span>
+<span class="n">linec</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">linec</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="n">tickformat</span> <span class="o">=</span> <span class="s2">&#34;0%&#34;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;Cumulative Percentage&#34;</span><span class="p">,</span> <span class="n">secondary_y</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">linec</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">linec</span><span class="o">.</span><span class="n">add_hline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">line_dash</span> <span class="o">=</span> <span class="s2">&#34;dash&#34;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">secondary_y</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">linec</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">linec</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>From the last Pareto chart, we can deduce that 80% of the 6814 players just count with 3 levels recorded of 15. But, since this was extracted from a random sample, this won’t affect our study.</p>
+<h3 id="difficulty-of-completing-a-level-in-a-single-try">Difficulty of completing a level in a single try</h3>
+<p>There is a combination of easier and challenging levels. Chance and skills make the number of attempts required to pass a level different from one player to another. The presumption is that difficult levels demand more tries on average than easier ones. That is, the harder a level is the lower the likelihood to pass that level in a single try.</p>
+<p>In these circumstances, the <a href="https://en.wikipedia.org/wiki/Bernoulli_process" target="_blank" rel="noopener noreffer">Bernoulli process</a> might be useful. As a <em>Boolean</em> result, there are only two possibilities, win or lose. This can be measured by a single parameter:</p>
+<p>$p_{win} = \frac{\Sigma wins }{\Sigma attempts }$:  the probability of completing the level in a single attempt</p>
+<p>Let&rsquo;s calculate the difficulty $p_{win}$ individually for each of the 15 levels.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">difficulty</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;level&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">attempts</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;num_attempts&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                                    <span class="n">wins</span> <span class="o">=</span><span class="p">(</span><span class="s1">&#39;num_success&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">difficulty</span><span class="p">[</span><span class="s1">&#39;p_win&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">difficulty</span><span class="o">.</span><span class="n">wins</span> <span class="o">/</span> <span class="n">difficulty</span><span class="o">.</span><span class="n">attempts</span>
+<span class="n">difficulty</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="left"></p>
+<p>We have levels where 50% of players finished on the first attempt and others that are the opposite. But let’s visualize it through the episode, to make it clear.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Lineplot of Success Probability per Level</span>
+<span class="n">line1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">difficulty</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;level&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;p_win&#34;</span><span class="p">,</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;Probability of Level Success at first attempt&#34;</span><span class="p">,</span>
+                <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;p_win&#34;</span><span class="p">:</span><span class="s2">&#34;Probability&#34;</span><span class="p">,</span> <span class="s2">&#34;level&#34;</span><span class="p">:</span><span class="s2">&#34;Episode Level&#34;</span><span class="p">})</span>
+<span class="n">line1</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">line1</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">],</span> <span class="n">tick0</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtick</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">line1</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">],</span> <span class="n">tick0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dtick</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">line1</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">yaxis_tickformat</span> <span class="o">=</span> <span class="s2">&#34;0%&#34;</span><span class="p">)</span>
+<span class="n">line1</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">line1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<h3 id="defining-hard-levels">Defining hard levels</h3>
+<p>It’s subjective what we can consider a hard level because not consistently depends on a single factor and for all player profile groups this can be different. So, for the outcomes of this study, we will arbitrarily assume that a difficult level is the one that has a probability to be completed in the first attempt of a 10% ($p_{win} &lt; 10%$).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Lineplot of Success Probability per Level</span>
+<span class="n">line2</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">difficulty</span><span class="o">.</span><span class="n">level</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">difficulty</span><span class="o">.</span><span class="n">p_win</span><span class="p">))</span>
+<span class="n">line2</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span><span class="s1">&#39;Probability of Level Success at first attempt with Hard Levels&#39;</span><span class="p">},</span>
+                    <span class="n">xaxis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;title&#34;</span><span class="p">:</span><span class="s2">&#34;Episode Level&#34;</span><span class="p">},</span>
+                    <span class="n">yaxis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;title&#34;</span><span class="p">:</span><span class="s2">&#34;Probability&#34;</span><span class="p">})</span>
+<span class="n">line2</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">line2</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">],</span> <span class="n">tick0</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtick</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">line2</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">yaxis_tickformat</span> <span class="o">=</span> <span class="s2">&#34;0%&#34;</span><span class="p">)</span>
+<span class="n">line2</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">line2</span><span class="o">.</span><span class="n">add_hrect</span><span class="p">(</span><span class="n">y0</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fillcolor</span><span class="o">=</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">line2</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">line2</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>From our predefined threshold, we see that the level digit is not aligned with its difficulty. While we have hard levels as 5, 8, 9, and 15; others like 13 and 15 are unleveraged and need to be rebalanced by the level designers.</p>
+<h3 id="measuring-the-uncertainty-of-success">Measuring the uncertainty of success</h3>
+<p>We should always report some calculation of the uncertainty of any provided numbers. Simply, because another sample will give us little different values for the difficulties measured by level.</p>
+<p>Here we will simply use the <a href="https://en.wikipedia.org/wiki/Standard_error" target="_blank" rel="noopener noreffer">Standard error</a> as a measure of uncertainty:</p>
+<p>$\sigma_{error} \approx \frac{\sigma_{sample}}{\sqrt{n}}$</p>
+<p>Here n is the number of datapoints and $\sigma_{sample}$ is the sample standard deviation. For a Bernoulli process, the sample standard deviation is:</p>
+<p>$\sigma_{sample} = \sqrt{p_{win}(1-p_{win})}$</p>
+<p>Therefore, we can calculate the standard error like this:</p>
+<p>$\sigma_{error} \approx \sqrt{\frac{p_{win}(1-p_{win})}{n} }$</p>
+<p>Consider that every level has been played <em>n</em> number of times and we have their difficulty $p_{win}$. Now, let&rsquo;s calculate the standard error for each level of this episode.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Computing the standard error of p_win for each level</span>
+<span class="n">difficulty</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">difficulty</span><span class="o">.</span><span class="n">p_win</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">difficulty</span><span class="o">.</span><span class="n">p_win</span><span class="p">)</span> <span class="o">/</span> <span class="n">difficulty</span><span class="o">.</span><span class="n">attempts</span><span class="p">)</span>
+<span class="n">difficulty</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="left"></p>
+<p>We have a measure of uncertainty for each levels' difficulty. As always, this would be more appealing if we plot it.</p>
+<p>Let&rsquo;s use <em>error bars</em> to show this uncertainty in the plot. We will set the height of the error bars to one standard error. The upper limit and the lower limit of each error bar should be defined by:</p>
+<p>$p_{win}  \pm \sigma_{error}$</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Lineplot of Success Probability per Level</span>
+<span class="n">line3</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">difficulty</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;level&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;p_win&#34;</span><span class="p">,</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;Probability of Level Success at first attempt with Error Bars&#34;</span><span class="p">,</span>
+                <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;p_win&#34;</span><span class="p">:</span><span class="s2">&#34;Probability&#34;</span><span class="p">,</span> <span class="s2">&#34;level&#34;</span><span class="p">:</span><span class="s2">&#34;Episode Level&#34;</span><span class="p">},</span>
+                <span class="n">error_y</span><span class="o">=</span><span class="s2">&#34;error&#34;</span><span class="p">)</span>
+<span class="n">line3</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">line3</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">16</span><span class="p">],</span> <span class="n">tick0</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtick</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">line3</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.65</span><span class="p">],</span> <span class="n">tick0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dtick</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">line3</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">yaxis_tickformat</span> <span class="o">=</span> <span class="s2">&#34;0%&#34;</span><span class="p">)</span>
+<span class="n">line3</span><span class="o">.</span><span class="n">add_hrect</span><span class="p">(</span><span class="n">y0</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fillcolor</span><span class="o">=</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">line3</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">line3</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>Looks like the difficulty estimates a very exact. Furthermore, for the hardest levels, the measure is even more precise, and that’s a good point because from this we can make valid conclusions based on that levels.</p>
+<p>As a curious fact, also we can measure the probability of completing all the levels of that episode in a single attempt, just for fun.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># The probability of completing the episode without losing a single time</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">difficulty</span><span class="o">.</span><span class="n">p_win</span><span class="p">:</span>
+    <span class="n">prob</span> <span class="o">=</span> <span class="n">prob</span><span class="o">*</span><span class="n">i</span>
+
+<span class="c1"># Printing it out</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Probability of Success in one single attempt </span><span class="se">\n</span><span class="s2">for whole episode: &#34;</span><span class="p">,</span> <span class="n">prob</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&#34;%&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Probability of Success in one single attempt 
+for whole episode:  9.889123140886191e-10 %
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="-final-thoughts--takeaways">🗒️ Final thoughts &amp; takeaways</h2>
+<p><strong>What can the stakeholders understand and take into consideration?</strong></p>
+<p>From the sample extracted we conclude that just 33% of the levels are considered of high difficulty, which it’s acceptable since each episode counts with 15 levels, so by now the level designer should not worry about leveling the difficulty.</p>
+<p><strong>What could the stakeholders do to take action ?</strong></p>
+<p>As a suggestion, in the case that the Publisher decides to invest more in in-game mechanics, a solution for a long-time and reactive engagement could be the use of Machine Learning to generate a <a href="https://en.wikipedia.org/wiki/Dynamic_game_difficulty_balancing" target="_blank" rel="noopener noreffer">DGDB</a> as some competitors have adapted in IPs like EA Sports FIFA, Madden NFL or the “AI Director” of Left 4 Dead.</p>
+<p><strong>What can stakeholders keep working on?</strong></p>
+<p>The way their level difficulty design work today is precise since our first hypothesis was that the game wasn’t too linear to unengaged the player and churn as consequence. Because as we saw, the game has drastic variations in the levels 5-6 and 8-10, which can help to avoid frustrations in players.</p>
+<hr>
+<h2 id="ℹ-additional-information">ℹ️ Additional Information</h2>
+<ul>
+<li><strong>About the article</strong></li>
+</ul>
+<p>Based on the dataset provided, we will not proceed with a retention analysis as mentioned above. Because the data is from a random episode, if this were episode one, this type of analysis could be useful as it can explain the pool of players who log in, created an account, or install the game but never start playing, causing traction problems. Therefore, this will be left as a limitation to the scope of the analysis.</p>
+<p>With acknowledgment to Rasmus Baraath for guiding this project. Which was developed for sharing knowledge while using cited sources of the material used.</p>
+<p>Thanks to you for reading as well.</p>
+<ul>
+<li><strong>Related Content</strong></li>
+</ul>
+<p>— Rasmus Baath personal <a href="https://www.sumsar.net/" target="_blank" rel="noopener noreffer">blog</a></p>
+<p>— Anders Drachen personal <a href="https://andersdrachen.com/" target="_blank" rel="noopener noreffer">website</a></p>
+<ul>
+<li><strong>Datasets</strong></li>
+</ul>
+<p>This project was developed with a dataset provided by Rasmus Baraath, which also can be downloaded at my <a href="https://github.com/robguilarr/candy_crush_difficulty/tree/master/datasets">Github</a> repository.</p>
+]]></description>
 </item>
 </channel>
 </rss>

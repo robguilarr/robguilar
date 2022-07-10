@@ -6,14 +6,15 @@ defaultContentLanguage = "en"
 languageCode = "en"
 
 # Website title
-title = "Roberto Aguilar"
+title = "Roberto Aguilar Portfolio"
 
 # Change the default theme to be use
 themesDir = "themes"
 theme = "FeelIt"
 
 # Whether to use robots.txt
-enableRobotsTXT = true
+# False -> Avoid Blocking Twitter from getting data of thumbnails
+enableRobotsTXT = false 
 
 # Whether to use git commit log
 enableGitInfo = true
@@ -119,6 +120,16 @@ paginate = 20
     # service-worker version
     version = "1.0.1"
 
+  #-------------------------------------------------------------------------
+  # oEmbed config
+  #-------------------------------------------------------------------------
+  [params.oembed]
+    # Privacy config (https://gohugo.io/about/hugo-and-gdpr/)
+    privacy = false
+
+    [params.oembed.twitter]
+      enableDNT = false
+
   #-----------------------------------------------------------------------
   # ICON Configuration
   #-----------------------------------------------------------------------
@@ -171,7 +182,7 @@ paginate = 20
     linkToMarkdown = true
 
     # Whether to show the full text content in RSS
-    rssFullText = false
+    rssFullText = true
 
     #---------------------------------------------------------------------
     # Third-party library config
@@ -257,7 +268,7 @@ paginate = 20
       Facebook = true
       Linkedin = true
       Whatsapp = false
-      Pinterest = true
+      Pinterest = false
       HackerNews = false
       Reddit = true
       Flipboard = false
@@ -752,11 +763,11 @@ paginate = 20
 
   # Privacy of twitter
   [privacy.twitter]
-    enableDNT = true
+    enableDNT = false
 
   # Privacy of youtube
   [privacy.youtube]
-    privacyEnhanced = true
+    privacyEnhanced = false
 
 
 
@@ -777,7 +788,7 @@ paginate = 20
 [outputFormats.MarkDown]
   mediaType = "text/plain"
   isPlainText = true
-  isHTML = false
+  isHTML = true
 
 
 
@@ -786,7 +797,7 @@ paginate = 20
 #-------------------------------------------------------------------------
 [outputs]
   home = ["HTML", "RSS", "JSON"]
-  page = ["HTML", "MarkDown"]
+  page = ["HTML", "RSS", "MarkDown"]
   section = ["HTML", "RSS"]
   taxonomy = ["HTML", "RSS"]
   taxonomyTerm = ["HTML"]

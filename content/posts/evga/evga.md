@@ -1,22 +1,30 @@
 ---
+#weight: 2
 title: "Video Games History explained with Pandas"
-date: 2021-11-01T21:57:40+08:00
-lastmod: 2021-11-01T21:57:40+08:00
+date: 2021-12-01T21:57:40+08:00
+lastmod: 2021-12-01T21:57:40+08:00
 draft: false
-author: "Roberto Aguilar"
-authorLink: ""
+
 description: "Video Games History explained with Pandas"
 images: ["images/posts/evga.jpg"]
 thumbnail: "images/posts/evga.jpg"
 tags: ["Exploratory Analysis", "Python"]
 categories: ["Projects"]
+
+author: "Roberto Aguilar"
+authorLink: "https://www.linkedin.com/in/robguilarr/"
+hiddenFromHomePage: false
+hiddenFromSearch: false
+
 lightgallery: true
 toc: true
 math: false
-resources:
-- name: "featured-image"
-  src: "images/posts/evga.jpg"
+featured-image: "images/posts/evga.jpg"
 featuredImagePreview: "images/posts/evga.jpg"
+seo:
+  images: ["images/posts/evga.jpg"]
+  image: "images/posts/evga.jpg"
+  thumbnailUrl: "images/posts/evga.jpg"
 ---
 
 The industry of video games revenues is reaching the $173.7 billion in value, with around 2.5 billion users enjoying them worldwide, with a forecasted value of $314.40 billion by 2026 according to Mordor Intelligence.

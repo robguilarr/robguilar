@@ -1,14 +1,744 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>t-test - Tag - Roberto Aguilar</title>
+        <title>t-test - Tag - Roberto Aguilar Portfolio</title>
         <link>https://robguilar.com/tags/t-test/</link>
-        <description>t-test - Tag - Roberto Aguilar</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Sun, 22 May 2022 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/tags/t-test/" rel="self" type="application/rss+xml" /><item>
+        <description>t-test - Tag - Roberto Aguilar Portfolio</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Wed, 22 Jun 2022 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/tags/t-test/" rel="self" type="application/rss+xml" /><item>
     <title>Inspecting Control Mechanics using T-Tests on Fallout New Vegas</title>
     <link>https://robguilar.com/posts/control_mechanics_fallout/</link>
-    <pubDate>Sun, 22 May 2022 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/control_mechanics_fallout/</guid>
-    <description><![CDATA[The plot of the sequel of Fallout 3 takes context in the year 2281, 4 years after the first escape from Vault 101, within a post-apocalyptic world after the Great War.
-This RPG has an open world inspired by cities such as Nevada, California, Arizona, and Utah, allowing users to have a large number of places to explore and a world with NPCs to interact with, ideal for developing behavioral and exploratory analysis.]]></description>
+    <pubDate>Wed, 22 Jun 2022 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/control_mechanics_fallout/</guid>
+    <description><![CDATA[<p>The plot of the sequel of Fallout 3 takes context in the year 2281, 4 years after the first escape from Vault 101, within a post-apocalyptic world after the Great War.</p>
+<p>This RPG has an open world inspired by cities such as Nevada, California, Arizona, and Utah, allowing users to have a large number of places to explore and a world with NPCs to interact with, ideal for developing behavioral and exploratory analysis.</p>
+<p>After its launch in 2010, like many titles of this IP, they have been exposed to mods developed by their community, some of them for Serious-Game purposes and others as non-Serious games. According to Anders Drachen et al. (2021, p. 5), it&rsquo;s &ldquo;a term used to describe games developed for purposes other than entertainment, such as training, promoting health, citizen science, or psychological experiments&rdquo;.</p>
+<p>In this case, the data was obtained from a mod developed at the PLAIT (Playable Interactive Technologies) by Northeastern University. The mod is called VPAL: Virtual Personality Assessment Lab, and also can be accessed to the raw telemetry data in the Game Data Science <a href="https://global.oup.com/academic/product/game-data-science-9780192897879?cc=cr&amp;lang=en&amp;" target="_blank" rel="noopener noreffer">book</a>.</p>
+<p>It’s important to keep in mind that the game has been already released, so we&rsquo;ll require to develop a post-production analysis with a help of a mod, so the main conclusions will be focused on a fictional patch improvement made by the Programming team.</p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>Looking for an interactive experience?<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">🚀 Download the Jupyter Notebook, available <a href="https://nbviewer.org/github/robguilarr/control_mechanics_fallout/blob/master/notebook.ipynb">here</a></div>
+        </div>
+    </div>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/cIzOttk6Dv4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h2 id="-introduction-to-problem">⚠️ Introduction to problem</h2>
+<h3 id="hypothesis">Hypothesis</h3>
+<p>The Producers are concerned for some comments about a change made in the <strong>control mechanics</strong> since the last patch was released.</p>
+<p>The UX research team has communicated to them that the QA testers think that some of them found the quest&rsquo;s difficulty too easy and others very leveraged, especially for veteran players of the saga, reason why we can start inferring about changes made in the gameplay experience, which the major changes made were on the mechanics.</p>
+<p>The problem is that the QA team is very diversified between experienced and non-experienced testers, so it won’t be easy to make conclusions. For this reason, we need to look for statistical evidence to validate a hypothesis based on the profile of those testers. Now let’s establish the main hypothesis for the analysis:</p>
+<ol>
+<li>Experienced players/testers will have completed <strong>more</strong> quests and more kills (the usual), the mechanical changes were not significant.</li>
+<li>Inexperienced players/testers will have completed <strong>more or an equal</strong> quantity of quests and kills (not usual), the mechanical changes were significant.</li>
+</ol>
+<p>From all the KPIs that you will see next, it’s important to mention that we’ll bring kills as a secondary validation measure since Fallout it’s a survival-RPG-like where you have to kill radioactive NPCs in almost every quest. We won’t count with a difficulty category for each player, so the kills attribute will be one of the few not affected by the difficulty categorization, also because it’s an end measure, not a progressive one, like shots for example.</p>
+<p align="middle"></p>
+<h3 id="potential-stakeholders">Potential Stakeholders</h3>
+<p>There is an unconformity in the changes made in the control mechanics, the team requires the assistance of a Data Analyst to perform a test and validate if the QA tester&rsquo;s statements make sense. On the other side of the table we have some stakeholders on the development and testing side:</p>
+<ul>
+<li>Gameplay Engineers: They need to know if the control mechanics are affecting the interactions of the NPCs with the progress of the players since the release of the last patch.</li>
+<li>Level Designer: As the whole RPG is designed as quests on an isolated map, they need to know if these are balanced in the sequence or chapter located, or if there is a significant change in the patch that can explain the unconformity.</li>
+<li>QA Testers: They are a key source of information while communicating the QA statement to the UX Designer.</li>
+<li>UX Designer: They are working side by side with the consumer insights team and the testers to find a clear current situation and take immediate actions if required, by giving the final report to the level designers and the programmers.</li>
+</ul>
+<p><strong>Note:</strong> To facilitate the understanding of the roles of the development team, I invite you to take a look at <strong><a href="https://www.robguilar.com/posts/gamedev_structure/" target="_blank" rel="noopener noreffer">this</a></strong> diagram that I designed.</p>
+<h2 id="-about-the-data--preprocessing-reference">📥 About the data &amp; preprocessing reference</h2>
+<p>In a summary, the data is a complete chaos allocated in a repository of text files, so this will require a pipeline to be transformed, cleaned, and get ready to use.</p>
+<p>The purpose of data cleaning is to make sure the data is correct. It is rarely the case that once data is collected through the game and transferred to the server, it is automatically ready for analysis.</p>
+<h3 id="collection-process-and-structure">Collection process and structure</h3>
+<p>Before start let’s import the libraries we’re going to need for the preprocess.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Visuals</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.figure_factory</span> <span class="k">as</span> <span class="nn">ff</span>
+
+<span class="c1"># Own package</span>
+<span class="kn">from</span> <span class="nn">vizformatter.standards</span> <span class="kn">import</span> <span class="n">layout_plotly</span>
+
+<span class="c1"># Load layout base objects</span>
+<span class="n">sign</span><span class="p">,</span> <span class="n">layout</span> <span class="o">=</span> <span class="n">layout_plotly</span><span class="p">(</span><span class="n">height</span><span class="o">=</span> <span class="mi">720</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The instrumentation of the data and storage of all game actions within the game were done through TXT files that are stored on the client side per player, with an unstructured format. For each one, we created a file named [participantNumber].txt, which includes all session data for that participant. If the participant has more than one session, a folder is created, and multiple files are created for that participant.</p>
+<p>The transfer process can be made by using a product like Databricks, to run an entire pipeline over a PySpark Notebook. As a demonstration we made an example in a Jupyter notebook, where we got several methods to target, extract, process singles labeled activities, and merge into activity-designated CSVs, which were originally parsed from TXT files by player record. In reality the best practices show that the data can be in a JSON file, stored in a MongoDB, or an SQL database.</p>
+<p>The collection was an extensive process so you can access the simulation right <strong><a href="https://github.com/robguilarr/parse_fallout_data/blob/master/parse_actions_notebook.ipynb" target="_blank" rel="noopener noreffer">here</a></strong> with a complete explanation of the bad practices made and how we tackled them. Also, it’s important to mention that the data was parsed into a single data frame with counted activities per player. After this, we applied a Likert scale to an experience metric according to Anders Drachen et al. (2021), which helped us to separate the data into Experienced and Inexperienced players.</p>
+<p>First let’s check our data.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Inexperienced group of players dataframe</span>
+<span class="n">InExperienced</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;data/ExpNeg_GameData.csv&#34;</span><span class="p">)</span>
+
+<span class="c1"># Experienced group of players dataframe</span>
+<span class="n">Experienced</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;data/ExpPos_GameData.csv&#34;</span><span class="p">)</span>
+
+<span class="n">Experienced</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="left"></p>
+<p>Both data frames have 17 attributes and, the Experienced data have 28 rows, while the Inexperienced data has 42 rows. In our case the attributes in use will be “Quest Completed” and “Kills” will be the variables to test.</p>
+<ul>
+<li><em>Quest Completed</em>: Integer number counting the number of quests the tester completed during the session</li>
+<li><em>Kills</em>: Number of kills registered by the player during the session</li>
+</ul>
+<h2 id="-data-preprocessing">🔧 Data Preprocessing</h2>
+<p>Before moving to our analysis it’s important to validate that our data is usable in order to make correct conclusions for the analysis.</p>
+<h3 id="data-cleaning--consistency">Data Cleaning &amp; Consistency</h3>
+<p>First let’s validate the data types and the ranges for both groups.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">InExperienced</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s2">&#34;User ID&#34;</span><span class="p">,</span><span class="s2">&#34;Kills&#34;</span><span class="p">,</span> <span class="s2">&#34;Quest Completed&#34;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="left"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">Experienced</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s2">&#34;User ID&#34;</span><span class="p">,</span><span class="s2">&#34;Kills&#34;</span><span class="p">,</span> <span class="s2">&#34;Quest Completed&#34;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="left"></p>
+<p>As we saw there is no problems linked to the data types, because in the data parsing noted above we took care of it. And from the ranges we infer that the maximum number of Kills registered is from an Inexperienced player with 44, but at the same time 75% of the Experienced players register a higher number in comparison to the Inexperienced ones, the same case apply to the number of Quests Completed.</p>
+<h2 id="-inferential-analysis--in-game-interpretations">🔍 Inferential Analysis &amp; In-game interpretations</h2>
+<h3 id="descriptive-statistics">Descriptive statistics</h3>
+<p>Now, we got the next conclusions about their distribution and measurement:</p>
+<ul>
+<li>User ID
+<ul>
+<li>Interpretation: Unique and counts with 70 distinct values which make sense since there is a player associated to each one of the data-row parsed</li>
+<li>Data type: Nominal transformed to numerical</li>
+<li>Measurement type: Discrete/String transformed to integer</li>
+</ul>
+</li>
+<li>Quest Completed
+<ul>
+<li>Interpretation: Not unique and counts the quests registries per player, and at first sight make sense that the Experienced players show higher numbers than the Inexperienced ones</li>
+<li>Data type: Numerical</li>
+<li>Measurement type: Integer</li>
+</ul>
+</li>
+<li>Kills
+<ul>
+<li>Interpretation: Not unique and counts the quests registries per player, and at first sight make sense that the Experienced players show higher numbers than the Inexperienced ones</li>
+<li>Data type: Numerical</li>
+<li>Measurement type: Integer</li>
+</ul>
+</li>
+</ul>
+<p>For the next test plots, we will plot a simulated graph showing how fitted is the actual distribution to an ideal normal curve from the same data, that’s why we are going to create two functions, one for the new distribution calculation from the median and another to plot it over the original data.</p>
+<p>This will be our general approach because this plot will also let us see more clearly the existence of skewing elements.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># Generate simulated-std based on the median</span>
+<span class="k">def</span> <span class="nf">median_std</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+     <span class="c1"># Number of observations</span>
+     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+     <span class="c1"># Median of the data</span>
+     <span class="n">median</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+     <span class="c1"># Square deviations</span>
+     <span class="n">deviations</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span> <span class="o">-</span> <span class="n">median</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+     <span class="c1"># Variance</span>
+     <span class="n">variance</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">deviations</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+     <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
+
+<span class="c1"># Function to generate a plot of a vector to compare it vs a fitted normal distribution</span>
+<span class="k">def</span> <span class="nf">normalplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">var_name</span><span class="p">):</span>
+    <span class="c1"># Generate subset of dataframe</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span>
+
+    <span class="c1"># Max and min from variable</span>
+    <span class="n">max_var</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
+    <span class="n">min_var</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
+
+    <span class="c1"># Create a random array of normally distributed number with the same parameter as the original data</span>
+    <span class="n">y_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">scale</span><span class="o">=</span> <span class="n">median_std</span><span class="p">(</span><span class="n">variable</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">variable</span><span class="p">))</span>
+
+    <span class="c1"># Max and min from simulated curve</span>
+    <span class="n">max_fit</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">y_fit</span><span class="p">)</span>
+    <span class="n">min_fit</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">y_fit</span><span class="p">)</span>
+
+    <span class="c1"># Group data together</span>
+    <span class="n">hist_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">variable</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">]</span>
+    <span class="n">group_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">var_name</span><span class="p">,</span> <span class="s1">&#39;Median-Simulated &lt;br&gt; Normal Curve&#39;</span><span class="p">]</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;#007FFF&#34;</span><span class="p">,</span><span class="s2">&#34;#FF5A5F&#34;</span><span class="p">]</span>
+
+    <span class="c1"># Create distplot with custom bin_size</span>
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">ff</span><span class="o">.</span><span class="n">create_distplot</span><span class="p">(</span><span class="n">hist_data</span><span class="p">,</span> <span class="n">group_labels</span><span class="p">,</span> <span class="n">bin_size</span><span class="o">=</span><span class="p">[</span><span class="mf">0.75</span><span class="p">,</span><span class="mf">0.75</span><span class="p">],</span>
+                                <span class="n">show_rug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_hist</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span> <span class="n">colors</span><span class="p">)</span>
+
+    <span class="c1"># Update layout</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span><span class="s1">&#39;Density Plot of &#39;</span><span class="o">+</span><span class="n">var_name</span><span class="o">+</span><span class="s1">&#39; vs a Normal Distribution&#39;</span><span class="p">},</span>
+                        <span class="n">xaxis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;title&#34;</span><span class="p">:</span><span class="n">var_name</span><span class="p">},</span>
+                        <span class="n">yaxis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;title&#34;</span><span class="p">:</span><span class="s2">&#34;Density&#34;</span><span class="p">})</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="n">min_var</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_var</span><span class="p">,</span><span class="n">max_fit</span><span class="p">)])</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">plot</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="-two-sample-t-test-for-quests-completed-by-experience-group">⚔️ Two Sample T-Test for Quests Completed by Experience Group</h3>
+<p>A two sample t-test is used to test whether there is a significant difference between <strong>two groups</strong> means, where the hypothesis will be:</p>
+<ul>
+<li>$H_0: \mu_{ex} = \mu_{inex}$ (population mean of &ldquo;Experienced Players Completed Quests&rdquo; is equal to &ldquo;Inexperienced Players Completed Quests&rdquo;)</li>
+<li>$H_1: \mu_{ex} \ne \mu_{inex}$ (population mean of &ldquo;Experienced Players Completed Quests&rdquo; is different from &ldquo;Inexperienced Players Completed Quests&rdquo;)</li>
+</ul>
+<p>This test makes the following assumptions:</p>
+<ul>
+<li>The two samples data groups are independent</li>
+<li>The data elements in respective groups follow any normal distribution</li>
+<li>The given two samples have similar variances (homogeneity assumption)</li>
+</ul>
+<p>In this case, both groups are independent since none of them provide information about the other and vice versa.</p>
+<p><strong>Normality Check</strong></p>
+<p>First let&rsquo;s visualize the distribution for the Experienced players.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">expQuestnorm</span> <span class="o">=</span> <span class="n">normalplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span> <span class="n">Experienced</span><span class="p">,</span> <span class="n">var_name</span><span class="o">=</span> <span class="s1">&#39;Quest Completed&#39;</span><span class="p">)</span>
+<span class="n">expQuestnorm</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span><span class="s1">&#39;Density Plot of Quest Completed by Experienced Players&#39;</span><span class="p">})</span>
+<span class="n">expQuestnorm</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>And the distribution for Inexperienced players.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">inQuestnorm</span> <span class="o">=</span> <span class="n">normalplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span> <span class="n">InExperienced</span><span class="p">,</span> <span class="n">var_name</span><span class="o">=</span> <span class="s1">&#39;Quest Completed&#39;</span><span class="p">)</span>
+<span class="n">inQuestnorm</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span><span class="s1">&#39;Density Plot of Quest Completed by Inexperienced Players&#39;</span><span class="p">})</span>
+<span class="n">inQuestnorm</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>Notice that the data is normal for both cases and in terms of the quantity of &ldquo;quests completed&rdquo; by the experienced player&rsquo;s data is slightly higher than the inexperienced ones.</p>
+<p><strong>Variance Homogeneity</strong></p>
+<p>First let&rsquo;s see the variance for each group of testers.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Print the variance of both data groups</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Quest Completed variance for Experienced players: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">Experienced</span><span class="p">[</span><span class="s2">&#34;Quest Completed&#34;</span><span class="p">]))</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;Quest Completed variance for Inexperienced players: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">InExperienced</span><span class="p">[</span><span class="s2">&#34;Quest Completed&#34;</span><span class="p">]))</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Quest Completed variance for Experienced players: 3.25
+ Quest Completed variance for Inexperienced players: 2.283446712018141
+</code></pre></td></tr></table>
+</div>
+</div><p>In the good practice the correct way to do this validation is by a Homogeneity Test, so let&rsquo;s make a <strong>Barlett</strong> test since our data is normal (for non-normal is preferred <strong>Levene&rsquo;s</strong>). So let’s start from the next hypothesis.</p>
+<ul>
+<li>$H_0: \sigma^2_{ex} = \sigma^2_{inex}$ (The variances are equal across in both groups)</li>
+<li>$H_1: \sigma^2_{ex} \ne \sigma^2_{inex}$ (The variances are not equal across in both groups)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Import the bartlett method</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">bartlett</span>
+
+<span class="c1"># Bartlett&#39;s test in Python with SciPy:</span>
+<span class="n">bartlett</span><span class="p">(</span><span class="n">Experienced</span><span class="p">[</span><span class="s2">&#34;Quest Completed&#34;</span><span class="p">],</span> <span class="n">InExperienced</span><span class="p">[</span><span class="s2">&#34;Quest Completed&#34;</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">BartlettResult(statistic=1.0905002879637673, pvalue=0.29636038782360125)
+</code></pre></td></tr></table>
+</div>
+</div><p>Our P-value is above 0.05, so we have enough statistical evidence to accept the hypothesis that the variances are equal between the Experienced testers and the Inexperienced players.</p>
+<p>Now that we checked that we have normal data and homogeneity in our variances, let&rsquo;s continue with our <strong>two sample t-test</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Import the stats module</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+
+<span class="c1"># Perform the two sample t-test with equal variances</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">Experienced</span><span class="p">[</span><span class="s2">&#34;Quest Completed&#34;</span><span class="p">],</span> <span class="n">b</span><span class="o">=</span><span class="n">InExperienced</span><span class="p">[</span><span class="s2">&#34;Quest Completed&#34;</span><span class="p">],</span> <span class="n">equal_var</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Ttest_indResult(statistic=3.8261587063084392, pvalue=0.0002855175095244425)
+</code></pre></td></tr></table>
+</div>
+</div><p>We have enough statistical evidence to reject the null hypothesis, the population mean of Quests Completed by &ldquo;Experienced Players&rdquo; is significantly different from the &ldquo;Inexperienced Players&rdquo;.</p>
+<p>As a supposition, we can say that the difficulty selected by the player can be a factor affecting the Completion of the Quest. Considering that the difficulty levels in Fallout New Vegas can vary by two variables which are &ldquo;Damage taken from Enemy&rdquo; and &ldquo;Damage dealt with Enemy&rdquo;, without mentioning the Hardcore mode which was excluded from the samples.</p>
+<p>The difficulty is an important factor to consider since an experienced player can know what is the level of preference, while for an inexperienced player is a &ldquo;try and fail situation&rdquo;, so for a future study it’s important to reconsider how this variable would affect the results.</p>
+<h3 id="-two-sample-mann-whitney-test-for-kills-by-experience-group">💀 Two Sample Mann-Whitney Test for Kills by Experience Group</h3>
+<p>A two sample <a href="https://www.statstutor.ac.uk/resources/uploaded/mannwhitney.pdf" target="_blank" rel="noopener noreffer">Mann-Whitney U</a> test is used to test whether there is a significant difference between <strong>two groups</strong> distributions by comparing medians, where the hypothesis will be:</p>
+<ul>
+<li>$H_0: P(x_{ex} &gt; x_{inex}) = 0.5$ (population median of &ldquo;Experienced Players Kills&rdquo; is equal to &ldquo;Inexperienced Players Kills&rdquo;, same distribution)</li>
+<li>$H_1: P(x_{ex} &gt; x_{inex}) \ne 0.5$ (population median of &ldquo;Experienced Players Kills&rdquo; is different from &ldquo;Inexperienced Players Kills&rdquo;, different distribution)</li>
+</ul>
+<p>In other words, the null hypothesis is that, “the probability that a <strong>randomly drawn member</strong> of the first population will exceed a member of the second population, is 50%”.</p>
+<p>This test makes the following assumptions:</p>
+<ul>
+<li>The two samples data groups are independent</li>
+<li>The data elements in respective groups are continuous and not-normal</li>
+</ul>
+<p>It&rsquo;s the equivalent of a two sample t-test without the normality assumption. Also, both groups are independent since none of them provide information about the other and vice-versa.</p>
+<p><strong>Normality Check</strong></p>
+<p>First let&rsquo;s visualize the distribution for the Experienced players.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">expKillsnorm</span> <span class="o">=</span> <span class="n">normalplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span> <span class="n">Experienced</span><span class="p">,</span> <span class="n">var_name</span><span class="o">=</span> <span class="s1">&#39;Kills&#39;</span><span class="p">)</span>
+<span class="n">expKillsnorm</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span><span class="s1">&#39;Density Plot of Kills by Experienced Players&#39;</span><span class="p">})</span>
+<span class="n">expKillsnorm</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>And for Inexperienced players.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">inKillsnorm</span> <span class="o">=</span> <span class="n">normalplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span> <span class="n">InExperienced</span><span class="p">,</span> <span class="n">var_name</span><span class="o">=</span> <span class="s1">&#39;Kills&#39;</span><span class="p">)</span>
+<span class="n">inKillsnorm</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span><span class="s1">&#39;Density Plot of Kills by Inexperienced Players&#39;</span><span class="p">})</span>
+<span class="n">inKillsnorm</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>Both groups show a clear violation of the normality principle, where the data is highly skewed to the right.</p>
+<p>For the Inexperienced players, despite considering excluding the players with 35 or more kills registered, it wouldn&rsquo;t be significant, it will still remain skewed to the right.</p>
+<p>In cases where our data don&rsquo;t have a normal distribution, we need to consider <strong>non-parametric</strong> alternatives to make assumptions. That is the main reason why we are going to use a <strong>Mann Whitney U Test</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">mannwhitneyu</span>
+
+<span class="k">def</span> <span class="nf">mannwhitneyu_est</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+    <span class="n">statistic</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">mannwhitneyu</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s1">&#39;two-sided&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">p</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">mannwhitneyu_est</span><span class="p">(</span><span class="n">Experienced</span><span class="o">.</span><span class="n">Kills</span><span class="p">,</span> <span class="n">InExperienced</span><span class="o">.</span><span class="n">Kills</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">0.0020247429887724775
+</code></pre></td></tr></table>
+</div>
+</div><p>Finally we reject the null hypothesis, since our p-value is less than 0.05 with a 95% of confidence. This means that population median of &ldquo;Experienced Player Kills&rdquo; is different from &ldquo;Inexperienced Player Kills&rdquo;, the same we can conclude from the distribution.</p>
+<h3 id="-two-sample-bootstrap-hypothesis-test-for-kills-metric">🔃 Two-sample bootstrap hypothesis test for Kills metric</h3>
+<p>After some meetings with the Level Designers, they aren&rsquo;t convinced to take action upon the recommendations given from a sample size of 28 and 42 for the Experienced and Inexperienced groups respectively. So they require us to take another type of validation to ensure the confidence of our conclusion.</p>
+<p>Unfortunately, the Programmers require to get that insight as soon as possible to start fixing the patch. So, the only alternative to satisfy both parts is to perform a bootstrapping with the means and the p-value of the past test.</p>
+<p>Bootstrapping is one of the best choices to perform better results in sample statistics when we count with few logs. This Statistical Inferential Procedure works by resampling the data. We will take the same values sampled by group, from a resampling with replacement, to an extensive dataset to compare the means between the Kills metric of Experienced players and Inexperienced players.</p>
+<p>On the other side, we <strong>can&rsquo;t</strong> use a permutation of the samples, since we can&rsquo;t conclude that both groups' distributions are the same. Before this let&rsquo;s create our bootstrapping replicates generator function.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Bootstrapping Means Function</span>
+<span class="k">def</span> <span class="nf">draw_bs_reps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">func</span><span class="p">,</span><span class="n">iterations</span><span class="p">):</span>
+    <span class="n">boot_arr</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">boot_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">func</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">boot_arr</span>
+
+<span class="c1"># Bootstrapping Mann-Whitney Test</span>
+<span class="k">def</span> <span class="nf">draw_bs_test</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">iterations</span><span class="p">):</span>
+    <span class="n">boot_arr</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">estimate</span> <span class="o">=</span> <span class="n">mannwhitneyu_est</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data1</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data2</span><span class="p">)))</span>
+        <span class="n">boot_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">estimate</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">boot_arr</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>And with the next function we will create our new estimates for the empirical means and the values of the Mann-Whitney U Test.</p>
+<p>This function will return two p-values and two arrays of bootstrapped estimates, which we will describe next:</p>
+<ul>
+<li><strong>p_emp:</strong> P-value measured from the estimated difference in means between both groups, showing the probabilities of randomly getting a &ldquo;Kills&rdquo; value from the Experienced that will be greater than one of the Inexperienced group</li>
+<li><strong>bs_emp_replicates:</strong> Array of bootstrapped difference in means</li>
+<li><strong>p_test:</strong> P-value measured from the estimated probability of getting a statically significant p-value from the Mann-Whitney Test (p-value &lt; 0.05), in other words how many tests present different distribution for both groups</li>
+<li><strong>bs_test_replicates:</strong> Array of bootstrapped p-values of Mann-Whitney Test</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">statistics</span> <span class="kn">import</span> <span class="n">mean</span>
+
+<span class="c1"># Bootrapping probability estimates (p-value)</span>
+<span class="k">def</span> <span class="nf">twosampleboot</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">operation</span><span class="p">,</span> <span class="n">iterations</span><span class="p">):</span>
+    <span class="c1"># Compute n bootstrap replicates from the groups arrays</span>
+    <span class="n">bs_replicates_1</span> <span class="o">=</span> <span class="n">draw_bs_reps</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">operation</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span> <span class="n">iterations</span><span class="p">)</span>
+    <span class="n">bs_replicates_2</span> <span class="o">=</span> <span class="n">draw_bs_reps</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">operation</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span> <span class="n">iterations</span><span class="p">)</span>
+
+    <span class="c1"># Get replicates of empirical difference of means</span>
+    <span class="n">bs_emp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">bs_replicates_1</span><span class="p">)</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">bs_replicates_2</span><span class="p">)</span>
+
+    <span class="c1"># Compute empircal difference in means for p-value, where of Experienced-Kills &gt; InExperienced-Kills</span>
+    <span class="n">p_emp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_emp</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">bs_emp</span><span class="p">)</span>
+
+    <span class="c1"># Get replicates of Mann-Whitney U Test</span>
+    <span class="n">bs_test</span> <span class="o">=</span> <span class="n">draw_bs_test</span><span class="p">(</span><span class="n">data1</span><span class="o">=</span> <span class="n">Experienced</span><span class="o">.</span><span class="n">Kills</span><span class="p">,</span> <span class="n">data2</span><span class="o">=</span> <span class="n">InExperienced</span><span class="o">.</span><span class="n">Kills</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span> <span class="n">iterations</span><span class="p">)</span>
+
+    <span class="c1"># Compute and print p-value of estimate with different distributions/medians</span>
+    <span class="n">p_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="mi">1</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mf">0.05</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bs_test</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">bs_test</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">p_emp</span><span class="p">,</span> <span class="n">bs_emp</span><span class="p">,</span> <span class="n">p_test</span><span class="p">,</span> <span class="n">bs_test</span>
+    
+<span class="c1"># Return p-values and bs_replicates</span>
+<span class="n">p_emp</span><span class="p">,</span> <span class="n">bs_emp_replicates</span><span class="p">,</span> <span class="n">p_test</span><span class="p">,</span> <span class="n">bs_test_replicates</span> <span class="o">=</span> <span class="n">twosampleboot</span><span class="p">(</span><span class="n">Experienced</span><span class="o">.</span><span class="n">Kills</span><span class="p">,</span> <span class="n">InExperienced</span><span class="o">.</span><span class="n">Kills</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span> <span class="n">mean</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span> <span class="mi">10000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Diff. Means p-value =&#39;</span><span class="p">,</span> <span class="n">p_emp</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Mann-Whitney Test p-value =&#39;</span><span class="p">,</span><span class="n">p_test</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Diff. Means p-value = 0.9852 
+ Mann-Whitney Test p-value = 0.8991
+</code></pre></td></tr></table>
+</div>
+</div><p>After making a sample of 10,000 replicates, we can conclude that 98% of the time, the disparity in the Kills average will be higher in Experienced Players than in Inexperienced players, and from that replicates 90% of them will present a significant difference between distributions.</p>
+<p>Now let&rsquo;s plot the replicates of the Average Kills difference between groups.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">bar_annotation</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">p_emp</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&#34;% &#34;</span> <span class="o">+</span> <span class="s2">&#34;of replicates &lt;br&gt;present values below 0&#34;</span>
+
+<span class="n">histboot</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">bs_emp_replicates</span><span class="p">)</span>
+<span class="n">histboot</span><span class="o">.</span><span class="n">add_vrect</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">bs_emp_replicates</span><span class="p">),</span> <span class="n">x1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+              <span class="n">annotation_text</span><span class="o">=</span> <span class="n">bar_annotation</span><span class="p">,</span> <span class="n">annotation_position</span><span class="o">=</span><span class="s2">&#34;left&#34;</span><span class="p">,</span>
+              <span class="n">fillcolor</span><span class="o">=</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">histboot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">histboot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span><span class="s1">&#39;Bootstrapped Average Kills difference of &lt;br&gt;Experienced vs Inexperienced Players&#39;</span><span class="p">},</span>
+                        <span class="n">yaxis</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s2">&#34;Count of replicates&#34;</span><span class="p">},</span> <span class="n">xaxis</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s2">&#34;Difference Estimate&#34;</span><span class="p">},</span> <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">histboot</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">histboot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>Just 1,48% of the Inexperienced players present more Kills registered than the Experienced ones, by taking a conclusion from 10,000 replicates of a resampled dataset.</p>
+<p>In the case of the bootstrapped P-value for the Mann-Whitney U Test estimate, the best way to avoid the binning bias from a huge number of decimal values is to represent the probabilities with an Empirical Cumulative Distribution Function, as we are going to see next.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+
+<span class="c1"># Import numpy library</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># ECDF Generator function</span>
+<span class="k">def</span> <span class="nf">ecdf</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Generate ECDF (Empirical Cumulative Distribution Function)</span>
+    <span class="c1"># for one dimension arrays</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># X axis data</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+     <span class="c1"># Y axis data</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="c1"># ECDF plot generator</span>
+<span class="k">def</span> <span class="nf">ecdf_plot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">var_label</span><span class="p">):</span>
+    <span class="c1"># Generate ECDF data</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Generate percentile makers </span>
+    <span class="n">percentiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span> <span class="n">p_test</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">95</span><span class="p">])</span> <span class="c1">#Plot the percentile where the bootstrapped p-value is located</span>
+    <span class="n">ptiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">percentiles</span><span class="p">)</span>
+
+    <span class="c1"># ECDF plot</span>
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+    <span class="c1"># Add traces</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+                        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span><span class="p">,</span>
+                        <span class="n">name</span><span class="o">=</span><span class="n">var_label</span><span class="p">))</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">ptiles</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">percentiles</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span>
+                        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers+text&#39;</span><span class="p">,</span>
+                        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Percentiles&#39;</span><span class="p">,</span> <span class="n">marker_line_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                        <span class="n">text</span><span class="o">=</span><span class="n">percentiles</span><span class="p">,</span> <span class="n">textposition</span><span class="o">=</span><span class="s2">&#34;bottom right&#34;</span><span class="p">))</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">plot</span>
+
+<span class="n">ecdf</span> <span class="o">=</span> <span class="n">ecdf_plot</span><span class="p">(</span><span class="n">bs_test_replicates</span><span class="p">,</span> <span class="s2">&#34;P-value replicates&#34;</span><span class="p">)</span>
+<span class="n">ecdf</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span><span class="s1">&#39;ECDF of Bootstrapped P-values for Mann-Whitney U Test&#39;</span><span class="p">},</span>
+                        <span class="n">yaxis</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s2">&#34;Cumulative Probability&#34;</span><span class="p">})</span>
+<span class="n">ecdf</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>From this function with 89.91% of the 10,000 replicates of the tests, we can conclude that the distribution or the median between experienced and inexperienced players is different because its p-value is still below the 0.05 accepted.</p>
+<h2 id="-final-thoughts--takeaways">🗒️ Final thoughts &amp; takeaways</h2>
+<p><strong>What can the stakeholders understand and take in consideration?</strong></p>
+<p>There is a significant advantage of veteran players over the new ones, giving us the conclusion that the changes in mechanics made from the last Fallout New Vegas patch still very similar and don’t present meaningful changes, reason why veteran players are finding it easy and have a clear advantage like it’s usual, so for now the programmers should not be concerned about fixing the patch.</p>
+<p><strong>What could the stakeholders do to take action?</strong></p>
+<p>The Level Designers can consider working side by side with the UX team, to make recurrent revisions before launching a new patch, because always the community will expect an experience-centric work of the whole development team in terms of the quality delivered.</p>
+<p>Also for a future study we could consider to gather the difficulty category and merge it into the dataset and see if this variable is producing a significant variability in our final output.</p>
+<p><strong>What can stakeholders keep working on?</strong></p>
+<p>For significant changes in game mechanics, is recommended to do it just under a critical situation, like when is a significant bug affecting the player experience, otherwise it’s preferable to leave it until the launch of the next title reveal and test the audience reaction before the final implementation, if it’s possible.</p>
+<hr>
+<h2 id="ℹ-additional-information">ℹ️ Additional Information</h2>
+<ul>
+<li><strong>About the article</strong></li>
+</ul>
+<p>This article was developed from the content explained in the Inferential statistics section of Chapter 3 of the Game Data Science book. All the conclusions made were inspired by a player-profiling from in-game metrics by using deductive reasoning where we assumed, and then we proved it using Significance Confidence and Variance, using Inferential analysis.</p>
+<p>All the assumptions and the whole case scenario were developed by the author of this article, for any suggestion I want to invite you to go to my about section and contact me. Thanks to you for reading as well.</p>
+<ul>
+<li><strong>Related Content</strong></li>
+</ul>
+<p>— Game Data Science book and additional info at the <a href="https://global.oup.com/academic/product/game-data-science-9780192897879?cc=cr&amp;lang=en&amp;" target="_blank" rel="noopener noreffer">Oxford University Press</a></p>
+<p>— Anders Drachen personal <a href="https://andersdrachen.com/" target="_blank" rel="noopener noreffer">website</a></p>
+<ul>
+<li><strong>Datasets</strong></li>
+</ul>
+<p>This project was developed with a dataset provided by Anders Drachen et. al (2021), respecting the author rights of this book the entire raw data won’t be published, however, you can access the transformed data in my <a href="https://github.com/robguilarr/parse_fallout_data/tree/master/parsed_data" target="_blank" rel="noopener noreffer">Github</a> repository.</p>
+]]></description>
 </item>
 </channel>
 </rss>

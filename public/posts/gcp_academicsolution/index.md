@@ -1,10 +1,6 @@
 # Cloud Service Architecture for NLP in Google Cloud
 
 
-
-
----
-
 ### Summary:
 
 - This academic article was developed through my postgraduate course, <i>DAT-03 Data Analysis in Big Data Environments</i>, which presents a business case in which a company is interested in combining and migrating relational databases in <b>Microsoft SQL Server</b> and <b>Oracle DB</b>. Given the need to feed them with an NLP system output of social networks such as Instagram, Telegram, and Facebook Messenger.
@@ -22,6 +18,6 @@ In case you want to access it, next you will find a link where it was uploaded t
 ---
 
 <p align=center>
-    {{< image src="/images/posts/gcpcover.jpg" width="40%" height= "40%">}}
+    {{< image src="https://robguilar.com/images/posts/gcpcover.jpg" width="40%" height= "40%">}}
 </p>
 

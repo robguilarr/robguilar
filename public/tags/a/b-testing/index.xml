@@ -1,14 +1,843 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>A/B Testing - Tag - Roberto Aguilar</title>
+        <title>A/B Testing - Tag - Roberto Aguilar Portfolio</title>
         <link>https://robguilar.com/tags/a/b-testing/</link>
-        <description>A/B Testing - Tag - Roberto Aguilar</description>
+        <description>A/B Testing - Tag - Roberto Aguilar Portfolio</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><atom:link href="https://robguilar.com/tags/a/b-testing/" rel="self" type="application/rss+xml" /><item>
     <title>A/B Testing with Cookie Cats Game</title>
     <link>https://robguilar.com/posts/ab_testing_cookiecats/</link>
-    <pubDate>Wed, 02 Feb 2022 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/ab_testing_cookiecats/</guid>
-    <description><![CDATA[A lot of things come to mind when we hear the name Cookie Cats, and probably is not what we think since is hard to associate both words, it’s about meow-sicians (Belle, Ziggy, Smokey, Rita, Berry).
-Anyway, Cookie Cats is a mobile puzzle game of “connect-three”-style developed by Tactile Entertainment, a mobile games developer from Copenhagen. To be in context, this game’s main objective is to align 3 cookies of the same kind to feed a cat, and in this way finish each level.]]></description>
+    <pubDate>Wed, 02 Mar 2022 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/ab_testing_cookiecats/</guid>
+    <description><![CDATA[<p>A lot of things come to mind when we hear the name <a href="https://tactilegames.com/cookie-cats/" target="_blank" rel="noopener noreffer">Cookie Cats</a>, and probably is not what we think since is hard to associate both words, it’s about meow-sicians (Belle, Ziggy, Smokey, Rita, Berry).</p>
+<p>Anyway, Cookie Cats is a mobile puzzle game of <em>“connect-three”</em>-style developed by <a href="https://tactilegames.com/" target="_blank" rel="noopener noreffer">Tactile Entertainment</a>, a mobile games developer from Copenhagen. To be in context, this game’s main objective is to align 3 cookies of the same kind to feed a cat, and in this way finish each level. Also as collectible credit, you can earn Keys to unlock gates located at certain levels.</p>
+<p>In this project, in order to embrace the actual problem that the stakeholders are facing, we are going to make use of <strong>Tactical Analytics</strong>, which is a branch of user-oriented game analytics, with the purpose to <em>“aim to inform game design at the short-term, for example, an A/B test of a new game feature”</em> (A. Dranchen, 2013).</p>
+<p>Knowing this we can notice that the applicability of statistics in new fields can be considered one of the greatest advances for the game industry. Nowadays, human-machine interactions are being monitored, in a good way in most cases. The main purpose is not just to increase the company&rsquo;s revenue, one of the main objectives is to give a benefit in terms of User Experience (UX) and Engagement, and this can be covered using Data Science.</p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>Looking for an interactive experience?<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">🚀 Download the Jupyter Notebook, available <a href="https://nbviewer.org/github/robguilarr/ab_testing_cookie_cats/blob/main/notebook.ipynb">here</a></div>
+        </div>
+    </div>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/GaP5f0jVTWE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h2 id="-introduction-to-problem">⚠️ Introduction to problem</h2>
+<h3 id="hypothesis">Hypothesis</h3>
+<p>According to Rasmus Baath, Data Science Lead at <a href="https://castle.io/" target="_blank" rel="noopener noreffer">castle.io</a>, Tactile Entertainment is planning to move Cookie Cats' time gates from level 30 to 40, but they don’t know by how much the user retention can be impacted by this decision.</p>
+<p>This sort of “time gate” is usually seen in <a href="https://en.wikipedia.org/wiki/Free-to-play" target="_blank" rel="noopener noreffer">free-to-play</a> models, and normally contains ads that can be skipped in exchange for in-game purchases. In this case the player requires to submit a specific number of ‘Keys’, which also can be skipped in exchange of <a href="https://pegi.info/page/game-purchases" target="_blank" rel="noopener noreffer">in-game purchases</a>.</p>
+<p>So seeing this viewpoint, a decision like this can impact not only user retention, the expected revenue as well that’s why we are going to set the initial hypothesis as:</p>
+<ol>
+<li>Moving the Time Gate from Level 30 to Level 40 will decrease our user retention.</li>
+<li>Moving the Time Gate from Level 30 to Level 40 will increase our user retention.</li>
+</ol>
+<p align="middle"></p>
+<h3 id="potential-stakeholders">Potential Stakeholders</h3>
+<ul>
+<li>Mobile Designer &amp; User Retention Expert: They must be aligned with the final statement of the analyst, and make a final judgment to improve user retention.</li>
+<li>Level Designer: As the scene of levels is under study, the level designers need to take action on time to guarantee the storyline of the levels has a correct sequence, and to add it in a new patch.</li>
+<li>System Designer &amp; System Engineer: If we extend the time gate, the credits should or should not remain at the same quantity required, which also needs to be implemented in the tracking system of the user progress.</li>
+<li>Executive Game Producer: As we mentioned before, a potential change requires a redesign of the earnings strategy and an alignment in the business expectation like funding, agreements, marketing, and patching deadlines.</li>
+<li>Players community: This stakeholder can be affected by the <strong>theory of hedonic adaptation</strong>, which is according to Rasmus Baath is <em>“the tendency for people to get less and less enjoyment out of a fun activity over time if that activity is undertaken continuously”</em>, meaning that if we prolong the time gate, this can affect the engagement in an unfavorable way, which in this case require an evaluation.</li>
+</ul>
+<p><strong>Note:</strong> To facilitate the understanding of the roles of the development team, I invite you to take a look at <strong><a href="https://www.robguilar.com/posts/gamedev_structure/" target="_blank" rel="noopener noreffer">this</a></strong> diagram that I designed.</p>
+<h2 id="-about-the-data">📥 About the data</h2>
+<h3 id="collection-process-and-structure">Collection process and structure</h3>
+<p>Most of the time game developers work aside of <strong>telemetry systems</strong>, which according to Anders Drachen et al. (one of the <strong>pioneers</strong> in the Game Analytics field), from an interview made with Georg Zoeller of Ubisoft Singapore, the Game Industry manages two kinds of telemetry systems:</p>
+<ul>
+<li><strong>Developer-facing:</strong> <em>“The main goal of the system is to facilitate and improve the production process, gathering and presenting information about how developers and testers interact with the unfinished game”</em>. Like the one mentioned in Chapter 7 of the <a href="https://link.springer.com/book/10.1007/978-1-4471-4769-5" target="_blank" rel="noopener noreffer">“Game Analytics Maximizing the Value of Player Data”</a> book, like the one implemented in Bioware’s production process of <a href="https://en.wikipedia.org/wiki/Dragon_Age:_Origins" target="_blank" rel="noopener noreffer">Dragon Age: Origins</a> in 2009.</li>
+<li><strong>User-facing:</strong> This one is <em>“collected after a game is launched and mainly aimed at tracking, analyzing, and visualizing player behavior”</em> mentioned in Chapters 4, 5, and 6 of the same book.</li>
+</ul>
+<p>With the help of this kind of data-fetching system, we can create a responsive gate between the Data Analysts and the Designers. In most cases, these systems collect the data in form of logs (.txt) or dictionaries (.json), but fortunately in this case we will count with a structured CSV file.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Importing pandas</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Reading in the data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;datasets/cookie_cats.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Showing the first few rows</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="left"></p>
+<p>This dataset contains around <strong>90,189</strong> records of players that started the game while the telemetry system was running, according to Rasmus Baath. Among the variables collected are the next:</p>
+<ul>
+<li><em>userid</em> : unique identification of the user.</li>
+<li><em>version</em> : the group in which the players were measured, for a time gate at level 30 it contains a string called <em>gate_30</em>, or for a time gate at level 40 it contains a string called <em>gate_40</em>.</li>
+<li><em>sum_gamerounds</em> : number of game rounds played within the first 14 days since the first session played.</li>
+<li><em>retention_1</em> : Boolean that defines if the player came back 1 day after the installation.</li>
+<li><em>retention_7</em> : Boolean that defines if the player came back 7 days after the installation.</li>
+</ul>
+<p><strong>Note:</strong> An important fact to keep in mind is that in the game industry one crucial metric is <em>retention_1</em>, since it defines if the game generate a first engagement with the first log-in of the player.</p>
+<h2 id="-data-preprocessing">🔧 Data Preprocessing</h2>
+<p>Before starting the analysis we need to do some validations on the dataset.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Count and display the number of unique players</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Number of players: </span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">userid</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="s2">&#34;Number of records: </span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">userid</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Number of players: 
+ 90188 
+ Number of records: 
+ 90188
+</code></pre></td></tr></table>
+</div>
+</div><p>It’s not common to find this kind of data, cause as we saw the data is almost ideally sampled, where we count just with distinct records.</p>
+<h3 id="data-cleaning">Data Cleaning</h3>
+<p>The data doesn’t require any kind of transformation and the data types are aligned with their purpose.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">userid             int64
+version           object
+sum_gamerounds     int64
+retention_1         bool
+retention_7         bool
+dtype: object
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="data-consistency">Data Consistency</h3>
+<p>The usability of the data it’s rather good, since we don’t count with “NAN” (Not A Number), “NA” (Not Available), or “NULL” (an empty set) values.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Function the plot the percentage of missing values</span>
+<span class="k">def</span> <span class="nf">na_counter</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;NaN Values per column:&#34;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">percentage</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">-</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="o">*</span><span class="mi">100</span>
+
+        <span class="c1"># Only return columns with more than 5% of NA values</span>
+        <span class="k">if</span> <span class="n">percentage</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="s2">&#34; has &#34;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">percentage</span><span class="p">))</span> <span class="o">+</span><span class="s2">&#34;</span><span class="si">% o</span><span class="s2">f Null Values&#34;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+<span class="c1"># Execute function</span>
+<span class="n">na_counter</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">NaN Values per column:
+	None
+</code></pre></td></tr></table>
+</div>
+</div><p>By this way, we can conclude that there were not errors in our telemetry logs during the data collection.</p>
+<h3 id="normalization">Normalization</h3>
+<p>Noticing the distribution of the quartiles and comprehending the purpose of our analysis, where we only require <em>sum_gamerounds</em> as numeric, we can validate that the data is comparable and doesn’t need transformations.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="left"></p>
+<h2 id="-exploratory-analysis--in-game-interpretations">🔍 Exploratory Analysis &amp; In-game interpretations</h2>
+<h3 id="summary-statistics">Summary statistics</h3>
+<p>We got the next conclusions about their distribution and measurement:</p>
+<ul>
+<li><em>userid</em>
+<ul>
+<li>Interpretation: Player identifier with distinct records in the whole dataset which can be transformed as a factor</li>
+<li>Data type: Nominal</li>
+<li>Measurement type: Discrete/String</li>
+</ul>
+</li>
+<li><em>version</em>
+<ul>
+<li>Interpretation: Just two possible values to evaluate, time gate at level 30 or level 40</li>
+<li>Data type: Ordinal</li>
+<li>Measurement type: Discrete/String</li>
+</ul>
+</li>
+<li><em>sum_gamerounds</em>
+<ul>
+<li>Interpretation: Number of game rounds played by the user, where 50% of the users played between 5 and 51 sessions</li>
+<li>Data type: Numerical</li>
+<li>Measurement type: Integer</li>
+</ul>
+</li>
+<li><em>retention_1</em>
+<ul>
+<li>Interpretation: Boolean measure to verify that the player retention was effective for 1 day at least</li>
+<li>Data type: Nominal</li>
+<li>Measurement type: Discrete/String</li>
+</ul>
+</li>
+<li><em>retention_7</em>
+<ul>
+<li>Interpretation: Boolean measure to verify that the player retention was effective for 7 days at least</li>
+<li>Data type: Nominal</li>
+<li>Measurement type: Discrete/String</li>
+</ul>
+</li>
+</ul>
+<h3 id="strategy-of-analysis">Strategy of Analysis</h3>
+<p>The most accurate way to test changes is to perform <a href="https://www.analyticsvidhya.com/blog/2020/10/ab-testing-data-science/" target="_blank" rel="noopener noreffer">A/B testing</a> by targeting a specific variable, in the case <em>retention</em> (for 1 and 7 days after installation).</p>
+<p>As we mentioned before, we have two groups in the <em>version</em> variable:</p>
+<ul>
+<li><strong>Control group:</strong> The time gate is located at level 30. We are going to consider this one as a no-treatment group.</li>
+<li><strong>Treatment group:</strong> The company plans to move the time gate to level 40. We are going to use this as a subject of study, due to the change involved.</li>
+</ul>
+<p>In an advanced stage, we are going to perform a <a href="https://www.analyticsvidhya.com/blog/2021/06/bootstrap-the-source-of-its-power/" target="_blank" rel="noopener noreffer">bootstrapping</a> technique, to be confident about the result comparison for the retention probabilities between groups.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Counting the number of players in each AB group.</span>
+<span class="n">players_g30</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;gate_30&#39;</span><span class="p">]</span>
+<span class="n">players_g40</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;gate_40&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of players tested at Gate 30:&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">players_g30</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;Number of players tested at Gate 40:&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">players_g40</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Number of players tested at Gate 30: 44700 
+ Number of players tested at Gate 40: 45489
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="game-rounds-distribution">Game rounds distribution</h3>
+<p>As we see the proportion of players sampled for each group is balanced, so for now, only exploring the Game Rounds data is in the queue.</p>
+<p>Let’s see the distribution of Game Rounds (The plotly layout created is available in <strong>vizformatter</strong> library).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Own layout design library</span>
+<span class="kn">from</span> <span class="nn">vizformatter.standards</span> <span class="kn">import</span> <span class="n">layout_plotly</span>
+
+<span class="c1"># Load layout base objects</span>
+<span class="n">sign</span><span class="p">,</span> <span class="n">layout</span> <span class="o">=</span> <span class="n">layout_plotly</span><span class="p">(</span><span class="n">height</span><span class="o">=</span> <span class="mi">720</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># Distribution Boxplot with outliers</span>
+<span class="n">box1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&#34;sum_gamerounds&#34;</span><span class="p">,</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;Game Rounds Overall Distribution by player&#34;</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;sum_gamerounds&#34;</span><span class="p">:</span><span class="s2">&#34;Game Rounds registered&#34;</span><span class="p">})</span>
+
+<span class="n">box1</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">box1</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">box1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>For now, we see that exist clear outliers in the dataset since one user has recorded <strong>49,854</strong> Game rounds played in less than 14 days, meanwhile, the max recorded, excluding the outlier, is around <strong>2,900</strong>. The only response to this case situation is a “bot”, a “bug” or a “glitch”.</p>
+<p>Nevertheless, it’s preferable to clean it, since only affected one record. Let’s prune it.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sum_gamerounds&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">49854</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We can make an <em>Empirical Cumulative Distribution Function</em>, to see the real distribution of our data.</p>
+<p><strong>Note:</strong> In this case, we won’t use histograms to avoid a binning bias.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+
+<span class="c1"># Import numpy library</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># ECDF Generator function</span>
+<span class="k">def</span> <span class="nf">ecdf</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Generate ECDF (Empirical Cumulative Distribution Function)</span>
+    <span class="c1"># for on dimension arrays</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># X axis data</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+     <span class="c1"># Y axis data</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="c1"># Generate ECDF data</span>
+<span class="n">x_rounds</span><span class="p">,</span> <span class="n">y_rounds</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sum_gamerounds&#39;</span><span class="p">])</span>
+
+<span class="c1"># Generate percentile makers </span>
+<span class="n">percentiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span><span class="mi">95</span><span class="p">])</span>
+<span class="n">ptiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sum_gamerounds&#39;</span><span class="p">],</span> <span class="n">percentiles</span><span class="p">)</span>
+
+<span class="c1"># ECDF plot</span>
+<span class="n">ecdf</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Add traces</span>
+<span class="n">ecdf</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_rounds</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_rounds</span><span class="p">,</span>
+                    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Game Rounds&#39;</span><span class="p">))</span>
+<span class="n">ecdf</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">ptiles</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">percentiles</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span>
+                    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers+text&#39;</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Percentiles&#39;</span><span class="p">,</span> <span class="n">marker_line_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="n">text</span><span class="o">=</span><span class="n">percentiles</span><span class="p">,</span> <span class="n">textposition</span><span class="o">=</span><span class="s2">&#34;bottom right&#34;</span><span class="p">))</span>
+<span class="n">ecdf</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">ecdf</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Game Rounds Cumulative Distribution Plot&#39;</span><span class="p">,</span> <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&#34;Cumulative Probability&#34;</span><span class="p">)</span>
+<span class="n">ecdf</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">ecdf</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>As we see 95% of our data is below 500 Game Rounds.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;The 95 percentile of the data is at: &#34;</span><span class="p">,</span> <span class="n">ptiles</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="s2">&#34;Game Rounds&#34;</span><span class="p">,</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+<span class="s2">&#34;This means &#34;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;sum_gamerounds&#34;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">ptiles</span><span class="p">[</span><span class="mi">4</span><span class="p">]]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&#34; players&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">The 95 percentile of the data is at:  221.0 Game Rounds 
+ This means  85706  players
+</code></pre></td></tr></table>
+</div>
+</div><p>For us, this can be considered a valuable sample.</p>
+<p>In the plot above, we saw some players that installed the game but, then never return (0 game rounds).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Players inactive since installation: &#34;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;sum_gamerounds&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Players inactive since installation:  3994
+</code></pre></td></tr></table>
+</div>
+</div><p>And in most cases, players just play a couple of game rounds in their first two weeks. But, we are looking for players that like the game and to get hooked, that’s one of our interests.</p>
+<p>A common metric in the video gaming industry for how fun and engaging a game is 1-day retention as we mentioned before.</p>
+<h2 id="-player-retention-model">🎮📊 Player retention model</h2>
+<p>Retention is the percentage of players that come back and plays the game one day after they have installed it. The higher 1-day retention is, the easier it is to retain players and build a large player base.</p>
+<p>According to Anders Drachen et al. (2013), these customer kind metrics <em>“are notably interesting to professionals working with marketing and management of games and game development”</em>, also this metric is described simply as <em>“how sticky the game is”</em>, in other words, it’s essential.</p>
+<p>As a first step, let’s look at what 1-day retention is overall.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># The % of users that came back the day after they installed</span>
+<span class="n">prop</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;retention_1&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;retention_1&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;The overall retention for 1 day is: &#34;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span><span class="s2">&#34;%&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">The overall retention for 1 day is:  44.52 %
+</code></pre></td></tr></table>
+</div>
+</div><p>Less than half of the players come back one day after installing the game.</p>
+<p>Now that we have a benchmark, let’s look at how 1-day retention differs between the two AB groups.</p>
+<h2 id="-1-day-retention-by-ab-group">🔃 1-day retention by A/B Group</h2>
+<p>Computing the retention individually, we have the next results.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Calculating 1-day retention for each AB-group</span>
+
+<span class="c1"># CONTROL GROUP</span>
+<span class="n">prop_gate30</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">players_g30</span><span class="p">[</span><span class="n">players_g30</span><span class="p">[</span><span class="s1">&#39;retention_1&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">players_g30</span><span class="p">[</span><span class="s1">&#39;retention_1&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># TREATMENT GROUP</span>
+<span class="n">prop_gate40</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">players_g40</span><span class="p">[</span><span class="n">players_g40</span><span class="p">[</span><span class="s1">&#39;retention_1&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">players_g40</span><span class="p">[</span><span class="s1">&#39;retention_1&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Group 30 at 1 day retention: &#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">prop_gate30</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span><span class="s2">&#34;%&#34;</span><span class="p">,</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+     <span class="s1">&#39;Group 40 at 1 day retention: &#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">prop_gate40</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span><span class="s2">&#34;%&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Group 30 at 1 day retention:  44.82 % 
+ Group 40 at 1 day retention:  44.23 %
+</code></pre></td></tr></table>
+</div>
+</div><p>It appears that there was a slight decrease in 1-day retention when the gate was moved to level 40 (<strong>44.23%</strong>) compared to the control when it was at level 30 (<strong>44.82%</strong>).</p>
+<p>It’s a smallish change, but even small changes in retention can have a huge impact. While we are sure of the difference in the data, how confident should we be that a gate at level 40 will be more threatening in the future?</p>
+<p>For this reason, it’s important to consider bootstrapping techniques, this means <em>“a sampling with replacement from observed data to estimate the variability in a statistic of interest”</em>. In this case, retention, and we are going to do a function for that.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Bootstrapping Function</span>
+<span class="k">def</span> <span class="nf">draw_bs_reps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">func</span><span class="p">,</span><span class="n">iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">boot_Xd</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">boot_Xd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))))</span>
+    <span class="k">return</span> <span class="n">boot_Xd</span>
+<span class="c1"># Retention Function</span>
+<span class="k">def</span> <span class="nf">retention</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span> <span class="o">==</span> <span class="kc">True</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="control-group-bootstrapping">Control Group Bootstrapping</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Bootstrapping for gate 30</span>
+<span class="n">btg30_1d</span> <span class="o">=</span> <span class="n">draw_bs_reps</span><span class="p">(</span><span class="n">players_g30</span><span class="p">[</span><span class="s1">&#39;retention_1&#39;</span><span class="p">],</span> <span class="n">retention</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="treatment-group-bootstrapping">Treatment Group Bootstrapping</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Bootstrapping for gate 40</span>
+<span class="n">btg40_1d</span> <span class="o">=</span> <span class="n">draw_bs_reps</span><span class="p">(</span><span class="n">players_g40</span><span class="p">[</span><span class="s1">&#39;retention_1&#39;</span><span class="p">],</span> <span class="n">retention</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now, let’s check the results</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">plotly.figure_factory</span> <span class="k">as</span> <span class="nn">ff</span>
+
+<span class="n">mean_g40</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">btg40_1d</span><span class="p">)</span>
+<span class="n">mean_g30</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">btg30_1d</span><span class="p">)</span>
+
+<span class="c1"># A Kernel Density Estimate plot of the bootstrap distributions</span>
+<span class="n">boot_1d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gate_30&#39;</span><span class="p">:</span><span class="n">btg30_1d</span><span class="p">,</span> <span class="s1">&#39;gate_40&#39;</span><span class="p">:</span><span class="n">btg40_1d</span><span class="p">},</span>
+                       <span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+
+<span class="c1"># Plotting histogram</span>
+<span class="n">hist_1d</span> <span class="o">=</span> <span class="p">[</span><span class="n">boot_1d</span><span class="o">.</span><span class="n">gate_30</span><span class="p">,</span> <span class="n">boot_1d</span><span class="o">.</span><span class="n">gate_40</span><span class="p">]</span>
+<span class="n">dist_1d</span> <span class="o">=</span> <span class="n">ff</span><span class="o">.</span><span class="n">create_distplot</span><span class="p">(</span><span class="n">hist_1d</span><span class="p">,</span> <span class="n">group_labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;Gate 30 (Control)&#34;</span><span class="p">,</span> <span class="s2">&#34;Gate 40 (Treatment)&#34;</span><span class="p">],</span> <span class="n">show_rug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#3498DB&#39;</span><span class="p">,</span><span class="s1">&#39;#28B463&#39;</span><span class="p">])</span>
+<span class="n">dist_1d</span><span class="o">.</span><span class="n">add_vline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">mean_g40</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">line_dash</span><span class="o">=</span><span class="s2">&#34;dash&#34;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s2">&#34;#28B463&#34;</span><span class="p">)</span>
+<span class="n">dist_1d</span><span class="o">.</span><span class="n">add_vline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">mean_g30</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">line_dash</span><span class="o">=</span><span class="s2">&#34;dash&#34;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s2">&#34;#3498DB&#34;</span><span class="p">)</span>
+<span class="n">dist_1d</span><span class="o">.</span><span class="n">add_vrect</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="n">mean_g30</span><span class="p">,</span> <span class="n">x1</span><span class="o">=</span><span class="n">mean_g40</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fillcolor</span><span class="o">=</span><span class="s2">&#34;#F1C40F&#34;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">dist_1d</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">dist_1d</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">xaxis_range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.43</span><span class="p">,</span><span class="mf">0.46</span><span class="p">])</span>
+<span class="n">dist_1d</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;1-Day Retention Bootstrapping by A/B Group&#39;</span><span class="p">,</span> <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&#34;Retention&#34;</span><span class="p">)</span>
+<span class="n">dist_1d</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">dist_1d</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>The difference still looking close, for this reason, is preferable to zoom it by plotting the difference as an individual measure.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Adding a column with the % difference between the two AB-groups</span>
+<span class="n">boot_1d</span><span class="p">[</span><span class="s1">&#39;diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="p">((</span><span class="n">boot_1d</span><span class="p">[</span><span class="s1">&#39;gate_30&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">boot_1d</span><span class="p">[</span><span class="s1">&#39;gate_40&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">boot_1d</span><span class="p">[</span><span class="s1">&#39;gate_40&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+                <span class="p">)</span>
+
+<span class="c1"># Ploting the bootstrap % difference</span>
+<span class="n">hist_1d_diff</span> <span class="o">=</span> <span class="p">[</span><span class="n">boot_1d</span><span class="p">[</span><span class="s1">&#39;diff&#39;</span><span class="p">]]</span>
+<span class="n">dist_1d_diff</span> <span class="o">=</span> <span class="n">ff</span><span class="o">.</span><span class="n">create_distplot</span><span class="p">(</span><span class="n">hist_1d_diff</span><span class="p">,</span> <span class="n">show_rug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#F1C40F&#39;</span><span class="p">],</span>
+                                    <span class="n">group_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Gate 30 - Gate 40&#34;</span><span class="p">],</span> <span class="n">show_hist</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">dist_1d_diff</span><span class="o">.</span><span class="n">add_vline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">boot_1d</span><span class="p">[</span><span class="s1">&#39;diff&#39;</span><span class="p">]),</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">line_dash</span><span class="o">=</span><span class="s2">&#34;dash&#34;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s2">&#34;black&#34;</span><span class="p">)</span>
+<span class="n">dist_1d_diff</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">dist_1d_diff</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">xaxis_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">dist_1d_diff</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Percentage of &#34;1 day retention&#34; difference between A/B Groups&#39;</span><span class="p">,</span> <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&#34;% Difference&#34;</span><span class="p">)</span>
+<span class="n">dist_1d_diff</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">dist_1d_diff</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<p>From this chart, we can see that the percentual difference is around <em>1% - 2%</em>, and that most of the distribution is above <em>0%</em>, in favor of a gate at level 30.</p>
+<p>But, what is the probability that the difference is above <em>0%</em>? Let’s calculate that as well.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Calculating the probability that 1-day retention is greater when the gate is at level 30</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="p">(</span><span class="n">boot_1d</span><span class="p">[</span><span class="s1">&#39;diff&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">boot_1d</span><span class="p">[</span><span class="s1">&#39;diff&#39;</span><span class="p">])</span>
+
+<span class="c1"># Pretty printing the probability</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The probabilty of Group 30 (Control) having a higher </span><span class="se">\n</span><span class="s1"> retention than Group 40 (Treatment) is: &#39;</span><span class="p">,</span> <span class="n">prob</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;%&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">The probabilty of Group 30 (Control) having a higher 
+ retention than Group 40 (Treatment) is:  96.39999999999999 %
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="-7-day-retention-by-ab-group">🔃 7-day retention by A/B Group</h2>
+<p>The bootstrap analysis tells us that there is a high probability that 1-day retention is better when the time gate is at level 30. However, since players have only been playing the game for one day, likely, most players haven’t reached level 30 yet. That is, many players won’t have been affected by the gate, even if it’s as early as level 30.</p>
+<p>But after having played for a week, more players should have reached level 40, and therefore it makes sense to also look at 7-day retention. That is: <em>What percentage of the people that installed the game also showed up a week later to play the game again?</em></p>
+<p>Let’s start by calculating 7-day retention for the two AB groups.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Calculating 7-day retention for both AB-groups</span>
+<span class="n">ret30_7d</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">players_g30</span><span class="p">[</span><span class="n">players_g30</span><span class="p">[</span><span class="s1">&#39;retention_7&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">players_g30</span><span class="p">[</span><span class="s1">&#39;retention_7&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">ret40_7d</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">players_g40</span><span class="p">[</span><span class="n">players_g40</span><span class="p">[</span><span class="s1">&#39;retention_7&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">players_g40</span><span class="p">[</span><span class="s1">&#39;retention_7&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Group 30 at 7 day retention: &#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">ret30_7d</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span><span class="s2">&#34;%&#34;</span><span class="p">,</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+     <span class="s1">&#39;Group 40 at 7 day retention: &#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">ret40_7d</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span><span class="s2">&#34;%&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Group 30 at 7 day retention:  19.02 % 
+ Group 40 at 7 day retention:  18.2 %
+</code></pre></td></tr></table>
+</div>
+</div><p>Like with 1-day retention, we see that 7-day retention is barely lower (<strong>18.20%</strong>) when the gate is at level 40 than when the time gate is at level 30 (<strong>19.02%</strong>). This difference is also larger than for 1-day retention.</p>
+<p>We also see that the overall 7-day retention is lower than the overall 1-day retention; fewer people play a game a week than a day after installing.</p>
+<p>But as before, let’s use bootstrap analysis to figure out how sure we can be of the difference between the AB-groups.</p>
+<h3 id="control--treatment-group-bootstrapping">Control &amp; Treatment Group Bootstrapping</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Creating a list with bootstrapped means for each AB-group</span>
+
+<span class="c1"># Bootstrapping for CONTROL group</span>
+<span class="n">btg30_7d</span> <span class="o">=</span> <span class="n">draw_bs_reps</span><span class="p">(</span><span class="n">players_g30</span><span class="p">[</span><span class="s1">&#39;retention_7&#39;</span><span class="p">],</span> <span class="n">retention</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Bootstrapping for TREATMENT group</span>
+<span class="n">btg40_7d</span> <span class="o">=</span> <span class="n">draw_bs_reps</span><span class="p">(</span><span class="n">players_g40</span><span class="p">[</span><span class="s1">&#39;retention_7&#39;</span><span class="p">],</span> <span class="n">retention</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="n">boot_7d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gate_30&#39;</span><span class="p">:</span><span class="n">btg30_7d</span><span class="p">,</span> <span class="s1">&#39;gate_40&#39;</span><span class="p">:</span><span class="n">btg40_7d</span><span class="p">},</span>
+                       <span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">))</span>
+
+<span class="c1"># Adding a column with the % difference between the two AB-groups</span>
+<span class="n">boot_7d</span><span class="p">[</span><span class="s1">&#39;diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">boot_7d</span><span class="p">[</span><span class="s1">&#39;gate_30&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">boot_7d</span><span class="p">[</span><span class="s1">&#39;gate_40&#39;</span><span class="p">])</span> <span class="o">/</span>  <span class="n">boot_7d</span><span class="p">[</span><span class="s1">&#39;gate_30&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># Ploting the bootstrap % difference</span>
+<span class="n">hist_7d_diff</span> <span class="o">=</span> <span class="p">[</span><span class="n">boot_7d</span><span class="p">[</span><span class="s1">&#39;diff&#39;</span><span class="p">]]</span>
+<span class="n">dist_7d_diff</span> <span class="o">=</span> <span class="n">ff</span><span class="o">.</span><span class="n">create_distplot</span><span class="p">(</span><span class="n">hist_7d_diff</span><span class="p">,</span> <span class="n">show_rug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#FF5733&#39;</span><span class="p">],</span>
+                                    <span class="n">group_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Gate 30 - Gate 40&#34;</span><span class="p">],</span> <span class="n">show_hist</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">dist_7d_diff</span><span class="o">.</span><span class="n">add_vline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">boot_7d</span><span class="p">[</span><span class="s1">&#39;diff&#39;</span><span class="p">]),</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">line_dash</span><span class="o">=</span><span class="s2">&#34;dash&#34;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s2">&#34;black&#34;</span><span class="p">)</span>
+<span class="n">dist_7d_diff</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">dist_7d_diff</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">xaxis_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">12</span><span class="p">])</span>
+<span class="n">dist_7d_diff</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Percentage of &#34;7 day retention&#34; difference between A/B Groups&#39;</span><span class="p">,</span> <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&#34;% Difference&#34;</span><span class="p">)</span>
+<span class="n">dist_7d_diff</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">dist_7d_diff</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Calculating the probability that 7-day retention is greater when the gate is at level 30</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="p">(</span><span class="n">boot_7d</span><span class="p">[</span><span class="s1">&#39;diff&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">boot_7d</span><span class="p">)</span>
+
+<span class="c1"># Pretty printing the probability</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The probabilty of Group 30 (Control) having a higher </span><span class="se">\n</span><span class="s1"> retention than Group 40 (Treatment) is: ~&#39;</span><span class="p">,</span> <span class="n">prob</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;%&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p align="middle"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">The probabilty of Group 30 (Control) having a higher 
+ retention than Group 40 (Treatment) is: ~ 100.0 %
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="-final-thoughts--takeaways">🗒️ Final thoughts &amp; takeaways</h2>
+<p><strong>What can the stakeholders understand and take in consideration?</strong></p>
+<p>As we underlined retention is crucial, because if we don’t retain our player base, it doesn’t matter how much money they spend in-game purchases.</p>
+<p>So, why is retention higher when the gate is positioned earlier? Normally, we could expect the opposite: The later the obstacle, the longer people get engaged with the game. But this is not what the data tells us, we explained this with the theory of hedonic adaptation.</p>
+<p><strong>What could the stakeholders do to take action?</strong></p>
+<p>Now we have enough statistical evidence to say that 7-day retention is higher when the gate is at level 30 than when it is at level 40, the same as we concluded for 1-day retention. If we want to keep consumer retention high, we should not move the gate from level 30 to level 40, it means we keep our Control method in the current gate system.</p>
+<p><strong>What can stakeholders keep working on?</strong></p>
+<p>For coming strategies the Game Designers can consider that, by pushing players to take a break when they reach a gate, the fun of the game is postponed. But, when the gate is moved to level 40, they are more likely to quit the game because they simply got bored of it.</p>
+<hr>
+<h2 id="ℹ-additional-information">ℹ️ Additional Information</h2>
+<ul>
+<li><strong>About the article</strong></li>
+</ul>
+<p>With acknowledgment to Rasmus Baraath for guiding this project. Which was developed for sharing knowledge while using cited sources of the material used.</p>
+<p>Thanks to you for reading as well.</p>
+<ul>
+<li><strong>Related Content</strong></li>
+</ul>
+<p>For more content related to the authors mentioned, I invite you to visit the next sources:</p>
+<p>– Anders Drachen personal <a href="https://andersdrachen.com/" target="_blank" rel="noopener noreffer">website</a>.</p>
+<p>– Rasmus Baath personal <a href="https://www.sumsar.net/" target="_blank" rel="noopener noreffer">blog</a>.</p>
+<p>– Georg Zoeller personal <a href="https://keybase.io/georgzoeller" target="_blank" rel="noopener noreffer">keybase</a>.</p>
+<p>Also in case you want to share some ideas, please visit the <a href="https://www.robguilar.com/about/" target="_blank" rel="noopener noreffer">About</a> section and contact me.</p>
+<ul>
+<li><strong>Datasets</strong></li>
+</ul>
+<p>This project was developed with a dataset provided by Rasmus Baath, which also can be downloaded at my <a href="https://github.com/robguilarr/ab_testing_cookie_cats/tree/main/datasets" target="_blank" rel="noopener noreffer">Github</a> repository.</p>
+]]></description>
 </item>
 </channel>
 </rss>
