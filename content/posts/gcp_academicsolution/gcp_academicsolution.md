@@ -6,8 +6,8 @@ lastmod: 2021-11-04T21:57:40+08:00
 draft: false
 
 description: "Cloud Service Architecture for NLP in Google Cloud"
-images: ["images/posts/gcp_academicsolution.jpg"]
-thumbnail: "images/posts/gcp_academicsolution.jpg"
+images: ["/images/posts/gcp_academicsolution.jpg"]
+thumbnail: "/images/posts/gcp_academicsolution.jpg"
 tags: ["Big Data", "Google Cloud Services"]
 categories: ["Articles"]
 
@@ -19,12 +19,12 @@ hiddenFromSearch: false
 lightgallery: true
 toc: false
 math: false
-featured-image: "images/posts/gcp_academicsolution.jpg"
-featuredImagePreview: "images/posts/gcp_academicsolution.jpg"
+featured-image: "/images/posts/gcp_academicsolution.jpg"
+featuredImagePreview: "/images/posts/gcp_academicsolution.jpg"
 seo:
-  images: ["images/posts/gcp_academicsolution.jpg"]
-  image: "images/posts/gcp_academicsolution.jpg"
-  thumbnailUrl: "images/posts/gcp_academicsolution.jpg"
+  images: ["/images/posts/gcp_academicsolution.jpg"]
+  image: "/images/posts/gcp_academicsolution.jpg"
+  thumbnailUrl: "/images/posts/gcp_academicsolution.jpg"
 ---
 
 ### Summary:

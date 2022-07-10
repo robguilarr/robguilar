@@ -6,8 +6,8 @@ lastmod: 2022-05-19T21:57:40+08:00
 draft: false
 
 description: "Leveling Difficulty in Candy Crush Saga"
-images: ["images/posts/candy_crush_difficulty.jpg"]
-thumbnail: "images/posts/candy_crush_difficulty.jpg"
+images: ["/images/posts/candy_crush_difficulty.jpg"]
+thumbnail: "/images/posts/candy_crush_difficulty.jpg"
 tags: ["Bernoulli", "Python"]
 categories: ["Projects"]
 
@@ -19,12 +19,12 @@ hiddenFromSearch: false
 lightgallery: true
 toc: true
 math: true
-featured-image: "images/posts/candy_crush_difficulty.jpg"
-featuredImagePreview: "images/posts/candy_crush_difficulty.jpg"
+featured-image: "/images/posts/candy_crush_difficulty.jpg"
+featuredImagePreview: "/images/posts/candy_crush_difficulty.jpg"
 seo:
-  images: ["images/posts/candy_crush_difficulty.jpg"]
-  image: "images/posts/candy_crush_difficulty.jpg"
-  thumbnailUrl: "images/posts/candy_crush_difficulty.jpg"
+  images: ["/images/posts/candy_crush_difficulty.jpg"]
+  image: "/images/posts/candy_crush_difficulty.jpg"
+  thumbnailUrl: "/images/posts/candy_crush_difficulty.jpg"
 ---
 
 Today's analysis will lead us to a world fulfilled with divine puzzle adventures at the side of Tiffi and Mr. Toffee, in which we'll glimpse the success rate of more than 6800 peers with eagerness for treats.

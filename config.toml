@@ -13,8 +13,7 @@ themesDir = "themes"
 theme = "FeelIt"
 
 # Whether to use robots.txt
-# False -> Avoid Blocking Twitter from getting data of thumbnails
-enableRobotsTXT = false 
+enableRobotsTXT = true 
 
 # Whether to use git commit log
 enableGitInfo = true
@@ -436,7 +435,7 @@ paginate = 20
 
     # general description of your site
     # can be write with markdown style
-    description = "Dear guest, I'm Roberto and welcome to the about section.<br><br>Here you are going to see some details about my career, my experience, and my personal life. For any inquiries, you are invited to visit the contact section at the bottom of this page."
+    description = "Dear guest, I'm Roberto and welcome to my portfolio website.<br><br>In this section you are going to see some details about my career, experience, and personal life. For any inquiries, please go to the contact section at the bottom of this page."
     # description of your status
     [[params.about.status]]
       faIcon = "fas fa-building"

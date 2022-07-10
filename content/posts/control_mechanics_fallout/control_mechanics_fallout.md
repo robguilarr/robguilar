@@ -6,8 +6,8 @@ lastmod: 2022-06-22T21:57:40+08:00
 draft: false
 
 description: "Inspecting Control Mechanics using T-Tests on Fallout New Vegas"
-images: ["images/posts/control_mechanics_fallout.jpg"]
-thumbnail: "images/posts/control_mechanics_fallout.jpg"
+images: ["/images/posts/control_mechanics_fallout.jpg"]
+thumbnail: "/images/posts/control_mechanics_fallout.jpg"
 tags: ["t-test", "Mann-Whitney","Python", "Bootstrapping"]
 categories: ["Projects"]
 
@@ -19,12 +19,12 @@ hiddenFromSearch: false
 lightgallery: true
 toc: true
 math: true
-featured-image: "images/posts/control_mechanics_fallout.jpg"
-featuredImagePreview: "images/posts/control_mechanics_fallout.jpg"
+featured-image: "/images/posts/control_mechanics_fallout.jpg"
+featuredImagePreview: "/images/posts/control_mechanics_fallout.jpg"
 seo:
-  images: ["images/posts/control_mechanics_fallout.jpg"]
-  image: "images/posts/control_mechanics_fallout.jpg"
-  thumbnailUrl: "images/posts/control_mechanics_fallout.jpg"
+  images: ["/images/posts/control_mechanics_fallout.jpg"]
+  image: "/images/posts/control_mechanics_fallout.jpg"
+  thumbnailUrl: "/images/posts/control_mechanics_fallout.jpg"
 ---
 
 The plot of the sequel of Fallout 3 takes context in the year 2281, 4 years after the first escape from Vault 101, within a post-apocalyptic world after the Great War.
