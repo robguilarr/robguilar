@@ -12,7 +12,7 @@ tags: ["t-test", "Mann-Whitney","Python", "Bootstrapping"]
 categories: ["Projects"]
 
 author: "Roberto Aguilar"
-authorLink: ""
+authorLink: "https://www.linkedin.com/in/robguilarr/"
 hiddenFromHomePage: false
 hiddenFromSearch: false
 

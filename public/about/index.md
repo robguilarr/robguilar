@@ -88,6 +88,8 @@ Among other personal hobbies I like playing video games and practicing outdoor s
 
 - Figma | [https://www.figma.com](https://www.figma.com/@robguilarr "Visit Figma Profile")
 
+- LinkedIn | [https://linkedin.com](https://www.linkedin.com/in/robguilarr/ "Visit LinkedIn Profile")
+
 - Medium | [https://medium.com](https://medium.com/@robguilarr "Visit Medium Profile")
 
 - Twitter | [https://twitter.com](https://twitter.com/robguilarr "Visit Twitter Profile")
@@ -96,7 +98,7 @@ Among other personal hobbies I like playing video games and practicing outdoor s
 
 - Instagram | [https://instagram.com](https://www.instagram.com/robguilarr/ "Visit Instagram Profile")
 
-- LinkedIn | [https://linkedin.com](https://www.linkedin.com/in/robguilarr/ "Visit LinkedIn Profile")
+
 
 ---
 
