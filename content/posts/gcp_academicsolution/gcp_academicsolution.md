@@ -1,8 +1,8 @@
 ---
 #weight: 2
 title: "Cloud Service Architecture for NLP in Google Cloud"
-date: 2021-11-04T21:57:40+08:00
-lastmod: 2021-11-04T21:57:40+08:00
+date: 2021-10-04T21:57:40+08:00
+lastmod: 2021-10-04T21:57:40+08:00
 draft: false
 
 description: "Cloud Service Architecture for NLP in Google Cloud"
