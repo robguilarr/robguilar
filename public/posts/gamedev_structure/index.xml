@@ -1,7 +1,7 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>All Game Development Team Structure - Roberto Aguilar Portfolio</title>
+        <title>All Game Development Team Structure - Roberto Aguilar</title>
         <link>https://robguilar.com/posts/gamedev_structure/</link>
-        <description>All Game Development Team Structure | Roberto Aguilar Portfolio</description>
+        <description>All Game Development Team Structure | Roberto Aguilar</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Mon, 29 Nov 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/posts/gamedev_structure/" rel="self" type="application/rss+xml" /></channel>
 </rss>

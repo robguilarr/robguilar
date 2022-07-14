@@ -6,7 +6,7 @@ defaultContentLanguage = "en"
 languageCode = "en"
 
 # Website title
-title = "Roberto Aguilar Portfolio"
+title = "Roberto Aguilar"
 
 # Change the default theme to be use
 themesDir = "themes"
@@ -95,7 +95,7 @@ paginate = 20
   description = "Welcome to Roberto's portfolio website, through this portal you will be able to see his most recent content & projects published"
 
   # Site keywords
-  keywords = ["Roberto", "Aguilar", "Roberto Aguilar", "Data Science", "Portfolio", "robguilar"]
+  keywords = ["Roberto", "Aguilar", "Roberto Aguilar", "Data Science", "Portfolio", "Game Data Science"]
 
   # Site default theme ("light", "dark", "auto")
   defaultTheme = "light"

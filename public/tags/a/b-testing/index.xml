@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>A/B Testing - Tag - Roberto Aguilar Portfolio</title>
+        <title>A/B Testing - Tag - Roberto Aguilar</title>
         <link>https://robguilar.com/tags/a/b-testing/</link>
-        <description>A/B Testing - Tag - Roberto Aguilar Portfolio</description>
+        <description>A/B Testing - Tag - Roberto Aguilar</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><atom:link href="https://robguilar.com/tags/a/b-testing/" rel="self" type="application/rss+xml" /><item>
     <title>A/B Testing with Cookie Cats Game</title>
     <link>https://robguilar.com/posts/ab_testing_cookiecats/</link>
