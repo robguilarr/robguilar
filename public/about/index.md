@@ -72,7 +72,7 @@ I'm a Data Analyst with Engineering skills and a self-learning attitude. With ex
 
 #### :(fas fa-hiking fa-fw): Personal life & Hobbies
 
-I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why one of my main appeals is **Game Data Science** and **AR**.
+I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why two of my main appeals are **Game Data Science** and **Game  Development**.
 
 Without going too deep, I'm fascinated in following news from high-tech companies, about new product releases, and market movements, especially from Google and Microsoft.
 
