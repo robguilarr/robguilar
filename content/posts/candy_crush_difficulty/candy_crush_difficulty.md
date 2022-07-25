@@ -5,7 +5,7 @@ date: 2022-05-19T21:57:40+08:00
 lastmod: 2022-05-19T21:57:40+08:00
 draft: false
 
-description: "Leveling Difficulty in Candy Crush Saga"
+description: "Exploration of difficulty levels in a sweet episode of Candy Crush Saga, by making use of Bernoulli Principles"
 images: ["/images/posts/candy_crush_difficulty.jpg"]
 thumbnail: "/images/posts/candy_crush_difficulty.jpg"
 tags: ["Bernoulli", "Python"]

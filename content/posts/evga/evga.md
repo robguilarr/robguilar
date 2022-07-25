@@ -5,7 +5,7 @@ date: 2021-12-01T21:57:40+08:00
 lastmod: 2021-12-01T21:57:40+08:00
 draft: false
 
-description: "Video Games History explained with Pandas"
+description: "Making sense of Video Game Industry sales data through Python libraries, like Pandas & Plotly"
 images: ["/images/posts/evga.jpg"]
 thumbnail: "/images/posts/evga.jpg"
 tags: ["Exploratory Analysis", "Python"]

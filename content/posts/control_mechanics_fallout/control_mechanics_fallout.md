@@ -5,10 +5,10 @@ date: 2022-06-22T21:57:40+08:00
 lastmod: 2022-06-22T21:57:40+08:00
 draft: false
 
-description: "Inspecting Control Mechanics using T-Tests on Fallout New Vegas"
+description: "Data Analysis with two sample t-tests and Mann Whitney U to test a change implemented from a game patch on control mechanics"
 images: ["/images/posts/control_mechanics_fallout.jpg"]
 thumbnail: "/images/posts/control_mechanics_fallout.jpg"
-tags: ["t-test", "Mann-Whitney","Python", "Bootstrapping"]
+tags: ["Mann-Whitney t-test", "Bootstrapping", "Python"]
 categories: ["Projects"]
 
 author: "Roberto Aguilar"
@@ -540,7 +540,7 @@ For significant changes in game mechanics, is recommended to do it just under a 
 
 - **About the article**
 
-This article was developed from the content explained in the Inferential statistics section of Chapter 3 of the Game Data Science book. All the conclusions made were inspired by a player-profiling from in-game metrics by using deductive reasoning where we assumed, and then we proved it using Significance Confidence and Variance, using Inferential analysis.
+This article was developed from the content explained in the Inferential statistics section of Chapter 3 of the Game Data Science book. All the conclusions made were inspired by a player-profiling from in-game metrics by using deductive reasoning where we assumed, and then we proved it using significance, confidence and variance, through Inferential analysis.
 
 All the assumptions and the whole case scenario were developed by the author of this article, for any suggestion I want to invite you to go to my about section and contact me. Thanks to you for reading as well.
 

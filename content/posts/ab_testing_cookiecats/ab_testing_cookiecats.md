@@ -5,10 +5,10 @@ date: 2022-03-02T21:57:40+08:00
 lastmod: 2022-03-02T21:57:40+08:00
 draft: false
 
-description: "A/B Testing with Cookie Cats Game"
+description: "Application of Tactical Analytics to improve user retention in a connect-three style puzzle game "
 images: ["/images/posts/ab_testing_cookiecats.jpg"]
 thumbnail: "/images/posts/ab_testing_cookiecats.jpg"
-tags: ["A/B Testing", "Python", "Bootstrapping"]
+tags: ["A/B Testing", "Bootstrapping", "Python"]
 categories: ["Projects"]
 
 author: "Roberto Aguilar"

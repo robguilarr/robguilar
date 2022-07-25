@@ -5,7 +5,7 @@ date: 2021-11-29T21:57:40+08:00
 lastmod: 2021-11-29T21:57:40+08:00
 draft: false
 
-description: "Generic Game Development Team Structure"
+description: "Guide diagram for Game Development roles and more sources of information"
 images: ["/images/posts/gamedev_structure.jpg"]
 thumbnail: "/images/posts/gamedev_structure.jpg"
 tags: ["Game Development","Figma"]
