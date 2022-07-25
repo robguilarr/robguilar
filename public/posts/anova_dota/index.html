@@ -34,7 +34,7 @@
                             "url": "https:\/\/robguilar.com\/images\/posts\/anova_dota.jpg",
                             "width":  3000 ,
                             "height":  900 
-                        }],"genre": "posts","keywords": "Kruskal–Wallis ANOVA, Mann-Whitney t-test, Kolmogorov-Smirnov, Bootstrapping, Python","wordcount":  7746 ,
+                        }],"genre": "posts","keywords": "Kruskal–Wallis ANOVA, Mann-Whitney t-test, Kolmogorov-Smirnov, Bootstrapping, Python","wordcount":  7755 ,
         "url": "https:\/\/robguilar.com\/posts\/anova_dota\/","datePublished": "2022-07-24T21:57:40+08:00","dateModified": "2022-07-24T23:51:03-06:00","license": "This work is developed and posted only under Roberto's property","publisher": {
             "@type": "Organization",
             "name": "Roberto Aguilar","logo": {
@@ -114,7 +114,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single" data-toc="enable"><div class="single-card" ><h2 class="single-title animated flipInX">Interpreting changelogs with ANOVA tests on DOTA 2</h2><div class="post-meta">
                 <div class="post-meta-line"><span class="post-author"><a href="https://www.linkedin.com/in/robguilarr/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Roberto Aguilar</a></span>&nbsp;<span class="post-category">published in <a href="https://robguilar.com/categories/projects/"><i class="far fa-folder fa-fw"></i>Projects</a></span></div>
-                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-24">2022-07-24</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;7746 words</span>&nbsp;
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-24">2022-07-24</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;7755 words</span>&nbsp;
                     <span><i class="far fa-clock fa-fw"></i>&nbsp;37 minutes</span>&nbsp;</div>
             </div>
             
@@ -186,7 +186,16 @@
 <p>After the release date of patch 6.86, the heroes <strong>haven’t recorded</strong> a statistically equal damage.</p>
 </li>
 </ul>
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" style="width: 1025px"></p>
+<figure><a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" title="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" data-thumbnail="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" data-sub-html="<h2>Designed by Roberto Aguilar, 2022</h2>">
+        <img
+            class="lazyload"
+            src="https://robguilar.com/svg/loading.min.svg"
+            data-src="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png"
+            data-srcset="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png, https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png 1.5x, https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png 2x"
+            data-sizes="auto"
+            alt="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" width="1050px" />
+    </a><figcaption class="image-caption">Designed by Roberto Aguilar, 2022</figcaption>
+    </figure>
 <h3 id="potential-stakeholders">Potential Stakeholders</h3>
 <ul>
 <li>
@@ -211,7 +220,7 @@
 <p>As we mentioned in the <a href="https://github.com/robguilarr/anova_dota/blob/master/preprocess.ipynb" target="_blank" rel="noopener noreffer">preprocessing notebook</a>, the raw extracted data can be found in the <a href="https://academictorrents.com/details/5c5deeb6cfe1c944044367d2e7465fd8bd2f4acf" target="_blank" rel="noopener noreffer">YASP.CO</a> collection from Academic Torrents. This dataset was uploaded and gathered by <a href="https://academictorrents.com/browse.php?search=Albert&#43;Cui" target="_blank" rel="noopener noreffer">Albert Cui</a> et. al (2015). However, you can extract your sample from the <a href="https://www.opendota.com/explorer" target="_blank" rel="noopener noreffer">OpenDota API</a> query interface for the comfort of use.</p>
 <h3 id="collection-process-and-structure">Collection process and structure</h3>
 <p>According to Albert Cui et. al (2014), OpenDota is a volunteer-developed, open-source service to request DOTA 2 semistructured data gathered from the Steam WebAPI, which has the advantage of retrieving a vast amount of replay files in comparison to the source API. The service also provides a web interface for casual users to browse through the collected data, as well as an API to allow developers to build their applications with it.</p>
-<p>The present sample can be found in an archive of <a href="https://academictorrents.com/details/5c5deeb6cfe1c944044367d2e7465fd8bd2f4acf" target="_blank" rel="noopener noreffer">YASP.CO</a>, which was uploaded for the same developers of the OpenDota project, <a href="https://github.com/albertcui" target="_blank" rel="noopener noreffer">Albert Cui</a>, <a href="https://github.com/howardchung" target="_blank" rel="noopener noreffer">Howard Chung</a>, and <a href="https://github.com/nicholashh" target="_blank" rel="noopener noreffer">Nicholas Hanson-Holtry</a>. Due to the size of the data (99 GB), you won&rsquo;t find the raw data in the <a href="https://github.com/robguilarr/anova_dota/tree/master/DOTA_data" target="_blank" rel="noopener noreffer">Github repository</a> of this project, however, you will find a random sample with its respective preprocessing explanation in a Jupyter Notebook.</p>
+<p>The present sample can be found in an archive of <a href="https://academictorrents.com/details/5c5deeb6cfe1c944044367d2e7465fd8bd2f4acf" target="_blank" rel="noopener noreffer">YASP.CO</a>, which was uploaded for the same developers of the OpenDota project, <a href="https://github.com/albertcui" target="_blank" rel="noopener noreffer">Albert Cui</a>, <a href="https://github.com/howardchung" target="_blank" rel="noopener noreffer">Howard Chung</a>, and <a href="https://github.com/nicholashh" target="_blank" rel="noopener noreffer">Nicholas Hanson-Holtry</a>. Due to the size of the data (99 GB), you won&rsquo;t find the raw data in the Github repository<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> of this project, however, you will find a random sample with its respective preprocessing explanation in a Jupyter Notebook.</p>
 <p>As a suggestion, to preprocess data of this size, the most accurate solution is to use parallel computing frameworks like Apache Spark to do the transformations. Web services like Databricks with its Lakehouse Architecture, let us process semi-structured data with the capabilities of a Data Warehouse and the flexibility of a Data Lake, and to do this you can use the Data Science and Engineering environment of the <a href="https://community.cloud.databricks.com/login.html" target="_blank" rel="noopener noreffer">Community Edition</a> for free.</p>
 <p>Without diving deeper, let&rsquo;s import the initially needed packages and the preprocessed data.</p>
 <div class="highlight"><div class="chroma">
@@ -967,6 +976,7 @@ where the p values are: 0.000000 and 0.000000
 </span><span class="lnt">39
 </span><span class="lnt">40
 </span><span class="lnt">41
+</span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Load layout base objects</span>
@@ -992,7 +1002,8 @@ where the p values are: 0.000000 and 0.000000
     <span class="n">color_group2</span> <span class="o">=</span> <span class="s1">&#39;#FC642D&#39;</span>
 
     <span class="c1"># Create graphic object</span>
-    <span class="n">dist_groups</span> <span class="o">=</span> <span class="n">ff</span><span class="o">.</span><span class="n">create_distplot</span><span class="p">(</span><span class="n">data_grouped</span><span class="p">,</span> <span class="n">group_labels</span><span class="o">=</span><span class="p">[</span><span class="n">group1_name</span><span class="p">,</span> <span class="n">group2_name</span><span class="p">],</span> <span class="n">show_rug</span><span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">show_hist</span><span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span> <span class="p">[</span><span class="n">color_group1</span><span class="p">,</span> <span class="n">color_group2</span><span class="p">])</span>
+    <span class="n">dist_groups</span> <span class="o">=</span> <span class="n">ff</span><span class="o">.</span><span class="n">create_distplot</span><span class="p">(</span><span class="n">data_grouped</span><span class="p">,</span> <span class="n">group_labels</span><span class="o">=</span><span class="p">[</span><span class="n">group1_name</span><span class="p">,</span> <span class="n">group2_name</span><span class="p">],</span>
+                                        <span class="n">show_rug</span><span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">show_hist</span><span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span> <span class="p">[</span><span class="n">color_group1</span><span class="p">,</span> <span class="n">color_group2</span><span class="p">])</span>
     <span class="n">dist_groups</span><span class="o">.</span><span class="n">add_vline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span> <span class="n">mean_group1</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">line_dash</span><span class="o">=</span> <span class="s2">&#34;dash&#34;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span> <span class="n">color_group1</span><span class="p">)</span>
     <span class="n">dist_groups</span><span class="o">.</span><span class="n">add_vline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span> <span class="n">mean_group2</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">line_dash</span><span class="o">=</span> <span class="s2">&#34;dash&#34;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span> <span class="n">color_group2</span><span class="p">)</span>
     <span class="n">dist_groups</span><span class="o">.</span><span class="n">add_vrect</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span> <span class="n">mean_group1</span><span class="p">,</span> <span class="n">x1</span><span class="o">=</span> <span class="n">mean_group2</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">fillcolor</span><span class="o">=</span> <span class="s2">&#34;#99AAB5&#34;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
@@ -1408,8 +1419,12 @@ where the p values are: 0.000000 and 0.000000
 </ul>
 <p>And our Hypothesis will be defined by:</p>
 <ul>
-<li>$H_0: \overline{X}<em>{Windranger} = \overline{X}</em>{ShadowFiend} = \overline{X}<em>{Queen Of Pain} =$  &hellip;  $= \overline{X}</em>{Riki}$</li>
-<li>$H_1:$ At least one of the hero damage mean differ from the rest</li>
+<li>
+<p>$H_0: \overline{X}_{Windranger} = \overline{X}_{ShadowFiend} = \overline{X}_{QueenOfPain} =$   &hellip;   $= \overline{X}_{Riki}$</p>
+</li>
+<li>
+<p>$H_1:$ At least one of the hero damage mean differ from the rest</p>
+</li>
 </ul>
 <p>Let&rsquo;s establish the initial assumptions that we need to verify:</p>
 <ul>
@@ -1737,7 +1752,7 @@ where the p values are: 0.000000 and 0.000000
 <p><strong>What could the stakeholders do to take action?</strong></p>
 <p>For now, the major concern of the Game Designer, should not be to take immediate action once they see this kind of insight. Instead, they can start collecting more granular data about the registries of damage logs changes, especially when abilities were introduced. Then can study two samples, one after the patch and another before, using the data archived, to run an A/B test to prove its veracity.</p>
 <p><strong>What can stakeholders keep working on?</strong></p>
-<p>MOBA games tend to rely their sustainability on their community engagement and this can be studied by the player’s user experience. Usually, when buffed heroes are used for Jungling, which among DOTA 2 community sometimes is a frowned upon activity, this will make the users feel uncomfortable because of unfair mechanics, so the main solution is to build a User Metrics dashboards segmented by characters to track closely its behavior and take prompter actions each time a patch is released.</p>
+<p>MOBA games tend to rely their sustainability on their community engagement and this can be studied by the player’s user experience. Usually, when buffed heroes are used for Jungling, which among DOTA 2 community sometimes is a frowned upon activity, this will make the users feel uncomfortable because of unfair mechanics, so the main solution is to build a Gameplay Metrics dashboard segmented by characters to track closely its behavior and take prompter actions each time a patch is released.</p>
 <hr>
 <h2 id="ℹ-additional-information">ℹ️ Additional Information</h2>
 <ul>
@@ -1756,7 +1771,14 @@ where the p values are: 0.000000 and 0.000000
 <li><strong>Datasets</strong></li>
 </ul>
 <p>This project was developed with a dataset provided by  <a href="https://github.com/albertcui" target="_blank" rel="noopener noreffer">Albert Cui</a>, <a href="https://github.com/howardchung" target="_blank" rel="noopener noreffer">Howard Chung</a>, and <a href="https://github.com/nicholashh" target="_blank" rel="noopener noreffer">Nicholas Hanson-Holtry</a>, which also can be found at <a href="https://academictorrents.com/details/5c5deeb6cfe1c944044367d2e7465fd8bd2f4acf" target="_blank" rel="noopener noreffer">YASP</a> Academic Torrents or you can experiment with this great <a href="https://www.opendota.com/explorer" target="_blank" rel="noopener noreffer">OpenDota API interface</a> to make queries.</p>
-<p><strong>Note:</strong> You won&rsquo;t find the raw data in the <a href="https://github.com/robguilarr/anova_dota/tree/master/DOTA_data" target="_blank" rel="noopener noreffer">Github repository</a> of this project due the storage capabilities, instead you will find a random sample with its respective preprocessing explanation in a Jupyter Notebook.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><b>Footnote:</b> You won&rsquo;t find the raw data in the <a href="https://github.com/robguilarr/anova_dota/tree/master/DOTA_data" target="_blank" rel="noopener noreffer">Github repository</a> of this project due the storage capabilities, instead you will find a random sample with its respective preprocessing explanation in a Jupyter Notebook.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info"><div class="post-info-tag"><span><a href="https://robguilar.com/tags/kruskalwallis-anova/">Kruskal–Wallis ANOVA</a>
                 </span><span><a href="https://robguilar.com/tags/mann-whitney-t-test/">Mann-Whitney t-test</a>

@@ -33,7 +33,8 @@ After carefully collecting player logs since the released date of this patch, th
 
 - After the release date of patch 6.86, the heroes **haven’t recorded** a statistically equal damage.
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" style="width: 1025px"></p>
+{{< image src="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" caption="Designed by Roberto Aguilar, 2022" width="1050px">}}
+
 
 
 ### Potential Stakeholders
@@ -60,7 +61,7 @@ As we mentioned in the [preprocessing notebook](https://github.com/robguilarr/an
 
 According to Albert Cui et. al (2014), OpenDota is a volunteer-developed, open-source service to request DOTA 2 semistructured data gathered from the Steam WebAPI, which has the advantage of retrieving a vast amount of replay files in comparison to the source API. The service also provides a web interface for casual users to browse through the collected data, as well as an API to allow developers to build their applications with it.
 
-The present sample can be found in an archive of [YASP.CO](https://academictorrents.com/details/5c5deeb6cfe1c944044367d2e7465fd8bd2f4acf), which was uploaded for the same developers of the OpenDota project, [Albert Cui](https://github.com/albertcui), [Howard Chung](https://github.com/howardchung), and [Nicholas Hanson-Holtry](https://github.com/nicholashh). Due to the size of the data (99 GB), you won't find the raw data in the [Github repository](https://github.com/robguilarr/anova_dota/tree/master/DOTA_data) of this project, however, you will find a random sample with its respective preprocessing explanation in a Jupyter Notebook.
+The present sample can be found in an archive of [YASP.CO](https://academictorrents.com/details/5c5deeb6cfe1c944044367d2e7465fd8bd2f4acf), which was uploaded for the same developers of the OpenDota project, [Albert Cui](https://github.com/albertcui), [Howard Chung](https://github.com/howardchung), and [Nicholas Hanson-Holtry](https://github.com/nicholashh). Due to the size of the data (99 GB), you won't find the raw data in the Github repository[^1] of this project, however, you will find a random sample with its respective preprocessing explanation in a Jupyter Notebook.
 
 As a suggestion, to preprocess data of this size, the most accurate solution is to use parallel computing frameworks like Apache Spark to do the transformations. Web services like Databricks with its Lakehouse Architecture, let us process semi-structured data with the capabilities of a Data Warehouse and the flexibility of a Data Lake, and to do this you can use the Data Science and Engineering environment of the [Community Edition](https://community.cloud.databricks.com/login.html) for free.
 
@@ -516,7 +517,8 @@ def dual_dist_plot(data1, data2, title, xaxis_title, group_names):
     color_group2 = '#FC642D'
 
     # Create graphic object
-    dist_groups = ff.create_distplot(data_grouped, group_labels=[group1_name, group2_name], show_rug= False, show_hist= False, colors= [color_group1, color_group2])
+    dist_groups = ff.create_distplot(data_grouped, group_labels=[group1_name, group2_name],
+                                        show_rug= False, show_hist= False, colors= [color_group1, color_group2])
     dist_groups.add_vline(x= mean_group1, line_width= 3, line_dash= "dash", line_color= color_group1)
     dist_groups.add_vline(x= mean_group2, line_width= 3, line_dash= "dash", line_color= color_group2)
     dist_groups.add_vrect(x0= mean_group1, x1= mean_group2, line_width= 0, fillcolor= "#99AAB5", opacity= 0.2)
@@ -785,7 +787,8 @@ This way we can define the elements of the ANOVA as:
 
 And our Hypothesis will be defined by:
 
-- $H_0: \overline{X}_{Windranger} = \overline{X}_{ShadowFiend} = \overline{X}_{Queen Of Pain} =$  ...  $= \overline{X}_{Riki}$
+- $H_0: \overline{X}\_{Windranger} = \overline{X}\_{ShadowFiend} = \overline{X}\_{QueenOfPain} =$   ...   $= \overline{X}\_{Riki}$
+
 - $H_1:$ At least one of the hero damage mean differ from the rest
 
 Let's establish the initial assumptions that we need to verify:
@@ -982,7 +985,7 @@ For now, the major concern of the Game Designer, should not be to take immediate
 
 **What can stakeholders keep working on?**
 
-MOBA games tend to rely their sustainability on their community engagement and this can be studied by the player’s user experience. Usually, when buffed heroes are used for Jungling, which among DOTA 2 community sometimes is a frowned upon activity, this will make the users feel uncomfortable because of unfair mechanics, so the main solution is to build a User Metrics dashboards segmented by characters to track closely its behavior and take prompter actions each time a patch is released.
+MOBA games tend to rely their sustainability on their community engagement and this can be studied by the player’s user experience. Usually, when buffed heroes are used for Jungling, which among DOTA 2 community sometimes is a frowned upon activity, this will make the users feel uncomfortable because of unfair mechanics, so the main solution is to build a Gameplay Metrics dashboard segmented by characters to track closely its behavior and take prompter actions each time a patch is released.
 
 ---
 
@@ -1008,5 +1011,6 @@ All the assumptions and the whole case scenario were developed by the author of 
 
 This project was developed with a dataset provided by  [Albert Cui](https://github.com/albertcui), [Howard Chung](https://github.com/howardchung), and [Nicholas Hanson-Holtry](https://github.com/nicholashh), which also can be found at [YASP](https://academictorrents.com/details/5c5deeb6cfe1c944044367d2e7465fd8bd2f4acf) Academic Torrents or you can experiment with this great [OpenDota API interface](https://www.opendota.com/explorer) to make queries.
 
-**Note:** You won't find the raw data in the [Github repository](https://github.com/robguilarr/anova_dota/tree/master/DOTA_data) of this project due the storage capabilities, instead you will find a random sample with its respective preprocessing explanation in a Jupyter Notebook.
+ [^1]:
+      <b>Footnote:</b> You won't find the raw data in the [Github repository](https://github.com/robguilarr/anova_dota/tree/master/DOTA_data) of this project due the storage capabilities, instead you will find a random sample with its respective preprocessing explanation in a Jupyter Notebook.
 
