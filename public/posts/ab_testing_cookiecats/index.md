@@ -21,7 +21,7 @@ Knowing this we can notice that the applicability of statistics in new fields ca
 
 According to Rasmus Baath, Data Science Lead at [castle.io](https://castle.io/), Tactile Entertainment is planning to move Cookie Cats' time gates from level 30 to 40, but they don’t know by how much the user retention can be impacted by this decision.
 
-This sort of “time gate” is usually seen in [free-to-play](https://en.wikipedia.org/wiki/Free-to-play) models, and normally contains ads that can be skipped in exchange for in-game purchases. In this case the player requires to submit a specific number of ‘Keys’, which also can be skipped in exchange of [in-game purchases](https://pegi.info/page/game-purchases).
+This sort of “time gate” is usually seen in [free-to-play](https://en.wikipedia.org/wiki/Free-to-play) models, and normally contains ads that can be skipped using credits. In this case the player requires to submit a specific number of ‘Keys’, which also can be skipped in exchange of [in-game purchases](https://pegi.info/page/game-purchases).
 
 So seeing this viewpoint, a decision like this can impact not only user retention, the expected revenue as well that’s why we are going to set the initial hypothesis as:
 
@@ -315,7 +315,7 @@ And in most cases, players just play a couple of game rounds in their first two 
 
 A common metric in the video gaming industry for how fun and engaging a game is 1-day retention as we mentioned before.
 
-## 🎮📊 Player retention model
+## 📊 Player retention analysis
 
 Retention is the percentage of players that come back and plays the game one day after they have installed it. The higher 1-day retention is, the easier it is to retain players and build a large player base.
 
@@ -338,7 +338,7 @@ Less than half of the players come back one day after installing the game.
 
 Now that we have a benchmark, let’s look at how 1-day retention differs between the two AB groups.
 
-## 🔃 1-day retention by A/B Group
+### 🔃 1-day retention by A/B Group
 
 Computing the retention individually, we have the next results.
 
@@ -460,7 +460,7 @@ The probabilty of Group 30 (Control) having a higher
  retention than Group 40 (Treatment) is:  96.39999999999999 %
 ```
 
-## 🔃 7-day retention by A/B Group
+### 🔃 7-day retention by A/B Group
 
 The bootstrap analysis tells us that there is a high probability that 1-day retention is better when the time gate is at level 30. However, since players have only been playing the game for one day, likely, most players haven’t reached level 30 yet. That is, many players won’t have been affected by the gate, even if it’s as early as level 30.
 

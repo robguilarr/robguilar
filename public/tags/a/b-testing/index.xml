@@ -27,7 +27,7 @@
 <h2 id="-introduction-to-problem">⚠️ Introduction to problem</h2>
 <h3 id="hypothesis">Hypothesis</h3>
 <p>According to Rasmus Baath, Data Science Lead at <a href="https://castle.io/" target="_blank" rel="noopener noreffer">castle.io</a>, Tactile Entertainment is planning to move Cookie Cats' time gates from level 30 to 40, but they don’t know by how much the user retention can be impacted by this decision.</p>
-<p>This sort of “time gate” is usually seen in <a href="https://en.wikipedia.org/wiki/Free-to-play" target="_blank" rel="noopener noreffer">free-to-play</a> models, and normally contains ads that can be skipped in exchange for in-game purchases. In this case the player requires to submit a specific number of ‘Keys’, which also can be skipped in exchange of <a href="https://pegi.info/page/game-purchases" target="_blank" rel="noopener noreffer">in-game purchases</a>.</p>
+<p>This sort of “time gate” is usually seen in <a href="https://en.wikipedia.org/wiki/Free-to-play" target="_blank" rel="noopener noreffer">free-to-play</a> models, and normally contains ads that can be skipped using credits. In this case the player requires to submit a specific number of ‘Keys’, which also can be skipped in exchange of <a href="https://pegi.info/page/game-purchases" target="_blank" rel="noopener noreffer">in-game purchases</a>.</p>
 <p>So seeing this viewpoint, a decision like this can impact not only user retention, the expected revenue as well that’s why we are going to set the initial hypothesis as:</p>
 <ol>
 <li>Moving the Time Gate from Level 30 to Level 40 will decrease our user retention.</li>
@@ -464,7 +464,7 @@ dtype: object
 </div>
 </div><p>And in most cases, players just play a couple of game rounds in their first two weeks. But, we are looking for players that like the game and to get hooked, that’s one of our interests.</p>
 <p>A common metric in the video gaming industry for how fun and engaging a game is 1-day retention as we mentioned before.</p>
-<h2 id="-player-retention-model">🎮📊 Player retention model</h2>
+<h2 id="-player-retention-analysis">📊 Player retention analysis</h2>
 <p>Retention is the percentage of players that come back and plays the game one day after they have installed it. The higher 1-day retention is, the easier it is to retain players and build a large player base.</p>
 <p>According to Anders Drachen et al. (2013), these customer kind metrics <em>“are notably interesting to professionals working with marketing and management of games and game development”</em>, also this metric is described simply as <em>“how sticky the game is”</em>, in other words, it’s essential.</p>
 <p>As a first step, let’s look at what 1-day retention is overall.</p>
@@ -492,7 +492,7 @@ dtype: object
 </div>
 </div><p>Less than half of the players come back one day after installing the game.</p>
 <p>Now that we have a benchmark, let’s look at how 1-day retention differs between the two AB groups.</p>
-<h2 id="-1-day-retention-by-ab-group">🔃 1-day retention by A/B Group</h2>
+<h3 id="-1-day-retention-by-ab-group">🔃 1-day retention by A/B Group</h3>
 <p>Computing the retention individually, we have the next results.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -697,7 +697,7 @@ dtype: object
  retention than Group 40 (Treatment) is:  96.39999999999999 %
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="-7-day-retention-by-ab-group">🔃 7-day retention by A/B Group</h2>
+</div><h3 id="-7-day-retention-by-ab-group">🔃 7-day retention by A/B Group</h3>
 <p>The bootstrap analysis tells us that there is a high probability that 1-day retention is better when the time gate is at level 30. However, since players have only been playing the game for one day, likely, most players haven’t reached level 30 yet. That is, many players won’t have been affected by the gate, even if it’s as early as level 30.</p>
 <p>But after having played for a week, more players should have reached level 40, and therefore it makes sense to also look at 7-day retention. That is: <em>What percentage of the people that installed the game also showed up a week later to play the game again?</em></p>
 <p>Let’s start by calculating 7-day retention for the two AB groups.</p>
