@@ -66,7 +66,7 @@
 <p>As we mentioned in the <a href="https://github.com/robguilarr/anova_dota/blob/master/preprocess.ipynb" target="_blank" rel="noopener noreffer">preprocessing notebook</a>, the raw extracted data can be found in the <a href="https://academictorrents.com/details/5c5deeb6cfe1c944044367d2e7465fd8bd2f4acf" target="_blank" rel="noopener noreffer">YASP.CO</a> collection from Academic Torrents. This dataset was uploaded and gathered by <a href="https://academictorrents.com/browse.php?search=Albert&#43;Cui" target="_blank" rel="noopener noreffer">Albert Cui</a> et. al (2015). However, you can extract your sample from the <a href="https://www.opendota.com/explorer" target="_blank" rel="noopener noreffer">OpenDota API</a> query interface for the comfort of use.</p>
 <h3 id="collection-process-and-structure">Collection process and structure</h3>
 <p>According to Albert Cui et. al (2014), OpenDota is a volunteer-developed, open-source service to request DOTA 2 semistructured data gathered from the Steam WebAPI, which has the advantage of retrieving a vast amount of replay files in comparison to the source API. The service also provides a web interface for casual users to browse through the collected data, as well as an API to allow developers to build their applications with it.</p>
-<p>The present sample can be found in an archive of <a href="https://academictorrents.com/details/5c5deeb6cfe1c944044367d2e7465fd8bd2f4acf" target="_blank" rel="noopener noreffer">YASP.CO</a>, which was uploaded for the same developers of the OpenDota project, <a href="https://github.com/albertcui" target="_blank" rel="noopener noreffer">Albert Cui</a>, <a href="https://github.com/howardchung" target="_blank" rel="noopener noreffer">Howard Chung</a>, and <a href="https://github.com/nicholashh" target="_blank" rel="noopener noreffer">Nicholas Hanson-Holtry</a>. Due to the size of the data (99 GB), you won&rsquo;t find the raw data in the Github repository<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> of this project, however, you will find a random sample with its respective preprocessing explanation in a Jupyter Notebook.</p>
+<p>The present sample can be found in an archive of <a href="https://academictorrents.com/details/5c5deeb6cfe1c944044367d2e7465fd8bd2f4acf" target="_blank" rel="noopener noreffer">YASP.CO</a>, which was uploaded for the same developers of the OpenDota project, <a href="https://github.com/albertcui" target="_blank" rel="noopener noreffer">Albert Cui</a>, <a href="https://github.com/howardchung" target="_blank" rel="noopener noreffer">Howard Chung</a>, and <a href="https://github.com/nicholashh" target="_blank" rel="noopener noreffer">Nicholas Hanson-Holtry</a>. Due to the size of the data (99 GB), we won&rsquo;t find the raw data in the Github repository of this project, however, you will find a random sample with its respective preprocessing explanation in a Jupyter Notebook.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>As a suggestion, to preprocess data of this size, the most accurate solution is to use parallel computing frameworks like Apache Spark to do the transformations. Web services like Databricks with its Lakehouse Architecture, let us process semi-structured data with the capabilities of a Data Warehouse and the flexibility of a Data Lake, and to do this you can use the Data Science and Engineering environment of the <a href="https://community.cloud.databricks.com/login.html" target="_blank" rel="noopener noreffer">Community Edition</a> for free.</p>
 <p>Without diving deeper, let&rsquo;s import the initially needed packages and the preprocessed data.</p>
 <div class="highlight"><div class="chroma">
@@ -1616,19 +1616,19 @@ where the p values are: 0.000000 and 0.000000
 <ul>
 <li><strong>Datasets</strong></li>
 </ul>
-<p>This project was developed with a dataset provided by  <a href="https://github.com/albertcui" target="_blank" rel="noopener noreffer">Albert Cui</a>, <a href="https://github.com/howardchung" target="_blank" rel="noopener noreffer">Howard Chung</a>, and <a href="https://github.com/nicholashh" target="_blank" rel="noopener noreffer">Nicholas Hanson-Holtry</a>, which also can be found at <a href="https://academictorrents.com/details/5c5deeb6cfe1c944044367d2e7465fd8bd2f4acf" target="_blank" rel="noopener noreffer">YASP</a> Academic Torrents or you can experiment with this great <a href="https://www.opendota.com/explorer" target="_blank" rel="noopener noreffer">OpenDota API interface</a> to make queries.</p>
+<p>This project was developed with a dataset provided by <a href="https://github.com/albertcui" target="_blank" rel="noopener noreffer">Albert Cui</a>, <a href="https://github.com/howardchung" target="_blank" rel="noopener noreffer">Howard Chung</a>, and <a href="https://github.com/nicholashh" target="_blank" rel="noopener noreffer">Nicholas Hanson-Holtry</a>, which also can be found at <a href="https://academictorrents.com/details/5c5deeb6cfe1c944044367d2e7465fd8bd2f4acf" target="_blank" rel="noopener noreffer">YASP</a> Academic Torrents or you can experiment with this great <a href="https://www.opendota.com/explorer" target="_blank" rel="noopener noreffer">OpenDota API interface</a> to make queries.</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p><b>Footnote:</b> You won&rsquo;t find the raw data in the <a href="https://github.com/robguilarr/anova_dota/tree/master/DOTA_data" target="_blank" rel="noopener noreffer">Github repository</a> of this project due the storage capabilities, instead you will find a random sample with its respective preprocessing explanation in a Jupyter Notebook.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><b>Footnote:</b> We won&rsquo;t find the raw data in the <a href="https://github.com/robguilarr/anova_dota/tree/master/DOTA_data" target="_blank" rel="noopener noreffer">Github repository</a> of this project due the storage capabilities, instead you will find a random sample with its respective preprocessing explanation in a Jupyter Notebook.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
 ]]></description>
 </item>
 <item>
-    <title>Inspecting Control Mechanics using T-Tests on Fallout New Vegas</title>
+    <title>Inspecting Control Mechanics using t-tests on Fallout New Vegas</title>
     <link>https://robguilar.com/posts/control_mechanics_fallout/</link>
     <pubDate>Wed, 22 Jun 2022 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/control_mechanics_fallout/</guid>
     <description><![CDATA[<p>The plot of the sequel of Fallout 3 takes context in the year 2281, 4 years after the first escape from Vault 101, within a post-apocalyptic world after the Great War.</p>
@@ -3816,7 +3816,7 @@ dtype: object
 <span class="kn">from</span> <span class="nn">vizformatter.standards</span> <span class="kn">import</span> <span class="n">layout_plotly</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>Now, let&rsquo;s import our data. We must consider that we already prepared it, as shown in this articles&rsquo;s footnote<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+</div><p>Now, let&rsquo;s import our data. We must consider that we already prepared it, as shown in this articles&rsquo;s footnote.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -5144,9 +5144,7 @@ details about the industry&rsquo;s history are covered.</p>
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p><b>Footnote:</b> Specific datasets contain information from Publishers, which they were
-named in the source attribute as Developers, but not in all cases. For more details on the
-data transformation, please visit my Github <a href="https://github.com/robguilarr/videogames-eda/blob/main/videogame_analysis/ETL_script.py">repository</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><b>Footnote:</b> Specific datasets contain information from Publishers, which they were named in the source attribute as Developers, but not in all cases. For more details on the data transformation, please visit my Github <a href="https://github.com/robguilarr/videogames-eda/blob/main/videogame_analysis/ETL_script.py">repository</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>]]></description>

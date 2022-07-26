@@ -40,7 +40,7 @@ import plotly.figure_factory as ff
 from vizformatter.standards import layout_plotly
 ```
 
-Now, let's import our data. We must consider that we already prepared it, as shown in this articles's footnote[^1].
+Now, let's import our data. We must consider that we already prepared it, as shown in this articles's footnote.[^1]
 
 ```python
 # Data frame of videogames
@@ -885,7 +885,4 @@ Through this article, my goal is to use data tools to inform the reader about cu
   - <a href="https://www.kaggle.com/andreshg/videogamescompaniesregions?select=indie-games-developers.csv">Indie Developers Regions</a>
 
   [^1]:
-      <b>Footnote:</b> Specific datasets contain information from Publishers, which they were
-      named in the source attribute as Developers, but not in all cases. For more details on the
-      data transformation, please visit my Github <a href="https://github.com/robguilarr/videogames-eda/blob/main/videogame_analysis/ETL_script.py">repository</a>.
-
+      <b>Footnote:</b> Specific datasets contain information from Publishers, which they were named in the source attribute as Developers, but not in all cases. For more details on the data transformation, please visit my Github <a href="https://github.com/robguilarr/videogames-eda/blob/main/videogame_analysis/ETL_script.py">repository</a>.

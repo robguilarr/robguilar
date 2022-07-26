@@ -1,11 +1,11 @@
 ---
 #weight: 2
-title: "Inspecting Control Mechanics using T-Tests on Fallout New Vegas"
+title: "Inspecting Control Mechanics using t-tests on Fallout New Vegas"
 date: 2022-06-22T21:57:40+08:00
 lastmod: 2022-06-22T21:57:40+08:00
 draft: false
 
-description: "Data Analysis with two sample t-tests and Mann Whitney U to test a change implemented from a game patch on control mechanics"
+description: "Data Analysis with two sample t-tests and Mann Whitney U, to test a change implemented from a game patch of control mechanics"
 images: ["/images/posts/control_mechanics_fallout.jpg"]
 thumbnail: "/images/posts/control_mechanics_fallout.jpg"
 tags: ["Mann-Whitney t-test", "Bootstrapping", "Python"]

@@ -1,4 +1,4 @@
-# Inspecting Control Mechanics using T-Tests on Fallout New Vegas
+# Inspecting Control Mechanics using t-tests on Fallout New Vegas
 
 
 The plot of the sequel of Fallout 3 takes context in the year 2281, 4 years after the first escape from Vault 101, within a post-apocalyptic world after the Great War.

@@ -293,7 +293,7 @@ paginate = 20
   #-----------------------------------------------------------------------
   [params.header]
     # Desktop header mode ("fixed", "normal", "auto")
-    desktopMode = "fixed"
+    desktopMode = "auto"
 
     # Mobile header mode ("fixed", "normal", "auto")
     mobileMode = "auto"
@@ -413,7 +413,7 @@ paginate = 20
       enable = true
 
       # Special amount of posts in each home posts page
-      paginate = 10
+      paginate = 20
 
       # (DELETED IN VERSION | 0.2.0) replaced with hiddenFromHomePage in params.page
       # Default behavior when you don't set "hiddenFromHomePage" in front matter
