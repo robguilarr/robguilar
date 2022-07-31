@@ -39,7 +39,7 @@ If you are one of the few that haven't played Candy Crush, here's a short intro:
 :rocket: Download the Jupyter Notebook, available <a href="https://nbviewer.org/github/robguilarr/candy_crush_difficulty/blob/master/notebook.ipynb">here</a>
 {{< /admonition >}}
 
-{{< youtube HGLGxnfs_t8 >}}
+{{< youtube EW-HVzqQpsI >}}
 
 ## ⚠️ Introduction to problem
 
