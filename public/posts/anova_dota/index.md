@@ -41,7 +41,7 @@ After carefully collecting player logs since the released date of this patch, th
 
 - Level Designers: if the heroes are balanced in terms of damage, the damage dealt by the creeps will require an investigation, which depends on the design of the map lanes. They must hit a balance between creating easy or hard experiences, and this will rely on the creeps per lane. Another mapping issue that would need to address is the jungle, which is typically filled with [creeps](https://dota2.fandom.com/wiki/Creeps) that players can kill for [rewards](https://dota2.fandom.com/wiki/Jungling#), which the designers require to define how challenging they should be to defeat.
 
-- Gameplay Designer and Engineer: they evaluate the design of the heroes to be certain that each team is balanced, and confirm there is no side having an unfair benefit. In such cases will have to rebalance the hero stats with the help of the Gameplay Engineer.
+- Character Designer and Engineers: they evaluate the design of the heroes to be certain that each team is balanced, and confirm there is no side having an unfair benefit. In such cases will have to rebalance the hero stats with the help of the Gameplay Engineer, and adjust the HUD with the help of a Systems Engineer.
 
 - User Retention team: by working around the Data Analysts, they will support delivering the final report to the Lead Game Designer, about the potential effect on the players' retention in case of not taking quick actions, in the scenario of having a true Null Hypothesis.
 
