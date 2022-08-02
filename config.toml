@@ -435,7 +435,8 @@ paginate = 20
 
     # general description of your site
     # can be write with markdown style
-    description = "Dear guest, I'm Roberto and welcome to my portfolio website.<br><br>In this section you are going to see some details about my career, experience, and personal life. For any inquiries, please go to the contact section at the bottom of this page."
+    description = "Hi there! I'm Roberto, and I'm glad you stopped by my portfolio website today <br> <br> In this section, you'll find details about my career, experience, and personal life. If you have any questions or comments, please feel free to contact me at the bottom of this page"
+    
     # description of your status
     [[params.about.status]]
       faIcon = "fas fa-building"
