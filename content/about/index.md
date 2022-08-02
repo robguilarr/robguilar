@@ -34,7 +34,7 @@ More info {{< link href="https://www.tec.ac.cr/programas-academicos/licenciatura
 {{< /admonition >}}
 
 {{< admonition type=abstract title="Data Analyst at Cenfotec" open=true >}}
-Postgraduate as Data Analyst, managing topics such as Data Storytelling in Python with Jupyter Notebooks, ETL with Azure Data Factory, Web Scraping & API connections with Python Selenium, Data Governance fundamentals, data modeling in Apache Hadoop using HiveQL and  visualization of statistical models with D3.js, Tableau and Power BI.
+Data Analytics Professional Program, managing topics such as Data Storytelling in Python with Jupyter Notebooks, ETL with Azure Data Factory, Web Scraping & API connections with Python Selenium, Data Governance fundamentals, data modeling in Apache Hadoop using HiveQL, and visualization of statistical models with D3.js, Tableau and Power BI.
 
 More info {{< link href="https://global-uploads.webflow.com/5ca2bcb83aece284fe8c6ada/6036752071cd3551f32c9f8d_Programa%20Analista%20de%20Datos.pdf" content=here >}}.
 {{< /admonition >}}
@@ -71,13 +71,9 @@ More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US
 
 #### :(fas fa-hand-holding-medical fa-fw): What can I offer
 
-I’m a person who loves to read about the video games industry, especially in companies such as Activision Blizzard, Ubisoft, and Xbox Studios, among others; also, in matters of applicability of Data Analytics in development, design, research, and postproduction, that’s why two of my main appeals are Game Data Science and Game Development.
+I'm not an expert, but a creative and curious mind. As one of my favorite authors, Austin Kleon says, "You don't have to be a genius .... Sometimes amateurs have more to teach us than experts", they are always willing to learn, holding the constraints out of mind. For this reason, I like to show my work, eager to get feedback from people or groups who share the same interests as me, and help them however I can.
 
-Without going too deep, I’m fascinated by following news from high-tech companies, about new product releases, and market movements, especially from Google and Microsoft.
-
-I also like to read books about Business, Productivity, Personal Growth, Video Games, and Game Analytics. Referring to authors such as Tom Rath, Austin Kleon, James Clear, David Goggins, Anders Drachen and Jason Schreier.
-
-Among other personal hobbies, I like playing video games and practicing outdoor sports like trail running.
+I'm a Data Analyst with Engineering skills and a self-learning attitude. With experience in consulting, consumer goods, and virtualization technology industries. Who as an add-on has great enthusiasm for the Software Entertainment industry, in how data analytics can improve it as a business, using pre-development analytics, live metrics, and acquisition/retention analysis; for indie markets and big publishers.
 
 ---
 

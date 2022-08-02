@@ -435,7 +435,7 @@ paginate = 20
 
     # general description of your site
     # can be write with markdown style
-    description = "Hi there! I'm Roberto, and I'm glad you stopped by my portfolio website today <br> <br> In this section, you'll find details about my career, experience, and personal life. If you have any questions or comments, please feel free to contact me at the bottom of this page"
+    description = "Hi there! I’m Roberto, and I’m so glad you stopped by my portfolio website today <br> <br> In this section, you'll find details about my career, experience, and personal life. If you have any questions or comments, please feel free to contact me at the bottom of this page"
     
     # description of your status
     [[params.about.status]]
