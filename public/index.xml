@@ -877,7 +877,7 @@ where the p values are: 0.000000 and 0.000000
 <p>$z = \frac{U - m_u}{\sigma_U}$</p>
 <p>Which is defined by:</p>
 <p>$m_U = \frac{n_{Mid} n_{Soft}}{2}$</p>
-<p>And our Standard Deviation Value won&rsquo;t be affected by tied ranks, so this won&rsquo;t require any correction[1]. This is because the categories don&rsquo;t have ranks and all the values are distinct and continuous.</p>
+<p>And our Standard Deviation Value won&rsquo;t be affected by tied ranks, so this won&rsquo;t require any correction. This is because the categories don&rsquo;t have ranks and all the values are distinct and continuous.</p>
 <p>$\sigma_U = \sqrt{\frac{n_{Mid} n_{Soft} (n_{Mid} + n_{Soft} + 1)}{12}}$</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

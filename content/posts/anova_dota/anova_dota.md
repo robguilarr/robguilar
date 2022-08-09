@@ -576,7 +576,7 @@ Which is defined by:
 
 $m_U = \frac{n_{Mid} n_{Soft}}{2}$
 
-And our Standard Deviation Value won't be affected by tied ranks, so this won't require any correction[1]. This is because the categories don't have ranks and all the values are distinct and continuous.
+And our Standard Deviation Value won't be affected by tied ranks, so this won't require any correction. This is because the categories don't have ranks and all the values are distinct and continuous.
 
 $\sigma_U = \sqrt{\frac{n_{Mid} n_{Soft} (n_{Mid} + n_{Soft} + 1)}{12}}$
 
