@@ -28,7 +28,7 @@ More info {{< link href="https://www.tec.ac.cr/programas-academicos/licenciatura
 {{< /admonition >}}
 
 {{< admonition type=abstract title="Data Analyst at Cenfotec" open=true >}}
-Data Analytics Professional Program, managing topics such as Data Storytelling in Python with Jupyter Notebooks, ETL with Azure Data Factory, Web Scraping & API connections with Python Selenium, Data Governance fundamentals, data modeling in Apache Hadoop using HiveQL, and visualization of statistical models with D3.js, Tableau and Power BI.
+Data Analytics Professional Program, managing topics such as Data Storytelling in Python with Jupyter Notebooks, ETL with Azure Data Factory, Web Scraping with Selenium and API connections using requests, Data Governance fundamentals, data modeling in Apache Hadoop using HiveQL, and visualization of statistical models with D3.js, Tableau and Power BI.
 
 More info {{< link href="https://global-uploads.webflow.com/5ca2bcb83aece284fe8c6ada/6036752071cd3551f32c9f8d_Programa%20Analista%20de%20Datos.pdf" content=here >}}.
 {{< /admonition >}}
@@ -54,7 +54,7 @@ More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US
 > {{< /admonition >}}
 
 {{< admonition type=info title="Junior Data Analyst at McKinsey & Company" open=true >}}
-<img width="75" height="75" src="images/mckinsey_logo.jpg" align="left" hspace="10" vspace="10"> Analyst in charge of coding/scripting (SQL, Python, etc.) for automating data transformation and loading. Also, responsible for performing data ingestion, transformation, and uploading into applications/engines. This entailed the use of application administration tools (combination of proprietary tools), validated raw data quality (develop test cases, a battery of QA scripts), and taking corrective measures in case of issues.
+<img width="75" height="75" src="images/mckinsey_logo.jpg" align="left" hspace="10" vspace="10"> Analyst in charge of coding/scripting (SQL, Python, etc.) for automating data transformations and loading across business algorithms. Also, responsible for performing data ingestion, transformation, and uploading into applications/engines. This entailed the use of application administration tools (combination of proprietary tools), validating raw data quality (developing test cases with QA scripts), and taking corrective measures in case of issues.
 
 More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}
 
