@@ -34,7 +34,7 @@
                             "url": "https:\/\/robguilar.com\/images\/posts\/anova_dota.jpg",
                             "width":  3000 ,
                             "height":  900 
-                        }],"genre": "posts","keywords": "Kruskal–Wallis ANOVA, Mann-Whitney t-test, Kolmogorov-Smirnov, Bootstrapping, Python","wordcount":  7766 ,
+                        }],"genre": "posts","keywords": "Kruskal–Wallis ANOVA, Mann-Whitney t-test, Kolmogorov-Smirnov, Bootstrapping, Python","wordcount":  7768 ,
         "url": "https:\/\/robguilar.com\/posts\/anova_dota\/","datePublished": "2022-07-24T21:57:40+08:00","dateModified": "2022-08-08T21:17:12-06:00","license": "This work is developed and posted only under Roberto's property","publisher": {
             "@type": "Organization",
             "name": "Roberto Aguilar","logo": {
@@ -114,7 +114,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single" data-toc="enable"><div class="single-card" ><h2 class="single-title animated flipInX">Interpreting changelogs with ANOVA tests on DOTA 2</h2><div class="post-meta">
                 <div class="post-meta-line"><span class="post-author"><a href="https://www.linkedin.com/in/robguilarr/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Roberto Aguilar</a></span>&nbsp;<span class="post-category">published in <a href="https://robguilar.com/categories/projects/"><i class="far fa-folder fa-fw"></i>Projects</a></span></div>
-                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-24">2022-07-24</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;7766 words</span>&nbsp;
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-24">2022-07-24</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;7768 words</span>&nbsp;
                     <span><i class="far fa-clock fa-fw"></i>&nbsp;37 minutes</span>&nbsp;</div>
             </div>
             
@@ -144,7 +144,7 @@
     </li>
     <li><a href="#-exploratory-analysis--in-game-interpretations">🔍 Exploratory Analysis &amp; In-game interpretations</a>
       <ul>
-        <li><a href="#-overview-of-metrics-by-lane-roles">🌍 Overview of Metrics by Lane Roles</a></li>
+        <li><a href="#-overview-of-metrics-by-lane-roles">🗺️ Overview of Metrics by Lane Roles</a></li>
         <li><a href="#-kills-logs-comparison-grouped-by-role-and-hero">☠️ Kills logs comparison grouped by Role and Hero</a></li>
         <li><a href="#-two-sample-mann-whitney-test-for-kills-logs-by-role-lane-for-carries">🧝🏻‍♂️ Two Sample Mann-Whitney Test for Kills logs by Role Lane for Carries</a></li>
         <li><a href="#-two-sample-mann-whitney-test-for-kills-of-mid-lanes-and-soft-support-vs-rest-of-roles">🧝🏻👹 Two Sample Mann-Whitney Test for Kills of Mid Lanes and Soft Support vs Rest of Roles</a></li>
@@ -180,10 +180,10 @@
 <p>After carefully collecting player logs since the released date of this patch, they need to test if effectively the heroes’ stats are unbalanced or not. As the main interaction between enemy players is measured by the damage dealt, this will be defined as the core KPI of this study and with this, we will define our hypothesis as:</p>
 <ul>
 <li>
-<p>After the release date of patch 6.86, the heroes <strong>have recorded</strong> a statistically equal damage.</p>
+<p>$H_0:$ After the release date of patch 6.86, the heroes <strong>have recorded</strong> a statistically equal damage.</p>
 </li>
 <li>
-<p>After the release date of patch 6.86, the heroes <strong>haven’t recorded</strong> a statistically equal damage.</p>
+<p>$H_1:$ After the release date of patch 6.86, the heroes <strong>haven’t recorded</strong> a statistically equal damage.</p>
 </li>
 </ul>
 <figure><a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" title="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" data-thumbnail="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" data-sub-html="<h2>Designed by Roberto Aguilar, 2022</h2>">
@@ -585,7 +585,7 @@
 </li>
 </ul>
 <p>While examining patches, it&rsquo;s always important to examine the performance of the character by sampling the player statistics. In such case of DOTA, it would let the designers decide which heroes need to be nerfed and which need to be buffed, by delivering changes in a patch log attached to the bottom side of the <a href="https://www.dota2.com/balanceofpower" target="_blank" rel="noopener noreffer">documentation website</a>. To put you in context, <strong>nerfed</strong> means a negative effect on the hero&rsquo;s stats, while <strong>buffed</strong> means the opposite, given an update (patch) on the game.</p>
-<h3 id="-overview-of-metrics-by-lane-roles">🌍 Overview of Metrics by Lane Roles</h3>
+<h3 id="-overview-of-metrics-by-lane-roles">🗺️ Overview of Metrics by Lane Roles</h3>
 <p>We saw that generalizing about all the heroes and extracting insights, it’s not the best way to produce findings, because many times the perspective can bias our interpretations, especially while dealing with Big Data.</p>
 <p>As we move on to the next analysis, the main intent is to narrow down our scope of analysis (data sample), so to start let’s compare the core metrics by role lane.</p>
 <p>First, let’s see the scores for how much a player heals their allies' heroes, how much the player damages the enemys' heroes, and how many times each player dies on average, taking as a group the role assigned in the lane.</p>

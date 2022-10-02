@@ -51,8 +51,8 @@ This sort of “time gate” is usually seen in [free-to-play](https://en.wikip
 
 So seeing this viewpoint, a decision like this can impact not only user retention, the expected revenue as well that’s why we are going to set the initial hypothesis as:
 
-1. Moving the Time Gate from Level 30 to Level 40 will decrease our user retention.
-2. Moving the Time Gate from Level 30 to Level 40 will increase our user retention.
+- $H_0:$ Moving the Time Gate from Level 30 to Level 40 will decrease our user retention.
+- $H_1:$ Moving the Time Gate from Level 30 to Level 40 will increase our user retention.
 
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/ab_testing_cookie_cats/main/images_jup/cc_gates.png" style="width: 700px"></p>
 

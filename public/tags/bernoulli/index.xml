@@ -27,10 +27,10 @@
 <h2 id="-introduction-to-problem">⚠️ Introduction to problem</h2>
 <h3 id="hypothesis">Hypothesis</h3>
 <p>We&rsquo;ll review a game that potentially can lead any developer to many unseen problems, considering the abundance of levels. From the perspective of a customer, there can be several points of view that can emerge and, at the same time, can become unnoticed. That&rsquo;s why our diagnosis will start from 2 potential hypothesis:</p>
-<ol>
-<li>The game is too easy so it became boring over time</li>
-<li>The game is too hard so the players leave it and become frustrated</li>
-</ol>
+<ul>
+<li>$H_0:$ The game is too easy so it became boring over time.</li>
+<li>$H_1:$ The game is too hard so the players leave it and become frustrated.</li>
+</ul>
 <p align="middle"></p>
 <h3 id="potential-stakeholders">Potential Stakeholders</h3>
 <p>None of the past hypotheses are the main intentions of the developers. So they require a Data Analyst to help with this task since the developers are seeing only the backend factors affecting the game, but it&rsquo;s also critical to consider those external ones that affect the experience for the player and the sustainability of this game for the company. Among the main stakeholders could be:</p>

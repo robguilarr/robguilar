@@ -29,8 +29,8 @@ The UX research team has communicated to them that the QA testers think that som
 
 The problem is that the QA team is very diversified between experienced and non-experienced testers, so it won’t be easy to make conclusions. For this reason, we need to look for statistical evidence to validate a hypothesis based on the profile of those testers. Now let’s establish the main hypothesis for the analysis:
 
-1. Experienced players/testers will have completed **more** quests and more kills (the usual), the mechanical changes were not significant.
-2. Inexperienced players/testers will have completed **more or an equal** quantity of quests and kills (not usual), the mechanical changes were significant.
+- $H_0:$ Experienced players/testers will have completed **more** quests and more kills (the usual), the mechanical changes were not significant.
+- $H_1:$ Inexperienced players/testers will have completed **more or an equal** quantity of quests and kills (not usual), the mechanical changes were significant.
 
 From all the KPIs that you will see next, it’s important to mention that we’ll bring kills as a secondary validation measure since Fallout it’s a survival-RPG-like where you have to kill radioactive NPCs in almost every quest. We won’t count with a difficulty category for each player, so the kills attribute will be one of the few not affected by the difficulty categorization, also because it’s an end measure, not a progressive one, like shots for example.
 

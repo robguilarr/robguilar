@@ -47,8 +47,8 @@ If you are one of the few that haven't played Candy Crush, here's a short intro:
 
 We'll review a game that potentially can lead any developer to many unseen problems, considering the abundance of levels. From the perspective of a customer, there can be several points of view that can emerge and, at the same time, can become unnoticed. That's why our diagnosis will start from 2 potential hypothesis:
 
-1. The game is too easy so it became boring over time
-2. The game is too hard so the players leave it and become frustrated
+- $H_0:$ The game is too easy so it became boring over time.
+- $H_1:$ The game is too hard so the players leave it and become frustrated.
 
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/candy_crush_difficulty/master/plots/map.png" style="width: 700px"></p>
 

@@ -32,10 +32,10 @@
 <p>After carefully collecting player logs since the released date of this patch, they need to test if effectively the heroes’ stats are unbalanced or not. As the main interaction between enemy players is measured by the damage dealt, this will be defined as the core KPI of this study and with this, we will define our hypothesis as:</p>
 <ul>
 <li>
-<p>After the release date of patch 6.86, the heroes <strong>have recorded</strong> a statistically equal damage.</p>
+<p>$H_0:$ After the release date of patch 6.86, the heroes <strong>have recorded</strong> a statistically equal damage.</p>
 </li>
 <li>
-<p>After the release date of patch 6.86, the heroes <strong>haven’t recorded</strong> a statistically equal damage.</p>
+<p>$H_1:$ After the release date of patch 6.86, the heroes <strong>haven’t recorded</strong> a statistically equal damage.</p>
 </li>
 </ul>
 <figure><a class="lightgallery" href="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" title="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" data-thumbnail="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" data-sub-html="<h2>Designed by Roberto Aguilar, 2022</h2>">
@@ -431,7 +431,7 @@
 </li>
 </ul>
 <p>While examining patches, it&rsquo;s always important to examine the performance of the character by sampling the player statistics. In such case of DOTA, it would let the designers decide which heroes need to be nerfed and which need to be buffed, by delivering changes in a patch log attached to the bottom side of the <a href="https://www.dota2.com/balanceofpower" target="_blank" rel="noopener noreffer">documentation website</a>. To put you in context, <strong>nerfed</strong> means a negative effect on the hero&rsquo;s stats, while <strong>buffed</strong> means the opposite, given an update (patch) on the game.</p>
-<h3 id="-overview-of-metrics-by-lane-roles">🌍 Overview of Metrics by Lane Roles</h3>
+<h3 id="-overview-of-metrics-by-lane-roles">🗺️ Overview of Metrics by Lane Roles</h3>
 <p>We saw that generalizing about all the heroes and extracting insights, it’s not the best way to produce findings, because many times the perspective can bias our interpretations, especially while dealing with Big Data.</p>
 <p>As we move on to the next analysis, the main intent is to narrow down our scope of analysis (data sample), so to start let’s compare the core metrics by role lane.</p>
 <p>First, let’s see the scores for how much a player heals their allies' heroes, how much the player damages the enemys' heroes, and how many times each player dies on average, taking as a group the role assigned in the lane.</p>
@@ -1654,10 +1654,10 @@ where the p values are: 0.000000 and 0.000000
 <p>The Producers are concerned for some comments about a change made in the <strong>control mechanics</strong> since the last patch was released.</p>
 <p>The UX research team has communicated to them that the QA testers think that some of them found the quest&rsquo;s difficulty too easy and others very leveraged, especially for veteran players of the saga, reason why we can start inferring about changes made in the gameplay experience, which the major changes made were on the mechanics.</p>
 <p>The problem is that the QA team is very diversified between experienced and non-experienced testers, so it won’t be easy to make conclusions. For this reason, we need to look for statistical evidence to validate a hypothesis based on the profile of those testers. Now let’s establish the main hypothesis for the analysis:</p>
-<ol>
-<li>Experienced players/testers will have completed <strong>more</strong> quests and more kills (the usual), the mechanical changes were not significant.</li>
-<li>Inexperienced players/testers will have completed <strong>more or an equal</strong> quantity of quests and kills (not usual), the mechanical changes were significant.</li>
-</ol>
+<ul>
+<li>$H_0:$ Experienced players/testers will have completed <strong>more</strong> quests and more kills (the usual), the mechanical changes were not significant.</li>
+<li>$H_1:$ Inexperienced players/testers will have completed <strong>more or an equal</strong> quantity of quests and kills (not usual), the mechanical changes were significant.</li>
+</ul>
 <p>From all the KPIs that you will see next, it’s important to mention that we’ll bring kills as a secondary validation measure since Fallout it’s a survival-RPG-like where you have to kill radioactive NPCs in almost every quest. We won’t count with a difficulty category for each player, so the kills attribute will be one of the few not affected by the difficulty categorization, also because it’s an end measure, not a progressive one, like shots for example.</p>
 <p align="middle"></p>
 <h3 id="potential-stakeholders">Potential Stakeholders</h3>
@@ -2388,10 +2388,10 @@ where the p values are: 0.000000 and 0.000000
 <h2 id="-introduction-to-problem">⚠️ Introduction to problem</h2>
 <h3 id="hypothesis">Hypothesis</h3>
 <p>We&rsquo;ll review a game that potentially can lead any developer to many unseen problems, considering the abundance of levels. From the perspective of a customer, there can be several points of view that can emerge and, at the same time, can become unnoticed. That&rsquo;s why our diagnosis will start from 2 potential hypothesis:</p>
-<ol>
-<li>The game is too easy so it became boring over time</li>
-<li>The game is too hard so the players leave it and become frustrated</li>
-</ol>
+<ul>
+<li>$H_0:$ The game is too easy so it became boring over time.</li>
+<li>$H_1:$ The game is too hard so the players leave it and become frustrated.</li>
+</ul>
 <p align="middle"></p>
 <h3 id="potential-stakeholders">Potential Stakeholders</h3>
 <p>None of the past hypotheses are the main intentions of the developers. So they require a Data Analyst to help with this task since the developers are seeing only the backend factors affecting the game, but it&rsquo;s also critical to consider those external ones that affect the experience for the player and the sustainability of this game for the company. Among the main stakeholders could be:</p>
@@ -2955,10 +2955,10 @@ for whole episode:  9.889123140886191e-10 %
 <p>According to Rasmus Baath, Data Science Lead at <a href="https://castle.io/" target="_blank" rel="noopener noreffer">castle.io</a>, Tactile Entertainment is planning to move Cookie Cats' time gates from level 30 to 40, but they don’t know by how much the user retention can be impacted by this decision.</p>
 <p>This sort of “time gate” is usually seen in <a href="https://en.wikipedia.org/wiki/Free-to-play" target="_blank" rel="noopener noreffer">free-to-play</a> models, and normally contains ads that can be skipped using credits. In this case the player requires to submit a specific number of ‘Keys’, which also can be skipped in exchange of <a href="https://pegi.info/page/game-purchases" target="_blank" rel="noopener noreffer">in-game purchases</a>.</p>
 <p>So seeing this viewpoint, a decision like this can impact not only user retention, the expected revenue as well that’s why we are going to set the initial hypothesis as:</p>
-<ol>
-<li>Moving the Time Gate from Level 30 to Level 40 will decrease our user retention.</li>
-<li>Moving the Time Gate from Level 30 to Level 40 will increase our user retention.</li>
-</ol>
+<ul>
+<li>$H_0:$ Moving the Time Gate from Level 30 to Level 40 will decrease our user retention.</li>
+<li>$H_1:$ Moving the Time Gate from Level 30 to Level 40 will increase our user retention.</li>
+</ul>
 <p align="middle"></p>
 <h3 id="potential-stakeholders">Potential Stakeholders</h3>
 <ul>

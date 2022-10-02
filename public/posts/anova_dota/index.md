@@ -29,9 +29,9 @@ The Consumer Insights team at Valve gathered all the internal reviews and extern
 
 After carefully collecting player logs since the released date of this patch, they need to test if effectively the heroes’ stats are unbalanced or not. As the main interaction between enemy players is measured by the damage dealt, this will be defined as the core KPI of this study and with this, we will define our hypothesis as:
 
-- After the release date of patch 6.86, the heroes **have recorded** a statistically equal damage.
+- $H_0:$ After the release date of patch 6.86, the heroes **have recorded** a statistically equal damage.
 
-- After the release date of patch 6.86, the heroes **haven’t recorded** a statistically equal damage.
+- $H_1:$ After the release date of patch 6.86, the heroes **haven’t recorded** a statistically equal damage.
 
 {{< image src="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" caption="Designed by Roberto Aguilar, 2022" width="1050px">}}
 
@@ -286,7 +286,7 @@ Now we can verify the initial statement that the Windranger is the most played h
 
 While examining patches, it's always important to examine the performance of the character by sampling the player statistics. In such case of DOTA, it would let the designers decide which heroes need to be nerfed and which need to be buffed, by delivering changes in a patch log attached to the bottom side of the [documentation website](https://www.dota2.com/balanceofpower). To put you in context, **nerfed** means a negative effect on the hero's stats, while **buffed** means the opposite, given an update (patch) on the game.
 
-### 🌍 Overview of Metrics by Lane Roles
+### 🗺️ Overview of Metrics by Lane Roles
 
 We saw that generalizing about all the heroes and extracting insights, it’s not the best way to produce findings, because many times the perspective can bias our interpretations, especially while dealing with Big Data.
 

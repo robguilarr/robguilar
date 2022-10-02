@@ -29,10 +29,10 @@
 <p>According to Rasmus Baath, Data Science Lead at <a href="https://castle.io/" target="_blank" rel="noopener noreffer">castle.io</a>, Tactile Entertainment is planning to move Cookie Cats' time gates from level 30 to 40, but they don’t know by how much the user retention can be impacted by this decision.</p>
 <p>This sort of “time gate” is usually seen in <a href="https://en.wikipedia.org/wiki/Free-to-play" target="_blank" rel="noopener noreffer">free-to-play</a> models, and normally contains ads that can be skipped using credits. In this case the player requires to submit a specific number of ‘Keys’, which also can be skipped in exchange of <a href="https://pegi.info/page/game-purchases" target="_blank" rel="noopener noreffer">in-game purchases</a>.</p>
 <p>So seeing this viewpoint, a decision like this can impact not only user retention, the expected revenue as well that’s why we are going to set the initial hypothesis as:</p>
-<ol>
-<li>Moving the Time Gate from Level 30 to Level 40 will decrease our user retention.</li>
-<li>Moving the Time Gate from Level 30 to Level 40 will increase our user retention.</li>
-</ol>
+<ul>
+<li>$H_0:$ Moving the Time Gate from Level 30 to Level 40 will decrease our user retention.</li>
+<li>$H_1:$ Moving the Time Gate from Level 30 to Level 40 will increase our user retention.</li>
+</ul>
 <p align="middle"></p>
 <h3 id="potential-stakeholders">Potential Stakeholders</h3>
 <ul>
