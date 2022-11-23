@@ -91,20 +91,17 @@ Among other personal hobbies I like playing video games and practicing outdoor s
 
 #### :(far fa-user fa-fw): Contact section
 
-- GitHub | [https://github.com](https://github.com/robguilarr "Visit GitHub Overview")
-
-- Figma | [https://www.figma.com](https://www.figma.com/@robguilarr "Visit Figma Profile")
+- Website | [https://robguilar.com](https://www.robguilar.com "Visit Portfolio Website")
 
 - LinkedIn | [https://linkedin.com](https://www.linkedin.com/in/robguilarr/ "Visit LinkedIn Profile")
 
-- Medium | [https://medium.com](https://medium.com/@robguilarr "Visit Medium Profile")
+- GitHub | [https://github.com](https://github.com/robguilarr "Visit GitHub Overview")
 
 - Twitter | [https://twitter.com](https://twitter.com/robguilarr "Visit Twitter Profile")
 
-- Facebook | [https://facebook.com](https://www.facebook.com/robguilarr/ "Visit Facebook Profile")
-
 - Instagram | [https://instagram.com](https://www.instagram.com/robguilarr/ "Visit Instagram Profile")
 
+- Figma | [https://www.figma.com](https://www.figma.com/@robguilarr "Visit Figma Profile")
 
 
 ---

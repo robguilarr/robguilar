@@ -264,8 +264,9 @@ paginate = 20
     [params.page.share]
       enable = true
       Twitter = true
-      Facebook = true
+      Facebook = false
       Linkedin = true
+      Mastodon = true
       Whatsapp = false
       Pinterest = false
       HackerNews = false
@@ -391,7 +392,7 @@ paginate = 20
       title = "Roberto Aguilar"
 
       # Subtitle shown in home page
-      subtitle = "Jr. Data Analyst @ McKinsey & Co."
+      subtitle = "Jr. Data Analyst @ McKinsey & Company"
 
       # Whether to use typeit animation for subtitle
       typeit = false
@@ -435,13 +436,13 @@ paginate = 20
 
     # general description of your site
     # can be write with markdown style
-    description = "Hi there! I’m Roberto, and I’m so glad you stopped by my portfolio website today <br> <br> In this section, you'll find details about my career, experience, and personal life. If you have any questions or comments, please feel free to contact me at the bottom of this page"
+    description = "Hi there! I’m Roberto, and I’m glad you stopped by my portfolio website today <br> <br> In this section, you'll find details about my career, experience, and personal life. If you have any questions or comments, please feel free to contact me at the bottom of this page"
     
     # description of your status
     [[params.about.status]]
       faIcon = "fas fa-building"
       title = "Company"
-      desc = "McKinsey & Co."
+      desc = "McKinsey & Company"
 
     [[params.about.status]]
       faIcon = "fas fa-briefcase fa-fw"
@@ -455,18 +456,16 @@ paginate = 20
 
     # description of your parameter
     [[params.about.parameter]]
-      language = "Visualization"
+      language = "Engineering"
       level = "85"
 
     [[params.about.parameter]]
-      language = "Modeling"
+      language = "Science"
       level = "65"
 
     [[params.about.parameter]]
-      language = "Cleaning"
+      language = "Analytics"
       level = "75"
-
-
 
 
   #-----------------------------------------------------------------------
@@ -520,8 +519,6 @@ paginate = 20
     [params.analytics.goatcounter]
       # GoatCounter code
       code = "robguilar"
-
-
 
 
 
@@ -613,23 +610,39 @@ paginate = 20
     #---------------------------------------------------------------------
     # Medium Specific config
     #---------------------------------------------------------------------
-    [params.social.medium]
+    #[params.social.medium]
+      # weight when arranging icons (the greater the weight, the later the icon is positioned)
+      #weight = 4
+
+      # social ID
+      #id = "@robguilarr"
+
+      # prefix of your social link
+      #prefix = "https://medium.com/"
+
+      # content hovering on the icon
+      #title = "Medium"
+
+    #---------------------------------------------------------------------
+    # Instagram Specific config
+    #---------------------------------------------------------------------
+    [params.social.instagram]
       # weight when arranging icons (the greater the weight, the later the icon is positioned)
       weight = 4
 
       # social ID
-      id = "@robguilarr"
+      id = "robguilarr"
 
       # prefix of your social link
-      prefix = "https://medium.com/"
+      prefix = "https://www.instagram.com/"
 
       # content hovering on the icon
-      title = "Medium"
+      title = "Instagram"
 
     #---------------------------------------------------------------------
-    # Facebook Specific config
+    # Instagram Specific config
     #---------------------------------------------------------------------
-    [params.social.Facebook]
+    [params.social.github]
       # weight when arranging icons (the greater the weight, the later the icon is positioned)
       weight = 5
 
@@ -637,10 +650,10 @@ paginate = 20
       id = "robguilarr"
 
       # prefix of your social link
-      prefix = "https://www.facebook.com/"
+      prefix = "https://www.github.com/"
 
       # content hovering on the icon
-      title = "Facebook"
+      title = "GitHub"
 
 
 
