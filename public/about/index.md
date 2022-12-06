@@ -37,12 +37,12 @@ More info {{< link href="https://global-uploads.webflow.com/5ca2bcb83aece284fe8c
 
 #### :(fas fa-briefcase fa-fw): Experience
 
-{{< admonition type=info title="Enterprise Data & Analytics Intern at VMware" open=true >}}
-<img width="75" height="75" src="images/vm_logo.png" align="left" hspace="10" vspace="10">Created and migrated data analytics reports of the Customer Success area in the whole SaaS cycle, embracing all the Customer 360° environment. As well as the CTA predictive analysis according to the PEME needs of early warnings subscription consumption; via commercial, and financial indicators applied to Big Data.
+{{< admonition type=info title="Junior Data Analyst at McKinsey & Company" open=true >}}
+<img width="75" height="75" src="images/mckinsey_logo.jpg" align="left" hspace="10" vspace="10"> Analyst in charge of coding/scripting (SQL, Python, etc.) for automating data transformations and loading across business algorithms. Also, responsible for performing data ingestion, transformation, and uploading into applications/engines. This entailed the use of application administration tools (combination of proprietary tools), validating raw data quality (developing test cases with QA scripts), and taking corrective measures in case of issues.
 
 More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}
 
-> June 2020 - September 2020
+> March 2022 - Present
 > {{< /admonition >}}
 
 {{< admonition type=info title="Business Intelligence Analyst at Belcorp" open=true >}}
@@ -53,12 +53,12 @@ More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US
 > February 2021 - July 2021
 > {{< /admonition >}}
 
-{{< admonition type=info title="Junior Data Analyst at McKinsey & Company" open=true >}}
-<img width="75" height="75" src="images/mckinsey_logo.jpg" align="left" hspace="10" vspace="10"> Analyst in charge of coding/scripting (SQL, Python, etc.) for automating data transformations and loading across business algorithms. Also, responsible for performing data ingestion, transformation, and uploading into applications/engines. This entailed the use of application administration tools (combination of proprietary tools), validating raw data quality (developing test cases with QA scripts), and taking corrective measures in case of issues.
+{{< admonition type=info title="Enterprise Data & Analytics Intern at VMware" open=true >}}
+<img width="75" height="75" src="images/vm_logo.png" align="left" hspace="10" vspace="10">Created and migrated data analytics reports of the Customer Success area in the whole SaaS cycle, embracing all the Customer 360° environment. As well as the CTA predictive analysis according to the PEME needs of early warnings subscription consumption; via commercial, and financial indicators applied to Big Data.
 
 More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}
 
-> March 2022 - Present
+> June 2020 - September 2020
 > {{< /admonition >}}
 
 ---

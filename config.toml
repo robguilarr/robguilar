@@ -432,7 +432,7 @@ paginate = 20
     param = true
 
     # title for param layout
-    paramTitle = "Data Toolbox"
+    paramTitle = "Data Background"
 
     # general description of your site
     # can be write with markdown style
@@ -452,7 +452,7 @@ paginate = 20
     [[params.about.status]]
       title = "Location"
       faIcon = "fas fa-map-marker-alt"
-      desc = "Costa Rica"
+      desc = "San Jose, Costa Rica"
 
     # description of your parameter
     [[params.about.parameter]]
