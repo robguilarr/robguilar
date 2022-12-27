@@ -15,8 +15,8 @@ theme = "FeelIt"
 # Whether to use robots.txt
 enableRobotsTXT = true 
 
-# Whether to use git commit log
-enableGitInfo = true
+# Whether to use git commit log (LEAVE IT AS FALSE, NOT REQUIRED)
+enableGitInfo = false
 
 # Public git repo url only then enableGitInfo is true
 gitRepo = "https://github.com/robguilarr/robguilar-website"
@@ -432,7 +432,7 @@ paginate = 20
     param = true
 
     # title for param layout
-    paramTitle = "Data Background"
+    paramTitle = "Data Skill Tree"
 
     # general description of your site
     # can be write with markdown style
