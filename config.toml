@@ -15,7 +15,7 @@ theme = "FeelIt"
 # Whether to use robots.txt
 enableRobotsTXT = true 
 
-# Whether to use git commit log (LEAVE IT AS FALSE, NOT REQUIRED)
+# Whether to use git commit log (LEAVE IT AS FALSE, THIS NOT REQUIRED)
 enableGitInfo = false
 
 # Public git repo url only then enableGitInfo is true
