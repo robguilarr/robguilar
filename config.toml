@@ -310,7 +310,7 @@ paginate = 20
       name = " > robguilar"
 
       # Add extra information before the name (HTML format is supported), such as icons
-      #pre = "<i class='fas fa-user-astronaut'></i>"
+      #pre = ""
 
       # Add extra information after the name (HTML format is supported), such as icons
       post = ""
@@ -341,7 +341,7 @@ paginate = 20
     since = 2021
     
     # License info (HTML format is supported)
-    license = 'Hosted on Netlify'
+    license = 'Website Engine deployed by Netlify'
 
   #-----------------------------------------------------------------------
   # POSTS/SECTION page config
@@ -612,7 +612,7 @@ paginate = 20
     #---------------------------------------------------------------------
     #[params.social.medium]
       # weight when arranging icons (the greater the weight, the later the icon is positioned)
-      #weight = 4
+      #weight = 
 
       # social ID
       #id = "@robguilarr"
@@ -640,11 +640,27 @@ paginate = 20
       title = "Instagram"
 
     #---------------------------------------------------------------------
-    # Instagram Specific config
+    # Unity Specific config
+    #---------------------------------------------------------------------
+    #[params.social.unity]
+      # weight when arranging icons (the greater the weight, the later the icon is positioned)
+      #weight = 5
+
+      # social ID
+      #id = "robguilarr?tab=profile"
+
+      # prefix of your social link
+      #prefix = "https://learn.unity.com/u/"
+
+      # content hovering on the icon
+      #title = "Unity Learn"
+
+    #---------------------------------------------------------------------
+    # GitHub Specific config
     #---------------------------------------------------------------------
     [params.social.github]
       # weight when arranging icons (the greater the weight, the later the icon is positioned)
-      weight = 5
+      weight = 6
 
       # social ID
       id = "robguilarr"
@@ -654,8 +670,6 @@ paginate = 20
 
       # content hovering on the icon
       title = "GitHub"
-
-
 
   #---------------------------------------------------------------------
   # SEARCH Engine

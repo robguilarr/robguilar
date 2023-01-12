@@ -542,3 +542,11 @@ figma:
   Title: Figma
   Icon:
     Class: fab fa-figma fa-fw
+
+# 069: Unity
+unity:
+  Weight: 69
+  Prefix: https://learn.unity.com/u/
+  Title: Unity
+  Icon:
+    Class: fab fa-brands fa-unity fa-fw
