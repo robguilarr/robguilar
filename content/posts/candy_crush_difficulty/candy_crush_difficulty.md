@@ -11,8 +11,8 @@ thumbnail: "/images/posts/candy_crush_difficulty.jpg"
 tags: ["Bernoulli", "Python"]
 categories: ["Projects"]
 
-author: "Roberto Aguilar"
-authorLink: "https://www.linkedin.com/in/robguilarr/"
+author: "Roberto Aguilar, Rasmus Baath"
+authorLink: "https://www.sumsar.net/"
 hiddenFromHomePage: false
 hiddenFromSearch: false
 

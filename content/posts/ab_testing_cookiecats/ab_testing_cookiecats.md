@@ -11,8 +11,8 @@ thumbnail: "/images/posts/ab_testing_cookiecats.jpg"
 tags: ["A/B Testing", "Bootstrapping", "Python"]
 categories: ["Projects"]
 
-author: "Roberto Aguilar"
-authorLink: "https://www.linkedin.com/in/robguilarr/"
+author: "Roberto Aguilar, Rasmus Baath"
+authorLink: "https://www.sumsar.net/"
 hiddenFromHomePage: false
 hiddenFromSearch: false
 

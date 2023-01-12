@@ -38,9 +38,9 @@ More info {{< link href="https://global-uploads.webflow.com/5ca2bcb83aece284fe8c
 #### :(fas fa-briefcase fa-fw): Experience
 
 {{< admonition type=info title="Junior Data Analyst at McKinsey & Company" open=true >}}
-<img width="75" height="75" src="images/mckinsey_logo.jpg" align="left" hspace="10" vspace="10"> Analyst in charge of coding/scripting (SQL, Python, etc.) for automating data transformations and loading across business algorithms. Also, responsible for performing data ingestion, transformation, and uploading into applications/engines. This entailed the use of application administration tools (combination of proprietary tools), validating raw data quality (developing test cases with QA scripts), and taking corrective measures in case of issues.
+<img width="75" height="75" src="images/mckinsey_logo.jpg" align="left" hspace="10" vspace="10"> Analytics Developer in charge of coding/scripting (SQL, Python, etc.) for automating data transformations and loading across business algorithms. Also, responsible for performing data ingestion, transformation, and uploading into applications/engines. This entailed the use of application administration tools (combination of proprietary tools), validating raw data quality (developing test cases with QA scripts), and taking corrective measures in case of issues.
 
-More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}
+Learn more about the responsibilities of roles in {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}.
 
 > March 2022 - Present
 > {{< /admonition >}}
@@ -48,7 +48,7 @@ More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US
 {{< admonition type=info title="Business Intelligence Analyst at Belcorp" open=true >}}
 <img width="75" height="75" src="images/bel_logo.jpg" align="left" hspace="10" vspace="10">Through prescriptive analytics applied in the field of BI within the B2C sales area, commercial sales variables were managed and reported. To create and consult dynamic and real-time reports/dashboards that will make timely decisions for Central American sales plans, according to the needs of sales management.
 
-More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}
+Learn more about the responsibilities of roles in {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}.
 
 > February 2021 - July 2021
 > {{< /admonition >}}
@@ -56,12 +56,41 @@ More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US
 {{< admonition type=info title="Enterprise Data & Analytics Intern at VMware" open=true >}}
 <img width="75" height="75" src="images/vm_logo.png" align="left" hspace="10" vspace="10">Created and migrated data analytics reports of the Customer Success area in the whole SaaS cycle, embracing all the Customer 360° environment. As well as the CTA predictive analysis according to the PEME needs of early warnings subscription consumption; via commercial, and financial indicators applied to Big Data.
 
-More info at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}
+Learn more about the responsibilities of roles in {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}.
 
 > June 2020 - September 2020
 > {{< /admonition >}}
 
 ---
+
+#### :(fas fa-solid fa-award fa-fw): Honors & awards
+
+{{< admonition type=success title="Finalist at VMware BORATHON 2020, Palo Alto, California" open=true >}}
+<img width="75" height="75" src="images/vm_borathon_badge.jpg" align="left" hspace="10" vspace="10">Reached the final stage, ranking among the eight finalists for the annual VMware Hackathon. Recognized for developing a mockup of an internal social network to complement the Workspace ONE product. Supporting the proposed solution through a real-time dashboard that uses actual HR data to represent the prospect's impact on the business. The activity was carried out virtually due to the sanitary restrictions of COVID-19.
+
+Learn more about this program at {{< link href="https://octo.vmware.com/borathon-a-vmware-hackathon/" content="VMware's CTO Blog" >}}.
+
+> August 2020
+> {{< /admonition >}}
+
+---
+
+#### :(fas fa-solid fa-id-card fa-fw): Licenses & certifications
+
+{{< admonition type=success title="Databricks Certified Associate Developer for Apache Spark 3.0" open=true >}}
+<img width="75" height="75" src="images/badge-spark-developer.png" align="left" hspace="10" vspace="10">Databricks and Apache Software Foundation validated credential, which demonstrates an understanding of the Apache Spark architecture and the ability to apply the Spark DataFrame API to complete individual data manipulation tasks using parallelization coding with Pyspark.
+
+Learn more about this {{< link href="https://credentials.databricks.com/d93183be-7c8f-4be7-a696-0fd9cb48cd4a" content="credential" >}}.
+
+> November 2022
+> {{< /admonition >}}
+
+---
+
+{{< script >}}
+console.log('Hello LoveIt!');
+{{< /script >}}
+
 
 #### :(fas fa-hand-holding-medical fa-fw): What can I offer
 
@@ -69,15 +98,15 @@ I'm not an expert, but a creative and curious mind. As one of my favorite author
 
 I'm a Data Analyst with Engineering skills and a self-learning attitude. With experience in consulting, consumer goods, and virtualization technology industries. Who as an add-on has great enthusiasm for the Software Entertainment industry, in how data analytics can improve it as a business, using pre-development analytics, live metrics, and acquisition/retention analysis; for indie markets and big publishers.
 
+Before I started working as a data analyst, I started out as a self-taught Unity programmer. This describes a very important characteristic of mine, and it is the motivation to continuously learn on my own, in the sense of wanting to explore the unknown and accept new challenges. I like to propose **creative perspectives** to improve in each area of work, especially when it comes to getting the most out of one of today's most valuable resources, data.
+
 ---
 
 #### :(fas fa-hiking fa-fw): Personal life & Hobbies
 
 I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why two of my main appeals are **Game Data Science** and **Game  Development**.
 
-Without going too deep, I'm fascinated in following news from high-tech companies, about new product releases, and market movements, especially from Google and Microsoft.
-
-I also like to read books about Business, Productivity, Personal Growth, Video Games and Game Analytics. Referring to authors such as Tom Rath, Austin Kleon, James Clear, David Goggins, Anders Drachen and Jason Schreier.
+Without going too deep, I'm fascinated in following news from high-tech companies, about new product releases, and market movements, especially from Google and Microsoft. I also like to read books about Business, Productivity, Personal Growth, Video Games and Game Analytics. Referring to authors such as Tom Rath, Austin Kleon, James Clear, David Goggins, Anders Drachen and Jason Schreier.
 
 Among other personal hobbies I like playing video games and practicing outdoor sports like trail running.
 
@@ -99,10 +128,3 @@ Among other personal hobbies I like playing video games and practicing outdoor s
 
 
 ---
-
-> <b>Looking for a personal Meeting?</b>
->
-> Schedule a space to chat through Calendly.
->
-> - Calendly | [https://calendly.com](https://calendly.com/robguilarr "Visit Calendly Portal")
-
