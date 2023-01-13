@@ -28,7 +28,7 @@ Learn more about this academic degree {{< link href="https://www.tec.ac.cr/progr
 {{< /admonition >}}
 
 {{< admonition type=abstract title="Data Analyst at Cenfotec" open=true >}}
-Data Analytics Professional Program, managing topics such as Data Storytelling in Python with Jupyter Notebooks, ETL with Azure Data Factory, Web Scraping with Selenium and API connections using requests, Data Governance fundamentals, data modeling in Apache Hadoop using HiveQL, and visualization of statistical models with D3.js, Tableau and Power BI.
+Data Analysis Graduate Program, emphasizing data engineering and analytics, offers advanced statistical analysis through programming languages for Big Data processing. The program includes good Data Engineering practices using the Apache Software Foundation frameworks and adopts application concepts for end-to-end analytical solutions.
 
 Learn more about this academic degree {{< link href="https://global-uploads.webflow.com/5ca2bcb83aece284fe8c6ada/6036752071cd3551f32c9f8d_Programa%20Analista%20de%20Datos.pdf" content=here >}}.
 {{< /admonition >}}
