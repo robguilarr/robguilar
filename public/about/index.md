@@ -24,13 +24,13 @@ However, one of my favorite topics has always been statistics and probability â€
 {{< admonition type=abstract title="Industrial Production Engineering at TEC" open=true >}}
 Bachelor's degree accredited by the Canadian Engineering Accreditation Board ({{< link href="https://engineerscanada.ca/accreditation/accreditation-resources" content=CEAB >}}) in the area of Industrial Engineering. Covering areas such as industrial statistics (Minitab), process simulation, computer aided design (CAD, Solid Works), computer aided manufacturing (CAM), industrial process control and programming (CNC), IT project management fundamentals (SCRUM), continuous improvement processes (Lean Six Sigma).
 
-More info {{< link href="https://www.tec.ac.cr/programas-academicos/licenciatura-ingenieria-produccion-industrial" content=here >}}.
+Learn more about this academic degree {{< link href="https://www.tec.ac.cr/programas-academicos/licenciatura-ingenieria-produccion-industrial" content=here >}}.
 {{< /admonition >}}
 
 {{< admonition type=abstract title="Data Analyst at Cenfotec" open=true >}}
 Data Analytics Professional Program, managing topics such as Data Storytelling in Python with Jupyter Notebooks, ETL with Azure Data Factory, Web Scraping with Selenium and API connections using requests, Data Governance fundamentals, data modeling in Apache Hadoop using HiveQL, and visualization of statistical models with D3.js, Tableau and Power BI.
 
-More info {{< link href="https://global-uploads.webflow.com/5ca2bcb83aece284fe8c6ada/6036752071cd3551f32c9f8d_Programa%20Analista%20de%20Datos.pdf" content=here >}}.
+Learn more about this academic degree {{< link href="https://global-uploads.webflow.com/5ca2bcb83aece284fe8c6ada/6036752071cd3551f32c9f8d_Programa%20Analista%20de%20Datos.pdf" content=here >}}.
 {{< /admonition >}}
 
 ---
@@ -40,15 +40,15 @@ More info {{< link href="https://global-uploads.webflow.com/5ca2bcb83aece284fe8c
 {{< admonition type=info title="Junior Data Analyst at McKinsey & Company" open=true >}}
 <img width="75" height="75" src="images/mckinsey_logo.jpg" align="left" hspace="10" vspace="10"> Analytics Developer in charge of coding/scripting (SQL, Python, etc.) for automating data transformations and loading across business algorithms. Also, responsible for performing data ingestion, transformation, and uploading into applications/engines. This entailed the use of application administration tools (combination of proprietary tools), validating raw data quality (developing test cases with QA scripts), and taking corrective measures in case of issues.
 
-Learn more about the responsibilities of roles in {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}.
+Learn more about the responsibilities of this role at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}.
 
-> March 2022 - Present
+> March 2022 - **Present**
 > {{< /admonition >}}
 
 {{< admonition type=info title="Business Intelligence Analyst at Belcorp" open=true >}}
 <img width="75" height="75" src="images/bel_logo.jpg" align="left" hspace="10" vspace="10">Through prescriptive analytics applied in the field of BI within the B2C sales area, commercial sales variables were managed and reported. To create and consult dynamic and real-time reports/dashboards that will make timely decisions for Central American sales plans, according to the needs of sales management.
 
-Learn more about the responsibilities of roles in {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}.
+Learn more about the responsibilities of this role at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}.
 
 > February 2021 - July 2021
 > {{< /admonition >}}
@@ -56,7 +56,7 @@ Learn more about the responsibilities of roles in {{< link href="https://www.lin
 {{< admonition type=info title="Enterprise Data & Analytics Intern at VMware" open=true >}}
 <img width="75" height="75" src="images/vm_logo.png" align="left" hspace="10" vspace="10">Created and migrated data analytics reports of the Customer Success area in the whole SaaS cycle, embracing all the Customer 360Â° environment. As well as the CTA predictive analysis according to the PEME needs of early warnings subscription consumption; via commercial, and financial indicators applied to Big Data.
 
-Learn more about the responsibilities of roles in {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}.
+Learn more about the responsibilities of this role at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}.
 
 > June 2020 - September 2020
 > {{< /admonition >}}
@@ -66,9 +66,9 @@ Learn more about the responsibilities of roles in {{< link href="https://www.lin
 #### :(fas fa-solid fa-award fa-fw): Honors & awards
 
 {{< admonition type=success title="Finalist at VMware BORATHON 2020, Palo Alto, California" open=true >}}
-<img width="75" height="75" src="images/vm_borathon_badge.jpg" align="left" hspace="10" vspace="10">Reached the final stage, ranking among the eight finalists for the annual VMware Hackathon. Recognized for developing a mockup of an internal social network to complement the Workspace ONE product. Supporting the proposed solution through a real-time dashboard that uses actual HR data to represent the prospect's impact on the business. The activity was carried out virtually due to the sanitary restrictions of COVID-19.
+<img width="87" height="87" src="images/vm_borathon_badge.png" align="left" hspace="10" vspace="10">Reached the final stage, ranking among the eight finalists for the annual VMware Hackathon. Recognized for developing a mockup of an internal social network to complement the Workspace ONE product. Supporting the proposed solution through a real-time dashboard that uses actual HR data to represent the prospect's impact on the business. The activity was carried out virtually due to the sanitary restrictions of COVID-19.
 
-Learn more about this program at {{< link href="https://octo.vmware.com/borathon-a-vmware-hackathon/" content="VMware's CTO Blog" >}}.
+Learn more about this program at {{< link href="https://octo.vmware.com/hackers-innovate-everywhere-at-vmwares-global-borathons/" content="VMware's CTO Blog" >}}.
 
 > August 2020
 > {{< /admonition >}}
@@ -78,9 +78,9 @@ Learn more about this program at {{< link href="https://octo.vmware.com/borathon
 #### :(fas fa-solid fa-id-card fa-fw): Licenses & certifications
 
 {{< admonition type=success title="Databricks Certified Associate Developer for Apache Spark 3.0" open=true >}}
-<img width="75" height="75" src="images/badge-spark-developer.png" align="left" hspace="10" vspace="10">Databricks and Apache Software Foundation validated credential, which demonstrates an understanding of the Apache Spark architecture and the ability to apply the Spark DataFrame API to complete individual data manipulation tasks using parallelization coding with Pyspark.
+<img width="80" height="80" src="images/badge-spark-developer.png" align="left" hspace="10" vspace="10">Databricks and Apache Software Foundation validated credential, which demonstrates an understanding of the Apache Spark architecture and the ability to apply the Spark DataFrame API to complete individual data manipulation tasks using parallelization coding with Pyspark.
 
-Learn more about this {{< link href="https://credentials.databricks.com/d93183be-7c8f-4be7-a696-0fd9cb48cd4a" content="credential" >}}.
+Validate this credential {{< link href="https://credentials.databricks.com/d93183be-7c8f-4be7-a696-0fd9cb48cd4a" content="here" >}}.
 
 > November 2022
 > {{< /admonition >}}
@@ -125,6 +125,3 @@ Among other personal hobbies I like playing video games and practicing outdoor s
 - Instagram | [https://instagram.com](https://www.instagram.com/robguilarr/ "Visit Instagram Profile")
 
 - Figma | [https://www.figma.com](https://www.figma.com/@robguilarr "Visit Figma Profile")
-
-
----
