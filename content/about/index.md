@@ -19,7 +19,7 @@ A few years ago, I started studying Industrial Engineering, at the same time, as
 
 Shortly after, a friend told me about Data Science — but at first, it didn't interest me because I didn't have a precise idea of ​​what it was about.
 
-However, one of my favorite topics has always been statistics and probability — and then discovered that some people in the Software Entertainment industry are dedicated to retaining and acquiring users via analytics and data mining techniques to improve the UX and make games sustainable. And most of those people had backgrounds associated with Analytics careers like Data Science — which is why I started to get inspired to follow this path.
+However, one of my favorite topics has always been statistics and probability — and then discovered that some people in the Software Entertainment industry are dedicated to retaining and acquiring users via analytics and data mining techniques to improve the UX and make games sustainable. And most of those people had backgrounds associated with Analytics careers like Data Science and Engineering — which is why I started to get inspired to follow this path.
 
 </div>
 
@@ -27,14 +27,14 @@ However, one of my favorite topics has always been statistics and probability �
 
 #### :(fas fa-user-graduate fa-fw): Education
 
-{{< admonition type=abstract title="Industrial Production Engineering at TEC" open=true >}}
+{{< admonition type=abstract title="Bachelor of Science in Engineering (B.S.E) - Industrial Engineering at TEC" open=true >}}
 Bachelor's degree accredited by the Canadian Engineering Accreditation Board ({{< link href="https://engineerscanada.ca/accreditation/accreditation-resources" content=CEAB >}}) in the area of Industrial Engineering. Covering areas such as industrial statistics (Minitab), process simulation, computer aided design (CAD, Solid Works), computer aided manufacturing (CAM), industrial process control and programming (CNC), IT project management fundamentals (SCRUM), continuous improvement processes (Lean Six Sigma).
 
 Learn more about this academic degree {{< link href="https://www.tec.ac.cr/programas-academicos/licenciatura-ingenieria-produccion-industrial" content=here >}}.
 {{< /admonition >}}
 
-{{< admonition type=abstract title="Data Analyst at Cenfotec" open=true >}}
-Data Analysis Graduate Program, emphasizing data engineering and analytics, offers advanced statistical analysis through programming languages for Big Data processing. The program includes good Data Engineering practices using the Apache Software Foundation frameworks and adopts application concepts for end-to-end analytical solutions.
+{{< admonition type=abstract title="Postgraduate Degree - Data Engineering & Analytics at Cenfotec" open=true >}}
+Data Analytics Graduate Program, emphasizing data engineering and analytics, offers advanced statistical analysis through programming languages for Big Data processing. The program includes good Data Engineering practices using the Apache Software Foundation frameworks and adopts application concepts for end-to-end analytical solutions.
 
 Learn more about this academic degree {{< link href="https://global-uploads.webflow.com/5ca2bcb83aece284fe8c6ada/6036752071cd3551f32c9f8d_Programa%20Analista%20de%20Datos.pdf" content=here >}}.
 {{< /admonition >}}
@@ -51,7 +51,7 @@ Learn more about the responsibilities of this role at {{< link href="https://www
 > March 2022 - **Present**
 > {{< /admonition >}}
 
-{{< admonition type=info title="Business Intelligence Analyst at Belcorp" open=true >}}
+{{< admonition type=info title="Junior Business Intelligence Analyst at Belcorp" open=true >}}
 <img width="75" height="75" src="images/bel_logo.jpg" align="left" hspace="10" vspace="10">Through prescriptive analytics applied in the field of BI within the B2C sales area, commercial sales variables were managed and reported. To create and consult dynamic and real-time reports/dashboards that will make timely decisions for Central American sales plans, according to the needs of sales management.
 
 Learn more about the responsibilities of this role at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}.
@@ -100,9 +100,9 @@ console.log('Hello LoveIt!');
 
 #### :(fas fa-hand-holding-medical fa-fw): What can I offer
 
-I'm not an expert, but a creative and curious mind. As one of my favorite authors, Austin Kleon says, "You don't have to be a genius .... Sometimes amateurs have more to teach us than experts", they are always willing to learn, holding the constraints out of mind. For this reason, I like to show my work, eager to get feedback from people or groups who share the same interests as me, and help them however I can.
+I'm a data analyst with engineering skills made by a self-learning attitude. With experience in consulting, consumer goods, and virtualization technology industries. Who as an add-on has great enthusiasm for the Software Entertainment industry, in how data analytics can improve it as a business, using pre-development analytics, live metrics, and acquisition/retention analysis; for indie markets and big publishers.
 
-I'm a Data Analyst with Engineering skills and a self-learning attitude. With experience in consulting, consumer goods, and virtualization technology industries. Who as an add-on has great enthusiasm for the Software Entertainment industry, in how data analytics can improve it as a business, using pre-development analytics, live metrics, and acquisition/retention analysis; for indie markets and big publishers.
+Neither consider myself an expert, but a creative and curious mind. As one of my favorite authors, Austin Kleon says, "You don't have to be a genius .... Sometimes amateurs have more to teach us than experts", they are always willing to learn, holding the constraints out of mind. For this reason, I like to show my work, eager to get feedback from people or groups who share the same interests as me, and help them however I can.
 
 Before I started working as a data analyst, I started out as a self-taught Unity programmer. This describes a very important characteristic of mine, and it is the motivation to continuously learn on my own, in the sense of wanting to explore the unknown and accept new challenges. I like to propose **creative perspectives** to improve in each area of work, especially when it comes to getting the most out of one of today's most valuable resources, data.
 
@@ -110,11 +110,11 @@ Before I started working as a data analyst, I started out as a self-taught Unity
 
 #### :(fas fa-hiking fa-fw): Personal life & Hobbies
 
-I'm a person who love to read to issues related to video games industry, especially in companies such as Activision Blizzard, Ubisoft, Xbox Studios, among others; also, in matters of marketing and applicability of Data Analysis in development, design, research and postproduction, that's why two of my main appeals are **Game Data Science** and **Game  Development**.
+I’m a person who loves to read about issues related to the gaming industry, especially in companies such as Activision Blizzard, Ubisoft, Bethesda, Xbox Studios, among others; also in matters of marketing and applicability of Data Analysis in development, design, research and postproduction -- That's why two of my main appeals are **Applied Data Science** and **Game Development**.
 
-Without going too deep, I'm fascinated in following news from high-tech companies, about new product releases, and market movements, especially from Google and Microsoft. I also like to read books about Business, Productivity, Personal Growth, Video Games and Game Analytics. Referring to authors such as Tom Rath, Austin Kleon, James Clear, David Goggins, Anders Drachen and Jason Schreier.
+Without going too deep, I'm fascinated by following news from high-tech companies (such as Google or Microsoft) about new product releases and market movements. Also like to read books about Business, Productivity, Personal Growth and Video Games. Referring to authors such as Tom Rath, Austin Kleon, James Clear and David Goggins.
 
-Among other personal hobbies I like playing video games and practicing outdoor sports like trail running.
+Among other personal hobbies, I like playing video games and practicing outdoor sports like trail running.
 
 ---
 

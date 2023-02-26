@@ -1,3 +1,5 @@
+# CMD: ./hugo server
+
 baseURL = "https://robguilar.com/"
 # [en, zh-cn, fr, it, ...] determines default content language
 defaultContentLanguage = "en"
@@ -457,15 +459,15 @@ paginate = 20
     # description of your parameter
     [[params.about.parameter]]
       language = "Engineering"
-      level = "85"
+      level = "80"
 
     [[params.about.parameter]]
       language = "Science"
-      level = "65"
+      level = "50"
 
     [[params.about.parameter]]
       language = "Analytics"
-      level = "75"
+      level = "65"
 
 
   #-----------------------------------------------------------------------
