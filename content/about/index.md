@@ -114,7 +114,7 @@ I’m a person who loves to read about issues related to the gaming industry, es
 
 Without going too deep, I'm fascinated by following news from high-tech companies (such as Google or Microsoft) about new product releases and market movements. Also like to read books about Business, Productivity, Personal Growth and Video Games. Referring to authors such as Tom Rath, Austin Kleon, James Clear and David Goggins.
 
-Among other personal hobbies, I like playing video games and practicing outdoor sports like trail running.
+Among other personal hobbies, I like playing video games and practicing outdoor sports like trail running. And a fun fact is that I live with a golden Holland Lop named Jacka.
 
 ---
 

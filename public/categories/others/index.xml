@@ -28,11 +28,12 @@
             <i class="icon fas fa-exclamation-triangle fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">For a more engaging experience, the <strong>desktop</strong> mode is highly recommended. In such case the viewer doesn’t load, you can access my Figma content <strong><a href="https://www.figma.com/@robguilarr" target="_blank" rel="noopener noreffer">here</a></strong>.</div>
+            <div class="admonition-content"><p>For a more engaging experience, the <strong>desktop</strong> mode is highly recommended. In such case the viewer doesn’t load, you can access my Figma content <strong><a href="https://www.figma.com/@robguilarr" target="_blank" rel="noopener noreffer">here</a></strong>.</p>
+<p><strong>Important</strong>: If you are using MacOS it is likely that you have problems with <strong>WebGL</strong> while using Figma.</p>
+</div>
         </div>
     </div>
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="750" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FOpjP1EKAhJRupQqxqQeyNM%2FGame-Development-Team-Structure%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
-]]></description>
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="750" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FOpjP1EKAhJRupQqxqQeyNM%2FGame-Development-Team-Structure%3Fnode-id%3D0%253A1" allowfullscreen></iframe>]]></description>
 </item>
 </channel>
 </rss>

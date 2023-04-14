@@ -25,9 +25,9 @@ Important: not all of them are a necessity for development, depending on the sca
 
 {{< admonition type=warning title="Note" open=true >}}
 For a more engaging experience, the **desktop** mode is highly recommended. In such case the viewer doesn’t load, you can access my Figma content **[here](https://www.figma.com/@robguilarr)**.
+
+**Important**: If you are using MacOS it is likely that you have problems with **WebGL** while using Figma.
 {{< /admonition >}}
 
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="750" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FOpjP1EKAhJRupQqxqQeyNM%2FGame-Development-Team-Structure%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
-
-

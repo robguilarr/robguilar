@@ -306,7 +306,7 @@ There were many other causes such as the massive appearance of consoles and the 
 <blockquote><b>1984</b> – A new foe has appeared! Challenger approaching</blockquote>
 
 <p align= center>
-    <img src="https://cdn.gamer-network.net/2016/usgamer/donkey_kong_nes_classic_03.jpg" width="600" height="400" alt="DK">
+    <img src="https://media.wired.com/photos/5926ae95cefba457b079acf4/master/w_2560%2Cc_limit/DonkeyKong_TA.jpg" width="700" height="500" alt="DK">
 </p>
 
 After the drop because of the oversupply of titles, Nintendo Entertainment saw a chance to take over the American market with its local bestseller the
