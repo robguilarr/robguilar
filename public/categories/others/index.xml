@@ -28,8 +28,10 @@
             <i class="icon fas fa-exclamation-triangle fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content"><p>For a more engaging experience, the <strong>desktop</strong> mode is highly recommended. In such case the viewer doesn’t load, you can access my Figma content <strong><a href="https://www.figma.com/@robguilarr" target="_blank" rel="noopener noreffer">here</a></strong>.</p>
-<p><strong>Important</strong>: If you are using MacOS it is likely that you have problems with <strong>WebGL</strong> while using Figma.</p>
+            <div class="admonition-content"><p>It is recommended to use the <strong>desktop</strong> mode for a better experience, but if the viewer fails to load, access my Figma content <strong><a href="https://www.figma.com/@robguilarr" target="_blank" rel="noopener noreffer">here</a></strong>.</p>
+<ul>
+<li>MacOS users may experience <strong>WebGL</strong> issues while loading Figma preview, so ensure that <strong>Hardware Acceleration</strong> mode is enabled in your browser.</li>
+</ul>
 </div>
         </div>
     </div>

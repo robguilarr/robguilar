@@ -96,7 +96,7 @@ console.log('Hello LoveIt!');
 
 I'm a data analyst with engineering skills made by a self-learning attitude. With experience in consulting, consumer goods, and virtualization technology industries. Who as an add-on has great enthusiasm for the Software Entertainment industry, in how data analytics can improve it as a business, using pre-development analytics, live metrics, and acquisition/retention analysis; for indie markets and big publishers.
 
-Neither consider myself an expert, but a creative and curious mind. As one of my favorite authors, Austin Kleon says, "You don't have to be a genius .... Sometimes amateurs have more to teach us than experts", they are always willing to learn, holding the constraints out of mind. For this reason, I like to show my work, eager to get feedback from people or groups who share the same interests as me, and help them however I can.
+Although I don't consider myself an expert, I do have a curious and creative mind. As the renowned author Austin Kleon once said, "You don't have to be a genius... Sometimes amateurs have more to teach us than experts." I'm always eager to learn and explore new ideas without placing contraints. That's why I enjoy sharing my work and getting feedback from like-minded people. So, if you share the same interests as me, I would be thrilled to help you out in any way I can.
 
 Before I started working as a data analyst, I started out as a self-taught Unity programmer. This describes a very important characteristic of mine, and it is the motivation to continuously learn on my own, in the sense of wanting to explore the unknown and accept new challenges. I like to propose **creative perspectives** to improve in each area of work, especially when it comes to getting the most out of one of today's most valuable resources, data.
 
@@ -104,11 +104,11 @@ Before I started working as a data analyst, I started out as a self-taught Unity
 
 #### :(fas fa-hiking fa-fw): Personal life & Hobbies
 
-I’m a person who loves to read about issues related to the gaming industry, especially in companies such as Activision Blizzard, Ubisoft, Bethesda, Xbox Studios, among others; also in matters of marketing and applicability of Data Analysis in development, design, research and postproduction -- That's why two of my main appeals are **Applied Data Science** and **Game Development**.
+I’m a person who loves to read about issues related to the gaming industry, especially in companies such as Activision Blizzard, Ubisoft, Bethesda, Xbox Studios, Supercell, among others; also in matters of marketing and applicability of Data Analysis in development, design, research and postproduction -- That's why two of my main appeals are **Applied Data Science** and **Game Development**.
 
 Without going too deep, I'm fascinated by following news from high-tech companies (such as Google or Microsoft) about new product releases and market movements. Also like to read books about Business, Productivity, Personal Growth and Video Games. Referring to authors such as Tom Rath, Austin Kleon, James Clear and David Goggins.
 
-Among other personal hobbies, I like playing video games and practicing outdoor sports like trail running. And a fun fact is that I live with a golden Holland Lop named Jacka.
+Among other personal hobbies, I like playing video games and practicing outdoor sports like trail running. And a fun fact —  I live with a golden Holland Lop named Jacka.
 
 ---
 
