@@ -11,7 +11,7 @@
 <p>Retention metrics tracking is crucial for the long-term sustainability of mobile games like Brawl Stars, particularly during soft launches. These metrics are used to measure how many players continue to play the game after initial installation and engagement.</p>
 <p>By analyzing these metrics, game developers can identify areas where players may be dropping off and make changes to improve the user experience and keep players engaged over time. This is essential for the success of a mobile game, as high retention rates lead to more in-app purchases and longer overall player lifetimes. Given the competitive landscape of mobile gaming, tracking retention metrics is a key component in keeping a game relevant and profitable over the long term.</p>
 <hr>
-<p align='center'> <i class="fas fa-exclamation-circle fa-fw"></i>&nbsp;<b>Important: Any views, material or statements expressed are mines and not those of my employer</b> </p>
+<p><strong><i class="fas fa-exclamation-circle fa-fw"></i>&nbsp;Important: Any views, material or statements expressed are mines and not those of my employer, read the disclaimer to learn more.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></strong></p>
 <hr>
 <div class="details admonition info open">
         <div class="details-summary admonition-title">
@@ -161,11 +161,9 @@
 <li>The last modular pipeline, <code>player_activity_clustering_merge</code>, will use the curated data to produce retention plots. It will use a single Python processing since it uses filtered data, which is a smaller subset.</li>
 </ul>
 <p>This pipeline was designed to speed up processing by parallelizing. We can calculate the theoretical speedup by applying <a href="https://en.wikipedia.org/wiki/Amdahl%27s_law" target="_blank" rel="noopener noreffer">Amdahl&rsquo;s Law</a>.</p>
-<p>$$
-S = \frac{1}{1-P+\frac{P}{N}} = \frac{1}{1-0.64286+\frac{0.64286}{10}} = 2.52
-$$</p>
+<p>$$S = \frac{1}{1-P+\frac{P}{N}} = \frac{1}{1-0.64286+\frac{0.64286}{10}} = 2.52$$</p>
 <p>The theoretical speedup will be approximately 2.52 for a single-machine cluster. Here, <em>S</em> represents theoretical speedup, <em>P</em> represents the fraction of the workload that can be parallelized, and <em>N</em> represents the number of processors.</p>
-<p>If you want to learn more about the appropriate use cases for multithreading and multiprocessing, I highly recommend watching <a href="https://www.youtube.com/watch?v=w2eUdxPQQ78" target="_blank" rel="noopener noreffer">this conference video</a> by Chin Hwee Ong (Pycon Taiwan 2020). It&rsquo;s one of the best resources to get started.</p>
+<p>If you want to learn more about the appropriate use cases for multithreading and multiprocessing, I highly recommend watching <a href="https://www.youtube.com/watch?v=w2eUdxPQQ78" target="_blank" rel="noopener noreffer">this conference video</a> by Chin Hwee Ong (Pycon Taiwan, 2020). It&rsquo;s one of the best resources to get started.</p>
 <hr>
 <h3 id="-battlelogs-and-metadata-request-pipelines">⚔️ Battlelogs and Metadata Request Pipelines</h3>
 <p><strong>Pipeline <code>battlelogs_request_preprocess</code> and <code>metadata_request_preprocess</code></strong></p>
@@ -833,22 +831,22 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 <hr>
 <h2 id="ℹ-additional-information">ℹ️ Additional Information</h2>
 <ul>
-<li><strong>About the article</strong></li>
-</ul>
-<p>The following article is provided strictly for learning purposes and is intended solely as a learning tool for the author. The content of this article represents the author&rsquo;s personal perspectives and does not rely on established or experienced methods commonly employed in the field. The practices and methodologies discussed herein are not reflective of the opinions or views held by the author&rsquo;s employer. It is strongly advised against utilizing this article directly as a solution, as the process of data collection and utilization of public APIs may introduce biases and inaccuracies. Users are cautioned to exercise caution and discretion when considering its use.</p>
-<ul>
 <li><strong>Related Content</strong></li>
 </ul>
-<p>Here you can find a list of preferred materials if you are interested in similar topics</p>
+<p>Here you have a list of preferred materials for you to explore if you&rsquo;re interested in similar topics:</p>
 <p>— <a href="https://podcasts.apple.com/us/podcast/elite-game-developers-podcast/id1463752909" target="_blank" rel="noopener noreffer">Elite Game Developers Podcast</a> by Joakim Achren.</p>
 <p>— Joakim Achren newsletter and <a href="https://www.elitegamedevelopers.com/blog/?ref=elitegamedevelopers.com" target="_blank" rel="noopener noreffer">blog</a>.</p>
 <p>— Game Data Science book and additional info at the <a href="https://global.oup.com/academic/product/game-data-science-9780192897879?cc=cr&amp;lang=en&amp;" target="_blank" rel="noopener noreffer">Oxford University Press</a>.</p>
 <p>— Getting started with <a href="https://docs.kedro.org/en/stable/get_started/install.html" target="_blank" rel="noopener noreffer">Kedro</a>.</p>
 <p>— Brawstats <a href="https://brawlstats.com/" target="_blank" rel="noopener noreffer">homepage</a>, by overwolf.</p>
-<ul>
-<li><strong>Datasets</strong></li>
-</ul>
-<p>The output dataset will be uploaded to Kaggle as part of its public source intention.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><strong>Article disclaimer</strong>: The information presented in this article is solely intended for learning purposes and serves as a tool for the author&rsquo;s personal development. The content provided reflects the author&rsquo;s individual perspectives and does not rely on established or experienced methods commonly employed in the field. Please be aware that the practices and methodologies discussed in this article do not represent the opinions or views held by the author&rsquo;s employer. It is strongly advised not to utilize this article directly as a solution or consultation material, as the process of data collection and utilization of Public APIs may introduce biases and inaccuracies. Users are cautioned to exercise caution and discretion when considering its use.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
 ]]></description>
 </item>
 <item>

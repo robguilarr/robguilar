@@ -35,7 +35,7 @@ By analyzing these metrics, game developers can identify areas where players may
 
 ---
 
-<p align='center'> :(fas fa-exclamation-circle fa-fw): <b>Important: Any views, material or statements expressed are mines and not those of my employer</b> </p>
+**:(fas fa-exclamation-circle fa-fw): Important: Any views, material or statements expressed are mines and not those of my employer, read the disclaimer to learn more.[^1]**
 
 ---
 
@@ -156,13 +156,11 @@ The pipeline architecture consists of five modular pipelines, with a total of 14
 
 This pipeline was designed to speed up processing by parallelizing. We can calculate the theoretical speedup by applying [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law).
 
-$$
-S = \frac{1}{1-P+\frac{P}{N}} = \frac{1}{1-0.64286+\frac{0.64286}{10}} = 2.52
-$$
+$$S = \frac{1}{1-P+\frac{P}{N}} = \frac{1}{1-0.64286+\frac{0.64286}{10}} = 2.52$$
 
 The theoretical speedup will be approximately 2.52 for a single-machine cluster. Here, *S* represents theoretical speedup, *P* represents the fraction of the workload that can be parallelized, and *N* represents the number of processors.
 
-If you want to learn more about the appropriate use cases for multithreading and multiprocessing, I highly recommend watching [this conference video](https://www.youtube.com/watch?v=w2eUdxPQQ78) by Chin Hwee Ong (Pycon Taiwan 2020). It's one of the best resources to get started.
+If you want to learn more about the appropriate use cases for multithreading and multiprocessing, I highly recommend watching [this conference video](https://www.youtube.com/watch?v=w2eUdxPQQ78) by Chin Hwee Ong (Pycon Taiwan, 2020). It's one of the best resources to get started.
 
 ---
 
@@ -667,13 +665,9 @@ Leveraging tools like [Kedro](https://docs.kedro.org/en/stable/visualisation/exp
 
 ## ℹ️ Additional Information
 
-- **About the article**
-
-The following article is provided strictly for learning purposes and is intended solely as a learning tool for the author. The content of this article represents the author's personal perspectives and does not rely on established or experienced methods commonly employed in the field. The practices and methodologies discussed herein are not reflective of the opinions or views held by the author's employer. It is strongly advised against utilizing this article directly as a solution, as the process of data collection and utilization of public APIs may introduce biases and inaccuracies. Users are cautioned to exercise caution and discretion when considering its use.
-
 - **Related Content**
 
-Here you can find a list of preferred materials if you are interested in similar topics
+Here you have a list of preferred materials for you to explore if you're interested in similar topics:
 
 — [Elite Game Developers Podcast](https://podcasts.apple.com/us/podcast/elite-game-developers-podcast/id1463752909) by Joakim Achren.
 
@@ -685,6 +679,5 @@ Here you can find a list of preferred materials if you are interested in similar
 
 — Brawstats [homepage](https://brawlstats.com/), by overwolf.
 
-- **Datasets**
 
-The output dataset will be uploaded to Kaggle as part of its public source intention.
+[^1]:**Article disclaimer**: The information presented in this article is solely intended for learning purposes and serves as a tool for the author's personal development. The content provided reflects the author's individual perspectives and does not rely on established or experienced methods commonly employed in the field. Please be aware that the practices and methodologies discussed in this article do not represent the opinions or views held by the author's employer. It is strongly advised not to utilize this article directly as a solution or consultation material, as the process of data collection and utilization of Public APIs may introduce biases and inaccuracies. Users are cautioned to exercise caution and discretion when considering its use.
