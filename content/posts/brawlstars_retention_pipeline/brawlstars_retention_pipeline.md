@@ -59,7 +59,7 @@ Currently, the analytics team mines data batches of over 20,000 players in a sin
 
 Also, they require a model that can define cohorts based on the installation date or any other classification parameter and includes a feature store to keep track of the features used. Additionally, they would like to store the hyperparameters, evaluation scores, and estimators used for each experiment on a Cloud Service to reuse specific models later.
 
-- $H_0:$ The pipeline is sufficient to produce retention metrics for player cohorts based on the game modes offered, and there is no need for a fully parameterized tool to create these metrics with unbounded approaches.
+- $H_0:$ The pipeline is sufficient to produce retention metrics for player cohorts based on the game modes offered, and there is no need for a fully parameterized tool to create these metrics with bounded approaches.
 - $H_1:$ The current pipeline is not sufficient, and a fully parameterized tool is required to track user retention within a given time frame and qualify player preferences based on the game modes offered. Additionally, a Cloud Service-based feature store and model registry are needed to keep track of experiment versions.
 
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_01.png" style="width: 60%"></p>
