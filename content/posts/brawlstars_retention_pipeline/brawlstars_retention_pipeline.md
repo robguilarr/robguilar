@@ -8,7 +8,7 @@ draft: false
 description: "Production-Ready pipeline to extract logs from the mobile game Brawlstars, using a KMeans model for player classification and cohorts creation, to produce parametrized bounded retention metrics"
 images: ["/images/posts/brawlstars_retention_pipeline.jpg"]
 thumbnail: "/images/posts/brawlstars_retention_pipeline.jpg"
-tags: ["Kedro", "Spark", "Non-Supervised Models", "Retention Metrics", "KMeans", "Mobile gaming", "Python"]
+tags: ["Kedro", "Spark", "Non-Supervised Models", "Retention Metrics", "KMeans", "Mobile gaming"]
 categories: ["Projects"]
 
 author: "Roberto Aguilar"
@@ -62,7 +62,7 @@ Also, they require a model that can define cohorts based on the installation dat
 - $H_0:$ The pipeline is sufficient to produce retention metrics for player cohorts based on the game modes offered, and there is no need for a fully parameterized tool to create these metrics with unbounded approaches.
 - $H_1:$ The current pipeline is not sufficient, and a fully parameterized tool is required to track user retention within a given time frame and qualify player preferences based on the game modes offered. Additionally, a Cloud Service-based feature store and model registry are needed to keep track of experiment versions.
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_01.png" style="width: 1000px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_01.png" style="width: 60%"></p>
 
 ### Potential Stakeholders
 
@@ -166,13 +166,13 @@ If you want to learn more about the appropriate use cases for multithreading and
 
 ---
 
-### Battlelogs and Metadata Request Pipelines
+### ⚔️ Battlelogs and Metadata Request Pipelines
 
 **Pipeline `battlelogs_request_preprocess` and `metadata_request_preprocess`**
 
 Both pipelines follow the same structure, the only difference is the request function used to gather the data from the API, one uses `.get_battle_logs()`, and the other uses the `.get_player()` function. And from these functions come two different data models [battle logs](https://brawlstats.readthedocs.io/en/latest/api.html#battle-logs) and [players](https://brawlstats.readthedocs.io/en/latest/api.html#player).
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_02.png" style="width: 1000px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_02.png" style="width: 40%"></p>
 
 **Node: `battlelogs_request_node` and `player_metadata_request_node`**
 
@@ -325,7 +325,7 @@ The node serves two main purposes:
 
 For instance, in the following example, the cohorts are divided into 8 time-ranges. Events with missing identifiers are automatically excluded. This function assumes that the user requires a model capable of defining cohorts based on factors such as installation date or any other classification parameter.
 
-```python
+```yaml
 # ----- Parameters for preprocessing and filtering ----
 battlelogs_filter:
   exclude_missing_events: true
@@ -371,13 +371,13 @@ battlelogs_filter:
 
 ---
 
-### Events and Activity Segmentation Pipeline
+### 🕰️ Events and Activity Segmentation Pipeline
 
 **Pipeline `events_activity_segmentation`**
 
 Our goal is to transform raw data into valuable insights. To achieve this, we will focus on processing and filtering battle logs to produce “activity” data. This includes segmentations per event type, retention metrics, and ratios based on retention. With these metrics, we can gain a deeper understanding of user behavior and make informed decisions that drive growth.
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_03.png" style="width: 1000px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_03.png" style="width: 65%"></p>
 
 **Node: `battlelogs_deconstructor_node`**
 
@@ -433,7 +433,7 @@ Imagine having the capacity to transform filtered battle logs activity into a wr
 
 By default, this node is set to `daily`, making it easy to get started and quickly visualize your data. With its intuitive and powerful features, you'll gain deeper insights into your users' behavior, and be able to optimize your game for even greater success.
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_04.png" style="width: 1000px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_04.png" style="width: 80%"></p>
 
 Each one of the days to measure can be defined as parameters as well, to let the user define the criteria of the retention study:
 
@@ -455,7 +455,9 @@ activity_transformer:
 
 In the final stage of this pipeline, we'll generate bounded retention metrics as ratios. These metrics will be used to demonstrate the effectiveness of our approach. While I may not have experience in gaming, I understand the importance of accurately measuring retention ratios. To ensure our metrics are properly measured, we'll ask the [Andreessen Horowitz](https://a16z.com/about/) Partner, [Andrew Chen](https://andrewchen.com/), a leading expert in the field.
 
-{{< tweet 1184170127345893376 >}}
+<div style="display: flex; justify-content: center;">
+  {{< tweet 1184170127345893376 >}}
+</div>
 
 Well, the consultation went smoothly. So, we're ready to define our parameters. Specifically, we'll be establishing ratios for individual retention metrics, as well as ratios for combined retention metrics (analytical ratios):
 
@@ -481,17 +483,17 @@ In essence, there are two types of retention metrics: bounded and unbounded. Whi
 
 This is how the output should look like:
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_05.png" style="width: 1000px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_05.png" style="width: 50%"></p>
 
 ---
 
-### Player Classification and Cohorts Creation Pipeline
+### 💀 Player Classification and Cohorts Creation Pipeline
 
 **Pipeline `player_cohorts_classifier`**
 
 This pipeline is a parametrized method for classifying players. It saves the model in the registry and the artifacts for each experiment. The main objective of this pipeline is to make it easy for data scientists to set hyperparameters and save their models. This will help to prevent the spread of models across a repository into random Jupyter notebooks, without versioning. We know this is a common scenario that many data scientists are familiar with.
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_06.png" style="width: 1000px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_06.png" style="width: 50%"></p>
 
 It is worth mentioning that each node in this pipeline was planned using an experimental Jupyter Notebook. If you want to check the raw version, you can download it from [here](https://github.com/robguilarr/Brawlstars-retention-pipeline/blob/main/notebooks/player_segmentation_node.ipynb).
 
@@ -518,7 +520,7 @@ I considered four attributes based on the next metrics:
 - Solo and Duo Victories: These attributes represent the number of Solo or Duo matches the player has won, indicating their ability to play effectively without the support of teammates.
 - Best RoboRumbleTime: This attribute represents the player's best time in defeating robots in the Robo Rumble event, indicating their skill in handling PvE (player versus environment) situations.
 
-Note: Since `highestPowerPlayPoints` refers to the highest score in a competitive mode that is no longer active, we will remove this feature. After all, according to [Brawlstars Wiki](https://brawlstars.fandom.com/wiki/Power_Play#:~:text=Power%20Play%20Points&text=The%20total%20number%20of%20Power,could%20be%20earned%20is%201386), this competitive mode could be unlocked after earning a Star Power for any Brawler, meaning that won't be a descriptive attribute for every player.
+*Note:* Since `highestPowerPlayPoints` refers to the highest score in a competitive mode that is no longer active, we will remove this feature. After all, according to [Brawlstars Wiki](https://brawlstars.fandom.com/wiki/Power_Play#:~:text=Power%20Play%20Points&text=The%20total%20number%20of%20Power,could%20be%20earned%20is%201386), this competitive mode could be unlocked after earning a Star Power for any Brawler, meaning that won't be a descriptive attribute for every player.
 
 Also, these attributes can be divided into four descriptive **inter-player interaction buckets**: 3 vs. 3 Victories sessions, Duo and Solo sessions, and Experience. However, we will exclude PvE from this project since we should use different game design methods to ensure better analysis of the player's behavior versus the environment.
 
@@ -573,7 +575,7 @@ To enhance the evaluation process, we utilize the [GridSearch](https://scikit-le
 
 By leveraging GridSearch, we can identify the model with the highest negative inertia. The selected model will be stored in the model registry as a pickle file. Additionally, a versioned inertia plot will be generated, enabling easy tracking of the number of clusters selected and evaluated.
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_07.png" style="width: 1000px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_07.png" style="width: 100%"></p>
 
 The node will capture four outputs, each one versioned with the execution timestamp from the pipeline:
 
@@ -603,21 +605,21 @@ This will allow you to track the performance of the model over time and identify
 
 Finally, this node will generate visualizations of the centroids for each combination of X and Y variables. The plot below provides an example, where the centroids are represented by black-bordered squares.
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_10.png" style="width: 1000px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_10.png" style="width: 100%"></p>
 
 ---
 
-### Player activity data and Cluster labels merge Pipeline
+### 📊 Player activity data and Cluster labels merge Pipeline
 
 **Pipeline `player_activity_clustering_merge`**
 
 The purpose of the upcoming pipeline is to streamline the process of augmenting the retention data generated by the `activity_transformer_node`. Specifically, this involves incorporating the tags and cluster labels obtained from the output produced by the `kmeans_inference_node`. The ultimate objective is to utilize this enriched dataset to generate compelling visualizations through the `user_retention_plot_gen_node`.
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_11.png" style="width: 1000px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_11.png" style="width: 35%"></p>
 
 To illustrate the capabilities of this pipeline, let's examine an example of the plots it can generate. 
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_12.png" style="width: 1000px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_12.png" style="width: 100%"></p>
 
 The cohort window displays the bounded retention data for players belonging to "Cluster 0". Among users who installed the game by January 1st, 2023, the analysis reveals that 87% returned after the first day, 78% returned after the third day, and 56% of them continued engagement after the seventh day. It is important to note that these results are intended solely for **demonstrative** purposes, as they may be subject to bias due to the data collection method employed.
 
@@ -631,7 +633,7 @@ The deployment will be structured in a simple way to define an architecture that
 - **Google Cloud Build:** A service used for continuous development. When a user makes a pull request from the `feature/develop` branch to the `main` branch, an action is triggered in Google Cloud Build to rebuild the image based on the new code version.
 - **Google Cloud Run:** A computing platform with scalable infrastructure where the execution command is pointing, using the code image provided by the Cloud Build service.
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_13.png" style="width: 1000px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_13.png" style="width: 80%"></p>
 
 Note that the execution of the code is pointing to the visualization command, that’s why the outputs are not loaded. This is because the main purpose of this deployment is to showcase this project. However, for a deployment on GCP, it is simple to change the `CMD` command at the end of the Dockerfile.
 

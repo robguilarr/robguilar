@@ -169,7 +169,7 @@ $$</p>
 <p>The theoretical speedup will be approximately 2.52 for a single-machine cluster. Here, <em>S</em> represents theoretical speedup, <em>P</em> represents the fraction of the workload that can be parallelized, and <em>N</em> represents the number of processors.</p>
 <p>If you want to learn more about the appropriate use cases for multithreading and multiprocessing, I highly recommend watching <a href="https://www.youtube.com/watch?v=w2eUdxPQQ78" target="_blank" rel="noopener noreffer">this conference video</a> by Chin Hwee Ong (Pycon Taiwan 2020). It&rsquo;s one of the best resources to get started.</p>
 <hr>
-<h3 id="battlelogs-and-metadata-request-pipelines">Battlelogs and Metadata Request Pipelines</h3>
+<h3 id="-battlelogs-and-metadata-request-pipelines">⚔️ Battlelogs and Metadata Request Pipelines</h3>
 <p><strong>Pipeline <code>battlelogs_request_preprocess</code> and <code>metadata_request_preprocess</code></strong></p>
 <p>Both pipelines follow the same structure, the only difference is the request function used to gather the data from the API, one uses <code>.get_battle_logs()</code>, and the other uses the <code>.get_player()</code> function. And from these functions come two different data models <a href="https://brawlstats.readthedocs.io/en/latest/api.html#battle-logs" target="_blank" rel="noopener noreffer">battle logs</a> and <a href="https://brawlstats.readthedocs.io/en/latest/api.html#player" target="_blank" rel="noopener noreffer">players</a>.</p>
 <p align="middle"></p>
@@ -487,51 +487,51 @@ $$</p>
 </span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># ----- Parameters for preprocessing and filtering ----</span>
-<span class="n">battlelogs_filter</span><span class="p">:</span>
-  <span class="n">exclude_missing_events</span><span class="p">:</span> <span class="n">true</span>
-  <span class="n">cohort_time_range</span><span class="p">:</span>
-    <span class="o">-</span> <span class="p">(</span><span class="s2">&#34;2019-10-11&#34;</span><span class="p">,</span><span class="s2">&#34;2020-04-10&#34;</span><span class="p">)</span>
-    <span class="o">-</span> <span class="p">(</span><span class="s2">&#34;2020-04-11&#34;</span><span class="p">,</span><span class="s2">&#34;2020-10-10&#34;</span><span class="p">)</span>
-    <span class="o">-</span> <span class="p">(</span><span class="s2">&#34;2020-10-11&#34;</span><span class="p">,</span><span class="s2">&#34;2021-04-10&#34;</span><span class="p">)</span>
-    <span class="o">-</span> <span class="p">(</span><span class="s2">&#34;2021-04-11&#34;</span><span class="p">,</span><span class="s2">&#34;2021-10-10&#34;</span><span class="p">)</span>
-    <span class="o">-</span> <span class="p">(</span><span class="s2">&#34;2021-10-11&#34;</span><span class="p">,</span><span class="s2">&#34;2022-04-10&#34;</span><span class="p">)</span>
-    <span class="o">-</span> <span class="p">(</span><span class="s2">&#34;2022-04-11&#34;</span><span class="p">,</span><span class="s2">&#34;2022-10-10&#34;</span><span class="p">)</span>
-    <span class="o">-</span> <span class="p">(</span><span class="s2">&#34;2022-10-11&#34;</span><span class="p">,</span><span class="s2">&#34;2023-04-10&#34;</span><span class="p">)</span>
-    <span class="o">-</span> <span class="p">(</span><span class="s2">&#34;2023-04-11&#34;</span><span class="p">,</span><span class="s2">&#34;2023-10-10&#34;</span><span class="p">)</span>
-  <span class="n">raw_battlelogs_schema</span><span class="p">:</span>
-    <span class="o">-</span> <span class="s2">&#34;battleTime STRING, </span>
-       <span class="n">event_id</span> <span class="n">BIGINT</span><span class="p">,</span> 
-       <span class="n">event_mode</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">event_map</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_mode</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_type</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_result</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_duration</span> <span class="n">BIGINT</span><span class="p">,</span>
-       <span class="n">battle_trophyChange</span> <span class="n">BIGINT</span><span class="p">,</span>
-       <span class="n">battle_starPlayer_tag</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_starPlayer_name</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_starPlayer_brawler_id</span> <span class="n">BIGINT</span><span class="p">,</span>
-       <span class="n">battle_starPlayer_brawler_name</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_starPlayer_brawler_power</span> <span class="n">BIGINT</span><span class="p">,</span>
-       <span class="n">battle_starPlayer_brawler_trophies</span> <span class="n">BIGINT</span><span class="p">,</span>
-       <span class="n">battle_teams</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_rank</span> <span class="n">BIGINT</span><span class="p">,</span>
-       <span class="n">battle_players</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">player_id</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_starPlayer</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_bigBrawler_tag</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_bigBrawler_name</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_bigBrawler_brawler_id</span> <span class="n">BIGINT</span><span class="p">,</span>
-       <span class="n">battle_bigBrawler_brawler_name</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_bigBrawler_brawler_power</span> <span class="n">BIGINT</span><span class="p">,</span>
-       <span class="n">battle_bigBrawler_brawler_trophies</span> <span class="n">BIGINT</span><span class="p">,</span>
-       <span class="n">battle_level_name</span> <span class="n">STRING</span><span class="p">,</span>
-       <span class="n">battle_level_id</span> <span class="n">BIGINT</span><span class="s2">&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># ----- Parameters for preprocessing and filtering ----</span><span class="w">
+</span><span class="w"></span><span class="nt">battlelogs_filter</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">exclude_missing_events</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="nt">cohort_time_range</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2019-10-11&#34;,&#34;2020-04-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2020-04-11&#34;,&#34;2020-10-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2020-10-11&#34;,&#34;2021-04-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2021-04-11&#34;,&#34;2021-10-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2021-10-11&#34;,&#34;2022-04-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2022-04-11&#34;,&#34;2022-10-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2022-10-11&#34;,&#34;2023-04-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2023-04-11&#34;,&#34;2023-10-10&#34;)</span><span class="w">
+</span><span class="w">  </span><span class="nt">raw_battlelogs_schema</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="s2">&#34;battleTime STRING, 
+</span><span class="s2">       event_id BIGINT, 
+</span><span class="s2">       event_mode STRING,
+</span><span class="s2">       event_map STRING,
+</span><span class="s2">       battle_mode STRING,
+</span><span class="s2">       battle_type STRING,
+</span><span class="s2">       battle_result STRING,
+</span><span class="s2">       battle_duration BIGINT,
+</span><span class="s2">       battle_trophyChange BIGINT,
+</span><span class="s2">       battle_starPlayer_tag STRING,
+</span><span class="s2">       battle_starPlayer_name STRING,
+</span><span class="s2">       battle_starPlayer_brawler_id BIGINT,
+</span><span class="s2">       battle_starPlayer_brawler_name STRING,
+</span><span class="s2">       battle_starPlayer_brawler_power BIGINT,
+</span><span class="s2">       battle_starPlayer_brawler_trophies BIGINT,
+</span><span class="s2">       battle_teams STRING,
+</span><span class="s2">       battle_rank BIGINT,
+</span><span class="s2">       battle_players STRING,
+</span><span class="s2">       player_id STRING,
+</span><span class="s2">       battle_starPlayer STRING,
+</span><span class="s2">       battle_bigBrawler_tag STRING,
+</span><span class="s2">       battle_bigBrawler_name STRING,
+</span><span class="s2">       battle_bigBrawler_brawler_id BIGINT,
+</span><span class="s2">       battle_bigBrawler_brawler_name STRING,
+</span><span class="s2">       battle_bigBrawler_brawler_power BIGINT,
+</span><span class="s2">       battle_bigBrawler_brawler_trophies BIGINT,
+</span><span class="s2">       battle_level_name STRING,
+</span><span class="s2">       battle_level_id BIGINT&#34;</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h3 id="events-and-activity-segmentation-pipeline">Events and Activity Segmentation Pipeline</h3>
+<h3 id="-events-and-activity-segmentation-pipeline">🕰️ Events and Activity Segmentation Pipeline</h3>
 <p><strong>Pipeline <code>events_activity_segmentation</code></strong></p>
 <p>Our goal is to transform raw data into valuable insights. To achieve this, we will focus on processing and filtering battle logs to produce “activity” data. This includes segmentations per event type, retention metrics, and ratios based on retention. With these metrics, we can gain a deeper understanding of user behavior and make informed decisions that drive growth.</p>
 <p align="middle"></p>
@@ -644,9 +644,11 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 </div>
 </div><p><strong>Node: <code>ratio_register_node</code></strong></p>
 <p>In the final stage of this pipeline, we&rsquo;ll generate bounded retention metrics as ratios. These metrics will be used to demonstrate the effectiveness of our approach. While I may not have experience in gaming, I understand the importance of accurately measuring retention ratios. To ensure our metrics are properly measured, we&rsquo;ll ask the <a href="https://a16z.com/about/" target="_blank" rel="noopener noreffer">Andreessen Horowitz</a> Partner, <a href="https://andrewchen.com/" target="_blank" rel="noopener noreffer">Andrew Chen</a>, a leading expert in the field.</p>
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">6) D1/D7/D30 that exceeds 60/30/15 (daily frequency)<br>7) revenue or activity expansion on a *per user* basis over time -- indicates deeper engagement / habit formation<br>8) &gt;60% organic acquisition -- CAC doesn&#39;t even matter!<br><br>Having even one is impressive -- it&#39;d make me sit up!</p>&mdash; andrew chen (@andrewchen) <a href="https://twitter.com/andrewchen/status/1184170127345893376?ref_src=twsrc%5Etfw">October 15, 2019</a></blockquote>
+<div style="display: flex; justify-content: center;">
+  <blockquote class="twitter-tweet"><p lang="en" dir="ltr">6) D1/D7/D30 that exceeds 60/30/15 (daily frequency)<br>7) revenue or activity expansion on a *per user* basis over time -- indicates deeper engagement / habit formation<br>8) &gt;60% organic acquisition -- CAC doesn&#39;t even matter!<br><br>Having even one is impressive -- it&#39;d make me sit up!</p>&mdash; andrew chen (@andrewchen) <a href="https://twitter.com/andrewchen/status/1184170127345893376?ref_src=twsrc%5Etfw">October 15, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+</div>
 <p>Well, the consultation went smoothly. So, we&rsquo;re ready to define our parameters. Specifically, we&rsquo;ll be establishing ratios for individual retention metrics, as well as ratios for combined retention metrics (analytical ratios):</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -685,7 +687,7 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 <p>This is how the output should look like:</p>
 <p align="middle"></p>
 <hr>
-<h3 id="player-classification-and-cohorts-creation-pipeline">Player Classification and Cohorts Creation Pipeline</h3>
+<h3 id="-player-classification-and-cohorts-creation-pipeline">💀 Player Classification and Cohorts Creation Pipeline</h3>
 <p><strong>Pipeline <code>player_cohorts_classifier</code></strong></p>
 <p>This pipeline is a parametrized method for classifying players. It saves the model in the registry and the artifacts for each experiment. The main objective of this pipeline is to make it easy for data scientists to set hyperparameters and save their models. This will help to prevent the spread of models across a repository into random Jupyter notebooks, without versioning. We know this is a common scenario that many data scientists are familiar with.</p>
 <p align="middle"></p>
@@ -708,7 +710,7 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 <li>Solo and Duo Victories: These attributes represent the number of Solo or Duo matches the player has won, indicating their ability to play effectively without the support of teammates.</li>
 <li>Best RoboRumbleTime: This attribute represents the player&rsquo;s best time in defeating robots in the Robo Rumble event, indicating their skill in handling PvE (player versus environment) situations.</li>
 </ul>
-<p>Note: Since <code>highestPowerPlayPoints</code> refers to the highest score in a competitive mode that is no longer active, we will remove this feature. After all, according to <a href="https://brawlstars.fandom.com/wiki/Power_Play#:~:text=Power%20Play%20Points&amp;text=The%20total%20number%20of%20Power,could%20be%20earned%20is%201386" target="_blank" rel="noopener noreffer">Brawlstars Wiki</a>, this competitive mode could be unlocked after earning a Star Power for any Brawler, meaning that won&rsquo;t be a descriptive attribute for every player.</p>
+<p><em>Note:</em> Since <code>highestPowerPlayPoints</code> refers to the highest score in a competitive mode that is no longer active, we will remove this feature. After all, according to <a href="https://brawlstars.fandom.com/wiki/Power_Play#:~:text=Power%20Play%20Points&amp;text=The%20total%20number%20of%20Power,could%20be%20earned%20is%201386" target="_blank" rel="noopener noreffer">Brawlstars Wiki</a>, this competitive mode could be unlocked after earning a Star Power for any Brawler, meaning that won&rsquo;t be a descriptive attribute for every player.</p>
 <p>Also, these attributes can be divided into four descriptive <strong>inter-player interaction buckets</strong>: 3 vs. 3 Victories sessions, Duo and Solo sessions, and Experience. However, we will exclude PvE from this project since we should use different game design methods to ensure better analysis of the player&rsquo;s behavior versus the environment.</p>
 <p>To determine the most appropriate method to use, we need to select the variables that can give us better performance given a model construction. We have three options to consider:</p>
 <ul>
@@ -799,7 +801,7 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 <p>Finally, this node will generate visualizations of the centroids for each combination of X and Y variables. The plot below provides an example, where the centroids are represented by black-bordered squares.</p>
 <p align="middle"></p>
 <hr>
-<h3 id="player-activity-data-and-cluster-labels-merge-pipeline">Player activity data and Cluster labels merge Pipeline</h3>
+<h3 id="-player-activity-data-and-cluster-labels-merge-pipeline">📊 Player activity data and Cluster labels merge Pipeline</h3>
 <p><strong>Pipeline <code>player_activity_clustering_merge</code></strong></p>
 <p>The purpose of the upcoming pipeline is to streamline the process of augmenting the retention data generated by the <code>activity_transformer_node</code>. Specifically, this involves incorporating the tags and cluster labels obtained from the output produced by the <code>kmeans_inference_node</code>. The ultimate objective is to utilize this enriched dataset to generate compelling visualizations through the <code>user_retention_plot_gen_node</code>.</p>
 <p align="middle"></p>
