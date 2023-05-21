@@ -671,13 +671,13 @@ Here you have a list of preferred materials for you to explore if you're interes
 
 — [Elite Game Developers Podcast](https://podcasts.apple.com/us/podcast/elite-game-developers-podcast/id1463752909) by Joakim Achren.
 
-— Joakim Achren newsletter and [blog](https://www.elitegamedevelopers.com/blog/?ref=elitegamedevelopers.com).
+— Joakim Achren's newsletter and [blog](https://www.elitegamedevelopers.com/blog/?ref=elitegamedevelopers.com).
 
 — Game Data Science book and additional info at the [Oxford University Press](https://global.oup.com/academic/product/game-data-science-9780192897879?cc=cr&lang=en&).
 
 — Getting started with [Kedro](https://docs.kedro.org/en/stable/get_started/install.html).
 
-— Brawstats [homepage](https://brawlstats.com/), by overwolf.
+— Brawlstats [homepage](https://brawlstats.com/), by overwolf.
 
 
 [^1]:**Article disclaimer**: The information presented in this article is solely intended for learning purposes and serves as a tool for the author's personal development. The content provided reflects the author's individual perspectives and does not rely on established or experienced methods commonly employed in the field. Please be aware that the practices and methodologies discussed in this article do not represent the opinions or views held by the author's employer. It is strongly advised not to utilize this article directly as a solution or consultation material, as the process of data collection and utilization of Public APIs may introduce biases and inaccuracies. Users are cautioned to exercise caution and discretion when considering its use.
