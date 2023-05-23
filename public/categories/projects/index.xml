@@ -839,6 +839,10 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 <p>— Game Data Science book and additional info at the <a href="https://global.oup.com/academic/product/game-data-science-9780192897879?cc=cr&amp;lang=en&amp;" target="_blank" rel="noopener noreffer">Oxford University Press</a>.</p>
 <p>— Getting started with <a href="https://docs.kedro.org/en/stable/get_started/install.html" target="_blank" rel="noopener noreffer">Kedro</a>.</p>
 <p>— Brawlstats <a href="https://brawlstats.com/" target="_blank" rel="noopener noreffer">homepage</a>, by overwolf.</p>
+<ul>
+<li><strong>Datasets</strong></li>
+</ul>
+<p>The extracted datasets will be uploaded to <a href="https://www.kaggle.com/datasets/robguilarr/brawl-stars-logs-and-metadata-2023" target="_blank" rel="noopener noreffer">Kaggle</a> as part of its public source intention.</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
