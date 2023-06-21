@@ -8,7 +8,7 @@ draft: false
 description: "Cloud Service Architecture for NLP in Google Cloud"
 images: ["/images/posts/gcp_academicsolution.jpg"]
 thumbnail: "/images/posts/gcp_academicsolution.jpg"
-tags: ["Big Data", "Google Cloud Services"]
+tags: ["Google Cloud"]
 categories: ["Articles"]
 
 author: "Roberto Aguilar"

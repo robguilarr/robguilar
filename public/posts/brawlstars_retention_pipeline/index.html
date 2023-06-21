@@ -34,7 +34,7 @@
                             "url": "https:\/\/robguilar.com\/images\/posts\/brawlstars_retention_pipeline.jpg",
                             "width":  3000 ,
                             "height":  900 
-                        }],"genre": "posts","keywords": "Kedro, Spark, Non-Supervised Models, Retention Metrics, KMeans, Mobile gaming","wordcount":  6094 ,
+                        }],"genre": "posts","keywords": "Kedro, Spark, Non-Supervised Models, Retention Metrics, KMeans, Google Cloud","wordcount":  9913 ,
         "url": "https:\/\/robguilar.com\/posts\/brawlstars_retention_pipeline\/","datePublished": "2023-05-20T21:57:40+08:00","dateModified": "2023-05-20T21:57:40+08:00","license": "This work is developed and posted only under Roberto's property","publisher": {
             "@type": "Organization",
             "name": "Roberto Aguilar","logo": {
@@ -114,8 +114,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single" data-toc="enable"><div class="single-card" ><h2 class="single-title animated flipInX">Player Retention and Cohorts Creation Pipeline in Brawl Stars with Non-Supervised Models</h2><div class="post-meta">
                 <div class="post-meta-line"><span class="post-author"><a href="https://www.linkedin.com/in/robguilarr/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Roberto Aguilar</a></span>&nbsp;<span class="post-category">published in <a href="https://robguilar.com/categories/projects/"><i class="far fa-folder fa-fw"></i>Projects</a></span></div>
-                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-05-20">2023-05-20</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;6094 words</span>&nbsp;
-                    <span><i class="far fa-clock fa-fw"></i>&nbsp;29 minutes</span>&nbsp;</div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-05-20">2023-05-20</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;9913 words</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;47 minutes</span>&nbsp;</div>
             </div>
             
             <hr><div class="details toc" id="toc-static"  data-kept="">
@@ -161,7 +161,7 @@
             <i class="icon fas fa-info-circle fa-fw"></i>Looking for an interactive experience?<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">🚀 Access the Kedro Pipeline Visualization, available <a href="https://brawlstars-retention-pipeline-6u27jcczha-uw.a.run.app/">here</a>; or you can download the <a href="https://github.com/robguilarr/Brawlstars-retention-pipeline">source code</a> from GitHub</div>
+            <div class="admonition-content">🚀 Access the Kedro Pipeline Visualization (Cold Instance), available <a href="https://brawlstars-retention-pipeline-6u27jcczha-uw.a.run.app/">here</a>; or you can download the <a href="https://github.com/robguilarr/Brawlstars-retention-pipeline">source code</a> from GitHub</div>
         </div>
     </div>
 
@@ -575,12 +575,298 @@
 </ul>
 <p>This translates to a 71% improvement in speed for the logs request, demonstrating the effectiveness of the new approach. Upon further analysis, out of the 23841 Player Tags, only 9104 had a battle log registry. Nevertheless, we managed to retrieve player metadata for 22738 of them, which is a good number considering we were using a public non-official API.</p>
 <p><strong>Node: <code>battlelogs_filtering_node</code> and <code>metadata_preparation_node</code></strong></p>
-<p>The node serves two main purposes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">battlelogs_filter</span><span class="p">(</span>
+    <span class="n">raw_battlelogs</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Filter players into cohorts (samples) for a predefined study using time ranges
+</span><span class="s2">    specified in the parameters. Also transforms datetime format from ISO 8601 to
+</span><span class="s2">    java.util.GregorianCalendar for Spark processing.
+</span><span class="s2">    Args:
+</span><span class="s2">        raw_battlelogs: Dataframe of concatenated battlelogs for all players
+</span><span class="s2">        parameters: Dictionary containing time ranges and DDL schema
+</span><span class="s2">    Returns:
+</span><span class="s2">        Filtered PySpark DataFrame containing only cohorts and necessary features
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># Call | Create Spark Session</span>
+    <span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+
+    <span class="c1"># Load and validate battlelogs data against the provided DDL schema</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">battlelogs_filtered</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">raw_battlelogs</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;raw_battlelogs_schema&#34;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="c1"># Convert lists stored as strings to Arrays of dictionaries</span>
+        <span class="n">battlelogs_filtered</span> <span class="o">=</span> <span class="n">battlelogs_filtered</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+            <span class="s2">&#34;battle_teams&#34;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="s2">&#34;battle_teams&#34;</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">ArrayType</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">StringType</span><span class="p">()))</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+            <span class="s2">&#34;battle_players&#34;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="s2">&#34;battle_players&#34;</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">ArrayType</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">StringType</span><span class="p">()))</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="c1"># If DDL schema for the battlelogs is incorrect, raise an error</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&#34;Type error on the DDL schema for the battlelogs,&#34;</span>
+            <span class="s1">&#39;check &#34;raw_battlelogs_schema&#34; on the node parameters&#39;</span>
+        <span class="p">)</span>
+        <span class="k">raise</span>
+
+    <span class="c1"># Exclude missing events ids (519325-&gt;483860, not useful for activity aggregations)</span>
+    <span class="k">if</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;exclude_missing_events&#34;</span><span class="p">]:</span>
+        <span class="n">battlelogs_filtered</span> <span class="o">=</span> <span class="n">battlelogs_filtered</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s2">&#34;event_id != 0&#34;</span><span class="p">)</span>
+
+    <span class="c1"># Validate if a player is a battlestar player</span>
+    <span class="n">battlelogs_filtered</span> <span class="o">=</span> <span class="n">battlelogs_filtered</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+        <span class="s2">&#34;is_starPlayer&#34;</span><span class="p">,</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&#34;battle_starPlayer_tag&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&#34;player_id&#34;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Filter the battlelogs data based on the specified timestamp range, and extract</span>
+    <span class="c1"># a separate cohort to exclude specific dates if required</span>
+    <span class="k">if</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;cohort_time_range&#34;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="s2">&#34;battleTime&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">battlelogs_filtered</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Dataframe does not contain &#34;battleTime&#34; column.&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Convert timestamp strings to date format, where original timestamps are</span>
+            <span class="c1"># in ~ ISO 8601 format (e.g. 20230204T161026.000Z)</span>
+            <span class="n">convertDT</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">udf</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">string</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="s2">&#34;%Y%m</span><span class="si">%d</span><span class="s2">T%H%M%S.</span><span class="si">%f</span><span class="s2">Z&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+            <span class="p">)</span>
+            <span class="n">battlelogs_filtered</span> <span class="o">=</span> <span class="n">battlelogs_filtered</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+                <span class="s2">&#34;battleTime&#34;</span><span class="p">,</span> <span class="n">convertDT</span><span class="p">(</span><span class="s2">&#34;battleTime&#34;</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="c1"># Convert Java.util.GregorianCalendar date format to PySpark</span>
+            <span class="n">pattern</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="sa">r</span><span class="s2">&#34;(?:.*)YEAR=(\d+).+?MONTH=(\d+).+?DAY_OF_MONTH=(\d+)&#34;</span>
+                <span class="sa">r</span><span class="s2">&#34;.+?HOUR=(\d+).+?MINUTE=(\d+).+?SECOND=(\d+).+&#34;</span>
+            <span class="p">)</span>
+            <span class="n">battlelogs_filtered</span> <span class="o">=</span> <span class="n">battlelogs_filtered</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+                <span class="s2">&#34;battleTime&#34;</span><span class="p">,</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">regexp_replace</span><span class="p">(</span><span class="s2">&#34;battleTime&#34;</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="s2">&#34;$1-$2-$3 $4:$5:$6&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span>
+                    <span class="s2">&#34;timestamp&#34;</span>
+                <span class="p">),</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&#34;battleTime&#34;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">date_format</span><span class="p">(</span><span class="s2">&#34;battleTime&#34;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&#34;yyyy-MM-dd&#34;</span><span class="p">))</span>
+
+        <span class="c1"># Initialize an empty list to store DataFrames for each cohort</span>
+        <span class="n">cohort_selection</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Assign an integer value to identify each sample cohort</span>
+        <span class="n">cohort_num</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c1"># Iterate over the cohort_time_range to subset the battlelogs_filtered DataFrame</span>
+        <span class="k">for</span> <span class="n">date_range</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;cohort_time_range&#34;</span><span class="p">]:</span>
+            <span class="c1"># Filter the DataFrame based on the specified time range</span>
+            <span class="n">cohort_range</span> <span class="o">=</span> <span class="n">battlelogs_filtered</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&#34;battleTime&#34;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">literal_eval</span><span class="p">(</span><span class="n">date_range</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="o">&amp;</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&#34;battleTime&#34;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">literal_eval</span><span class="p">(</span><span class="n">date_range</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="p">)</span>
+            <span class="c1"># Add a new column to the DataFrame to identify the cohort it belongs to</span>
+            <span class="n">cohort_range</span> <span class="o">=</span> <span class="n">cohort_range</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&#34;cohort&#34;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="n">cohort_num</span><span class="p">))</span>
+            <span class="c1"># Increment the cohort number for the next iteration</span>
+            <span class="n">cohort_num</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="c1"># Append the cohort DataFrame to the cohort_selection list</span>
+            <span class="n">cohort_selection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cohort_range</span><span class="p">)</span>
+        <span class="c1"># Concatenate all cohort DataFrames into one</span>
+        <span class="n">battlelogs_filtered</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">unionAll</span><span class="p">,</span> <span class="n">cohort_selection</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&#34;Please define at least one time range for your cohort. Check the &#34;</span>
+            <span class="s2">&#34;parameters.&#34;</span>
+        <span class="p">)</span>
+        <span class="k">raise</span>
+
+    <span class="c1"># Add a unique identifier column to the DataFrame</span>
+    <span class="n">battlelogs_filtered</span> <span class="o">=</span> <span class="n">battlelogs_filtered</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+        <span class="s2">&#34;battlelog_id&#34;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">monotonically_increasing_id</span><span class="p">()</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">battlelogs_filtered</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The node serves two main purposes:</p>
 <ul>
 <li>Transform retrieved data into a Spark data frame, ensuring accurate and consistent data with the expected data types.</li>
 <li>Enable users to specify time ranges for player cohorts. This feature empowers users to customize the quantity and number of cohorts needed for their specific study.</li>
 </ul>
 <p>For instance, in the following example, the cohorts are divided into 8 time-ranges. Events with missing identifiers are automatically excluded. This function assumes that the user requires a model capable of defining cohorts based on factors such as installation date or any other classification parameter.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># ----- Parameters for preprocessing and filtering ----</span><span class="w">
+</span><span class="w"></span><span class="nt">battlelogs_filter</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">exclude_missing_events</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="nt">cohort_time_range</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2019-10-11&#34;,&#34;2020-04-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2020-04-11&#34;,&#34;2020-10-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2020-10-11&#34;,&#34;2021-04-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2021-04-11&#34;,&#34;2021-10-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2021-10-11&#34;,&#34;2022-04-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2022-04-11&#34;,&#34;2022-10-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2022-10-11&#34;,&#34;2023-04-10&#34;)</span><span class="w">
+</span><span class="w">    </span>- <span class="l">(&#34;2023-04-11&#34;,&#34;2023-10-10&#34;)</span><span class="w">
+</span><span class="w">  </span><span class="nt">raw_battlelogs_schema</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">&#34;battleTime STRING, </span><span class="w">
+</span><span class="w">       </span><span class="l">event_id BIGINT, </span><span class="w">
+</span><span class="w">       </span><span class="l">event_mode STRING,</span><span class="w">
+</span><span class="w">       </span><span class="l">event_map STRING,</span><span class="w">
+</span><span class="w">       </span><span class="l">battle_mode STRING,</span><span class="w">
+</span><span class="w">       </span><span class="l">battle_type STRING,</span><span class="w">
+</span><span class="w">       </span><span class="l">battle_result STRING,</span><span class="w">
+</span><span class="w">       </span><span class="l">battle_duration BIGINT,</span><span class="w">
+</span><span class="w">       </span><span class="l">battle_trophyChange BIGINT,</span><span class="w">
+</span><span class="w">       </span><span class="l">battle_starPlayer_tag STRING,</span><span class="w">
+</span><span class="w">       </span><span class="l">battle_starPlayer_name STRING,</span><span class="w">
+</span><span class="w">       </span><span class="l">battle_starPlayer_brawler_id BIGINT,</span><span class="w">
+</span><span class="w">       </span><span class="l">battle_starPlayer_brawler_name STRING,</span><span class="w">
+</span><span class="w">       </span><span class="l">battle_starPlayer_brawler_power BIGINT,</span><span class="w">
+</span><span class="w">       </span><span class="l">battle_starPlayer_brawler_trophies BIGINT,</span><span class="w">
+</span><span class="w">       </span><span class="l">battle_teams STRING,</span><span class="w">
+</span><span class="w">       </span><span class="l">... </span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="-events-and-activity-segmentation-pipeline">🕰️ Events and Activity Segmentation Pipeline</h3>
+<p><strong>Pipeline <code>events_activity_segmentation</code></strong></p>
+<p>Our goal is to transform raw data into valuable insights. To achieve this, we will focus on processing and filtering battle logs to produce “activity” data. This includes segmentations per event type, retention metrics, and ratios based on retention. With these metrics, we can gain a deeper understanding of user behavior and make informed decisions that drive growth.</p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_03.png" style="width: 65%"></p>
+<p><strong>Node: <code>battlelogs_deconstructor_node</code></strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -624,58 +910,132 @@
 </span><span class="lnt">39
 </span><span class="lnt">40
 </span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># ----- Parameters for preprocessing and filtering ----</span><span class="w">
-</span><span class="w"></span><span class="nt">battlelogs_filter</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">exclude_missing_events</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span><span class="nt">cohort_time_range</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="l">(&#34;2019-10-11&#34;,&#34;2020-04-10&#34;)</span><span class="w">
-</span><span class="w">    </span>- <span class="l">(&#34;2020-04-11&#34;,&#34;2020-10-10&#34;)</span><span class="w">
-</span><span class="w">    </span>- <span class="l">(&#34;2020-10-11&#34;,&#34;2021-04-10&#34;)</span><span class="w">
-</span><span class="w">    </span>- <span class="l">(&#34;2021-04-11&#34;,&#34;2021-10-10&#34;)</span><span class="w">
-</span><span class="w">    </span>- <span class="l">(&#34;2021-10-11&#34;,&#34;2022-04-10&#34;)</span><span class="w">
-</span><span class="w">    </span>- <span class="l">(&#34;2022-04-11&#34;,&#34;2022-10-10&#34;)</span><span class="w">
-</span><span class="w">    </span>- <span class="l">(&#34;2022-10-11&#34;,&#34;2023-04-10&#34;)</span><span class="w">
-</span><span class="w">    </span>- <span class="l">(&#34;2023-04-11&#34;,&#34;2023-10-10&#34;)</span><span class="w">
-</span><span class="w">  </span><span class="nt">raw_battlelogs_schema</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="s2">&#34;battleTime STRING, 
-</span><span class="s2">       event_id BIGINT, 
-</span><span class="s2">       event_mode STRING,
-</span><span class="s2">       event_map STRING,
-</span><span class="s2">       battle_mode STRING,
-</span><span class="s2">       battle_type STRING,
-</span><span class="s2">       battle_result STRING,
-</span><span class="s2">       battle_duration BIGINT,
-</span><span class="s2">       battle_trophyChange BIGINT,
-</span><span class="s2">       battle_starPlayer_tag STRING,
-</span><span class="s2">       battle_starPlayer_name STRING,
-</span><span class="s2">       battle_starPlayer_brawler_id BIGINT,
-</span><span class="s2">       battle_starPlayer_brawler_name STRING,
-</span><span class="s2">       battle_starPlayer_brawler_power BIGINT,
-</span><span class="s2">       battle_starPlayer_brawler_trophies BIGINT,
-</span><span class="s2">       battle_teams STRING,
-</span><span class="s2">       battle_rank BIGINT,
-</span><span class="s2">       battle_players STRING,
-</span><span class="s2">       player_id STRING,
-</span><span class="s2">       battle_starPlayer STRING,
-</span><span class="s2">       battle_bigBrawler_tag STRING,
-</span><span class="s2">       battle_bigBrawler_name STRING,
-</span><span class="s2">       battle_bigBrawler_brawler_id BIGINT,
-</span><span class="s2">       battle_bigBrawler_brawler_name STRING,
-</span><span class="s2">       battle_bigBrawler_brawler_power BIGINT,
-</span><span class="s2">       battle_bigBrawler_brawler_trophies BIGINT,
-</span><span class="s2">       battle_level_name STRING,
-</span><span class="s2">       battle_level_id BIGINT&#34;</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">battlelogs_deconstructor</span><span class="p">(</span>
+    <span class="n">battlelogs_filtered</span><span class="p">:</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
+    <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+<span class="p">]:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Extract player and brawler combinations from the same team or opponents,
+</span><span class="s2">    grouped in JSON format, based on user-defined event types.
+</span><span class="s2">    Each of the &#39;exploders&#39; is parameterized by the user, according to the number of
+</span><span class="s2">    players needed for each type of event.
+</span><span class="s2">    Args:
+</span><span class="s2">        battlelogs_filtered: a filtered Pyspark DataFrame containing relevant cohorts
+</span><span class="s2">        and features.
+</span><span class="s2">        parameters: a dictionary of event types defined by the user to include in the
+</span><span class="s2">        subset process.
+</span><span class="s2">    Returns:
+</span><span class="s2">        A tuple of four Pyspark DataFrames, each containing only one event type
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># Call | Create Spark Session</span>
+    <span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Deconstructing Solo Events&#34;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;event_solo&#34;</span><span class="p">]</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;event_solo&#34;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">event_solo_data</span> <span class="o">=</span> <span class="n">battlelogs_filtered</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&#34;event_mode&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;event_solo&#34;</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="n">event_solo_data</span> <span class="o">=</span> <span class="n">_group_exploder_solo</span><span class="p">(</span>
+            <span class="n">event_solo_data</span><span class="p">,</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;standard_columns&#34;</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&#34;Solo Event modes not defined or not found according to parameter list&#34;</span>
+        <span class="p">)</span>
+        <span class="n">event_solo_data</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([],</span> <span class="n">schema</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">StructType</span><span class="p">([]))</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Deconstructing Duo Events&#34;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;event_duo&#34;</span><span class="p">]</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;event_duo&#34;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">event_duo_data</span> <span class="o">=</span> <span class="n">battlelogs_filtered</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&#34;event_mode&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;event_duo&#34;</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="n">event_duo_data</span> <span class="o">=</span> <span class="n">_group_exploder_duo</span><span class="p">(</span>
+            <span class="n">event_duo_data</span><span class="p">,</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;standard_columns&#34;</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&#34;Duo Event modes not defined or not found according to parameter list&#34;</span>
+        <span class="p">)</span>
+        <span class="n">event_duo_data</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([],</span> <span class="n">schema</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">StructType</span><span class="p">([]))</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Deconstructing 3 vs 3 Events&#34;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;event_3v3&#34;</span><span class="p">]</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;event_3v3&#34;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">event_3v3_data</span> <span class="o">=</span> <span class="n">battlelogs_filtered</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&#34;event_mode&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;event_3v3&#34;</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="n">event_3v3_data</span> <span class="o">=</span> <span class="n">_group_exploder_3v3</span><span class="p">(</span>
+            <span class="n">event_3v3_data</span><span class="p">,</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;standard_columns&#34;</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&#34;3 vs 3 Event modes not defined or not found according to parameter list&#34;</span>
+        <span class="p">)</span>
+        <span class="n">event_3v3_data</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([],</span> <span class="n">schema</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">StructType</span><span class="p">([]))</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Deconstructing Special Events&#34;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;event_special&#34;</span><span class="p">]</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;event_special&#34;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">event_special_data</span> <span class="o">=</span> <span class="n">battlelogs_filtered</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&#34;event_mode&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;event_special&#34;</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="n">event_special_data</span> <span class="o">=</span> <span class="n">_group_exploder_special</span><span class="p">(</span>
+            <span class="n">event_special_data</span><span class="p">,</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;standard_columns&#34;</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&#34;Special Event modes not defined or not found according to parameter list&#34;</span>
+        <span class="p">)</span>
+        <span class="n">event_special_data</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([],</span> <span class="n">schema</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">StructType</span><span class="p">([]))</span>
+
+    <span class="k">return</span> <span class="n">event_solo_data</span><span class="p">,</span> <span class="n">event_duo_data</span><span class="p">,</span> <span class="n">event_3v3_data</span><span class="p">,</span> <span class="n">event_special_data</span>
+</code></pre></td></tr></table>
 </div>
-</div><hr>
-<h3 id="-events-and-activity-segmentation-pipeline">🕰️ Events and Activity Segmentation Pipeline</h3>
-<p><strong>Pipeline <code>events_activity_segmentation</code></strong></p>
-<p>Our goal is to transform raw data into valuable insights. To achieve this, we will focus on processing and filtering battle logs to produce “activity” data. This includes segmentations per event type, retention metrics, and ratios based on retention. With these metrics, we can gain a deeper understanding of user behavior and make informed decisions that drive growth.</p>
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_03.png" style="width: 65%"></p>
-<p><strong>Node: <code>battlelogs_deconstructor_node</code></strong></p>
-<p>To understand the basic game modes of this mobile game, an extensive research was required. All assumptions made in the event deconstruction process are based on the information provided by the <a href="https://brawlstars.fandom.com/wiki/Category:Events" target="_blank" rel="noopener noreffer">Brawl Stars Fandom Wiki</a>.</p>
+</div><p>To understand the basic game modes of this mobile game, an extensive research was required. All assumptions made in the event deconstruction process are based on the information provided by the <a href="https://brawlstars.fandom.com/wiki/Category:Events" target="_blank" rel="noopener noreffer">Brawl Stars Fandom Wiki</a>.</p>
 <p>The deconstruction process will classify the <code>battle_teams</code> column and divide all players in each session into groups based on the number of team members defined by the event type. These event types are categorized according to specific parameters, enabling users to easily classify events based on the distribution of players' teams per session.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -744,7 +1104,257 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 </div>
 </div><p>By conducting an interaction study between players and the brawlers or characters they use, a data scientist can extract valuable insights into gameplay. For instance, if you&rsquo;re curious about how the exploder function works, you&rsquo;ll find this code particularly useful. Its high density is evidence of Spark high performance, which has enabled the minimization of Spark actions performed. However, you can satisfy your curiosity <a href="https://github.com/robguilarr/Brawlstars-retention-pipeline/blob/main/src/brawlstars_etl/pipelines/events_activity_segmentation/nodes.py" target="_blank" rel="noopener noreffer">here</a>.</p>
 <p><strong>Node: <code>activity_transformer_node</code></strong></p>
-<p>Imagine having the capacity to transform filtered battle logs activity into a wrapped format data frame that delivers retention metrics and n-sessions at the player level of granularity. That&rsquo;s exactly what this node does. Using a set of customizable parameters, it extracts the retention and number of sessions based on a <code>cohort frequency</code> parameter:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">activity_transformer</span><span class="p">(</span>
+    <span class="n">battlelogs_filtered</span><span class="p">:</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Converts filtered battlelogs activity into a wrapped format data frame,
+</span><span class="s2">    with retention metrics and n-sessions at the player level of granularity. It
+</span><span class="s2">    takes a set of parameters to extract the retention and number of sessions based
+</span><span class="s2">    on a &#39;cohort frequency&#39; parameter.
+</span><span class="s2">    Args:
+</span><span class="s2">        battlelogs_filtered: Filtered Pyspark DataFrame containing only cohorts and
+</span><span class="s2">        features required for the study.
+</span><span class="s2">        parameters: Frequency of the cohort and days to extract for the output.
+</span><span class="s2">    Returns:
+</span><span class="s2">        Pyspark dataframe with retention metrics and n-sessions at the player level
+</span><span class="s2">        of granularity.
+</span><span class="s2">    Notes (parameters):
+</span><span class="s2">    - When &#39;daily&#39; granularity is selected, the cohort period is the day of the
+</span><span class="s2">    user&#39;s  first event.
+</span><span class="s2">    - When &#39;weekly&#39; granularity is selected, the cohort period is the first
+</span><span class="s2">    consecutive Monday on or after the day of the user&#39;s first event.
+</span><span class="s2">    - When &#39;monthly&#39; granularity is selected, the cohort period is the first day of
+</span><span class="s2">    the month in which the user&#39;s first event occurred.
+</span><span class="s2">    Notes (performance):
+</span><span class="s2">    - The Cohort frequency transformation skips exhaustive intermediate transformations,
+</span><span class="s2">    such as &#39;Sort&#39;, since the user can insert many cohorts as they occur in the
+</span><span class="s2">    preprocessing stage, causing excessive partitioning.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># Aggregate user activity data to get daily number of sessions</span>
+    <span class="n">user_activity</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">battlelogs_filtered</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&#34;cohort&#34;</span><span class="p">,</span> <span class="s2">&#34;battleTime&#34;</span><span class="p">,</span> <span class="s2">&#34;player_id&#34;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&#34;cohort&#34;</span><span class="p">,</span> <span class="s2">&#34;battleTime&#34;</span><span class="p">,</span> <span class="s2">&#34;player_id&#34;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">withColumnRenamed</span><span class="p">(</span><span class="s2">&#34;count&#34;</span><span class="p">,</span> <span class="s2">&#34;daily_sessions&#34;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Validate | Redefine Cohort Frequency, default to &#39;daily&#39;</span>
+    <span class="n">time_freq</span><span class="p">,</span> <span class="n">user_activity</span> <span class="o">=</span> <span class="n">_convert_user_activity_frequency</span><span class="p">(</span>
+        <span class="n">cohort_frequency</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;cohort_frequency&#34;</span><span class="p">],</span> <span class="n">user_activity</span><span class="o">=</span><span class="n">user_activity</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Create a window by each one of the player&#39;s window</span>
+    <span class="n">player_window</span> <span class="o">=</span> <span class="n">Window</span><span class="o">.</span><span class="n">partitionBy</span><span class="p">([</span><span class="s2">&#34;player_id&#34;</span><span class="p">])</span>
+
+    <span class="c1"># Find the first logged date per player in the cohort</span>
+    <span class="n">user_activity</span> <span class="o">=</span> <span class="n">user_activity</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+        <span class="s2">&#34;first_log&#34;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">time_freq</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">player_window</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Find days passed to see player return</span>
+    <span class="n">user_activity</span> <span class="o">=</span> <span class="n">user_activity</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+        <span class="s2">&#34;days_to_return&#34;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">datediff</span><span class="p">(</span><span class="n">time_freq</span><span class="p">,</span> <span class="s2">&#34;first_log&#34;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Subset columns and add counter variable to aggregate number of player further</span>
+    <span class="n">user_activity</span> <span class="o">=</span> <span class="n">user_activity</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+        <span class="s2">&#34;cohort&#34;</span><span class="p">,</span> <span class="s2">&#34;player_id&#34;</span><span class="p">,</span> <span class="s2">&#34;first_log&#34;</span><span class="p">,</span> <span class="s2">&#34;days_to_return&#34;</span><span class="p">,</span> <span class="s2">&#34;daily_sessions&#34;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&#34;player_count&#34;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># List cohorts, iterate over them and append them to the final output</span>
+    <span class="n">cohort_list</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">row</span><span class="o">.</span><span class="n">cohort</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">user_activity</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&#34;cohort&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="p">]</span>
+    <span class="n">output_range</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">cohort</span> <span class="ow">in</span> <span class="n">cohort_list</span><span class="p">:</span>
+        <span class="c1"># Filter only data of the cohort in process</span>
+        <span class="n">tmp_user_activity</span> <span class="o">=</span> <span class="n">user_activity</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&#34;cohort&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="n">cohort</span><span class="p">)</span>
+
+        <span class="c1"># Pivot data from long format to wide</span>
+        <span class="n">tmp_user_activity</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">tmp_user_activity</span><span class="o">.</span><span class="n">groupBy</span><span class="p">([</span><span class="s2">&#34;player_id&#34;</span><span class="p">,</span> <span class="s2">&#34;first_log&#34;</span><span class="p">])</span>
+            <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s2">&#34;days_to_return&#34;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">&#34;player_count&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&#34;day&#34;</span><span class="p">),</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">&#34;daily_sessions&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&#34;day_sessions&#34;</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Extract daily activity columns, save as arrays of column objects</span>
+        <span class="n">day_cohort_col</span> <span class="o">=</span> <span class="n">tmp_user_activity</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+            <span class="n">tmp_user_activity</span><span class="o">.</span><span class="n">colRegex</span><span class="p">(</span><span class="s2">&#34;`.+_day$`&#34;</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+        <span class="n">day_cohort_col</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">,</span> <span class="n">day_cohort_col</span><span class="p">))</span>
+
+        <span class="c1"># Extract daily sessions counter columns, save as arrays of column objects</span>
+        <span class="n">day_sessions_col</span> <span class="o">=</span> <span class="n">tmp_user_activity</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+            <span class="n">tmp_user_activity</span><span class="o">.</span><span class="n">colRegex</span><span class="p">(</span><span class="s2">&#34;`.+_day_sessions$`&#34;</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+        <span class="n">day_sessions_col</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">,</span> <span class="n">day_sessions_col</span><span class="p">))</span>
+
+        <span class="c1"># Empty list to allocate final columns</span>
+        <span class="n">cols_retention</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Produce retention metrics and session counters</span>
+        <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;retention_days&#34;</span><span class="p">]:</span>
+            <span class="c1"># Define column names</span>
+            <span class="n">DDR</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">day</span><span class="si">}</span><span class="s2">R&#34;</span>
+            <span class="n">DDTS</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">day</span><span class="si">}</span><span class="s2">_Sessions&#34;</span>
+            <span class="c1"># Obtain retention for a given day</span>
+            <span class="n">tmp_user_activity</span> <span class="o">=</span> <span class="n">tmp_user_activity</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+                <span class="n">DDR</span><span class="p">,</span> <span class="n">retention_metric</span><span class="p">(</span><span class="n">day_cohort_col</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="n">day</span><span class="p">))</span>
+            <span class="p">)</span>
+            <span class="c1"># Obtain total of sessions until given day</span>
+            <span class="n">tmp_user_activity</span> <span class="o">=</span> <span class="n">tmp_user_activity</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+                <span class="n">DDTS</span><span class="p">,</span> <span class="n">sessions_sum</span><span class="p">(</span><span class="n">day_sessions_col</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="n">day</span><span class="p">))</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="n">DDTS</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">DDR</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">DDTS</span><span class="p">)))</span>
+            <span class="c1"># Append final columns</span>
+            <span class="n">cols_retention</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DDR</span><span class="p">)</span>
+            <span class="n">cols_retention</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DDTS</span><span class="p">)</span>
+
+        <span class="c1"># Final formatting</span>
+        <span class="n">standard_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;player_id&#34;</span><span class="p">,</span> <span class="s2">&#34;first_log&#34;</span><span class="p">]</span>
+        <span class="n">standard_columns</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">cols_retention</span><span class="p">)</span>
+        <span class="n">tmp_user_activity</span> <span class="o">=</span> <span class="n">tmp_user_activity</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="o">*</span><span class="n">standard_columns</span><span class="p">)</span>
+
+        <span class="c1"># Append cohort&#39;s user activity data to final list</span>
+        <span class="n">output_range</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp_user_activity</span><span class="p">)</span>
+
+    <span class="c1"># Reduce all dataframe to overwrite original</span>
+    <span class="n">user_activity_data</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">unionAll</span><span class="p">,</span> <span class="n">output_range</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">user_activity_data</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Imagine having the capacity to transform filtered battle logs activity into a wrapped format data frame that delivers retention metrics and n-sessions at the player level of granularity. That&rsquo;s exactly what this node does. Using a set of customizable parameters, it extracts the retention and number of sessions based on a <code>cohort frequency</code> parameter:</p>
 <ul>
 <li>When you select <code>daily</code> granularity, the cohort period is based on the day of the user&rsquo;s first event, showing you the number of sessions logged per user on the day they installed the game, on the day they returned, and so on.</li>
 <li>If you choose <code>weekly</code> granularity, the cohort period is based on the first consecutive Monday on or after the day of the user&rsquo;s first event. This allows you to track user behavior on a weekly basis, providing valuable insights into how engagement fluctuates throughout the week.</li>
@@ -782,7 +1392,149 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 </span></code></pre></td></tr></table>
 </div>
 </div><p><strong>Node: <code>ratio_register_node</code></strong></p>
-<p>In the final stage of this pipeline, we&rsquo;ll generate bounded retention metrics as ratios. These metrics will be used to demonstrate the effectiveness of our approach. While I may not have experience in gaming, I understand the importance of accurately measuring retention ratios. To ensure our metrics are properly measured, we&rsquo;ll ask the <a href="https://a16z.com/about/" target="_blank" rel="noopener noreffer">Andreessen Horowitz</a> Partner, <a href="https://andrewchen.com/" target="_blank" rel="noopener noreffer">Andrew Chen</a>, a leading expert in the field.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">ratio_register</span><span class="p">(</span>
+    <span class="n">user_activity</span><span class="p">:</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">params_rat_reg</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">params_act_tran</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Takes Activity per Day from the &#34;activity_transformer_node&#34; (E.G: columns DXR),
+</span><span class="s2">    builds retention ratios per day using a bounded retention calculation.
+</span><span class="s2">    Args:
+</span><span class="s2">        user_activity: Pyspark dataframe with retention metrics and n-sessions at the
+</span><span class="s2">        player level of granularity.
+</span><span class="s2">        params_rat_reg: Parameters to aggregate retention metrics, based on User inputs.
+</span><span class="s2">        params_act_tran: Parameters to extract activity day per user, based on User.
+</span><span class="s2">        inputs.
+</span><span class="s2">    Returns:
+</span><span class="s2">        Pyspark dataframe with bounded retention ratios aggregated.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># Request parameters to validate</span>
+    <span class="n">days_available</span> <span class="o">=</span> <span class="n">params_act_tran</span><span class="p">[</span><span class="s2">&#34;retention_days&#34;</span><span class="p">]</span>
+    <span class="n">ratios</span> <span class="o">=</span> <span class="p">[</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span> <span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">params_rat_reg</span><span class="p">[</span><span class="s2">&#34;ratios&#34;</span><span class="p">]]</span>
+
+    <span class="c1"># Validate day labels are present in parameters</span>
+    <span class="n">_ratio_days_availabilty</span><span class="p">(</span><span class="n">ratios</span><span class="p">,</span> <span class="n">days_available</span><span class="p">)</span>
+
+    <span class="c1"># Grouping + renaming multiple columns: https://stackoverflow.com/a/74881697</span>
+    <span class="n">retention_columns</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">user_activity</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&#34;player_id&#34;</span><span class="p">,</span> <span class="s2">&#34;first_log&#34;</span><span class="p">]</span>
+    <span class="p">]</span>
+    <span class="n">aggs</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">expr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;sum(</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">) as </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">retention_columns</span><span class="p">]</span>
+    <span class="c1"># Apply aggregation</span>
+    <span class="n">cohort_activity_data</span> <span class="o">=</span> <span class="n">user_activity</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&#34;first_log&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="o">*</span><span class="n">aggs</span><span class="p">)</span>
+
+    <span class="c1"># Obtain basics retention ratios aggregated</span>
+    <span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">ratios</span><span class="p">:</span>
+        <span class="n">num</span><span class="p">,</span> <span class="n">den</span> <span class="o">=</span> <span class="n">ratio</span>
+        <span class="n">ratio_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">R&#34;</span>
+        <span class="n">ret_num</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">R&#34;</span>
+        <span class="n">ret_den</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">den</span><span class="si">}</span><span class="s2">R&#34;</span>
+        <span class="n">cohort_activity_data</span> <span class="o">=</span> <span class="n">cohort_activity_data</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+            <span class="n">ratio_name</span><span class="p">,</span> <span class="n">ratio_agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">ret_num</span><span class="p">),</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">ret_den</span><span class="p">))</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Obtain analytical ratios if them were defined in the parameters (ratio register)</span>
+    <span class="k">if</span> <span class="n">params_rat_reg</span><span class="p">[</span><span class="s2">&#34;analytical_ratios&#34;</span><span class="p">]</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span>
+        <span class="n">params_rat_reg</span><span class="p">[</span><span class="s2">&#34;analytical_ratios&#34;</span><span class="p">],</span> <span class="nb">list</span>
+    <span class="p">):</span>
+        <span class="c1"># Request parameters to validate</span>
+        <span class="n">analytical_ratios</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">literal_eval</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span> <span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">params_rat_reg</span><span class="p">[</span><span class="s2">&#34;analytical_ratios&#34;</span><span class="p">]</span>
+        <span class="p">]</span>
+        <span class="c1"># Validate day labels are present in parameters</span>
+        <span class="n">_ratio_days_availabilty</span><span class="p">(</span><span class="n">analytical_ratios</span><span class="p">,</span> <span class="n">days_available</span><span class="p">)</span>
+        <span class="c1"># Obtain basics retention ratios aggregated</span>
+        <span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">analytical_ratios</span><span class="p">:</span>
+            <span class="n">num</span><span class="p">,</span> <span class="n">den</span> <span class="o">=</span> <span class="n">ratio</span>
+            <span class="n">ratio_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">/D</span><span class="si">{</span><span class="n">den</span><span class="si">}</span><span class="s2">&#34;</span>
+            <span class="n">ret_num</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">R&#34;</span>
+            <span class="n">ret_den</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">den</span><span class="si">}</span><span class="s2">R&#34;</span>
+            <span class="n">cohort_activity_data</span> <span class="o">=</span> <span class="n">cohort_activity_data</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+                <span class="n">ratio_name</span><span class="p">,</span> <span class="n">ratio_agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">ret_num</span><span class="p">),</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">ret_den</span><span class="p">))</span>
+            <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;No analytical ratios were defined&#34;</span><span class="p">)</span>
+
+    <span class="c1"># Reorganization per log date</span>
+    <span class="n">cohort_activity_data</span> <span class="o">=</span> <span class="n">cohort_activity_data</span><span class="o">.</span><span class="n">orderBy</span><span class="p">([</span><span class="s2">&#34;first_log&#34;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">cohort_activity_data</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In the final stage of this pipeline, we&rsquo;ll generate bounded retention metrics as ratios. These metrics will be used to demonstrate the effectiveness of our approach. While I may not have experience in gaming, I understand the importance of accurately measuring retention ratios. To ensure our metrics are properly measured, we&rsquo;ll ask the <a href="https://a16z.com/about/" target="_blank" rel="noopener noreffer">Andreessen Horowitz</a> Partner, <a href="https://andrewchen.com/" target="_blank" rel="noopener noreffer">Andrew Chen</a>, a leading expert in the field.</p>
 <div style="display: flex; justify-content: center;">
   <blockquote class="twitter-tweet"><p lang="en" dir="ltr">6) D1/D7/D30 that exceeds 60/30/15 (daily frequency)<br>7) revenue or activity expansion on a *per user* basis over time -- indicates deeper engagement / habit formation<br>8) &gt;60% organic acquisition -- CAC doesn&#39;t even matter!<br><br>Having even one is impressive -- it&#39;d make me sit up!</p>&mdash; andrew chen (@andrewchen) <a href="https://twitter.com/andrewchen/status/1184170127345893376?ref_src=twsrc%5Etfw">October 15, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" ></script>
@@ -832,7 +1584,77 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_06.png" style="width: 50%"></p>
 <p>It is worth mentioning that each node in this pipeline was planned using an experimental Jupyter Notebook. If you want to check the raw version, you can download it from <a href="https://github.com/robguilarr/Brawlstars-retention-pipeline/blob/main/notebooks/player_segmentation_node.ipynb" target="_blank" rel="noopener noreffer">here</a>.</p>
 <p><strong>Node: <code>feature_scaler_node</code></strong></p>
-<p>This node will use as input the player metadata, which includes descriptive data about the lifetime statistics for each player per battle-type score, to get more detail on the data specs you can refer to the <a href="https://brawlstats.readthedocs.io/en/latest/api.html#player" target="_blank" rel="noopener noreffer">&ldquo;Player&rdquo;</a> data model.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">feature_scaler</span><span class="p">(</span><span class="n">metadata_prepared</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Applies MaxAbsScaler on the input data and returns the transformed data.
+</span><span class="s2">    Args:
+</span><span class="s2">        metadata_prepared: Dataframe containing player metadata with &#39;player_id&#39;
+</span><span class="s2">        column and numeric features.
+</span><span class="s2">    Returns:
+</span><span class="s2">        Dataframe with scaled numeric features
+</span><span class="s2">    Raises:
+</span><span class="s2">        AssertionError: If the length of &#39;player_id&#39; column and the transformed data are
+</span><span class="s2">        not equal
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># Drop the &#39;player_id&#39; column and use it as the target variable</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">metadata_prepared</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&#34;player_id&#34;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">metadata_prepared</span><span class="p">[</span><span class="s2">&#34;player_id&#34;</span><span class="p">]</span>
+
+    <span class="c1"># Initialize the MaxAbsScaler object, fit it to the data, and transform the data</span>
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">MaxAbsScaler</span><span class="p">()</span>
+    <span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="c1"># Create a new DataFrame with the transformed data and original column names</span>
+    <span class="n">metadata_scaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+    <span class="c1"># Check if the length of &#39;y&#39; matches the transformed data and concatenate them</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">metadata_scaled</span><span class="p">)</span>
+        <span class="n">metadata_scaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">y</span><span class="p">,</span> <span class="n">metadata_scaled</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Scaler instance or data is corrupted, try debugging your input data&#34;</span><span class="p">)</span>
+
+    <span class="c1"># Return the scaled DataFrame</span>
+    <span class="k">return</span> <span class="n">metadata_scaled</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This node will use as input the player metadata, which includes descriptive data about the lifetime statistics for each player per battle-type score, to get more detail on the data specs you can refer to the <a href="https://brawlstats.readthedocs.io/en/latest/api.html#player" target="_blank" rel="noopener noreffer">&ldquo;Player&rdquo;</a> data model.</p>
 <p>To train a <code>KMeans</code> model effectively, it&rsquo;s crucial to prepare the data by scaling it. Let&rsquo;s first review one of my recent <a href="https://github.com/robguilarr/Machine-Learning-Sandbox/blob/master/source/experiments/unsupervised_machine_learning/KMeans.ipynb" target="_blank" rel="noopener noreffer">experiments</a> before delving into the scaling methods. The scaling method we choose depends on the nature of the data and our analysis requirements. To choose the best scaling method for your project, here&rsquo;s a brief overview of each option:</p>
 <ul>
 <li><code>StandardScaler</code>: This scaling method scales each feature to have a mean of 0 and a standard deviation of 1. It&rsquo;s a good choice if our data follow a normal distribution and if we want to emphasize the differences between data points.</li>
@@ -841,7 +1663,101 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 </ul>
 <p>So, as we have sparse data and features with very different scales, and we want to preserve the sparsity and relative magnitudes of the data I used <code>MaxAbsScaler</code>.</p>
 <p><strong>Node: <code>feature_selector_node</code></strong></p>
-<p>To ensure a correct classification process, it is important to select appropriate features to classify players, but it is equally important to determine the appropriate way to do so. In this case, I did not use a scientific approach to define it, but rather based it on game criteria.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">feature_selector</span><span class="p">(</span>
+    <span class="n">metadata_scaled</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">]]:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Select top K features from a scaled metadata dataframe. Here the module select
+</span><span class="s2">    n_features_to_select to consider the selection of features to represent:
+</span><span class="s2">        - Player capacity of earning credits (representation of trophies).
+</span><span class="s2">        - Capacity of being a team player (representation of 3v3 or Duo victories).
+</span><span class="s2">        - Solo skills (representation of Solo victories).
+</span><span class="s2">    Args:
+</span><span class="s2">        metadata_scaled: The input metadata as a Pandas DataFrame, with player ID in
+</span><span class="s2">        one column and feature values in the remaining columns.
+</span><span class="s2">        parameters: A dictionary of input parameters, containing the number of top
+</span><span class="s2">        features to select.
+</span><span class="s2">    Returns:
+</span><span class="s2">        A new metadata dataframe containing only the selected top K features,
+</span><span class="s2">        with the same player ID column as the input dataframe
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># Drop the player ID column from the metadata dataframe</span>
+    <span class="n">X_scaled</span> <span class="o">=</span> <span class="n">metadata_scaled</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&#34;player_id&#34;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Extract the player ID column from the metadata dataframe</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">metadata_scaled</span><span class="p">[</span><span class="s2">&#34;player_id&#34;</span><span class="p">]</span>
+
+    <span class="c1"># Use SelectKBest and ColumnTransformer to select the top K features</span>
+    <span class="n">selector</span> <span class="o">=</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">f_classif</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;top_features&#34;</span><span class="p">])</span>
+    <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+        <span class="n">transformers</span><span class="o">=</span><span class="p">[(</span><span class="s2">&#34;SKB_transformer&#34;</span><span class="p">,</span> <span class="n">selector</span><span class="p">,</span> <span class="n">X_scaled</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
+    <span class="p">)</span>
+    <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="c1"># Extract the feature-selected data from the preprocessor object</span>
+    <span class="n">X_features</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+
+    <span class="c1"># Get the index numbers and names of the selected columns</span>
+    <span class="n">new_columns_index</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&#34;SKB_transformer&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">get_support</span><span class="p">(</span>
+        <span class="n">indices</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">new_columns_names</span> <span class="o">=</span> <span class="n">X_scaled</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">new_columns_index</span><span class="p">]</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Columns selected: </span><span class="si">{</span><span class="n">new_columns_names</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+
+    <span class="c1"># Create a new dataframe with only the selected columns</span>
+    <span class="n">X_features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_features</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">new_columns_names</span><span class="p">)</span>
+    <span class="n">metadata_reduced</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">y</span><span class="p">,</span> <span class="n">X_features</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">metadata_reduced</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;features_selected&#34;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">new_columns_names</span><span class="p">)}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>To ensure a correct classification process, it is important to select appropriate features to classify players, but it is equally important to determine the appropriate way to do so. In this case, I did not use a scientific approach to define it, but rather based it on game criteria.</p>
 <p>I considered four attributes based on the next metrics:</p>
 <ul>
 <li>Trophies: The number of trophies earned by a player in Brawlstars is a significant indicator of their performance level and skill.</li>
@@ -872,7 +1788,137 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 </span></code></pre></td></tr></table>
 </div>
 </div><p><strong>Node: <code>kmeans_estimator_grid_search_node</code></strong></p>
-<p>We begin by obtaining the scaled data along with the selected features. Once the preparation is complete, we can proceed to train a model and create the estimator object. The resulting artifacts will be stored in our model registry, which can be found at the path <code>/08_model_registry</code> within our GCP bucket.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">kmeans_estimator_grid_search</span><span class="p">(</span>
+    <span class="n">metadata_reduced</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">]:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Perform a grid search with cross-validation to find the best hyperparameters for
+</span><span class="s2">    KMeans clustering algorithm.
+</span><span class="s2">    Args:
+</span><span class="s2">        metadata_reduced: The metadata of players to be clustered.
+</span><span class="s2">        parameters: The parameters for the grid search of the estimator.
+</span><span class="s2">    Returns:
+</span><span class="s2">        kmeans_estimator: Pickle file containing the KMeans estimator
+</span><span class="s2">        best_params_KMeans: The best parameters found by GridSearchCV
+</span><span class="s2">        eval_params_KMeans: The parameters evaluated by GridSearchCV
+</span><span class="s2">        inertia_plot: Inertia plot for a clustering grid search
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># Drop the &#39;player_id&#39; column from the &#39;metadata_reduced&#39; dataframe</span>
+    <span class="n">X_features</span> <span class="o">=</span> <span class="n">metadata_reduced</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;player_id&#34;</span><span class="p">])</span>
+
+    <span class="c1"># Define hyperparameters for KMeans algorithm</span>
+    <span class="n">seed</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;random_state&#34;</span><span class="p">)</span>
+    <span class="n">max_n_cluster</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;max_n_cluster&#34;</span><span class="p">)</span>
+    <span class="n">starting_point_method</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;starting_point_method&#34;</span><span class="p">,</span> <span class="s2">&#34;random&#34;</span><span class="p">)</span>
+    <span class="n">max_iter</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;max_iter&#34;</span><span class="p">)</span>
+    <span class="n">distortion_tol</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;distortion_tol&#34;</span><span class="p">)</span>
+    <span class="n">cv</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;cross_validations&#34;</span><span class="p">)</span>
+    <span class="n">plot_dimensions</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;plot_dimensions&#34;</span><span class="p">)</span>
+
+    <span class="c1"># Set hyperparameters for GridSearchCV</span>
+    <span class="n">eval_params_KMeans</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&#34;n_clusters&#34;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_n_cluster</span><span class="p">),</span>
+        <span class="s2">&#34;init&#34;</span><span class="p">:</span> <span class="n">starting_point_method</span><span class="p">,</span>
+        <span class="s2">&#34;max_iter&#34;</span><span class="p">:</span> <span class="n">max_iter</span><span class="p">,</span>
+        <span class="s2">&#34;tol&#34;</span><span class="p">:</span> <span class="n">distortion_tol</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Set number of CPUs to use</span>
+    <span class="n">cores</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;cores&#34;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Perform GridSearch Cross-Validation for KMeans instance</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&#34;Performing GridSearch Cross-Validation for KMeans instance</span><span class="se">\n</span><span class="s2">&#34;</span>
+        <span class="sa">f</span><span class="s2">&#34;** Parameters in use **: </span><span class="si">{</span><span class="n">eval_params_KMeans</span><span class="si">}</span><span class="s2">&#34;</span>
+    <span class="p">)</span>
+    <span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+        <span class="n">KMeans</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">seed</span><span class="p">),</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">eval_params_KMeans</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">cores</span>
+    <span class="p">)</span>
+    <span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_features</span><span class="p">)</span>
+
+    <span class="c1"># Extract best estimator</span>
+    <span class="n">kmeans_estimator</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+
+    <span class="c1"># Retrieve parameters used to define the best estimator</span>
+    <span class="n">best_params_KMeans</span><span class="p">,</span> <span class="n">eval_params_KMeans</span> <span class="o">=</span> <span class="n">_estimator_param_export</span><span class="p">(</span>
+        <span class="n">eval_params_KMeans</span><span class="p">,</span> <span class="n">grid_search</span><span class="p">,</span> <span class="n">seed</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Return inertia plot to visualize the best estimator</span>
+    <span class="n">inertia_plot</span> <span class="o">=</span> <span class="n">_inertia_plot_gen</span><span class="p">(</span>
+        <span class="n">grid_search</span><span class="p">,</span> <span class="n">plot_dimensions</span><span class="p">,</span> <span class="n">starting_point_method</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">kmeans_estimator</span><span class="p">,</span> <span class="n">best_params_KMeans</span><span class="p">,</span> <span class="n">eval_params_KMeans</span><span class="p">,</span> <span class="n">inertia_plot</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We begin by obtaining the scaled data along with the selected features. Once the preparation is complete, we can proceed to train a model and create the estimator object. The resulting artifacts will be stored in our model registry, which can be found at the path <code>/08_model_registry</code> within our GCP bucket.</p>
 <p>To determine the most suitable algorithm for our task, two key factors were considered: the dataset size and the desired number of clusters. For larger datasets, we favor the computationally efficient and faster <strong>K-Means</strong> algorithm. On the other hand, when working with smaller datasets, <strong>Hierarchical clustering</strong> emerges as a more appropriate choice.</p>
 <p>K-Means is a highly effective <strong>partition-based</strong> clustering algorithm that groups data points into a predetermined number of clusters. It begins by randomly selecting initial centroids (cluster centers) and proceeds to iteratively assign each data point to the nearest centroid based on a chosen distance metric. After the assignment, the centroids are updated by calculating the mean distance of all the points within each cluster. This process repeats until the centroids no longer change, ensuring the clusters reach a stable state.</p>
 <p>In summary, this particular node performs a grid search combined with cross-validation to identify the optimal hyperparameters for the KMeans clustering algorithm.</p>
@@ -925,7 +1971,125 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 <li><code>inertia_plot</code>: This output encompasses the inertia plot displayed earlier in the form of a Plotly JSON dataset.</li>
 </ul>
 <p><strong>Node: <code>kmeans_inference_node</code></strong></p>
-<p>The next step is to evaluate the model. This node will import the model from the model registry, produce the inferences, and generate labels that will be saved in the <code>player_metadata_clustered</code> dataset. It will also produce four metrics to evaluate the model:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">kmeans_inference</span><span class="p">(</span>
+    <span class="n">metadata_reduced</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">kmeans_estimator</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Cluster players&#39; metadata using K-Means algorithm and compute clustering
+</span><span class="s2">    evaluation metrics.
+</span><span class="s2">    The following clustering evaluation metrics are computed and logged:
+</span><span class="s2">        - Total Inertia Score
+</span><span class="s2">        - Silhouette Score
+</span><span class="s2">        - Davies-Bouldin Score
+</span><span class="s2">        - Calinski-Harabasz Score
+</span><span class="s2">    Args:
+</span><span class="s2">        metadata_reduced: DataFrame containing players&#39; metadata to cluster.
+</span><span class="s2">        kmeans_estimator: Trained K-Means estimator (model).
+</span><span class="s2">    Returns:
+</span><span class="s2">        Clustered players&#39; metadata and their corresponding cluster labels and a
+</span><span class="s2">        dictionary (metrics_KMeans) containing clustering evaluation metrics computed
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># Drop the &#39;player_id&#39; column from the &#39;metadata_reduced&#39; dataframe</span>
+    <span class="n">X_features</span> <span class="o">=</span> <span class="n">metadata_reduced</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;player_id&#34;</span><span class="p">])</span>
+
+    <span class="c1"># Extract the &#39;player_id&#39; column from the &#39;metadata_reduced&#39; dataframe</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">metadata_reduced</span><span class="p">[</span><span class="s2">&#34;player_id&#34;</span><span class="p">]</span>
+
+    <span class="c1"># Generate and append labels</span>
+    <span class="n">predicted_labels</span> <span class="o">=</span> <span class="n">kmeans_estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_features</span><span class="p">)</span>
+    <span class="n">player_metadata_clustered</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">predicted_labels</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;cluster_labels&#34;</span><span class="p">),</span> <span class="n">X_features</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Extract total inertia score</span>
+    <span class="n">inertia_score</span> <span class="o">=</span> <span class="n">kmeans_estimator</span><span class="o">.</span><span class="n">inertia_</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Total Inertia Score: </span><span class="si">{</span><span class="n">inertia_score</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+
+    <span class="c1"># Extract Silhouette score</span>
+    <span class="n">silhouette</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">X_features</span><span class="p">,</span> <span class="n">predicted_labels</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Silhouette Score: </span><span class="si">{</span><span class="n">silhouette</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+
+    <span class="c1"># Extract Davies-Bouldin index</span>
+    <span class="n">davies_bouldin</span> <span class="o">=</span> <span class="n">davies_bouldin_score</span><span class="p">(</span><span class="n">X_features</span><span class="p">,</span> <span class="n">predicted_labels</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Davies-Bouldin Score: </span><span class="si">{</span><span class="n">davies_bouldin</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+
+    <span class="c1"># Extract Calinski-Harabasz index</span>
+    <span class="n">calinski_harabasz</span> <span class="o">=</span> <span class="n">calinski_harabasz_score</span><span class="p">(</span><span class="n">X_features</span><span class="p">,</span> <span class="n">predicted_labels</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Calinski-Harabasz Score: </span><span class="si">{</span><span class="n">calinski_harabasz</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+
+    <span class="c1"># Save metrics for tracking</span>
+    <span class="n">metrics_KMeans</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&#34;silhouette_score&#34;</span><span class="p">:</span> <span class="n">silhouette</span><span class="p">,</span>
+        <span class="s2">&#34;davies_bouldin_score&#34;</span><span class="p">:</span> <span class="n">davies_bouldin</span><span class="p">,</span>
+        <span class="s2">&#34;calinski_harabasz_score&#34;</span><span class="p">:</span> <span class="n">calinski_harabasz</span><span class="p">,</span>
+        <span class="s2">&#34;total_inertia&#34;</span><span class="p">:</span> <span class="n">inertia_score</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">metrics_KMeans</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">):</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">metrics_KMeans</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+    <span class="k">return</span> <span class="n">player_metadata_clustered</span><span class="p">,</span> <span class="n">metrics_KMeans</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The next step is to evaluate the model. This node will import the model from the model registry, produce the inferences, and generate labels that will be saved in the <code>player_metadata_clustered</code> dataset. It will also produce four metrics to evaluate the model:</p>
 <ul>
 <li>Inertia: This metric measures the sum of distances between each point and its assigned cluster center. A lower inertia value indicates that the data points are closer to their respective centroids.</li>
 <li>Silhouette score: This metric indicates how well each data point is assigned to its cluster. A higher silhouette score indicates that data points within a cluster are more similar to each other and dissimilar to points in other clusters.</li>
@@ -937,12 +2101,454 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 <p>This will allow you to track the performance of the model over time and identify any areas that need improvement.</p>
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_09.png" style="width: 1000px"></p>
 <p><strong>Node: <code>centroid_plot_generator_node</code></strong></p>
-<p>Finally, this node will generate visualizations of the centroids for each combination of X and Y variables. The plot below provides an example, where the centroids are represented by black-bordered squares.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">centroid_plot_generator</span><span class="p">(</span>
+    <span class="n">metadata_reduced</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">kmeans_estimator</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+    <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">]:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Generate scatter plot figures for all possible pairs of features using the
+</span><span class="s2">    input metadata features (reduced, features selected), highlighting the centroids
+</span><span class="s2">    of a KMeans clustering estimator with the best hyperparameters found.
+</span><span class="s2">    Args:
+</span><span class="s2">        metadata_reduced: DataFrame containing the reduced metadata to be
+</span><span class="s2">        used for plotting
+</span><span class="s2">        kmeans_estimator: The KMeans clustering model to be used to generate the
+</span><span class="s2">        centroids
+</span><span class="s2">        parameters: A dictionary of parameters used to configure the plot dimensions
+</span><span class="s2">    Returns:
+</span><span class="s2">        Plot figures, where each plot shows a different pair of features in the input
+</span><span class="s2">        dataset, highlighting the centroids of the KMeans clustering model with the best
+</span><span class="s2">        hyperparameters found.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># Extract dimension parameters for plotting</span>
+    <span class="n">plot_dimensions</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;plot_dimensions&#34;</span><span class="p">)</span>
+
+    <span class="c1"># Drop the &#39;player_id&#39; column from the &#39;metadata_reduced&#39; dataframe</span>
+    <span class="n">X_features</span> <span class="o">=</span> <span class="n">metadata_reduced</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;player_id&#34;</span><span class="p">])</span>
+
+    <span class="c1"># Create a dictionary of feature names and their index in the feature matrix</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">X_features</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">feature_number</span><span class="p">]:</span> <span class="n">feature_number</span>
+        <span class="k">for</span> <span class="n">feature_number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_features</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Generate a list of all possible feature pairs</span>
+    <span class="n">feature_pairs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">))</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">))</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Create an empty dictionary to store the plot figures</span>
+    <span class="n">plot_figures</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Iterate over each feature pair and create a plot figure for each pair</span>
+    <span class="k">for</span> <span class="n">col_x</span><span class="p">,</span> <span class="n">col_y</span> <span class="ow">in</span> <span class="n">feature_pairs</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Generating plot for features: </span><span class="si">{</span><span class="n">col_x</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">col_y</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="c1"># Add some noise to the feature matrix</span>
+        <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">X_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+        <span class="c1"># Fit a KMeans model with the best hyperparameters found</span>
+        <span class="n">kmeans_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_features</span> <span class="o">+</span> <span class="n">noise</span><span class="p">)</span>
+
+        <span class="c1"># Get the coordinates of the centroids</span>
+        <span class="n">centroids</span> <span class="o">=</span> <span class="n">kmeans_estimator</span><span class="o">.</span><span class="n">cluster_centers_</span>
+        <span class="n">centroids_x</span> <span class="o">=</span> <span class="n">centroids</span><span class="p">[:,</span> <span class="n">col_x</span><span class="p">]</span>
+        <span class="n">centroids_y</span> <span class="o">=</span> <span class="n">centroids</span><span class="p">[:,</span> <span class="n">col_y</span><span class="p">]</span>
+
+        <span class="c1"># Get the names of the two features being plotted</span>
+        <span class="n">feature_x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="n">col_x</span><span class="p">]</span>
+        <span class="n">feature_y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="n">col_y</span><span class="p">]</span>
+
+        <span class="c1"># Get the values of the two features being plotted</span>
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">X_features</span><span class="p">[</span><span class="n">feature_x</span><span class="p">]</span>
+        <span class="n">ys</span> <span class="o">=</span> <span class="n">X_features</span><span class="p">[</span><span class="n">feature_y</span><span class="p">]</span>
+
+        <span class="c1"># Get the cluster labels for each data point</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans_estimator</span><span class="o">.</span><span class="n">labels_</span>
+
+        <span class="c1"># Generate a palette of colors for the clusters</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="n">_generate_palette</span><span class="p">(</span><span class="n">kmeans_estimator</span><span class="o">.</span><span class="n">n_clusters</span><span class="p">)</span>
+
+        <span class="c1"># Assign a color to each data point based on its cluster label</span>
+        <span class="n">point_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">colors</span><span class="p">[</span><span class="n">label</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)]</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">]</span>
+
+        <span class="c1"># Create a plot figure with two scatter traces: one for the data points and one</span>
+        <span class="c1"># for the centroids</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+            <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">xs</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">ys</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&#34;markers&#34;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">point_colors</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+            <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">centroids_x</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">centroids_y</span><span class="p">,</span>
+                <span class="n">mode</span><span class="o">=</span><span class="s2">&#34;markers&#34;</span><span class="p">,</span>
+                <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                    <span class="n">symbol</span><span class="o">=</span><span class="s2">&#34;diamond&#34;</span><span class="p">,</span>
+                    <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>
+                    <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&#34;black&#34;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Add axis labels to the plot</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">feature_x</span><span class="si">}</span><span class="s2"> scaled&#34;</span><span class="p">,</span> <span class="n">yaxis_title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">feature_y</span><span class="si">}</span><span class="s2"> scaled&#34;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Set the size of the plot figure</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="n">plot_dimensions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;width&#34;</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="n">plot_dimensions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;height&#34;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Hide the legend in the plot</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Set the name of the plot figure and store it in the dictionary</span>
+        <span class="n">plot_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">feature_x</span><span class="si">}</span><span class="s2">_vs_</span><span class="si">{</span><span class="n">feature_y</span><span class="si">}</span><span class="s2">&#34;</span>
+        <span class="n">plot_figures</span><span class="p">[</span><span class="n">plot_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span>
+
+    <span class="c1"># Retrieve list of plot names as list</span>
+    <span class="n">plot_figures_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">plot_figures</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">plot_figures_names</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">4</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">plot_figures</span><span class="p">[</span><span class="n">plot_figures_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+            <span class="n">plot_figures</span><span class="p">[</span><span class="n">plot_figures_names</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+            <span class="n">plot_figures</span><span class="p">[</span><span class="n">plot_figures_names</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span>
+            <span class="n">plot_figures</span><span class="p">[</span><span class="n">plot_figures_names</span><span class="p">[</span><span class="mi">3</span><span class="p">]],</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;To save the plot figures the minimum number of plots must be 4&#34;</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">_dummy_plot</span><span class="p">(</span><span class="n">plot_dimensions</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">fig</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Finally, this node will generate visualizations of the centroids for each combination of X and Y variables. The plot below provides an example, where the centroids are represented by black-bordered squares.</p>
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_10.png" style="width: 100%"></p>
 <hr>
 <h3 id="-player-activity-data-and-cluster-labels-merge-pipeline">📊 Player activity data and Cluster labels merge Pipeline</h3>
 <p><strong>Pipeline <code>player_activity_clustering_merge</code></strong></p>
-<p>The purpose of the upcoming pipeline is to streamline the process of augmenting the retention data generated by the <code>activity_transformer_node</code>. Specifically, this involves incorporating the tags and cluster labels obtained from the output produced by the <code>kmeans_inference_node</code>. The ultimate objective is to utilize this enriched dataset to generate compelling visualizations through the <code>user_retention_plot_gen_node</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">player_cluster_activity_concatenator</span><span class="p">(</span>
+    <span class="n">user_activity_data</span><span class="p">:</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">players_metadata_clustered</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">params_ratio_register</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">params_activity_transformer</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Concatenates player clusters with their respective activity record activity data
+</span><span class="s2">    and calculates retention ratios based on provided analytical ratios.
+</span><span class="s2">    Args:
+</span><span class="s2">        user_activity_data: Spark DataFrame containing user retention data.
+</span><span class="s2">        players_metadata_clustered: DataFrame containing player data and cluster labels.
+</span><span class="s2">        params_ratio_register: Dictionary with ratio register parameters.
+</span><span class="s2">        params_activity_transformer: Dictionary with activity transformer parameters.
+</span><span class="s2">    Returns:
+</span><span class="s2">        Pandas DataFrame containing concatenated player cluster activity data and
+</span><span class="s2">        retention ratios
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># Call | Create Spark Session</span>
+    <span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+
+    <span class="c1"># Create Spark DataFrame from Pandas DataFrame</span>
+    <span class="n">players_metadata_clustered</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">players_metadata_clustered</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&#34;player_id&#34;</span><span class="p">,</span> <span class="s2">&#34;cluster_labels&#34;</span><span class="p">)</span>
+
+    <span class="c1"># Join user activity data with player metadata and cluster labels</span>
+    <span class="n">player_clustered_activity</span> <span class="o">=</span> <span class="n">user_activity_data</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="n">players_metadata_clustered</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;player_id&#34;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&#34;left&#34;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Select retention metric columns and dates of first log records</span>
+    <span class="n">ret_columns</span> <span class="o">=</span> <span class="n">player_clustered_activity</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+        <span class="n">player_clustered_activity</span><span class="o">.</span><span class="n">colRegex</span><span class="p">(</span><span class="s2">&#34;`^D\d+R$`&#34;</span><span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+    <span class="n">player_clustered_activity</span> <span class="o">=</span> <span class="n">player_clustered_activity</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+        <span class="o">*</span><span class="p">[</span><span class="s2">&#34;player_id&#34;</span><span class="p">,</span> <span class="s2">&#34;cluster_labels&#34;</span><span class="p">,</span> <span class="s2">&#34;first_log&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">ret_columns</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="c1"># Group by cluster labels and first log date, and aggregate retention metrics</span>
+    <span class="n">player_clustered_activity</span> <span class="o">=</span> <span class="n">player_clustered_activity</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&#34;cluster_labels&#34;</span><span class="p">,</span> <span class="s2">&#34;first_log&#34;</span><span class="p">]</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">ret_columns</span><span class="p">])</span>
+
+    <span class="c1"># Get analytical ratios, normal ratios and days available from parameters,</span>
+    <span class="c1"># and validate that all day labels are present</span>
+    <span class="n">analytical_ratios</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">literal_eval</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span> <span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">params_ratio_register</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;analytical_ratios&#34;</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="n">ratios</span> <span class="o">=</span> <span class="p">[</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span> <span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">params_ratio_register</span><span class="p">[</span><span class="s2">&#34;ratios&#34;</span><span class="p">]]</span>
+    <span class="n">days_available</span> <span class="o">=</span> <span class="n">params_activity_transformer</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;retention_days&#34;</span><span class="p">)</span>
+
+    <span class="c1"># Convert retention metrics to percentages</span>
+    <span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">ratios</span><span class="p">:</span>
+        <span class="n">num</span><span class="p">,</span> <span class="n">den</span> <span class="o">=</span> <span class="n">ratio</span>
+        <span class="n">ratio_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">R&#34;</span>
+        <span class="n">ret_num</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">R&#34;</span>
+        <span class="n">ret_den</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">den</span><span class="si">}</span><span class="s2">R&#34;</span>
+        <span class="n">player_clustered_activity</span> <span class="o">=</span> <span class="n">player_clustered_activity</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+            <span class="n">ratio_name</span><span class="p">,</span> <span class="n">ratio_agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">ret_num</span><span class="p">),</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">ret_den</span><span class="p">))</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Obtain analytical ratios if them were defined in the parameters (ratio register)</span>
+    <span class="k">if</span> <span class="n">params_ratio_register</span><span class="p">[</span><span class="s2">&#34;analytical_ratios&#34;</span><span class="p">]</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span>
+        <span class="n">params_ratio_register</span><span class="p">[</span><span class="s2">&#34;analytical_ratios&#34;</span><span class="p">],</span> <span class="nb">list</span>
+    <span class="p">):</span>
+        <span class="c1"># Validate day labels are present in parameters</span>
+        <span class="n">_ratio_days_availabilty</span><span class="p">(</span><span class="n">analytical_ratios</span><span class="p">,</span> <span class="n">days_available</span><span class="p">)</span>
+
+        <span class="c1"># Calculate retention ratios for each analytical ratio (inputs)</span>
+        <span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">analytical_ratios</span><span class="p">:</span>
+            <span class="n">num</span><span class="p">,</span> <span class="n">den</span> <span class="o">=</span> <span class="n">ratio</span>
+            <span class="n">ratio_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">/D</span><span class="si">{</span><span class="n">den</span><span class="si">}</span><span class="s2">&#34;</span>
+            <span class="n">ret_num</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">R&#34;</span>
+            <span class="n">ret_den</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;D</span><span class="si">{</span><span class="n">den</span><span class="si">}</span><span class="s2">R&#34;</span>
+            <span class="n">player_clustered_activity</span> <span class="o">=</span> <span class="n">player_clustered_activity</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+                <span class="n">ratio_name</span><span class="p">,</span> <span class="n">ratio_agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">ret_num</span><span class="p">),</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">ret_den</span><span class="p">))</span>
+            <span class="p">)</span>
+
+    <span class="c1"># Reorder dataframe, reformat the cluster labels and send to data to driver</span>
+    <span class="n">player_clustered_activity</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">player_clustered_activity</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">asc</span><span class="p">(</span><span class="s2">&#34;first_log&#34;</span><span class="p">),</span> <span class="n">f</span><span class="o">.</span><span class="n">asc</span><span class="p">(</span><span class="s2">&#34;cluster_labels&#34;</span><span class="p">))</span>
+        <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;cluster_labels&#34;</span><span class="p">])</span>
+        <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&#34;cluster_labels&#34;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&#34;cluster_labels&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&#34;integer&#34;</span><span class="p">))</span>
+        <span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Present all installations as 100% retention</span>
+    <span class="n">player_clustered_activity</span><span class="p">[</span><span class="s2">&#34;D0R&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">player_clustered_activity</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The purpose of the upcoming pipeline is to streamline the process of augmenting the retention data generated by the <code>activity_transformer_node</code>. Specifically, this involves incorporating the tags and cluster labels obtained from the output produced by the <code>kmeans_inference_node</code>. The ultimate objective is to utilize this enriched dataset to generate compelling visualizations through the <code>user_retention_plot_gen_node</code>.</p>
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_11.png" style="width: 35%"></p>
 <p>To illustrate the capabilities of this pipeline, let&rsquo;s examine an example of the plots it can generate.</p>
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_12.png" style="width: 100%"></p>
@@ -1000,14 +2606,14 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
                 </span><span><a href="https://robguilar.com/tags/non-supervised-models/">Non-Supervised Models</a>
                 </span><span><a href="https://robguilar.com/tags/retention-metrics/">Retention Metrics</a>
                 </span><span><a href="https://robguilar.com/tags/kmeans/">KMeans</a>
-                </span><span><a href="https://robguilar.com/tags/mobile-gaming/">Mobile gaming</a>
+                </span><span><a href="https://robguilar.com/tags/google-cloud/">Google Cloud</a>
                 </span></div><div class="post-info-line"><div class="post-info-mod">
                 <span>Updated on 2023-05-20</span>
             </div><div class="post-info-mod"><span>
                             <a class="link-to-markdown" href="https://robguilar.com/posts/brawlstars_retention_pipeline/index.md" target="_blank">Read Markdown</a>
                         </span></div>
         </div><div class="post-info-share">
-            <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://robguilar.com/posts/brawlstars_retention_pipeline/" data-title="Player Retention and Cohorts Creation Pipeline in Brawl Stars with Non-Supervised Models" data-via="map[id:robguilarr prefix:https://twitter.com/ title:Twitter weight:1]" data-hashtags="Kedro,Spark,Non-Supervised Models,Retention Metrics,KMeans,Mobile gaming"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://robguilar.com/posts/brawlstars_retention_pipeline/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://robguilar.com/posts/brawlstars_retention_pipeline/"><i class="fab fa-reddit fa-fw"></i></a></span>
+            <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://robguilar.com/posts/brawlstars_retention_pipeline/" data-title="Player Retention and Cohorts Creation Pipeline in Brawl Stars with Non-Supervised Models" data-via="map[id:robguilarr prefix:https://twitter.com/ title:Twitter weight:1]" data-hashtags="Kedro,Spark,Non-Supervised Models,Retention Metrics,KMeans,Google Cloud"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://robguilar.com/posts/brawlstars_retention_pipeline/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://robguilar.com/posts/brawlstars_retention_pipeline/"><i class="fab fa-reddit fa-fw"></i></a></span>
         </div></div><div class="post-nav"><a href="https://robguilar.com/posts/anova_dota/" class="prev" rel="prev" title="Interpreting changelogs with ANOVA tests on DOTA 2"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a></div></div>
 </div></article></div>
             </main>
@@ -1033,7 +2639,7 @@ if ('serviceWorker' in navigator) {
 
         <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
                 <i class="fas fa-chevron-up fa-fw"></i>
-            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/copy-tex.min.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="https://cdn.jsdelivr.net/npm/object-fit-images@3.2.4/dist/ofi.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/twemoji@13.1.0/dist/twemoji.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.1/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{},"data":{"id-1":" \u003e robguilar","id-2":" \u003e robguilar"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":900,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":90}};</script><script src="https://robguilar.com/js/theme.min.js"></script><script type="text/javascript">
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/copy-tex.min.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script src="https://cdn.jsdelivr.net/npm/object-fit-images@3.2.4/dist/ofi.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/twemoji@13.1.0/dist/twemoji.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.1/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":30},"comment":{},"data":{"id-1":" \u003e robguilar","id-2":" \u003e robguilar"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":900,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":90}};</script><script src="https://robguilar.com/js/theme.min.js"></script><script type="text/javascript">
             window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
             gtag('config', 'G-603CX8ERRB');
         </script><script src="https://www.googletagmanager.com/gtag/js?id=G-603CX8ERRB" async></script><script data-goatcounter="https://robguilar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

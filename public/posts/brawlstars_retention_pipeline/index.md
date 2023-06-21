@@ -15,7 +15,7 @@ By analyzing these metrics, game developers can identify areas where players may
 
 {{< admonition info "Looking for an interactive experience?" true >}}
 
-:rocket: Access the Kedro Pipeline Visualization, available <a href="https://brawlstars-retention-pipeline-6u27jcczha-uw.a.run.app/">here</a>; or you can download the <a href="https://github.com/robguilarr/Brawlstars-retention-pipeline">source code</a> from GitHub
+:rocket: Access the Kedro Pipeline Visualization (Cold Instance), available <a href="https://brawlstars-retention-pipeline-6u27jcczha-uw.a.run.app/">here</a>; or you can download the <a href="https://github.com/robguilarr/Brawlstars-retention-pipeline">source code</a> from GitHub
 
 {{< /admonition >}}
 
@@ -290,6 +290,113 @@ This translates to a 71% improvement in speed for the logs request, demonstratin
 
 **Node: `battlelogs_filtering_node` and `metadata_preparation_node`**
 
+```python
+def battlelogs_filter(
+    raw_battlelogs: pd.DataFrame, parameters: Dict
+) -> pyspark.sql.DataFrame:
+    """
+    Filter players into cohorts (samples) for a predefined study using time ranges
+    specified in the parameters. Also transforms datetime format from ISO 8601 to
+    java.util.GregorianCalendar for Spark processing.
+    Args:
+        raw_battlelogs: Dataframe of concatenated battlelogs for all players
+        parameters: Dictionary containing time ranges and DDL schema
+    Returns:
+        Filtered PySpark DataFrame containing only cohorts and necessary features
+    """
+    # Call | Create Spark Session
+    spark = SparkSession.builder.getOrCreate()
+
+    # Load and validate battlelogs data against the provided DDL schema
+    try:
+        battlelogs_filtered = spark.createDataFrame(
+            data=raw_battlelogs, schema=parameters["raw_battlelogs_schema"][0]
+        )
+        # Convert lists stored as strings to Arrays of dictionaries
+        battlelogs_filtered = battlelogs_filtered.withColumn(
+            "battle_teams", f.from_json("battle_teams", t.ArrayType(t.StringType()))
+        ).withColumn(
+            "battle_players", f.from_json("battle_players", t.ArrayType(t.StringType()))
+        )
+    except TypeError:
+        # If DDL schema for the battlelogs is incorrect, raise an error
+        log.warning(
+            "Type error on the DDL schema for the battlelogs,"
+            'check "raw_battlelogs_schema" on the node parameters'
+        )
+        raise
+
+    # Exclude missing events ids (519325->483860, not useful for activity aggregations)
+    if parameters["exclude_missing_events"]:
+        battlelogs_filtered = battlelogs_filtered.filter("event_id != 0")
+
+    # Validate if a player is a battlestar player
+    battlelogs_filtered = battlelogs_filtered.withColumn(
+        "is_starPlayer",
+        f.when(f.col("battle_starPlayer_tag") == f.col("player_id"), 1).otherwise(0),
+    )
+
+    # Filter the battlelogs data based on the specified timestamp range, and extract
+    # a separate cohort to exclude specific dates if required
+    if parameters["cohort_time_range"]:
+        if "battleTime" not in battlelogs_filtered.columns:
+            raise ValueError('Dataframe does not contain "battleTime" column.')
+        else:
+            # Convert timestamp strings to date format, where original timestamps are
+            # in ~ ISO 8601 format (e.g. 20230204T161026.000Z)
+            convertDT = f.udf(
+                lambda string: dt.datetime.strptime(string, "%Y%m%dT%H%M%S.%fZ").date()
+            )
+            battlelogs_filtered = battlelogs_filtered.withColumn(
+                "battleTime", convertDT("battleTime")
+            )
+            # Convert Java.util.GregorianCalendar date format to PySpark
+            pattern = (
+                r"(?:.*)YEAR=(\d+).+?MONTH=(\d+).+?DAY_OF_MONTH=(\d+)"
+                r".+?HOUR=(\d+).+?MINUTE=(\d+).+?SECOND=(\d+).+"
+            )
+            battlelogs_filtered = battlelogs_filtered.withColumn(
+                "battleTime",
+                f.regexp_replace("battleTime", pattern, "$1-$2-$3 $4:$5:$6").cast(
+                    "timestamp"
+                ),
+            ).withColumn("battleTime", f.date_format("battleTime", format="yyyy-MM-dd"))
+
+        # Initialize an empty list to store DataFrames for each cohort
+        cohort_selection = []
+        # Assign an integer value to identify each sample cohort
+        cohort_num = 1
+        # Iterate over the cohort_time_range to subset the battlelogs_filtered DataFrame
+        for date_range in parameters["cohort_time_range"]:
+            # Filter the DataFrame based on the specified time range
+            cohort_range = battlelogs_filtered.filter(
+                (f.col("battleTime") > literal_eval(date_range)[0])
+                & (f.col("battleTime") < literal_eval(date_range)[1])
+            )
+            # Add a new column to the DataFrame to identify the cohort it belongs to
+            cohort_range = cohort_range.withColumn("cohort", f.lit(cohort_num))
+            # Increment the cohort number for the next iteration
+            cohort_num += 1
+            # Append the cohort DataFrame to the cohort_selection list
+            cohort_selection.append(cohort_range)
+        # Concatenate all cohort DataFrames into one
+        battlelogs_filtered = reduce(DataFrame.unionAll, cohort_selection)
+
+    else:
+        log.warning(
+            "Please define at least one time range for your cohort. Check the "
+            "parameters."
+        )
+        raise
+
+    # Add a unique identifier column to the DataFrame
+    battlelogs_filtered = battlelogs_filtered.withColumn(
+        "battlelog_id", f.monotonically_increasing_id()
+    )
+
+    return battlelogs_filtered
+```
+
 The node serves two main purposes:
 
 - Transform retrieved data into a Spark data frame, ensuring accurate and consistent data with the expected data types.
@@ -327,18 +434,7 @@ battlelogs_filter:
        battle_starPlayer_brawler_power BIGINT,
        battle_starPlayer_brawler_trophies BIGINT,
        battle_teams STRING,
-       battle_rank BIGINT,
-       battle_players STRING,
-       player_id STRING,
-       battle_starPlayer STRING,
-       battle_bigBrawler_tag STRING,
-       battle_bigBrawler_name STRING,
-       battle_bigBrawler_brawler_id BIGINT,
-       battle_bigBrawler_brawler_name STRING,
-       battle_bigBrawler_brawler_power BIGINT,
-       battle_bigBrawler_brawler_trophies BIGINT,
-       battle_level_name STRING,
-       battle_level_id BIGINT"
+       ... 
 ```
 
 ---
@@ -352,6 +448,90 @@ Our goal is to transform raw data into valuable insights. To achieve this, we wi
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_03.png" style="width: 65%"></p>
 
 **Node: `battlelogs_deconstructor_node`**
+
+```python
+def battlelogs_deconstructor(
+    battlelogs_filtered: pyspark.sql.DataFrame, parameters: Dict[str, Any]
+) -> Tuple[
+    pyspark.sql.DataFrame,
+    pyspark.sql.DataFrame,
+    pyspark.sql.DataFrame,
+    pyspark.sql.DataFrame,
+]:
+    """
+    Extract player and brawler combinations from the same team or opponents,
+    grouped in JSON format, based on user-defined event types.
+    Each of the 'exploders' is parameterized by the user, according to the number of
+    players needed for each type of event.
+    Args:
+        battlelogs_filtered: a filtered Pyspark DataFrame containing relevant cohorts
+        and features.
+        parameters: a dictionary of event types defined by the user to include in the
+        subset process.
+    Returns:
+        A tuple of four Pyspark DataFrames, each containing only one event type
+    """
+    # Call | Create Spark Session
+    spark = SparkSession.builder.getOrCreate()
+
+    log.info("Deconstructing Solo Events")
+    if parameters["event_solo"] and isinstance(parameters["event_solo"], list):
+        event_solo_data = battlelogs_filtered.filter(
+            f.col("event_mode").isin(parameters["event_solo"])
+        )
+        event_solo_data = _group_exploder_solo(
+            event_solo_data, parameters["standard_columns"]
+        )
+    else:
+        log.warning(
+            "Solo Event modes not defined or not found according to parameter list"
+        )
+        event_solo_data = spark.createDataFrame([], schema=t.StructType([]))
+
+    log.info("Deconstructing Duo Events")
+    if parameters["event_duo"] and isinstance(parameters["event_duo"], list):
+        event_duo_data = battlelogs_filtered.filter(
+            f.col("event_mode").isin(parameters["event_duo"])
+        )
+        event_duo_data = _group_exploder_duo(
+            event_duo_data, parameters["standard_columns"]
+        )
+    else:
+        log.warning(
+            "Duo Event modes not defined or not found according to parameter list"
+        )
+        event_duo_data = spark.createDataFrame([], schema=t.StructType([]))
+
+    log.info("Deconstructing 3 vs 3 Events")
+    if parameters["event_3v3"] and isinstance(parameters["event_3v3"], list):
+        event_3v3_data = battlelogs_filtered.filter(
+            f.col("event_mode").isin(parameters["event_3v3"])
+        )
+        event_3v3_data = _group_exploder_3v3(
+            event_3v3_data, parameters["standard_columns"]
+        )
+    else:
+        log.warning(
+            "3 vs 3 Event modes not defined or not found according to parameter list"
+        )
+        event_3v3_data = spark.createDataFrame([], schema=t.StructType([]))
+
+    log.info("Deconstructing Special Events")
+    if parameters["event_special"] and isinstance(parameters["event_special"], list):
+        event_special_data = battlelogs_filtered.filter(
+            f.col("event_mode").isin(parameters["event_special"])
+        )
+        event_special_data = _group_exploder_special(
+            event_special_data, parameters["standard_columns"]
+        )
+    else:
+        log.warning(
+            "Special Event modes not defined or not found according to parameter list"
+        )
+        event_special_data = spark.createDataFrame([], schema=t.StructType([]))
+
+    return event_solo_data, event_duo_data, event_3v3_data, event_special_data
+```
 
 To understand the basic game modes of this mobile game, an extensive research was required. All assumptions made in the event deconstruction process are based on the information provided by the [Brawl Stars Fandom Wiki](https://brawlstars.fandom.com/wiki/Category:Events).
 
@@ -397,6 +577,131 @@ By conducting an interaction study between players and the brawlers or character
 
 **Node: `activity_transformer_node`**
 
+```python
+def activity_transformer(
+    battlelogs_filtered: pyspark.sql.DataFrame, parameters: Dict[str, Any]
+) -> pyspark.sql.DataFrame:
+    """
+    Converts filtered battlelogs activity into a wrapped format data frame,
+    with retention metrics and n-sessions at the player level of granularity. It
+    takes a set of parameters to extract the retention and number of sessions based
+    on a 'cohort frequency' parameter.
+    Args:
+        battlelogs_filtered: Filtered Pyspark DataFrame containing only cohorts and
+        features required for the study.
+        parameters: Frequency of the cohort and days to extract for the output.
+    Returns:
+        Pyspark dataframe with retention metrics and n-sessions at the player level
+        of granularity.
+    Notes (parameters):
+    - When 'daily' granularity is selected, the cohort period is the day of the
+    user's  first event.
+    - When 'weekly' granularity is selected, the cohort period is the first
+    consecutive Monday on or after the day of the user's first event.
+    - When 'monthly' granularity is selected, the cohort period is the first day of
+    the month in which the user's first event occurred.
+    Notes (performance):
+    - The Cohort frequency transformation skips exhaustive intermediate transformations,
+    such as 'Sort', since the user can insert many cohorts as they occur in the
+    preprocessing stage, causing excessive partitioning.
+    """
+    # Aggregate user activity data to get daily number of sessions
+    user_activity = (
+        battlelogs_filtered.select("cohort", "battleTime", "player_id")
+        .groupBy("cohort", "battleTime", "player_id")
+        .count()
+        .withColumnRenamed("count", "daily_sessions")
+    )
+
+    # Validate | Redefine Cohort Frequency, default to 'daily'
+    time_freq, user_activity = _convert_user_activity_frequency(
+        cohort_frequency=parameters["cohort_frequency"], user_activity=user_activity
+    )
+
+    # Create a window by each one of the player's window
+    player_window = Window.partitionBy(["player_id"])
+
+    # Find the first logged date per player in the cohort
+    user_activity = user_activity.withColumn(
+        "first_log", f.min(time_freq).over(player_window)
+    )
+
+    # Find days passed to see player return
+    user_activity = user_activity.withColumn(
+        "days_to_return", f.datediff(time_freq, "first_log")
+    )
+
+    # Subset columns and add counter variable to aggregate number of player further
+    user_activity = user_activity.select(
+        "cohort", "player_id", "first_log", "days_to_return", "daily_sessions"
+    ).withColumn("player_count", f.lit(1))
+
+    # List cohorts, iterate over them and append them to the final output
+    cohort_list = [
+        row.cohort for row in user_activity.select("cohort").distinct().collect()
+    ]
+    output_range = []
+
+    for cohort in cohort_list:
+        # Filter only data of the cohort in process
+        tmp_user_activity = user_activity.filter(f.col("cohort") == cohort)
+
+        # Pivot data from long format to wide
+        tmp_user_activity = (
+            tmp_user_activity.groupBy(["player_id", "first_log"])
+            .pivot("days_to_return")
+            .agg(
+                f.sum("player_count").alias("day"),
+                f.sum("daily_sessions").alias("day_sessions"),
+            )
+        )
+
+        # Extract daily activity columns, save as arrays of column objects
+        day_cohort_col = tmp_user_activity.select(
+            tmp_user_activity.colRegex("`.+_day$`")
+        ).columns
+        day_cohort_col = f.array(*map(f.col, day_cohort_col))
+
+        # Extract daily sessions counter columns, save as arrays of column objects
+        day_sessions_col = tmp_user_activity.select(
+            tmp_user_activity.colRegex("`.+_day_sessions$`")
+        ).columns
+        day_sessions_col = f.array(*map(f.col, day_sessions_col))
+
+        # Empty list to allocate final columns
+        cols_retention = []
+
+        # Produce retention metrics and session counters
+        for day in parameters["retention_days"]:
+            # Define column names
+            DDR = f"D{day}R"
+            DDTS = f"D{day}_Sessions"
+            # Obtain retention for a given day
+            tmp_user_activity = tmp_user_activity.withColumn(
+                DDR, retention_metric(day_cohort_col, f.lit(day))
+            )
+            # Obtain total of sessions until given day
+            tmp_user_activity = tmp_user_activity.withColumn(
+                DDTS, sessions_sum(day_sessions_col, f.lit(day))
+            ).withColumn(DDTS, f.when(f.col(DDR) != 1, 0).otherwise(f.col(DDTS)))
+            # Append final columns
+            cols_retention.append(DDR)
+            cols_retention.append(DDTS)
+
+        # Final formatting
+        standard_columns = ["player_id", "first_log"]
+        standard_columns.extend(cols_retention)
+        tmp_user_activity = tmp_user_activity.select(*standard_columns)
+
+        # Append cohort's user activity data to final list
+        output_range.append(tmp_user_activity)
+
+    # Reduce all dataframe to overwrite original
+    user_activity_data = reduce(DataFrame.unionAll, output_range)
+
+    return user_activity_data
+```
+
 Imagine having the capacity to transform filtered battle logs activity into a wrapped format data frame that delivers retention metrics and n-sessions at the player level of granularity. That's exactly what this node does. Using a set of customizable parameters, it extracts the retention and number of sessions based on a `cohort frequency` parameter:
 
 - When you select `daily` granularity, the cohort period is based on the day of the user's first event, showing you the number of sessions logged per user on the day they installed the game, on the day they returned, and so on.
@@ -424,6 +729,77 @@ activity_transformer:
 ```
 
 **Node: `ratio_register_node`**
+
+```python
+def ratio_register(
+    user_activity: pyspark.sql.DataFrame,
+    params_rat_reg: Dict[str, Any],
+    params_act_tran: Dict[str, Any],
+) -> pyspark.sql.DataFrame:
+    """
+    Takes Activity per Day from the "activity_transformer_node" (E.G: columns DXR),
+    builds retention ratios per day using a bounded retention calculation.
+    Args:
+        user_activity: Pyspark dataframe with retention metrics and n-sessions at the
+        player level of granularity.
+        params_rat_reg: Parameters to aggregate retention metrics, based on User inputs.
+        params_act_tran: Parameters to extract activity day per user, based on User.
+        inputs.
+    Returns:
+        Pyspark dataframe with bounded retention ratios aggregated.
+    """
+    # Request parameters to validate
+    days_available = params_act_tran["retention_days"]
+    ratios = [literal_eval(ratio) for ratio in params_rat_reg["ratios"]]
+
+    # Validate day labels are present in parameters
+    _ratio_days_availabilty(ratios, days_available)
+
+    # Grouping + renaming multiple columns: https://stackoverflow.com/a/74881697
+    retention_columns = [
+        col for col in user_activity.columns if col not in ["player_id", "first_log"]
+    ]
+    aggs = [f.expr(f"sum({col}) as {col}") for col in retention_columns]
+    # Apply aggregation
+    cohort_activity_data = user_activity.groupBy("first_log").agg(*aggs)
+
+    # Obtain basics retention ratios aggregated
+    for ratio in ratios:
+        num, den = ratio
+        ratio_name = f"D{num}R"
+        ret_num = f"D{num}R"
+        ret_den = f"D{den}R"
+        cohort_activity_data = cohort_activity_data.withColumn(
+            ratio_name, ratio_agg(f.col(ret_num), f.col(ret_den))
+        )
+
+    # Obtain analytical ratios if them were defined in the parameters (ratio register)
+    if params_rat_reg["analytical_ratios"] and isinstance(
+        params_rat_reg["analytical_ratios"], list
+    ):
+        # Request parameters to validate
+        analytical_ratios = [
+            literal_eval(ratio) for ratio in params_rat_reg["analytical_ratios"]
+        ]
+        # Validate day labels are present in parameters
+        _ratio_days_availabilty(analytical_ratios, days_available)
+        # Obtain basics retention ratios aggregated
+        for ratio in analytical_ratios:
+            num, den = ratio
+            ratio_name = f"D{num}/D{den}"
+            ret_num = f"D{num}R"
+            ret_den = f"D{den}R"
+            cohort_activity_data = cohort_activity_data.withColumn(
+                ratio_name, ratio_agg(f.col(ret_num), f.col(ret_den))
+            )
+    else:
+        log.info("No analytical ratios were defined")
+
+    # Reorganization per log date
+    cohort_activity_data = cohort_activity_data.orderBy(["first_log"])
+
+    return cohort_activity_data
+```
 
 In the final stage of this pipeline, we'll generate bounded retention metrics as ratios. These metrics will be used to demonstrate the effectiveness of our approach. While I may not have experience in gaming, I understand the importance of accurately measuring retention ratios. To ensure our metrics are properly measured, we'll ask the [Andreessen Horowitz](https://a16z.com/about/) Partner, [Andrew Chen](https://andrewchen.com/), a leading expert in the field.
 
@@ -471,6 +847,41 @@ It is worth mentioning that each node in this pipeline was planned using an expe
 
 **Node: `feature_scaler_node`**
 
+```python
+def feature_scaler(metadata_prepared: pd.DataFrame) -> pd.DataFrame:
+    """
+    Applies MaxAbsScaler on the input data and returns the transformed data.
+    Args:
+        metadata_prepared: Dataframe containing player metadata with 'player_id'
+        column and numeric features.
+    Returns:
+        Dataframe with scaled numeric features
+    Raises:
+        AssertionError: If the length of 'player_id' column and the transformed data are
+        not equal
+    """
+    # Drop the 'player_id' column and use it as the target variable
+    X = metadata_prepared.drop("player_id", axis=1)
+    y = metadata_prepared["player_id"]
+
+    # Initialize the MaxAbsScaler object, fit it to the data, and transform the data
+    scaler = MaxAbsScaler()
+    X_scaled = scaler.fit_transform(X)
+
+    # Create a new DataFrame with the transformed data and original column names
+    metadata_scaled = pd.DataFrame(X_scaled, columns=X.columns)
+
+    # Check if the length of 'y' matches the transformed data and concatenate them
+    try:
+        assert len(y) == len(metadata_scaled)
+        metadata_scaled = pd.concat([y, metadata_scaled], axis=1)
+    except AssertionError:
+        log.info("Scaler instance or data is corrupted, try debugging your input data")
+
+    # Return the scaled DataFrame
+    return metadata_scaled
+```
+
 This node will use as input the player metadata, which includes descriptive data about the lifetime statistics for each player per battle-type score, to get more detail on the data specs you can refer to the ["Player"](https://brawlstats.readthedocs.io/en/latest/api.html#player) data model.
 
 To train a `KMeans` model effectively, it's crucial to prepare the data by scaling it. Let's first review one of my recent [experiments](https://github.com/robguilarr/Machine-Learning-Sandbox/blob/master/source/experiments/unsupervised_machine_learning/KMeans.ipynb) before delving into the scaling methods. The scaling method we choose depends on the nature of the data and our analysis requirements. To choose the best scaling method for your project, here's a brief overview of each option:
@@ -482,6 +893,53 @@ To train a `KMeans` model effectively, it's crucial to prepare the data by scali
 So, as we have sparse data and features with very different scales, and we want to preserve the sparsity and relative magnitudes of the data I used `MaxAbsScaler`.
 
 **Node: `feature_selector_node`**
+
+```python
+def feature_selector(
+    metadata_scaled: pd.DataFrame, parameters: Dict[str, Any]
+) -> Tuple[pd.DataFrame, Dict[str, List]]:
+    """
+    Select top K features from a scaled metadata dataframe. Here the module select
+    n_features_to_select to consider the selection of features to represent:
+        - Player capacity of earning credits (representation of trophies).
+        - Capacity of being a team player (representation of 3v3 or Duo victories).
+        - Solo skills (representation of Solo victories).
+    Args:
+        metadata_scaled: The input metadata as a Pandas DataFrame, with player ID in
+        one column and feature values in the remaining columns.
+        parameters: A dictionary of input parameters, containing the number of top
+        features to select.
+    Returns:
+        A new metadata dataframe containing only the selected top K features,
+        with the same player ID column as the input dataframe
+    """
+    # Drop the player ID column from the metadata dataframe
+    X_scaled = metadata_scaled.drop("player_id", axis=1)
+    # Extract the player ID column from the metadata dataframe
+    y = metadata_scaled["player_id"]
+
+    # Use SelectKBest and ColumnTransformer to select the top K features
+    selector = SelectKBest(f_classif, k=parameters["top_features"])
+    preprocessor = ColumnTransformer(
+        transformers=[("SKB_transformer", selector, X_scaled.columns)]
+    )
+    preprocessor.fit(X_scaled, y)
+    # Extract the feature-selected data from the preprocessor object
+    X_features = preprocessor.transform(X_scaled)
+
+    # Get the index numbers and names of the selected columns
+    new_columns_index = preprocessor.named_transformers_["SKB_transformer"].get_support(
+        indices=True
+    )
+    new_columns_names = X_scaled.columns[new_columns_index]
+    log.info(f"Columns selected: {new_columns_names}")
+
+    # Create a new dataframe with only the selected columns
+    X_features = pd.DataFrame(X_features, columns=new_columns_names)
+    metadata_reduced = pd.concat([y, X_features], axis=1)
+
+    return metadata_reduced, {"features_selected": list(new_columns_names)}
+```
 
 To ensure a correct classification process, it is important to select appropriate features to classify players, but it is equally important to determine the appropriate way to do so. In this case, I did not use a scientific approach to define it, but rather based it on game criteria.
 
@@ -513,6 +971,71 @@ feature_selector:
 ```
 
 **Node: `kmeans_estimator_grid_search_node`**
+
+```python
+def kmeans_estimator_grid_search(
+    metadata_reduced: pd.DataFrame, parameters: Dict[str, Any]
+) -> Tuple[Union[bytes, None], Dict[str, Any], Dict[str, Any], go.Figure]:
+    """
+    Perform a grid search with cross-validation to find the best hyperparameters for
+    KMeans clustering algorithm.
+    Args:
+        metadata_reduced: The metadata of players to be clustered.
+        parameters: The parameters for the grid search of the estimator.
+    Returns:
+        kmeans_estimator: Pickle file containing the KMeans estimator
+        best_params_KMeans: The best parameters found by GridSearchCV
+        eval_params_KMeans: The parameters evaluated by GridSearchCV
+        inertia_plot: Inertia plot for a clustering grid search
+    """
+    # Drop the 'player_id' column from the 'metadata_reduced' dataframe
+    X_features = metadata_reduced.drop(columns=["player_id"])
+
+    # Define hyperparameters for KMeans algorithm
+    seed = parameters.get("random_state")
+    max_n_cluster = parameters.get("max_n_cluster")
+    starting_point_method = parameters.get("starting_point_method", "random")
+    max_iter = parameters.get("max_iter")
+    distortion_tol = parameters.get("distortion_tol")
+    cv = parameters.get("cross_validations")
+    plot_dimensions = parameters.get("plot_dimensions")
+
+    # Set hyperparameters for GridSearchCV
+    eval_params_KMeans = {
+        "n_clusters": range(2, max_n_cluster),
+        "init": starting_point_method,
+        "max_iter": max_iter,
+        "tol": distortion_tol,
+    }
+
+    # Set number of CPUs to use
+    cores = parameters.get("cores", -1)
+
+    # Perform GridSearch Cross-Validation for KMeans instance
+    log.info(
+        f"Performing GridSearch Cross-Validation for KMeans instance\n"
+        f"** Parameters in use **: {eval_params_KMeans}"
+    )
+    grid_search = GridSearchCV(
+        KMeans(random_state=seed), param_grid=eval_params_KMeans, cv=cv, n_jobs=cores
+    )
+    grid_search.fit(X_features)
+
+    # Extract best estimator
+    kmeans_estimator = grid_search.best_estimator_
+
+    # Retrieve parameters used to define the best estimator
+    best_params_KMeans, eval_params_KMeans = _estimator_param_export(
+        eval_params_KMeans, grid_search, seed
+    )
+
+    # Return inertia plot to visualize the best estimator
+    inertia_plot = _inertia_plot_gen(
+        grid_search, plot_dimensions, starting_point_method
+    )
+
+    return kmeans_estimator, best_params_KMeans, eval_params_KMeans, inertia_plot
+```
 
 We begin by obtaining the scaled data along with the selected features. Once the preparation is complete, we can proceed to train a model and create the estimator object. The resulting artifacts will be stored in our model registry, which can be found at the path `/08_model_registry` within our GCP bucket.
 
@@ -558,6 +1081,65 @@ The node will capture four outputs, each one versioned with the execution timest
 
 **Node: `kmeans_inference_node`**
 
+```python
+def kmeans_inference(
+    metadata_reduced: pd.DataFrame, kmeans_estimator: Union[bytes, None]
+) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+    """
+    Cluster players' metadata using K-Means algorithm and compute clustering
+    evaluation metrics.
+    The following clustering evaluation metrics are computed and logged:
+        - Total Inertia Score
+        - Silhouette Score
+        - Davies-Bouldin Score
+        - Calinski-Harabasz Score
+    Args:
+        metadata_reduced: DataFrame containing players' metadata to cluster.
+        kmeans_estimator: Trained K-Means estimator (model).
+    Returns:
+        Clustered players' metadata and their corresponding cluster labels and a
+        dictionary (metrics_KMeans) containing clustering evaluation metrics computed
+    """
+    # Drop the 'player_id' column from the 'metadata_reduced' dataframe
+    X_features = metadata_reduced.drop(columns=["player_id"])
+
+    # Extract the 'player_id' column from the 'metadata_reduced' dataframe
+    y = metadata_reduced["player_id"]
+
+    # Generate and append labels
+    predicted_labels = kmeans_estimator.predict(X_features)
+    player_metadata_clustered = pd.concat(
+        [y, pd.Series(predicted_labels, name="cluster_labels"), X_features], axis=1
+    )
+
+    # Extract total inertia score
+    inertia_score = kmeans_estimator.inertia_
+    log.info(f"Total Inertia Score: {inertia_score:.2f}")
+
+    # Extract Silhouette score
+    silhouette = silhouette_score(X_features, predicted_labels)
+    log.info(f"Silhouette Score: {silhouette:.2f}")
+
+    # Extract Davies-Bouldin index
+    davies_bouldin = davies_bouldin_score(X_features, predicted_labels)
+    log.info(f"Davies-Bouldin Score: {davies_bouldin:.2f}")
+
+    # Extract Calinski-Harabasz index
+    calinski_harabasz = calinski_harabasz_score(X_features, predicted_labels)
+    log.info(f"Calinski-Harabasz Score: {calinski_harabasz:.2f}")
+
+    # Save metrics for tracking
+    metrics_KMeans = {
+        "silhouette_score": silhouette,
+        "davies_bouldin_score": davies_bouldin,
+        "calinski_harabasz_score": calinski_harabasz,
+        "total_inertia": inertia_score,
+    }
+    metrics_KMeans = {str(key): value for key, value in metrics_KMeans.items()}
+
+    return player_metadata_clustered, metrics_KMeans
+```
+
 The next step is to evaluate the model. This node will import the model from the model registry, produce the inferences, and generate labels that will be saved in the `player_metadata_clustered` dataset. It will also produce four metrics to evaluate the model:
 
 - Inertia: This metric measures the sum of distances between each point and its assigned cluster center. A lower inertia value indicates that the data points are closer to their respective centroids.
@@ -575,6 +1157,134 @@ This will allow you to track the performance of the model over time and identify
 
 **Node: `centroid_plot_generator_node`**
 
+```python
+def centroid_plot_generator(
+    metadata_reduced: pd.DataFrame,
+    kmeans_estimator: Union[bytes, None],
+    parameters: Dict[str, Any],
+) -> Tuple[go.Figure, go.Figure, go.Figure, go.Figure]:
+    """
+    Generate scatter plot figures for all possible pairs of features using the
+    input metadata features (reduced, features selected), highlighting the centroids
+    of a KMeans clustering estimator with the best hyperparameters found.
+    Args:
+        metadata_reduced: DataFrame containing the reduced metadata to be
+        used for plotting
+        kmeans_estimator: The KMeans clustering model to be used to generate the
+        centroids
+        parameters: A dictionary of parameters used to configure the plot dimensions
+    Returns:
+        Plot figures, where each plot shows a different pair of features in the input
+        dataset, highlighting the centroids of the KMeans clustering model with the best
+        hyperparameters found.
+    """
+    # Extract dimension parameters for plotting
+    plot_dimensions = parameters.get("plot_dimensions")
+
+    # Drop the 'player_id' column from the 'metadata_reduced' dataframe
+    X_features = metadata_reduced.drop(columns=["player_id"])
+
+    # Create a dictionary of feature names and their index in the feature matrix
+    features = {
+        X_features.columns[feature_number]: feature_number
+        for feature_number in range(len(X_features.columns))
+    }
+
+    # Generate a list of all possible feature pairs
+    feature_pairs = [
+        (i, j) for i in range(len(features)) for j in range(i + 1, len(features))
+    ]
+
+    # Create an empty dictionary to store the plot figures
+    plot_figures = {}
+
+    # Iterate over each feature pair and create a plot figure for each pair
+    for col_x, col_y in feature_pairs:
+        log.info(f"Generating plot for features: {col_x} vs {col_y}")
+        # Add some noise to the feature matrix
+        noise = np.random.normal(loc=0, scale=0.05, size=X_features.shape)
+
+        # Fit a KMeans model with the best hyperparameters found
+        kmeans_estimator.fit(X_features + noise)
+
+        # Get the coordinates of the centroids
+        centroids = kmeans_estimator.cluster_centers_
+        centroids_x = centroids[:, col_x]
+        centroids_y = centroids[:, col_y]
+
+        # Get the names of the two features being plotted
+        feature_x = list(features.keys())[col_x]
+        feature_y = list(features.keys())[col_y]
+
+        # Get the values of the two features being plotted
+        xs = X_features[feature_x]
+        ys = X_features[feature_y]
+
+        # Get the cluster labels for each data point
+        labels = kmeans_estimator.labels_
+
+        # Generate a palette of colors for the clusters
+        colors = _generate_palette(kmeans_estimator.n_clusters)
+
+        # Assign a color to each data point based on its cluster label
+        point_colors = [colors[label % len(colors)] for label in labels]
+
+        # Create a plot figure with two scatter traces: one for the data points and one
+        # for the centroids
+        fig = go.Figure()
+        fig.add_trace(
+            go.Scatter(
+                x=xs, y=ys, mode="markers", marker=dict(color=point_colors, size=5)
+            )
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=centroids_x,
+                y=centroids_y,
+                mode="markers",
+                marker=dict(
+                    symbol="diamond",
+                    size=10,
+                    color=colors,
+                    line=dict(color="black", width=2),
+                ),
+            )
+        )
+
+        # Add axis labels to the plot
+        fig.update_layout(
+            xaxis_title=f"{feature_x} scaled", yaxis_title=f"{feature_y} scaled"
+        )
+
+        # Set the size of the plot figure
+        fig.update_layout(
+            width=plot_dimensions.get("width"), height=plot_dimensions.get("height")
+        )
+
+        # Hide the legend in the plot
+        fig.update_layout(showlegend=False)
+
+        # Set the name of the plot figure and store it in the dictionary
+        plot_name = f"{feature_x}_vs_{feature_y}"
+        plot_figures[plot_name] = fig
+
+    # Retrieve list of plot names as list
+    plot_figures_names = list(plot_figures.keys())
+
+    try:
+        assert len(plot_figures_names) >= 4
+        return (
+            plot_figures[plot_figures_names[0]],
+            plot_figures[plot_figures_names[1]],
+            plot_figures[plot_figures_names[2]],
+            plot_figures[plot_figures_names[3]],
+        )
+    except AssertionError:
+        log.info("To save the plot figures the minimum number of plots must be 4")
+        fig = _dummy_plot(plot_dimensions)
+        return fig, fig, fig, fig
+```
+
 Finally, this node will generate visualizations of the centroids for each combination of X and Y variables. The plot below provides an example, where the centroids are represented by black-bordered squares.
 
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_10.png" style="width: 100%"></p>
@@ -584,6 +1294,99 @@ Finally, this node will generate visualizations of the centroids for each combin
 ### 📊 Player activity data and Cluster labels merge Pipeline
 
 **Pipeline `player_activity_clustering_merge`**
+
+```python
+def player_cluster_activity_concatenator(
+    user_activity_data: pyspark.sql.DataFrame,
+    players_metadata_clustered: pd.DataFrame,
+    params_ratio_register: Dict[str, Any],
+    params_activity_transformer: Dict[str, Any],
+) -> pd.DataFrame:
+    """
+    Concatenates player clusters with their respective activity record activity data
+    and calculates retention ratios based on provided analytical ratios.
+    Args:
+        user_activity_data: Spark DataFrame containing user retention data.
+        players_metadata_clustered: DataFrame containing player data and cluster labels.
+        params_ratio_register: Dictionary with ratio register parameters.
+        params_activity_transformer: Dictionary with activity transformer parameters.
+    Returns:
+        Pandas DataFrame containing concatenated player cluster activity data and
+        retention ratios
+    """
+    # Call | Create Spark Session
+    spark = SparkSession.builder.getOrCreate()
+
+    # Create Spark DataFrame from Pandas DataFrame
+    players_metadata_clustered = spark.createDataFrame(
+        data=players_metadata_clustered
+    ).select("player_id", "cluster_labels")
+
+    # Join user activity data with player metadata and cluster labels
+    player_clustered_activity = user_activity_data.join(
+        players_metadata_clustered, on="player_id", how="left"
+    )
+
+    # Select retention metric columns and dates of first log records
+    ret_columns = player_clustered_activity.select(
+        player_clustered_activity.colRegex("`^D\d+R$`")
+    ).columns
+    player_clustered_activity = player_clustered_activity.select(
+        *["player_id", "cluster_labels", "first_log", *ret_columns]
+    )
+    # Group by cluster labels and first log date, and aggregate retention metrics
+    player_clustered_activity = player_clustered_activity.groupBy(
+        ["cluster_labels", "first_log"]
+    ).agg(*[f.sum(col).alias(f"{col}") for col in ret_columns])
+
+    # Get analytical ratios, normal ratios and days available from parameters,
+    # and validate that all day labels are present
+    analytical_ratios = [
+        literal_eval(ratio) for ratio in params_ratio_register.get("analytical_ratios")
+    ]
+    ratios = [literal_eval(ratio) for ratio in params_ratio_register["ratios"]]
+    days_available = params_activity_transformer.get("retention_days")
+
+    # Convert retention metrics to percentages
+    for ratio in ratios:
+        num, den = ratio
+        ratio_name = f"D{num}R"
+        ret_num = f"D{num}R"
+        ret_den = f"D{den}R"
+        player_clustered_activity = player_clustered_activity.withColumn(
+            ratio_name, ratio_agg(f.col(ret_num), f.col(ret_den))
+        )
+
+    # Obtain analytical ratios if them were defined in the parameters (ratio register)
+    if params_ratio_register["analytical_ratios"] and isinstance(
+        params_ratio_register["analytical_ratios"], list
+    ):
+        # Validate day labels are present in parameters
+        _ratio_days_availabilty(analytical_ratios, days_available)
+
+        # Calculate retention ratios for each analytical ratio (inputs)
+        for ratio in analytical_ratios:
+            num, den = ratio
+            ratio_name = f"D{num}/D{den}"
+            ret_num = f"D{num}R"
+            ret_den = f"D{den}R"
+            player_clustered_activity = player_clustered_activity.withColumn(
+                ratio_name, ratio_agg(f.col(ret_num), f.col(ret_den))
+            )
+
+    # Reorder dataframe, reformat the cluster labels and send to data to driver
+    player_clustered_activity = (
+        player_clustered_activity.orderBy(f.asc("first_log"), f.asc("cluster_labels"))
+        .dropna(subset=["cluster_labels"])
+        .withColumn("cluster_labels", f.col("cluster_labels").cast("integer"))
+        .toPandas()
+    )
+
+    # Present all installations as 100% retention
+    player_clustered_activity["D0R"] = float(1.0)
+
+    return player_clustered_activity
+```
 
 The purpose of the upcoming pipeline is to streamline the process of augmenting the retention data generated by the `activity_transformer_node`. Specifically, this involves incorporating the tags and cluster labels obtained from the output produced by the `kmeans_inference_node`. The ultimate objective is to utilize this enriched dataset to generate compelling visualizations through the `user_retention_plot_gen_node`.
 

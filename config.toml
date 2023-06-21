@@ -193,7 +193,7 @@ paginate = 20
       copy = true
 
       # the maximum number of lines of displayed code by default
-      maxShownLines = 100
+      maxShownLines = 30 #45
 
     #---------------------------------------------------------------------
     # KaTeX Functions config
