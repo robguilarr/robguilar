@@ -5,7 +5,7 @@ date: 2023-05-20T21:57:40+08:00
 lastmod: 2023-05-20T21:57:40+08:00
 draft: false
 
-description: "Production-Ready pipeline to extract logs from the mobile game Brawlstars, using a KMeans model for player classification and cohorts creation, to produce parametrized bounded retention metrics"
+description: "Production-Ready pipeline to extract logs from the mobile game Brawl Stars, using a KMeans model for player classification and cohorts creation, to produce parametrized bounded retention metrics"
 images: ["/images/posts/brawlstars_retention_pipeline.jpg"]
 thumbnail: "/images/posts/brawlstars_retention_pipeline.jpg"
 tags: ["Kedro", "Spark", "Non-Supervised Models", "Retention Metrics", "KMeans", "Google Cloud"]

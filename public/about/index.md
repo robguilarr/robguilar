@@ -37,12 +37,14 @@ Learn more about this academic degree {{< link href="https://global-uploads.webf
 
 #### :(fas fa-briefcase fa-fw): Experience
 
-{{< admonition type=info title="Junior Data Analyst at McKinsey & Company" open=true >}}
+{{< admonition type=info title="Data Analyst at McKinsey & Company" open=true >}}
 <img width="75" height="75" src="images/mckinsey_logo.jpg" align="left" hspace="10" vspace="10"> Analytics Developer in charge of coding/scripting (SQL, Python, etc.) for automating data transformations and loading across business algorithms. Also, responsible for performing data ingestion, transformation, and uploading into applications/engines. This entailed the use of application administration tools (combination of proprietary tools), validating raw data quality (developing test cases with QA scripts), and taking corrective measures in case of issues.
 
 Learn more about the responsibilities of this role at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}.
 
-> March 2022 - **Present**
+> Data Analyst, July 2023 - **Present**
+
+> Junior Data Analyst, March 2022 - June 2023
 > {{< /admonition >}}
 
 {{< admonition type=info title="Junior Business Intelligence Analyst at Belcorp" open=true >}}

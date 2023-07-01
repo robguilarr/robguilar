@@ -394,7 +394,7 @@ paginate = 20
       title = "Roberto Aguilar"
 
       # Subtitle shown in home page
-      subtitle = "Jr. Data Analyst @ McKinsey & Company"
+      subtitle = "Data Analyst @ McKinsey & Company"
 
       # Whether to use typeit animation for subtitle
       typeit = false
@@ -463,7 +463,7 @@ paginate = 20
 
     [[params.about.parameter]]
       language = "Science"
-      level = "50"
+      level = "70"
 
     [[params.about.parameter]]
       language = "Analytics"
