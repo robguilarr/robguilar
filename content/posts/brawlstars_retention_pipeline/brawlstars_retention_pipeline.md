@@ -64,6 +64,7 @@ Also, they require a model that can define cohorts based on the installation dat
 
 <p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/brawlstars_retention_pipeline/images/asset_01.png" style="width: 60%"></p>
 
+
 ### Potential Stakeholders
 
 - Designers: Game Designers are interested in user retention metrics to understand how users are interacting with the game and to identify any areas that need to be improved to keep users engaged and coming back to the game.

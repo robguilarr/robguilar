@@ -54,7 +54,8 @@ So seeing this viewpoint, a decision like this can impact not only user retentio
 - $H_0:$ Moving the Time Gate from Level 30 to Level 40 will decrease our user retention.
 - $H_1:$ Moving the Time Gate from Level 30 to Level 40 will increase our user retention.
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/ab_testing_cookie_cats/main/images_jup/cc_gates.png" style="width: 700px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/ab_testing_cookie_cats/images/asset_01.png" style="width: 700px"></p>
+
 
 ### Potential Stakeholders
 

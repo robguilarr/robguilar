@@ -33,8 +33,7 @@ After carefully collecting player logs since the released date of this patch, th
 
 - $H_1:$ After the release date of patch 6.86, the heroes **haven’t recorded** a statistically equal damage.
 
-{{< image src="https://raw.githubusercontent.com/robguilarr/anova_dota/master/images/map.png" caption="Designed by Roberto Aguilar, 2022" width="1050px">}}
-
+{{< image src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/anova_dota/images/asset_01.png" caption="Designed by Roberto Aguilar, 2022" width="1050px">}}
 
 
 ### Potential Stakeholders

@@ -34,7 +34,8 @@ The problem is that the QA team is very diversified between experienced and non-
 
 From all the KPIs that you will see next, it’s important to mention that we’ll bring kills as a secondary validation measure since Fallout it’s a survival-RPG-like where you have to kill radioactive NPCs in almost every quest. We won’t count with a difficulty category for each player, so the kills attribute will be one of the few not affected by the difficulty categorization, also because it’s an end measure, not a progressive one, like shots for example.
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/control_mechanics_fallout/master/images/game_capture.jpg" style="width: 750px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/control_mechanics_fallout/images/asset_01.png" style="width: 750px"></p>
+
 
 ### Potential Stakeholders
 
