@@ -50,7 +50,7 @@ We'll review a game that potentially can lead any developer to many unseen probl
 - $H_0:$ The game is too easy so it became boring over time.
 - $H_1:$ The game is too hard so the players leave it and become frustrated.
 
-<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/candy_crush_difficulty/images/asset_01.png" style="width: 700px"></p>
+<p align="middle"><img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/candy_crush_difficulty/images/asset_01_alt.png" style="width: 700px"></p>
 
 
 ### Potential Stakeholders
