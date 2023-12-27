@@ -1,7 +1,7 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>All Player Retention and Cohorts Creation Pipeline in Brawl Stars with Non-Supervised Models - Roberto Aguilar</title>
+        <title>All Player Retention and Cohorts Creation Pipeline in Brawl Stars with Unsupervised Models - Roberto Aguilar</title>
         <link>https://robguilar.com/posts/brawlstars_retention_pipeline/</link>
-        <description>All Player Retention and Cohorts Creation Pipeline in Brawl Stars with Non-Supervised Models | Roberto Aguilar</description>
+        <description>All Player Retention and Cohorts Creation Pipeline in Brawl Stars with Unsupervised Models | Roberto Aguilar</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Sat, 20 May 2023 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/posts/brawlstars_retention_pipeline/" rel="self" type="application/rss+xml" /></channel>
 </rss>

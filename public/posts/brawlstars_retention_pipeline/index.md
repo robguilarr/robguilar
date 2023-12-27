@@ -1,4 +1,4 @@
-# Player Retention and Cohorts Creation Pipeline in Brawl Stars with Non-Supervised Models
+# Player Retention and Cohorts Creation Pipeline in Brawl Stars with Unsupervised Models
 
 
 Brawl Stars is one of the action-packed multiplayer gaming experiences offered by Supercell, the Finnish mobile game development company known for hits like Clash of Clans and Clash Royale. This company has consistently churned out hit after hit, racking up billions of downloads and earning a reputation as one of the most innovative and successful mobile game studios in the world. Part of their success is due to their solid data practices.
