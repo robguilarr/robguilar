@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Inspecting Control Mechanics using t-tests on Fallout New Vegas - Roberto Aguilar</title><meta name="description" content="Data Analysis with two sample t-tests and Mann Whitney U, to test a change implemented from a game patch of control mechanics"><meta property="og:title" content="Inspecting Control Mechanics using t-tests on Fallout New Vegas" />
+        <title>Exploring the Impact of Control Mechanics on User Experience in Fallout New Vegas - Roberto Aguilar</title><meta name="description" content="Data Analysis with two sample t-tests and Mann Whitney U, to test a change implemented from a game patch of control mechanics"><meta property="og:title" content="Exploring the Impact of Control Mechanics on User Experience in Fallout New Vegas" />
 <meta property="og:description" content="Data Analysis with two sample t-tests and Mann Whitney U, to test a change implemented from a game patch of control mechanics" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://robguilar.com/posts/control_mechanics_fallout/" /><meta property="og:image" content="https://robguilar.com/images/posts/control_mechanics_fallout.jpg" /><meta property="article:section" content="posts" />
@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://robguilar.com/images/posts/control_mechanics_fallout.jpg"/>
 
-<meta name="twitter:title" content="Inspecting Control Mechanics using t-tests on Fallout New Vegas"/>
+<meta name="twitter:title" content="Exploring the Impact of Control Mechanics on User Experience in Fallout New Vegas"/>
 <meta name="twitter:description" content="Data Analysis with two sample t-tests and Mann Whitney U, to test a change implemented from a game patch of control mechanics"/>
 <meta name="application-name" content="&gt; robguilar">
 <meta name="apple-mobile-web-app-title" content="&gt; robguilar"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#525252"><link rel="shortcut icon" type="image/x-icon" href="https://robguilar.com/favicon.ico" />
@@ -24,7 +24,7 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Inspecting Control Mechanics using t-tests on Fallout New Vegas",
+        "headline": "Exploring the Impact of Control Mechanics on User Experience in Fallout New Vegas",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -34,7 +34,7 @@
                             "url": "https:\/\/robguilar.com\/images\/posts\/control_mechanics_fallout.jpg",
                             "width":  3000 ,
                             "height":  900 
-                        }],"genre": "posts","keywords": "Mann-Whitney t-test, Bootstrapping, Python","wordcount":  4001 ,
+                        }],"genre": "posts","keywords": "Mann-Whitney t-test, Bootstrapping, Python","wordcount":  3879 ,
         "url": "https:\/\/robguilar.com\/posts\/control_mechanics_fallout\/","datePublished": "2022-06-22T21:57:40+08:00","dateModified": "2022-06-22T21:57:40+08:00","license": "This work is developed and posted only under Roberto's property","publisher": {
             "@type": "Organization",
             "name": "Roberto Aguilar","logo": {
@@ -112,9 +112,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single" data-toc="enable"><div class="single-card" ><h2 class="single-title animated flipInX">Inspecting Control Mechanics using t-tests on Fallout New Vegas</h2><div class="post-meta">
+        </div><article class="page single" data-toc="enable"><div class="single-card" ><h2 class="single-title animated flipInX">Exploring the Impact of Control Mechanics on User Experience in Fallout New Vegas</h2><div class="post-meta">
                 <div class="post-meta-line"><span class="post-author"><a href="https://www.linkedin.com/in/robguilarr/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Roberto Aguilar</a></span>&nbsp;<span class="post-category">published in <a href="https://robguilar.com/categories/projects/"><i class="far fa-folder fa-fw"></i>Projects</a></span></div>
-                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-22">2022-06-22</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;4001 words</span>&nbsp;
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-22">2022-06-22</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3879 words</span>&nbsp;
                     <span><i class="far fa-clock fa-fw"></i>&nbsp;19 minutes</span>&nbsp;</div>
             </div>
             
@@ -153,11 +153,8 @@
     <li><a href="#ℹ-additional-information">ℹ️ Additional Information</a></li>
   </ul>
 </nav></div>
-                </div><div class="content" id="content"><p>The plot of the sequel of Fallout 3 takes context in the year 2281, 4 years after the first escape from Vault 101, within a post-apocalyptic world after the Great War.</p>
-<p>This RPG has an open world inspired by cities such as Nevada, California, Arizona, and Utah, allowing users to have a large number of places to explore and a world with NPCs to interact with, ideal for developing behavioral and exploratory analysis.</p>
-<p>After its launch in 2010, like many titles of this IP, they have been exposed to mods developed by their community, some of them for Serious-Game purposes and others as non-Serious games. According to Anders Drachen et al. (2021, p. 5), it&rsquo;s &ldquo;a term used to describe games developed for purposes other than entertainment, such as training, promoting health, citizen science, or psychological experiments&rdquo;.</p>
-<p>In this case, the data was obtained from a mod developed at the PLAIT (Playable Interactive Technologies) by Northeastern University. The mod is called VPAL: Virtual Personality Assessment Lab, and also can be accessed to the raw telemetry data in the Game Data Science <a href="https://global.oup.com/academic/product/game-data-science-9780192897879?cc=cr&amp;lang=en&amp;" target="_blank" rel="noopener noreffer">book</a>.</p>
-<p>It’s important to keep in mind that the game has been already released, so we&rsquo;ll require to develop a post-production analysis with a help of a mod, so the main conclusions will be focused on a fictional patch improvement made by the Programming team.</p>
+                </div><div class="content" id="content"><p><strong>Abstract</strong>: This publication shows a comprehensive statistical examination of control mechanics within Action RPGs, exploring the hypothesis that alterations in control mechanics substantially affect gameplay outcomes, specifically in terms of quest completion and enemy kills, across varying player experience levels. Utilizing data extracted from the VPAL mod, the research employs a methodological approach that includes data preprocessing, and the application of inferential analysis via t-tests and Mann-Whitney U tests, executed within a Python environment. The findings reveal disparities in gameplay metrics between new and veteran players, attributing these differences to the modifications in control mechanics and their pronounced impact on player experience. This study not only highlights the relationship between control mechanics and gameplay experience but also provides a framework for future research in game design and player interaction analysis.</p>
+<hr>
 <div class="details admonition info open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-info-circle fa-fw"></i>Looking for an interactive experience?<i class="details-icon fas fa-angle-right fa-fw"></i>
@@ -192,8 +189,7 @@
 </ul>
 <p><strong>Note:</strong> To facilitate the understanding of the roles of the development team, I invite you to take a look at <strong><a href="https://www.robguilar.com/posts/gamedev_structure/" target="_blank" rel="noopener noreffer">this</a></strong> diagram that I designed.</p>
 <h2 id="-about-the-data--preprocessing-reference">📥 About the data &amp; preprocessing reference</h2>
-<p>In a summary, the data is a complete chaos allocated in a repository of text files, so this will require a pipeline to be transformed, cleaned, and get ready to use.</p>
-<p>The purpose of data cleaning is to make sure the data is correct. It is rarely the case that once data is collected through the game and transferred to the server, it is automatically ready for analysis.</p>
+<p>The data was obtained from a mod developed at the PLAIT (Playable Interactive Technologies) by Northeastern University. The mod is called VPAL: Virtual Personality Assessment Lab, and also can be accessed to the raw telemetry data in the Game Data Science <a href="https://global.oup.com/academic/product/game-data-science-9780192897879?cc=cr&amp;lang=en&amp;" target="_blank" rel="noopener noreffer">book</a>.</p>
 <h3 id="collection-process-and-structure">Collection process and structure</h3>
 <p>Before start let’s import the libraries we’re going to need for the preprocess.</p>
 <div class="highlight"><div class="chroma">
@@ -894,12 +890,12 @@
                             <a class="link-to-markdown" href="https://robguilar.com/posts/control_mechanics_fallout/index.md" target="_blank">Read Markdown</a>
                         </span></div>
         </div><div class="post-info-share">
-            <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://robguilar.com/posts/control_mechanics_fallout/" data-title="Inspecting Control Mechanics using t-tests on Fallout New Vegas" data-hashtags="Mann-Whitney t-test,Bootstrapping,Python"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://robguilar.com/posts/control_mechanics_fallout/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://robguilar.com/posts/control_mechanics_fallout/"><i class="fab fa-reddit fa-fw"></i></a></span>
-        </div></div><div class="post-nav"><a href="https://robguilar.com/posts/candy_crush_difficulty/" class="prev" rel="prev" title="Leveling Difficulty in Candy Crush Saga"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
-            <a href="https://robguilar.com/posts/anova_dota/" class="next" rel="next" title="Interpreting changelogs with ANOVA tests on DOTA 2">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+            <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://robguilar.com/posts/control_mechanics_fallout/" data-title="Exploring the Impact of Control Mechanics on User Experience in Fallout New Vegas" data-hashtags="Mann-Whitney t-test,Bootstrapping,Python"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://robguilar.com/posts/control_mechanics_fallout/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://robguilar.com/posts/control_mechanics_fallout/"><i class="fab fa-reddit fa-fw"></i></a></span>
+        </div></div><div class="post-nav"><a href="https://robguilar.com/posts/candy_crush_difficulty/" class="prev" rel="prev" title="Level Balancing: Game Difficulty data-driven adjustments in Candy Crush"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="https://robguilar.com/posts/anova_dota/" class="next" rel="next" title="Assessing the Impact of Patch Releases on Digital Assets in DOTA 2">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
 </div></article></div>
             </main>
-            <footer class="footer"><div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://robguilar.com/"></a></span>&nbsp;|&nbsp;<span class="license">Website Engine deployed by Netlify</span></div>
+            <footer class="footer"><div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://robguilar.com/"></a></span>&nbsp;|&nbsp;<span class="license">Website Engine deployed by Netlify</span></div>
 </div>
 <script>
 if ('serviceWorker' in navigator) {

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Player Retention and Cohorts Creation Pipeline in Brawl Stars with Unsupervised Models - Roberto Aguilar</title><meta name="description" content="Production-Ready pipeline to extract logs from the mobile game Brawl Stars, using a KMeans model for player classification and cohorts creation, to produce parametrized bounded retention metrics"><meta property="og:title" content="Player Retention and Cohorts Creation Pipeline in Brawl Stars with Unsupervised Models" />
+        <title>Optimizing User Retention in Brawl Stars: Unsupervised Machine Learning Approach to Cohorts Retention Metrics - Roberto Aguilar</title><meta name="description" content="Production-Ready pipeline to extract logs from the mobile game Brawl Stars, using a KMeans model for player classification and cohorts creation, to produce parametrized bounded retention metrics"><meta property="og:title" content="Optimizing User Retention in Brawl Stars: Unsupervised Machine Learning Approach to Cohorts Retention Metrics" />
 <meta property="og:description" content="Production-Ready pipeline to extract logs from the mobile game Brawl Stars, using a KMeans model for player classification and cohorts creation, to produce parametrized bounded retention metrics" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://robguilar.com/posts/brawlstars_retention_pipeline/" /><meta property="og:image" content="https://robguilar.com/images/posts/brawlstars_retention_pipeline.jpg" /><meta property="article:section" content="posts" />
@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://robguilar.com/images/posts/brawlstars_retention_pipeline.jpg"/>
 
-<meta name="twitter:title" content="Player Retention and Cohorts Creation Pipeline in Brawl Stars with Unsupervised Models"/>
+<meta name="twitter:title" content="Optimizing User Retention in Brawl Stars: Unsupervised Machine Learning Approach to Cohorts Retention Metrics"/>
 <meta name="twitter:description" content="Production-Ready pipeline to extract logs from the mobile game Brawl Stars, using a KMeans model for player classification and cohorts creation, to produce parametrized bounded retention metrics"/>
 <meta name="application-name" content="&gt; robguilar">
 <meta name="apple-mobile-web-app-title" content="&gt; robguilar"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#525252"><link rel="shortcut icon" type="image/x-icon" href="https://robguilar.com/favicon.ico" />
@@ -24,7 +24,7 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Player Retention and Cohorts Creation Pipeline in Brawl Stars with Unsupervised Models",
+        "headline": "Optimizing User Retention in Brawl Stars: Unsupervised Machine Learning Approach to Cohorts Retention Metrics",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -34,7 +34,7 @@
                             "url": "https:\/\/robguilar.com\/images\/posts\/brawlstars_retention_pipeline.jpg",
                             "width":  3000 ,
                             "height":  900 
-                        }],"genre": "posts","keywords": "Kedro, Spark, Unsupervised Models, Retention Metrics, KMeans, Google Cloud","wordcount":  9913 ,
+                        }],"genre": "posts","keywords": "Kedro, Spark, Unsupervised Models, Retention Metrics, KMeans, Google Cloud","wordcount":  9868 ,
         "url": "https:\/\/robguilar.com\/posts\/brawlstars_retention_pipeline\/","datePublished": "2023-05-20T21:57:40+08:00","dateModified": "2023-05-20T21:57:40+08:00","license": "This work is developed and posted only under Roberto's property","publisher": {
             "@type": "Organization",
             "name": "Roberto Aguilar","logo": {
@@ -112,9 +112,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single" data-toc="enable"><div class="single-card" ><h2 class="single-title animated flipInX">Player Retention and Cohorts Creation Pipeline in Brawl Stars with Unsupervised Models</h2><div class="post-meta">
+        </div><article class="page single" data-toc="enable"><div class="single-card" ><h2 class="single-title animated flipInX">Optimizing User Retention in Brawl Stars: Unsupervised Machine Learning Approach to Cohorts Retention Metrics</h2><div class="post-meta">
                 <div class="post-meta-line"><span class="post-author"><a href="https://www.linkedin.com/in/robguilarr/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Roberto Aguilar</a></span>&nbsp;<span class="post-category">published in <a href="https://robguilar.com/categories/projects/"><i class="far fa-folder fa-fw"></i>Projects</a></span></div>
-                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-05-20">2023-05-20</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;9913 words</span>&nbsp;
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-05-20">2023-05-20</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;9868 words</span>&nbsp;
                     <span><i class="far fa-clock fa-fw"></i>&nbsp;47 minutes</span>&nbsp;</div>
             </div>
             
@@ -150,9 +150,7 @@
     <li><a href="#ℹ-additional-information">ℹ️ Additional Information</a></li>
   </ul>
 </nav></div>
-                </div><div class="content" id="content"><p>Brawl Stars is one of the action-packed multiplayer gaming experiences offered by Supercell, the Finnish mobile game development company known for hits like Clash of Clans and Clash Royale. This company has consistently churned out hit after hit, racking up billions of downloads and earning a reputation as one of the most innovative and successful mobile game studios in the world. Part of their success is due to their solid data practices.</p>
-<p>Retention metrics tracking is crucial for the long-term sustainability of mobile games like Brawl Stars, particularly during soft launches. These metrics are used to measure how many players continue to play the game after initial installation and engagement.</p>
-<p>By analyzing these metrics, game developers can identify areas where players may be dropping off and make changes to improve the user experience and keep players engaged over time. This is essential for the success of a mobile game, as high retention rates lead to more in-app purchases and longer overall player lifetimes. Given the competitive landscape of mobile gaming, tracking retention metrics is a key component in keeping a game relevant and profitable over the long term.</p>
+                </div><div class="content" id="content"><p><strong>Abstract</strong>: This study presents a comprehensive investigation into the development of a player retention pipeline and the establishment of user cohorts for the game Brawl Stars through the application of unsupervised machine learning models. The primary aim is to enhance the analysis of user retention by implementing advanced cohort classification techniques and the generation of retention metrics. To achieve this, the research utilizes data obtained from the Brawl Stars public API, applies KMeans clustering for the categorization of players, and employs PySpark for data processing and analysis, with an emphasis on the use of Kedro for the efficient assembly of the data processing pipeline. The outcomes of this analysis underscore the pipeline&rsquo;s proficiency in handling vast datasets and augmenting the production of retention metrics. The results suggest that this automated strategy provides clear insights into player behaviors and retention rates, endorsing its integration into game development practices and its potential adaptability for Google Cloud Deployments.</p>
 <hr>
 <p><strong><i class="fas fa-exclamation-circle fa-fw"></i>&nbsp;Important: Any views, material or statements expressed are mines and not those of my employer, read the disclaimer to learn more.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></strong></p>
 <hr>
@@ -161,7 +159,7 @@
             <i class="icon fas fa-info-circle fa-fw"></i>Looking for an interactive experience?<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">🚀 Access the Kedro Pipeline Visualization (Cold Instance), available <a href="https://brawlstars-retention-pipeline-6u27jcczha-uw.a.run.app/">here</a>; or you can download the <a href="https://github.com/robguilarr/Brawlstars-retention-pipeline">source code</a> from GitHub</div>
+            <div class="admonition-content">🚀 Access the <a href="https://github.com/robguilarr/Brawlstars-retention-pipeline">source code</a> from GitHub</div>
         </div>
     </div>
 
@@ -2613,11 +2611,11 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
                             <a class="link-to-markdown" href="https://robguilar.com/posts/brawlstars_retention_pipeline/index.md" target="_blank">Read Markdown</a>
                         </span></div>
         </div><div class="post-info-share">
-            <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://robguilar.com/posts/brawlstars_retention_pipeline/" data-title="Player Retention and Cohorts Creation Pipeline in Brawl Stars with Unsupervised Models" data-hashtags="Kedro,Spark,Unsupervised Models,Retention Metrics,KMeans,Google Cloud"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://robguilar.com/posts/brawlstars_retention_pipeline/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://robguilar.com/posts/brawlstars_retention_pipeline/"><i class="fab fa-reddit fa-fw"></i></a></span>
-        </div></div><div class="post-nav"><a href="https://robguilar.com/posts/anova_dota/" class="prev" rel="prev" title="Interpreting changelogs with ANOVA tests on DOTA 2"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a></div></div>
+            <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://robguilar.com/posts/brawlstars_retention_pipeline/" data-title="Optimizing User Retention in Brawl Stars: Unsupervised Machine Learning Approach to Cohorts Retention Metrics" data-hashtags="Kedro,Spark,Unsupervised Models,Retention Metrics,KMeans,Google Cloud"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://robguilar.com/posts/brawlstars_retention_pipeline/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://robguilar.com/posts/brawlstars_retention_pipeline/"><i class="fab fa-reddit fa-fw"></i></a></span>
+        </div></div><div class="post-nav"><a href="https://robguilar.com/posts/anova_dota/" class="prev" rel="prev" title="Assessing the Impact of Patch Releases on Digital Assets in DOTA 2"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a></div></div>
 </div></article></div>
             </main>
-            <footer class="footer"><div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://robguilar.com/"></a></span>&nbsp;|&nbsp;<span class="license">Website Engine deployed by Netlify</span></div>
+            <footer class="footer"><div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://robguilar.com/"></a></span>&nbsp;|&nbsp;<span class="license">Website Engine deployed by Netlify</span></div>
 </div>
 <script>
 if ('serviceWorker' in navigator) {

@@ -1,6 +1,6 @@
 ---
 #weight: 2
-title: "Player Retention and Cohorts Creation Pipeline in Brawl Stars with Unsupervised Models"
+title: "Optimizing User Retention in Brawl Stars: Unsupervised Machine Learning Approach to Cohorts Retention Metrics"
 date: 2023-05-20T21:57:40+08:00
 lastmod: 2023-05-20T21:57:40+08:00
 draft: false
@@ -27,11 +27,7 @@ seo:
   thumbnailUrl: "/images/posts/brawlstars_retention_pipeline.jpg"
 ---
 
-Brawl Stars is one of the action-packed multiplayer gaming experiences offered by Supercell, the Finnish mobile game development company known for hits like Clash of Clans and Clash Royale. This company has consistently churned out hit after hit, racking up billions of downloads and earning a reputation as one of the most innovative and successful mobile game studios in the world. Part of their success is due to their solid data practices.
-
-Retention metrics tracking is crucial for the long-term sustainability of mobile games like Brawl Stars, particularly during soft launches. These metrics are used to measure how many players continue to play the game after initial installation and engagement.
-
-By analyzing these metrics, game developers can identify areas where players may be dropping off and make changes to improve the user experience and keep players engaged over time. This is essential for the success of a mobile game, as high retention rates lead to more in-app purchases and longer overall player lifetimes. Given the competitive landscape of mobile gaming, tracking retention metrics is a key component in keeping a game relevant and profitable over the long term.
+**Abstract**: This study presents a comprehensive investigation into the development of a player retention pipeline and the establishment of user cohorts for the game Brawl Stars through the application of unsupervised machine learning models. The primary aim is to enhance the analysis of user retention by implementing advanced cohort classification techniques and the generation of retention metrics. To achieve this, the research utilizes data obtained from the Brawl Stars public API, applies KMeans clustering for the categorization of players, and employs PySpark for data processing and analysis, with an emphasis on the use of Kedro for the efficient assembly of the data processing pipeline. The outcomes of this analysis underscore the pipeline's proficiency in handling vast datasets and augmenting the production of retention metrics. The results suggest that this automated strategy provides clear insights into player behaviors and retention rates, endorsing its integration into game development practices and its potential adaptability for Google Cloud Deployments.
 
 ---
 
@@ -41,7 +37,7 @@ By analyzing these metrics, game developers can identify areas where players may
 
 {{< admonition info "Looking for an interactive experience?" true >}}
 
-:rocket: Access the Kedro Pipeline Visualization (Cold Instance), available <a href="https://brawlstars-retention-pipeline-6u27jcczha-uw.a.run.app/">here</a>; or you can download the <a href="https://github.com/robguilarr/Brawlstars-retention-pipeline">source code</a> from GitHub
+:rocket: Access the <a href="https://github.com/robguilarr/Brawlstars-retention-pipeline">source code</a> from GitHub
 
 {{< /admonition >}}
 

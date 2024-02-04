@@ -13,23 +13,17 @@ lightgallery: true
 
 #### :(far fa-compass fa-fw): About me
 
-<div>
-
 As a Data Scientist and Engineer, I specialize in transforming complex data into tangible business outcomes, particularly for the retail and consumer packaged goods sectors.
 
 My expertise lies in deploying advanced analytics algorithms, deep learning solutions, and machine learning approaches.
-
-</div>
 
 ---
 
 #### :(fas fa-rocket fa-fw): Interests
 
-<i class="fa-solid "></i>
+The passion for exploring the convergence of graphics technology platforms and analytics solutions, particularly in areas such as gaming and the metaverse, has been a driving force in my career, as in the coming years this unique intersection will offer numerous innovative solutions that can contribute effectively to a tangible impact.
 
-My passion extends to exploring the convergence of graphics technology platforms and analytics solutions in areas such as gaming and the metaverse. This unique intersection is where I find innovative opportunities to apply my skills in new and exciting ways.
-
-My path in this field began with a self-taught venture into Unity programming, laying the foundation for my technical background. Over time, my career experiences have honed this interest, leading me to focus on how my passion, coupled with my growing expertise, can make a tangible impact.
+My journey in this field was initiated some years ago with a self-taught venture into Unity programming, which not only laid the foundation for my technical background but also sparked this deep interest.
 
 ---
 
@@ -37,9 +31,11 @@ My path in this field began with a self-taught venture into Unity programming, l
 
 {{< admonition type=info title="McKinsey & Company" open=true >}}
 
-> Data Scientist, **[QuantumBlack](https://www.mckinsey.com/capabilities/quantumblack/how-we-help-clients "Learn more")**, Sep 2023 - Dec 2023 
+> Data Scientist, **[QuantumBlack](https://www.mckinsey.com/capabilities/quantumblack/how-we-help-clients "Learn more")**, Sep 2023 - Feb 2024 
 
 Proven impact as Data Scientist (seasonal staff):
+
+- Contributed in the redesign of an advanced Named Entity Recognition System for McKinsey’s core GenAI product, significantly enhancing the precision of financial information searches using a LLM model.
 
 - Assetized Competitor Price Index scenario generator capable of increasing 5.2% Gross Margin uplift of middle demand class products within a 6pp CPI variation, in addition to the Python based pricing recommendation engine.
 

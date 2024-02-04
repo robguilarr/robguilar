@@ -1,15 +1,9 @@
-# Interpreting changelogs with ANOVA tests on DOTA 2
+# Assessing the Impact of Patch Releases on Digital Assets in DOTA 2
 
 
-In the world of Multiplayer Online Battle Arena games, also known as MOBA, a [changelog](https://www.dota2.com/patches/7.31d) is a list of updates that developers make to their games. These modifications are usually minor, but they can be meaningful if they affect the gameplay.
+**Abstract**: This study examines the effect of a game patch on hero balance in Multiplayer Online Battle Arena (MOBA) games, focusing on changes in hero damage output. Utilizing ANOVA tests and statistical analyses, including Kruskal–Wallis ANOVA, Mann-Whitney U test, Kolmogorov-Smirnov test, and Bootstrapping in Python, data from ranked matchmaking sessions were analyzed to assess the statistical significance of damage output changes according to the official [changelog](https://www.dota2.com/patches/7.31d). Findings reveal Shadow Fiend as the standout hero with increased gold collection, tower damage, and victories due to the ‘Requiem of Souls’ ability's enhancement with the "Aghanim’s Scepter" in patch 6.86. In contrast, Zeus was identified as having the highest damage output, attributed to a character remodel, its role as Soft Support, and its straightforward playability. The study offers insights into the implications of game patches on hero performance, providing a foundation for further game design and balance discussions.
 
-Among the major big titles in the MOBA genre is DOTA 2, which according to Minotti (2015), "*this game together with League of Legends (LOL), is considered the state-of-the-art in the genre of MOBA, considering that this game emerged from a mod of the widely known MMORPG, World of Warcraft, which then transformed into a major team-based strategy game*" according to Drachen et. al (2021).
-
-This mod started its development in 2005, by some solo-developers and [Icefrog](https://dota2.fandom.com/wiki/IceFrog). The core gameplay design consists of two teams of five players each; each player controls a [hero](https://www.dota2.com/heroes). The two teams fight each other on a common battlefield using heroes from different [classes](https://stratz.com/heroes) that have distinctive abilities and roles within the team structure.
-
-The main goal of this game is to use a [5v5](https://en.wikipedia.org/wiki/Multiplayer_online_battle_arena) strategy to defend your Ancient and attack the one from the enemy’s faction. The Ancients are massive structures found inside each faction's base and are the main objective.
-
-In order to win, the enemy team's Ancient must be destroyed, while the own one must be kept alive. Ancients are guarded by their two tier 4 towers and are invulnerable until both towers are destroyed. The map is distributed per lane (refer to the next map designed); Offlane, Safelane, and Midlane, and among the lanes each faction has a total of 11 [Towers](https://dota2.fandom.com/wiki/Buildings#Towers) to attack enemies; and also each lane has two [Barracks](https://dota2.fandom.com/wiki/Buildings#Barracks), one for producing melee creeps and the other for ranged creeps.
+---
 
 {{< admonition info "Looking for an interactive experience?" true >}}
 

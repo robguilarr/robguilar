@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Interpreting changelogs with ANOVA tests on DOTA 2 - Roberto Aguilar</title><meta name="description" content="Inferential analysis with Kruskal–Wallis ANOVA to justify the Balance of Power 6.86 patch logs"><meta property="og:title" content="Interpreting changelogs with ANOVA tests on DOTA 2" />
+        <title>Assessing the Impact of Patch Releases on Digital Assets in DOTA 2 - Roberto Aguilar</title><meta name="description" content="Inferential analysis with Kruskal–Wallis ANOVA to justify the Balance of Power 6.86 patch logs"><meta property="og:title" content="Assessing the Impact of Patch Releases on Digital Assets in DOTA 2" />
 <meta property="og:description" content="Inferential analysis with Kruskal–Wallis ANOVA to justify the Balance of Power 6.86 patch logs" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://robguilar.com/posts/anova_dota/" /><meta property="og:image" content="https://robguilar.com/images/posts/anova_dota.jpg" /><meta property="article:section" content="posts" />
@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://robguilar.com/images/posts/anova_dota.jpg"/>
 
-<meta name="twitter:title" content="Interpreting changelogs with ANOVA tests on DOTA 2"/>
+<meta name="twitter:title" content="Assessing the Impact of Patch Releases on Digital Assets in DOTA 2"/>
 <meta name="twitter:description" content="Inferential analysis with Kruskal–Wallis ANOVA to justify the Balance of Power 6.86 patch logs"/>
 <meta name="application-name" content="&gt; robguilar">
 <meta name="apple-mobile-web-app-title" content="&gt; robguilar"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#525252"><link rel="shortcut icon" type="image/x-icon" href="https://robguilar.com/favicon.ico" />
@@ -24,7 +24,7 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Interpreting changelogs with ANOVA tests on DOTA 2",
+        "headline": "Assessing the Impact of Patch Releases on Digital Assets in DOTA 2",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -34,7 +34,7 @@
                             "url": "https:\/\/robguilar.com\/images\/posts\/anova_dota.jpg",
                             "width":  3000 ,
                             "height":  900 
-                        }],"genre": "posts","keywords": "Kruskal–Wallis ANOVA, Mann-Whitney t-test, Kolmogorov-Smirnov, Bootstrapping, Python","wordcount":  7768 ,
+                        }],"genre": "posts","keywords": "Kruskal–Wallis ANOVA, Mann-Whitney t-test, Kolmogorov-Smirnov, Bootstrapping, Python","wordcount":  7629 ,
         "url": "https:\/\/robguilar.com\/posts\/anova_dota\/","datePublished": "2022-07-24T21:57:40+08:00","dateModified": "2022-07-24T21:57:40+08:00","license": "This work is developed and posted only under Roberto's property","publisher": {
             "@type": "Organization",
             "name": "Roberto Aguilar","logo": {
@@ -112,10 +112,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single" data-toc="enable"><div class="single-card" ><h2 class="single-title animated flipInX">Interpreting changelogs with ANOVA tests on DOTA 2</h2><div class="post-meta">
+        </div><article class="page single" data-toc="enable"><div class="single-card" ><h2 class="single-title animated flipInX">Assessing the Impact of Patch Releases on Digital Assets in DOTA 2</h2><div class="post-meta">
                 <div class="post-meta-line"><span class="post-author"><a href="https://www.linkedin.com/in/robguilarr/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Roberto Aguilar</a></span>&nbsp;<span class="post-category">published in <a href="https://robguilar.com/categories/projects/"><i class="far fa-folder fa-fw"></i>Projects</a></span></div>
-                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-24">2022-07-24</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;7768 words</span>&nbsp;
-                    <span><i class="far fa-clock fa-fw"></i>&nbsp;37 minutes</span>&nbsp;</div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-24">2022-07-24</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;7629 words</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;36 minutes</span>&nbsp;</div>
             </div>
             
             <hr><div class="details toc" id="toc-static"  data-kept="">
@@ -155,11 +155,8 @@
     <li><a href="#ℹ-additional-information">ℹ️ Additional Information</a></li>
   </ul>
 </nav></div>
-                </div><div class="content" id="content"><p>In the world of Multiplayer Online Battle Arena games, also known as MOBA, a <a href="https://www.dota2.com/patches/7.31d" target="_blank" rel="noopener noreffer">changelog</a> is a list of updates that developers make to their games. These modifications are usually minor, but they can be meaningful if they affect the gameplay.</p>
-<p>Among the major big titles in the MOBA genre is DOTA 2, which according to Minotti (2015), &ldquo;<em>this game together with League of Legends (LOL), is considered the state-of-the-art in the genre of MOBA, considering that this game emerged from a mod of the widely known MMORPG, World of Warcraft, which then transformed into a major team-based strategy game</em>&rdquo; according to Drachen et. al (2021).</p>
-<p>This mod started its development in 2005, by some solo-developers and <a href="https://dota2.fandom.com/wiki/IceFrog" target="_blank" rel="noopener noreffer">Icefrog</a>. The core gameplay design consists of two teams of five players each; each player controls a <a href="https://www.dota2.com/heroes" target="_blank" rel="noopener noreffer">hero</a>. The two teams fight each other on a common battlefield using heroes from different <a href="https://stratz.com/heroes" target="_blank" rel="noopener noreffer">classes</a> that have distinctive abilities and roles within the team structure.</p>
-<p>The main goal of this game is to use a <a href="https://en.wikipedia.org/wiki/Multiplayer_online_battle_arena" target="_blank" rel="noopener noreffer">5v5</a> strategy to defend your Ancient and attack the one from the enemy’s faction. The Ancients are massive structures found inside each faction&rsquo;s base and are the main objective.</p>
-<p>In order to win, the enemy team&rsquo;s Ancient must be destroyed, while the own one must be kept alive. Ancients are guarded by their two tier 4 towers and are invulnerable until both towers are destroyed. The map is distributed per lane (refer to the next map designed); Offlane, Safelane, and Midlane, and among the lanes each faction has a total of 11 <a href="https://dota2.fandom.com/wiki/Buildings#Towers" target="_blank" rel="noopener noreffer">Towers</a> to attack enemies; and also each lane has two <a href="https://dota2.fandom.com/wiki/Buildings#Barracks" target="_blank" rel="noopener noreffer">Barracks</a>, one for producing melee creeps and the other for ranged creeps.</p>
+                </div><div class="content" id="content"><p><strong>Abstract</strong>: This study examines the effect of a game patch on hero balance in Multiplayer Online Battle Arena (MOBA) games, focusing on changes in hero damage output. Utilizing ANOVA tests and statistical analyses, including Kruskal–Wallis ANOVA, Mann-Whitney U test, Kolmogorov-Smirnov test, and Bootstrapping in Python, data from ranked matchmaking sessions were analyzed to assess the statistical significance of damage output changes according to the official <a href="https://www.dota2.com/patches/7.31d" target="_blank" rel="noopener noreffer">changelog</a>. Findings reveal Shadow Fiend as the standout hero with increased gold collection, tower damage, and victories due to the ‘Requiem of Souls’ ability&rsquo;s enhancement with the &ldquo;Aghanim’s Scepter&rdquo; in patch 6.86. In contrast, Zeus was identified as having the highest damage output, attributed to a character remodel, its role as Soft Support, and its straightforward playability. The study offers insights into the implications of game patches on hero performance, providing a foundation for further game design and balance discussions.</p>
+<hr>
 <div class="details admonition info open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-info-circle fa-fw"></i>Looking for an interactive experience?<i class="details-icon fas fa-angle-right fa-fw"></i>
@@ -1791,12 +1788,12 @@ where the p values are: 0.000000 and 0.000000
                             <a class="link-to-markdown" href="https://robguilar.com/posts/anova_dota/index.md" target="_blank">Read Markdown</a>
                         </span></div>
         </div><div class="post-info-share">
-            <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://robguilar.com/posts/anova_dota/" data-title="Interpreting changelogs with ANOVA tests on DOTA 2" data-hashtags="Kruskal–Wallis ANOVA,Mann-Whitney t-test,Kolmogorov-Smirnov,Bootstrapping,Python"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://robguilar.com/posts/anova_dota/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://robguilar.com/posts/anova_dota/"><i class="fab fa-reddit fa-fw"></i></a></span>
-        </div></div><div class="post-nav"><a href="https://robguilar.com/posts/control_mechanics_fallout/" class="prev" rel="prev" title="Inspecting Control Mechanics using t-tests on Fallout New Vegas"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
-            <a href="https://robguilar.com/posts/brawlstars_retention_pipeline/" class="next" rel="next" title="Player Retention and Cohorts Creation Pipeline in Brawl Stars with Unsupervised Models">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+            <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://robguilar.com/posts/anova_dota/" data-title="Assessing the Impact of Patch Releases on Digital Assets in DOTA 2" data-hashtags="Kruskal–Wallis ANOVA,Mann-Whitney t-test,Kolmogorov-Smirnov,Bootstrapping,Python"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://robguilar.com/posts/anova_dota/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://robguilar.com/posts/anova_dota/"><i class="fab fa-reddit fa-fw"></i></a></span>
+        </div></div><div class="post-nav"><a href="https://robguilar.com/posts/control_mechanics_fallout/" class="prev" rel="prev" title="Exploring the Impact of Control Mechanics on User Experience in Fallout New Vegas"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="https://robguilar.com/posts/brawlstars_retention_pipeline/" class="next" rel="next" title="Optimizing User Retention in Brawl Stars: Unsupervised Machine Learning Approach to Cohorts Retention Metrics">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
 </div></article></div>
             </main>
-            <footer class="footer"><div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://robguilar.com/"></a></span>&nbsp;|&nbsp;<span class="license">Website Engine deployed by Netlify</span></div>
+            <footer class="footer"><div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://robguilar.com/"></a></span>&nbsp;|&nbsp;<span class="license">Website Engine deployed by Netlify</span></div>
 </div>
 <script>
 if ('serviceWorker' in navigator) {

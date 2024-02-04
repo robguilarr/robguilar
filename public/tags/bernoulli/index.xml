@@ -4,13 +4,11 @@
         <link>https://robguilar.com/tags/bernoulli/</link>
         <description>Bernoulli - Tag - Roberto Aguilar</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Thu, 19 May 2022 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/tags/bernoulli/" rel="self" type="application/rss+xml" /><item>
-    <title>Leveling Difficulty in Candy Crush Saga</title>
+    <title>Level Balancing: Game Difficulty data-driven adjustments in Candy Crush</title>
     <link>https://robguilar.com/posts/candy_crush_difficulty/</link>
     <pubDate>Thu, 19 May 2022 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/candy_crush_difficulty/</guid>
-    <description><![CDATA[<p>Today&rsquo;s analysis will lead us to a world fulfilled with divine puzzle adventures at the side of Tiffi and Mr. Toffee, in which we&rsquo;ll glimpse the success rate of more than 6800 peers with eagerness for treats.</p>
-<p>The game is <a href="https://www.king.com/game/candycrush" target="_blank" rel="noopener noreffer">Candy Crush Saga</a> a record-breaking mobile game developed by King, a subsidiary of Activision Blizzard since 2016.</p>
-<p>In terms of its gameplay, this game used to have a total of 816 episodes, until one of the major add-ons was removed (Dreamworld). The point is that now the game has 771 episodes, in which the player has 5 episodes per world, and, each episode contains contain 15 levels approximately.</p>
-<p>If you are one of the few that haven&rsquo;t played Candy Crush, here&rsquo;s a short intro:</p>
+    <description><![CDATA[<p><strong>Abstract</strong>: This study explores the impact of game difficulty on player engagement within mobile Puzzle Games, positing that the level of challenge significantly influences player retention and satisfaction. Utilizing Python and Plotly for data preprocessing and visualization, the study analyzes player attempts and success rates across various levels, based on a dataset provided by Rasmus Baath. The findings reveal a generally well-balanced difficulty spectrum, advocating for the implementation of dynamic difficulty adjustments to optimize engagement. The conclusion underscores the importance of maintaining diverse difficulty levels to minimize player attrition, highlighting a subset of levels that pose exceptional challenges.</p>
+<hr>
 <div class="details admonition info open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-info-circle fa-fw"></i>Looking for an interactive experience?<i class="details-icon fas fa-angle-right fa-fw"></i>

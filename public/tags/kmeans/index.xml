@@ -4,12 +4,10 @@
         <link>https://robguilar.com/tags/kmeans/</link>
         <description>KMeans - Tag - Roberto Aguilar</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Sat, 20 May 2023 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/tags/kmeans/" rel="self" type="application/rss+xml" /><item>
-    <title>Player Retention and Cohorts Creation Pipeline in Brawl Stars with Unsupervised Models</title>
+    <title>Optimizing User Retention in Brawl Stars: Unsupervised Machine Learning Approach to Cohorts Retention Metrics</title>
     <link>https://robguilar.com/posts/brawlstars_retention_pipeline/</link>
     <pubDate>Sat, 20 May 2023 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/brawlstars_retention_pipeline/</guid>
-    <description><![CDATA[<p>Brawl Stars is one of the action-packed multiplayer gaming experiences offered by Supercell, the Finnish mobile game development company known for hits like Clash of Clans and Clash Royale. This company has consistently churned out hit after hit, racking up billions of downloads and earning a reputation as one of the most innovative and successful mobile game studios in the world. Part of their success is due to their solid data practices.</p>
-<p>Retention metrics tracking is crucial for the long-term sustainability of mobile games like Brawl Stars, particularly during soft launches. These metrics are used to measure how many players continue to play the game after initial installation and engagement.</p>
-<p>By analyzing these metrics, game developers can identify areas where players may be dropping off and make changes to improve the user experience and keep players engaged over time. This is essential for the success of a mobile game, as high retention rates lead to more in-app purchases and longer overall player lifetimes. Given the competitive landscape of mobile gaming, tracking retention metrics is a key component in keeping a game relevant and profitable over the long term.</p>
+    <description><![CDATA[<p><strong>Abstract</strong>: This study presents a comprehensive investigation into the development of a player retention pipeline and the establishment of user cohorts for the game Brawl Stars through the application of unsupervised machine learning models. The primary aim is to enhance the analysis of user retention by implementing advanced cohort classification techniques and the generation of retention metrics. To achieve this, the research utilizes data obtained from the Brawl Stars public API, applies KMeans clustering for the categorization of players, and employs PySpark for data processing and analysis, with an emphasis on the use of Kedro for the efficient assembly of the data processing pipeline. The outcomes of this analysis underscore the pipeline&rsquo;s proficiency in handling vast datasets and augmenting the production of retention metrics. The results suggest that this automated strategy provides clear insights into player behaviors and retention rates, endorsing its integration into game development practices and its potential adaptability for Google Cloud Deployments.</p>
 <hr>
 <p><strong><i class="fas fa-exclamation-circle fa-fw"></i>&nbsp;Important: Any views, material or statements expressed are mines and not those of my employer, read the disclaimer to learn more.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></strong></p>
 <hr>
@@ -18,7 +16,7 @@
             <i class="icon fas fa-info-circle fa-fw"></i>Looking for an interactive experience?<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">🚀 Access the Kedro Pipeline Visualization (Cold Instance), available <a href="https://brawlstars-retention-pipeline-6u27jcczha-uw.a.run.app/">here</a>; or you can download the <a href="https://github.com/robguilarr/Brawlstars-retention-pipeline">source code</a> from GitHub</div>
+            <div class="admonition-content">🚀 Access the <a href="https://github.com/robguilarr/Brawlstars-retention-pipeline">source code</a> from GitHub</div>
         </div>
     </div>
 

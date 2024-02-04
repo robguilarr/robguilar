@@ -1,6 +1,6 @@
 ---
 #weight: 2
-title: "Inspecting Control Mechanics using t-tests on Fallout New Vegas"
+title: "Exploring the Impact of Control Mechanics on User Experience in Fallout New Vegas"
 date: 2022-06-22T21:57:40+08:00
 lastmod: 2022-06-22T21:57:40+08:00
 draft: false
@@ -27,15 +27,10 @@ seo:
   thumbnailUrl: "/images/posts/control_mechanics_fallout.jpg"
 ---
 
-The plot of the sequel of Fallout 3 takes context in the year 2281, 4 years after the first escape from Vault 101, within a post-apocalyptic world after the Great War.
+**Abstract**: This publication shows a comprehensive statistical examination of control mechanics within Action RPGs, exploring the hypothesis that alterations in control mechanics substantially affect gameplay outcomes, specifically in terms of quest completion and enemy kills, across varying player experience levels. Utilizing data extracted from the VPAL mod, the research employs a methodological approach that includes data preprocessing, and the application of inferential analysis via t-tests and Mann-Whitney U tests, executed within a Python environment. The findings reveal disparities in gameplay metrics between new and veteran players, attributing these differences to the modifications in control mechanics and their pronounced impact on player experience. This study not only highlights the relationship between control mechanics and gameplay experience but also provides a framework for future research in game design and player interaction analysis.
 
-This RPG has an open world inspired by cities such as Nevada, California, Arizona, and Utah, allowing users to have a large number of places to explore and a world with NPCs to interact with, ideal for developing behavioral and exploratory analysis.
+---
 
-After its launch in 2010, like many titles of this IP, they have been exposed to mods developed by their community, some of them for Serious-Game purposes and others as non-Serious games. According to Anders Drachen et al. (2021, p. 5), it's "a term used to describe games developed for purposes other than entertainment, such as training, promoting health, citizen science, or psychological experiments".
-
-In this case, the data was obtained from a mod developed at the PLAIT (Playable Interactive Technologies) by Northeastern University. The mod is called VPAL: Virtual Personality Assessment Lab, and also can be accessed to the raw telemetry data in the Game Data Science [book](https://global.oup.com/academic/product/game-data-science-9780192897879?cc=cr&lang=en&).
-
-It’s important to keep in mind that the game has been already released, so we'll require to develop a post-production analysis with a help of a mod, so the main conclusions will be focused on a fictional patch improvement made by the Programming team.
 
 {{< admonition info "Looking for an interactive experience?" true >}}
 
@@ -76,9 +71,7 @@ There is an unconformity in the changes made in the control mechanics, the team 
 
 ## 📥 About the data & preprocessing reference
 
-In a summary, the data is a complete chaos allocated in a repository of text files, so this will require a pipeline to be transformed, cleaned, and get ready to use.
-
-The purpose of data cleaning is to make sure the data is correct. It is rarely the case that once data is collected through the game and transferred to the server, it is automatically ready for analysis.
+The data was obtained from a mod developed at the PLAIT (Playable Interactive Technologies) by Northeastern University. The mod is called VPAL: Virtual Personality Assessment Lab, and also can be accessed to the raw telemetry data in the Game Data Science [book](https://global.oup.com/academic/product/game-data-science-9780192897879?cc=cr&lang=en&).
 
 ### Collection process and structure
 

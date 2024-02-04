@@ -1,6 +1,6 @@
 ---
 #weight: 2
-title: "A/B Testing with Cookie Cats Game"
+title: "A/B Testing Study on the Impact of Time Gate Positioning in Cookie Cats"
 date: 2022-03-02T21:57:40+08:00
 lastmod: 2022-03-02T21:57:40+08:00
 draft: false
@@ -27,13 +27,10 @@ seo:
   thumbnailUrl: "/images/posts/ab_testing_cookiecats.jpg"
 ---
 
-A lot of things come to mind when we hear the name [Cookie Cats](https://tactilegames.com/cookie-cats/), and probably is not what we think since is hard to associate both words, it’s about meow-sicians (Belle, Ziggy, Smokey, Rita, Berry).
+**Abstract**: This study explores the influence of adjusting the positioning of a "time gate" within the mobile game [Cookie Cats](https://tactilegames.com/cookie-cats/), transitioning it from level 30 to level 40, on player retention rates. Predicated on the hypothesis that repositioning the gate would significantly impact user retention, the study gathered and analyzed data encompassing user IDs, game version details, rounds played, and retention metrics on the first and seventh days post-engagement. Employing exploratory data analysis alongside robust statistical methodologies, such as bootstrapping, to evaluate the collected data, the findings reveal a disparity in the retention rates on the first day, with a slight preference towards the control group, wherein the gate remained at level 30. This study contributes to the understanding of game design's impact on player engagement and retention.
 
-Anyway, Cookie Cats is a mobile puzzle game of *“connect-three”*-style developed by [Tactile Entertainment](https://tactilegames.com/), a mobile games developer from Copenhagen. To be in context, this game’s main objective is to align 3 cookies of the same kind to feed a cat, and in this way finish each level. Also as collectible credit, you can earn Keys to unlock gates located at certain levels.
+---
 
-In this project, in order to embrace the actual problem that the stakeholders are facing, we are going to make use of **Tactical Analytics**, which is a branch of user-oriented game analytics, with the purpose to *“aim to inform game design at the short-term, for example, an A/B test of a new game feature”* (A. Dranchen, 2013).
-
-Knowing this we can notice that the applicability of statistics in new fields can be considered one of the greatest advances for the game industry. Nowadays, human-machine interactions are being monitored, in a good way in most cases. The main purpose is not just to increase the company's revenue, one of the main objectives is to give a benefit in terms of User Experience (UX) and Engagement, and this can be covered using Data Science.
 
 {{< admonition info "Looking for an interactive experience?" true >}}
 :rocket: Download the Jupyter Notebook, available <a href="https://nbviewer.org/github/robguilarr/ab_testing_cookie_cats/blob/main/notebook.ipynb">here</a>

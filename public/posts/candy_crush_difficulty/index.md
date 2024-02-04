@@ -1,13 +1,9 @@
-# Leveling Difficulty in Candy Crush Saga
+# Level Balancing: Game Difficulty data-driven adjustments in Candy Crush
 
 
-Today's analysis will lead us to a world fulfilled with divine puzzle adventures at the side of Tiffi and Mr. Toffee, in which we'll glimpse the success rate of more than 6800 peers with eagerness for treats.
+**Abstract**: This study explores the impact of game difficulty on player engagement within mobile Puzzle Games, positing that the level of challenge significantly influences player retention and satisfaction. Utilizing Python and Plotly for data preprocessing and visualization, the study analyzes player attempts and success rates across various levels, based on a dataset provided by Rasmus Baath. The findings reveal a generally well-balanced difficulty spectrum, advocating for the implementation of dynamic difficulty adjustments to optimize engagement. The conclusion underscores the importance of maintaining diverse difficulty levels to minimize player attrition, highlighting a subset of levels that pose exceptional challenges.
 
-The game is [Candy Crush Saga](https://www.king.com/game/candycrush) a record-breaking mobile game developed by King, a subsidiary of Activision Blizzard since 2016.
-
-In terms of its gameplay, this game used to have a total of 816 episodes, until one of the major add-ons was removed (Dreamworld). The point is that now the game has 771 episodes, in which the player has 5 episodes per world, and, each episode contains contain 15 levels approximately.
-
-If you are one of the few that haven't played Candy Crush, here's a short intro:
+---
 
 {{< admonition info "Looking for an interactive experience?" true >}}
 :rocket: Download the Jupyter Notebook, available <a href="https://nbviewer.org/github/robguilarr/candy_crush_difficulty/blob/master/notebook.ipynb">here</a>
