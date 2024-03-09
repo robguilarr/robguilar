@@ -128,7 +128,7 @@ Validate this credential {{< link href="https://credentials.databricks.com/d9318
 > {{< /admonition >}}
 
 {{< admonition type=success title="Dassault Systèmes, Certified of Mechanical Design at Level of Associate (CSWA)" open=true >}}
-<img width="80" height="80" src="images/Dassault_Systemes.png" align="left" hspace="10" vspace="10">The validation of mechanical designs through the application of SOLIDWORKS software, which underscores the proficiency in harnessing its core 3D modeling capabilities, including extrusion and revolution techniques.
+<img width="80" height="80" src="images/Dassault_Systemes.png" align="left" hspace="10" vspace="10">Credential that validates mechanical design ability through the application of SOLIDWORKS software, highlighting proficiency in leveraging core 3D modeling capabilities, including extrusion and revolution techniques.
 
 Validate this credential ID: C-YKES524TBJ, {{< link href="https://www.solidworks.com/" content="here" >}}.
 
