@@ -97,7 +97,7 @@ paginate = 20
   description = "Welcome to Roberto's portfolio website, through this portal you will be able to see his most recent content & projects published"
 
   # Site keywords
-  keywords = ["Roberto", "Aguilar", "Roberto Aguilar", "Data Science", "Portfolio", "Game Data Science"]
+  keywords = ["Roberto Aguilar", "Data Science", "AI", "Gaming", "Machine Learning", "GenAI"]
 
   # Site default theme ("light", "dark", "auto")
   defaultTheme = "light"
@@ -394,7 +394,7 @@ paginate = 20
       title = "Roberto Aguilar"
 
       # Subtitle shown in home page
-      subtitle = "Data Analyst @ McKinsey & Company"
+      subtitle = "Analyst @ McKinsey & Company, AI & Gaming"
 
       # Whether to use typeit animation for subtitle
       typeit = false
@@ -449,7 +449,7 @@ paginate = 20
     [[params.about.status]]
       faIcon = "fas fa-briefcase fa-fw"
       title = "Occupation"
-      desc = "Data Analyst"
+      desc = "AI & Data Science"
 
     [[params.about.status]]
       title = "Location"
