@@ -2,17 +2,25 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://robguilar.com/categories/</loc><lastmod>2023-05-20T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/categories/</loc><lastmod>2024-01-15T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/fastapi/</loc><lastmod>2024-01-15T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/genai/</loc><lastmod>2024-01-15T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/posts/genai_pokemon_strategy_assistant/</loc><lastmod>2024-01-15T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/gpt-4/</loc><lastmod>2024-01-15T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/langchain/</loc><lastmod>2024-01-15T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/llm/</loc><lastmod>2024-01-15T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/posts/</loc><lastmod>2024-01-15T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/categories/projects/</loc><lastmod>2024-01-15T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/rag/</loc><lastmod>2024-01-15T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/</loc><lastmod>2024-01-15T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/</loc><lastmod>2024-01-15T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://robguilar.com/tags/vector-db/</loc><lastmod>2024-01-15T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://robguilar.com/tags/google-cloud/</loc><lastmod>2023-05-20T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://robguilar.com/tags/kedro/</loc><lastmod>2023-05-20T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://robguilar.com/tags/kmeans/</loc><lastmod>2023-05-20T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://robguilar.com/posts/brawlstars_retention_pipeline/</loc><lastmod>2023-05-20T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://robguilar.com/posts/</loc><lastmod>2023-05-20T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://robguilar.com/categories/projects/</loc><lastmod>2023-05-20T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://robguilar.com/tags/retention-metrics/</loc><lastmod>2023-05-20T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://robguilar.com/</loc><lastmod>2023-05-20T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://robguilar.com/tags/spark/</loc><lastmod>2023-05-20T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://robguilar.com/tags/</loc><lastmod>2023-05-20T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://robguilar.com/tags/unsupervised-models/</loc><lastmod>2023-05-20T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://robguilar.com/posts/anova_dota/</loc><lastmod>2022-07-24T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://robguilar.com/tags/bootstrapping/</loc><lastmod>2022-07-24T21:57:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

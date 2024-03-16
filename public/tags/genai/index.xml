@@ -1,0 +1,794 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>GenAI - Tag - Roberto Aguilar</title>
+        <link>https://robguilar.com/tags/genai/</link>
+        <description>GenAI - Tag - Roberto Aguilar</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is developed and posted only under Roberto&#39;s property</copyright><lastBuildDate>Mon, 15 Jan 2024 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://robguilar.com/tags/genai/" rel="self" type="application/rss+xml" /><item>
+    <title>GenAI-Driven Pokémon Go Companion App: Augmenting onboarding experience with RAG</title>
+    <link>https://robguilar.com/posts/genai_pokemon_strategy_assistant/</link>
+    <pubDate>Mon, 15 Jan 2024 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/genai_pokemon_strategy_assistant/</guid>
+    <description><![CDATA[<p><strong>Abstract</strong>: This article introduces an E2E application aimed at enhancing the onboarding experience for new Pokémon Go players through a Langchain-framework-based app that integrates with the OpenAI API, leveraging GPT-4&rsquo;s capabilities. Central to the application is a GenAI-powered Pokémon index, designed as a companion to reduce new user friction and deepen understanding of the game&rsquo;s universe. By employing a Retrieval-Augmented Generation system with FAISS, Meta&rsquo;s vector database, the app ensures information retrieval. With a workflow controlled entirely by a LLM, it offers functionalities such as Pokémon information, squad creation, and defense strategies. The app is aiming to improve user retention, widen the game&rsquo;s demographic reach, and ease the learning curve. The project shows the potential of linking AI with mobile gaming to craft intuitive, engaging platforms to improve user retention and game understanding among newcomers.</p>
+<hr>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>Looking for an interactive experience?<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">🚀 Clone the source code from Github, available <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/tree/master">here</a>, then follow the instructions on the README file to install the Application on your local environment</div>
+        </div>
+    </div>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/2sj2iQyBTQs" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h2 id="-introduction-to-problem">⚠️ Introduction to problem</h2>
+<p>Introducing a GenAI companion app for guiding new users in Pokémon Go makes a lot of sense when we look at the challenges the community faces. Pokémon Go isn&rsquo;t just a game; it&rsquo;s a phenomenon that has captured the attention of millions, combining engaging gameplay with real-world exploration.</p>
+<p>In 2023, the game boasted <a href="https://playercounter.com/pokemon-go-player-count/" target="_blank" rel="noopener noreffer">145 million MAU</a>, showcasing its massive appeal. Despite experiencing a dip in revenue in 2022, dropping to $0.77 billion from its peak, Pokémon Go continues to draw in a vast number of players as mentioned by <a href="https://www.businessofapps.com/data/pokemon-go-statistics/" target="_blank" rel="noopener noreffer">Mansoor Iqbal</a>.</p>
+<p>One key aspect of Pokémon Go&rsquo;s success is its broad and diverse player base. The demographics are varied, with a significant number of young adults playing the game. Additionally, there&rsquo;s a pretty balanced gender distribution among players, with 45.1% male and 54.9% female according to <a href="https://playercounter.com/pokemon-go-player-count/" target="_blank" rel="noopener noreffer">Player Counter</a>. This diversity speaks volumes about the game&rsquo;s ability to attract and engage a wide range of people.</p>
+<p></p>
+<p>The latest graph from <a href="https://www.statista.com/statistics/589197/pokemon-go-players-us-age/" target="_blank" rel="noopener noreffer">Statista</a> reveals an intriguing trend: a significant drop in the application&rsquo;s usage among users aged between 18 and 54, who previously used the app but now do not. Conversely, users above 55 have shown the opposite behavior, demonstrating increased engagement. This information is particularly crucial given that most users are young adults; however, daily engagement is something that should be measured using at least D1 to D7 Retention for a clearer diagnosis.</p>
+<p>Understanding DAU behavior is vital for a game generating $4 million in daily revenue, as reported by <a href="https://sensortower.com/" target="_blank" rel="noopener noreffer">SensorTower</a>. However, the graph does not suggest that <a href="https://nianticlabs.com/support/pokemongo?hl=en" target="_blank" rel="noopener noreffer">Niantic</a> may need to do more to help new users learn the game and keep them engaged.</p>
+<p>Drawing on these insights, it&rsquo;s clear that a GenAI companion app could fulfill several key roles:</p>
+<ul>
+<li><strong>Onboarding and Education</strong>: This function would help newcomers grasp the fundamental aspects of the game, including basic rules and strategic approaches. By demystifying the initial learning curve, the app ensures that new players can quickly become competent and enjoy their gaming experience.</li>
+<li><strong>Adaptation Support</strong>: As games evolve, introducing new features or temporary changes can sometimes confuse even the most experienced players. Here, the GenAI companion app steps in to offer timely updates and tutorials, helping players adapt and continue to enjoy the game without interruption.</li>
+<li><strong>Guidance for New Joiners in the Pokemon Saga</strong>: Specifically tailored to those new to the Pokemon series, this feature of the app would act as a QA support system. It addresses common queries and challenges that newcomers face, ensuring they feel supported as they embark on their Pokemon journey.</li>
+</ul>
+<h3 id="hypothesis">Hypothesis</h3>
+<p>Following the perspective provided by the previous data, and given the limited availability of real data, it will be assumed as a base hypothesis that the creation of a complementary application will serve to substantially improve the key roles mentioned in the following hypothesis.</p>
+<ul>
+<li>H_0 : The companion app will significantly support onboarding, and offer adaptive assistance, thereby facilitating a smoother introduction for new members to the Pokémon series.</li>
+</ul>
+<p>Now, under the premise that there must be enough statistical evidence to reject the null hypothesis, the following technical article will be explained, which will show the architecture and development of this GenAI application, but is not intended to be used as professional advice or consultation.</p>
+<p></p>
+<p>Source: Remco Braas</p>
+<h3 id="potential-stakeholders">Potential Stakeholders</h3>
+<ul>
+<li>Programmers: Tasked with developing the technical infrastructure for GenAI integration, augmented reality features, and ensuring smooth app functionality across devices.</li>
+<li>Testers: Essential for identifying bugs and ensuring the GenAI interactions, with augmented reality features work as intended across various devices and real-world scenarios.</li>
+<li>Publisher: Interested in the market potential of combining Pokémon Go&rsquo;s popularity with cutting-edge GenAI technology to attract new players and retain existing ones.</li>
+</ul>
+<p><strong>Note:</strong> To facilitate the understanding of the roles of the development team, I invite you to take a look at <strong><a href="https://www.robguilar.com/posts/gamedev_structure/" target="_blank" rel="noopener noreffer">this</a></strong> diagram that I designed.</p>
+<hr>
+<p>⚠️ Audience message: If the theoretical and technical details of this article are not of your interest, feel free to jump directly to the <strong>Application Workflow</strong> section.</p>
+<hr>
+<h2 id="-about-the-model">📥 About the model</h2>
+<p>This GenAI app uses <a href="https://openai.com/gpt-4" target="_blank" rel="noopener noreffer">OpenAI&rsquo;s GPT-4</a> by default for its advanced NLP capabilities. However, understanding the various needs of users, I incorporated a feature that allows easy replacement of the AI model through a simple parameter adjustment, during the <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant" target="_blank" rel="noopener noreffer">initialization</a> of the OpenAI Chatbot instance.</p>
+<p>The customization option ensures that users can align application performance with their specific requirements, balancing factors such as computational efficiency, cost, and task specificity, this one can be modified in the <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/1173db1f4137165db8115142812660ad365ba1bf/conf/global_conf.yml#L5" target="_blank" rel="noopener noreffer">global_conf.yml</a> file of the repository.</p>
+<h2 id="-architecture-components">🏗️ Architecture components</h2>
+<p>To grasp the application workflow, it&rsquo;s important to first familiarize with the components that make up the architecture and understand their functionalities. To aid in this explanation, let’s refer to the following architecture diagram, which provides a comprehensive overview.</p>
+<p></p>
+<h3 id="-setup-loader">📦 Setup Loader</h3>
+<p>When initializing the application or invoking the LLM, the first step is crucial but might not be showed in the last diagram. This step ensures the consistent return of the same LLM model instance, along with essential components like the <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/.env" target="_blank" rel="noopener noreffer">environment configuration</a>, the logger, a <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/agents/callbacks_agent.py" target="_blank" rel="noopener noreffer">callback handler</a> for agent’s monitoring, and the <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/conf/prompt_template_library.yml" target="_blank" rel="noopener noreffer">prompt library</a>.</p>
+<p>This consistency is achieved through the Singleton design pattern. Essentially, this pattern ensures that every call to <code>SetupLoader()</code> results in the return of the identical instance configuration. By doing so, it guarantees the model&rsquo;s settings, such as temperature and other configurations remain uniform and constant across the server.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">SetupLoader</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34; -- Singleton design pattern to instantiate the application --
+</span><span class="s2">    Validation: Ensures that subsequent calls to SetupLoader() will return the same
+</span><span class="s2">    instance configuration.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="n">_instance</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_is_initialized</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SetupLoader</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_model</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">load_dotenv</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_is_initialized</span><span class="p">:</span>  <span class="c1"># Ensure __init__ is only executed once</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setup_logging</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_setup_environment</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">prompt_template_library</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setup_prompt_library</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">global_conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setup_global_conf</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chat_openai</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setup_chat_openai</span><span class="p">(</span>
+                <span class="n">callbacks</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_setup_callbacks</span><span class="p">()</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_is_initialized</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="n">new_model</span><span class="p">:</span>
+            <span class="c1"># After the first initialization, a new model can be created</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chat_openai</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setup_chat_openai</span><span class="p">(</span>
+                <span class="n">callbacks</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_setup_callbacks</span><span class="p">()</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_setup_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_setup_prompt_library</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">prompt_template_library</span>
+
+    <span class="k">def</span> <span class="nf">_setup_global_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">global_conf</span>
+
+    <span class="k">def</span> <span class="nf">_setup_callbacks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">AgentCallbackHandler</span><span class="p">()]</span>
+
+    <span class="k">def</span> <span class="nf">_setup_environment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&#34;&#34;&#34;Set the OpenAI API key from global_conf.yml if the user defined it.&#34;&#34;&#34;</span>
+        <span class="k">if</span> <span class="n">global_conf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;OPENAI_API_KEY&#34;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&#34;OPENAI_API_KEY&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_conf</span><span class="p">[</span><span class="s2">&#34;OPENAI_API_KEY&#34;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_setup_chat_openai</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;OPENAI_API_KEY&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ChatOpenAI</span><span class="p">(</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="n">global_conf</span><span class="p">[</span><span class="s2">&#34;MODEL_CREATIVITY&#34;</span><span class="p">],</span>
+            <span class="n">model_name</span><span class="o">=</span><span class="n">global_conf</span><span class="p">[</span><span class="s2">&#34;MODEL_NAME&#34;</span><span class="p">],</span>
+            <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>It&rsquo;s worth noting there&rsquo;s a special parameter, <code>new_model</code>, designed for scenarios where a new instance creation is explicitly required. This option adds flexibility for use cases that demand refreshing the LLM settings.</p>
+<h3 id="-tagging">📦 Tagging</h3>
+<p><strong>Components</strong>: Detect Intent</p>
+<p>When examining the diagram&rsquo;s structure, we can identify a step that plays a pivotal role: evaluating user input and deciding the subsequent path for redirecting requests or questions. All this will happen on the first step of the <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/src/intent_handler.py#L55" target="_blank" rel="noopener noreffer">IntentHandler</a>.</p>
+<p>This task is achieved through the implementation of a <a href="https://python.langchain.com/docs/use_cases/tagging" target="_blank" rel="noopener noreffer">Tagging strategy</a>, which is built upon a base Pydantic model. Put simply, this process is similar to a Named Entity Recognition system. However, a difference is the limitation to a predefined set of categories for text classification.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">langchain.output_parsers.openai_functions</span> <span class="kn">import</span> <span class="n">PydanticOutputFunctionsParser</span>
+<span class="kn">from</span> <span class="nn">langchain_core.pydantic_v1</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+
+<span class="k">class</span> <span class="nc">IntentTagger</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Tag the piece of text with particular intent type, and detect the text
+</span><span class="s2">    structure describing the intent&#34;&#34;&#34;</span>
+
+    <span class="n">intent_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&#34;Intent type expressed in the text, must take one of the &#34;</span>
+        <span class="s2">&#34;functionalities as: &#39;defense_suggestion&#39;, &#39;information_request&#39; or &#34;</span>
+        <span class="s2">&#34;&#39;squad_build&#39;&#34;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">intent_structure</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&#34;The type of sentence structure used to detect the intent must &#34;</span>
+        <span class="s2">&#34;take one of the values: &#39;pokemon_names&#39;, &#39;natural_language_question&#39; or &#34;</span>
+        <span class="s2">&#34;&#39;natural_language_description&#39;&#34;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">intent_parser</span> <span class="o">=</span> <span class="n">PydanticOutputFunctionsParser</span><span class="p">(</span><span class="n">pydantic_schema</span><span class="o">=</span><span class="n">IntentTagger</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>intent_type</code> can be classified include:</p>
+<ul>
+<li><code>defense_suggestion</code>: Prompt mentions that an unknown Pokémon has appeared and the user needs a suggestion to use a Pokémon against it. The user must provide the name of the Pokémon as part of the input.</li>
+<li><code>information_request</code>: The user wants to know more about a Pokémon. In the input, the user must provide a request for information on one or multiple entities.</li>
+<li><code>squad_build</code>: The user wants to build a squad of Pokémon based on the opponent&rsquo;s Pokémon types. The user must provide a list of Pokémon names as part of the input.</li>
+</ul>
+<p>And, the <code>intent_structure</code>, which describe the syntactic composition of the text, can be classified in:</p>
+<ul>
+<li><code>pokemon_names</code>: Sentence with the name of one or more Pokémon explicitly mentioned in the text with an expressed request.</li>
+<li><code>natural_language_description</code>: Sentence with a description of a Pokémon in natural language without explicitly mentioning the name of the Pokémon with the intention of guessing what the Pokémon is.</li>
+<li><code>natural_language_question</code>: Sentence with a question about the Pokémon whose name is mentioned explicitly, asking for a specific attribute(s) belonging to the Pokémon entity.</li>
+</ul>
+<p>Note that <code>intent_parser</code> helps structure the LLM response, meaning that the output will be consistently returned as a Pydantic object, and based on this attributes, the system will define where to redirect the request.</p>
+<h3 id="-named-entity-recognition-ner">📦 Named Entity Recognition (NER)</h3>
+<p><strong>Components</strong>: Gather Name Entity | Gather Desc. Entities</p>
+<p>Also known as <a href="https://python.langchain.com/docs/use_cases/extraction/quickstart#multiple-entities" target="_blank" rel="noopener noreffer">Multiple Extraction</a> approach, this phase involves a general procedure that incorporates Pydantic models, which will be used for various intents presented in the architecture. In this specific instance, a Pydantic model functions as an entity object.</p>
+<p>It is characterized by defined attributes that are essential for the <a href="https://en.wikipedia.org/wiki/Named-entity_recognition" target="_blank" rel="noopener noreffer">Named Entity Recognition</a> extraction process. Let’s refer to the following code example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">langchain.output_parsers.openai_functions</span> <span class="kn">import</span> <span class="n">PydanticOutputFunctionsParser</span>
+<span class="kn">from</span> <span class="nn">langchain.pydantic_v1</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+
+<span class="k">class</span> <span class="nc">PokemonEntity</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Extract the piece of text with the Pokémon name&#34;&#34;&#34;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&#34;Name of the Pokémon mentioned in text&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">PokemonEntityList</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Extract list of pieces of text with Pokémon names&#34;&#34;&#34;</span>
+
+    <span class="n">name_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PokemonEntity</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&#34;List of names of the Pokémon mentioned in text&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[]</span>
+    <span class="p">)</span>
+
+<span class="n">pokemon_entity_parser</span> <span class="o">=</span> <span class="n">PydanticOutputFunctionsParser</span><span class="p">(</span><span class="n">pydantic_schema</span><span class="o">=</span><span class="n">PokemonEntityList</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Here, the <code>PokemonEntity</code> will represent a Pokemon named in the prompt, and <code>name</code> is the identifiable entity attribute with its respective data type. However, the real challenge arises when we introduce multiple names into the prompt. This is where the <code>PokemonEntityList</code> comes into play.</p>
+<p>The advantage of the <code>PokemonEntityList</code> is quite significant. It allows for the addition of more attributes to the <code>PokemonEntity</code> class seamlessly. This feature ensures that the LLM can accurately determine which entity each attribute belongs to.</p>
+<p>To put this into perspective, consider a scenario where the prompt given is <em>&ldquo;Charizard and Treecko are fire and grass type Pokémon respectively&rdquo;</em>. The output structure generated from this prompt is both efficient and logical, demonstrating the system&rsquo;s capability to assign entities, simply great:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">PokemonEntityList</span><span class="o">.</span><span class="n">name_list</span> <span class="o">=</span> <span class="p">[</span>
+			<span class="n">PokemonEntity</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;Charizard&#34;</span><span class="p">,</span> <span class="n">pokemon_type</span><span class="o">=</span><span class="s2">&#34;Fire&#34;</span><span class="p">),</span> <span class="n">PokemonEntity</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;Treecko&#34;</span><span class="p">,</span> <span class="n">pokemon_type</span><span class="o">=</span><span class="s2">&#34;Grass&#34;</span><span class="p">)</span>
+<span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This way, a chain is created and invoked by converting the Pydantic class into an OpenAI function.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_pokemon_entity_chain</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RunnableSequence</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;Create a chain that can be used to identify the Pokémon entities of a user input
+</span><span class="s2">    by using an Extraction approach.
+</span><span class="s2">    Returns:
+</span><span class="s2">        RunnableSequence: Language model chain structured as RunnableSequence.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">pokemon_template</span> <span class="o">=</span> <span class="n">dedent</span><span class="p">(</span>
+        <span class="n">prompt_template_library</span><span class="p">[</span><span class="s2">&#34;stage_1_pokemon_entity_template&#34;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">pokemon_entity_template</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
+        <span class="p">[(</span><span class="s2">&#34;system&#34;</span><span class="p">,</span> <span class="n">pokemon_template</span><span class="p">),</span> <span class="p">(</span><span class="s2">&#34;human&#34;</span><span class="p">,</span> <span class="s2">&#34;</span><span class="si">{input}</span><span class="s2">&#34;</span><span class="p">)]</span>
+    <span class="p">)</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">base_llm</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="n">convert_pydantic_to_openai_function</span><span class="p">(</span><span class="n">PokemonEntityList</span><span class="p">)],</span>
+        <span class="n">function_call</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;PokemonEntityList&#34;</span><span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pokemon_entity_template</span> <span class="o">|</span> <span class="n">model</span> <span class="o">|</span> <span class="n">pokemon_entity_parser</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="-api-tooling">📦 API Tooling</h3>
+<p><strong>Components</strong>: Gather Information</p>
+<p>Langchain provides two solutions to <a href="https://python.langchain.com/docs/use_cases/tool_use/" target="_blank" rel="noopener noreffer">augment the output of LLMs</a> through two primary methods: &ldquo;Agents&rdquo; and &ldquo;Chains.&rdquo; The &ldquo;Agents&rdquo; method involves calling an agent that intelligently selects and utilizes the necessary tools as often as needed to fulfill a request. This process is automatic, leveraging the agent&rsquo;s ability to determine the most suitable tool for the task at hand.</p>
+<p>On the other hand, &ldquo;Chains&rdquo; offers a more <a href="https://python.langchain.com/docs/use_cases/tool_use/prompting#choosing-from-multiple-tools" target="_blank" rel="noopener noreffer">tailored approach</a>, which is particularly beneficial for our specific needs. By employing &ldquo;Chains&rdquo;, we can make a customized Pokemon API wrapper that functions as an OpenAI tool.</p>
+<p></p>
+<p>Source: Langchain Documentation</p>
+<p>In the previous illustration, we outlined a process flow. Here, we can go deeper into each step:</p>
+<ol>
+<li><strong>Input</strong>: The system begins by reading the natural language input provided by the user.</li>
+<li><strong>Parser</strong>: Next in the interpretation, the system employs a parser to analyze the type of input received. This analysis is essential for identifying the most appropriate tool within the model that is suited for processing the given input. The parser acts as a bridge, connecting the input with its relevant processing tool.</li>
+<li><strong>Create Arguments</strong>: Once the appropriate tool is identified, the system then proceeds to formulate the necessary arguments required to utilize the tool effectively. These arguments, along with the names of the selected tools, are temporarily stored in an output.</li>
+<li><strong>Tool Mapping</strong>: In the final step, the prepared arguments are forwarded to the actual function designated for the task. The system then executes the function, extracting the outputs generated.</li>
+</ol>
+<p>Following this structured approach, the API tool code is designed as shown below:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@tool</span><span class="p">(</span><span class="s2">&#34;pokemon_api_wrapper&#34;</span><span class="p">,</span> <span class="n">args_schema</span><span class="o">=</span><span class="n">ToolingEntry</span><span class="p">,</span> <span class="n">return_direct</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">pokemon_api_wrapper</span><span class="p">(</span><span class="n">name_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;Useful for when you need to request information from the Pokémon API,
+</span><span class="s2">    considering a single Pokémon Entity or several of them as input.&#34;&#34;&#34;</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">pokepy</span><span class="o">.</span><span class="n">V2Client</span><span class="p">()</span>
+    <span class="n">pokemon_info_collection</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">pokemon_name</span> <span class="ow">in</span> <span class="n">name_list</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34; PokemonAPIWrapper: Information Search &#34;</span><span class="p">)</span>
+            <span class="n">pokemon_data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_pokemon</span><span class="p">(</span><span class="n">pokemon_name</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+            <span class="n">pokemon</span> <span class="o">=</span> <span class="n">pokemon_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="n">pokemon</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="s2">&#34;stats&#34;</span><span class="p">:</span> <span class="p">{</span><span class="n">stat</span><span class="o">.</span><span class="n">stat</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">stat</span><span class="o">.</span><span class="n">base_stat</span> <span class="k">for</span> <span class="n">stat</span> <span class="ow">in</span> <span class="n">pokemon</span><span class="o">.</span><span class="n">stats</span><span class="p">},</span>
+                <span class="s2">&#34;height&#34;</span><span class="p">:</span> <span class="n">pokemon</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
+                <span class="s2">&#34;weight&#34;</span><span class="p">:</span> <span class="n">pokemon</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span>
+                <span class="s2">&#34;types&#34;</span><span class="p">:</span> <span class="p">[</span><span class="n">type_slot</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">type_slot</span> <span class="ow">in</span> <span class="n">pokemon</span><span class="o">.</span><span class="n">types</span><span class="p">],</span>
+                <span class="s2">&#34;abilities&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="n">ability_slot</span><span class="o">.</span><span class="n">ability</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">ability_slot</span> <span class="ow">in</span> <span class="n">pokemon</span><span class="o">.</span><span class="n">abilities</span>
+                <span class="p">],</span>
+                <span class="s2">&#34;sprites&#34;</span><span class="p">:</span> <span class="n">pokemon</span><span class="o">.</span><span class="n">sprites</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span>
+            <span class="p">}</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34; PokemonAPIWrapper: Types Search &#34;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">info</span><span class="p">[</span><span class="s2">&#34;types&#34;</span><span class="p">]:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># Extract Damage Relations</span>
+                    <span class="n">info</span><span class="p">[</span><span class="s2">&#34;damage_relations&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                        <span class="n">client</span><span class="o">.</span><span class="n">get_type</span><span class="p">(</span><span class="n">type_slot</span><span class="p">)</span> <span class="k">for</span> <span class="n">type_slot</span> <span class="ow">in</span> <span class="n">info</span><span class="p">[</span><span class="s2">&#34;types&#34;</span><span class="p">]</span>
+                    <span class="p">]</span>
+                    <span class="c1"># Overwrite Damage Relations</span>
+                    <span class="n">damage_relations</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="s2">&#34;damage_relations&#34;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">damage_relations</span>
+                    <span class="n">info</span><span class="p">[</span><span class="s2">&#34;damage_relations&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="n">damage_type</span><span class="p">:</span> <span class="n">damage_relations</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">damage_type</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+                        <span class="k">for</span> <span class="n">damage_type</span> <span class="ow">in</span> <span class="n">damage_relations</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="n">damage_type</span> <span class="o">!=</span> <span class="s2">&#34;_subresource_map&#34;</span>
+                        <span class="ow">and</span> <span class="n">damage_relations</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">damage_type</span><span class="p">)</span> <span class="o">!=</span> <span class="p">[]</span>
+                    <span class="p">}</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;No &#39;damage_relations&#39; were extracted: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+                    <span class="n">info</span><span class="p">[</span><span class="s2">&#34;damage_relations&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                    <span class="k">pass</span>
+
+            <span class="n">pokemon_info_collection</span><span class="p">[</span><span class="n">pokemon_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">info</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&#34; PokemonAPIWrapper: Information of &#39;</span><span class="si">{</span><span class="n">pokemon_name</span><span class="si">}</span><span class="s2">&#39; was extracted &#34;</span>
+            <span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ToolException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Tool Error handling &#39;</span><span class="si">{</span><span class="n">pokemon_name</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pokemon_info_collection</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="-retrieval-augmented-generation---retrieval-qa">📦 Retrieval-Augmented Generation - Retrieval QA</h3>
+<p><strong>Components</strong>: Gather Answer | Search Sim. Desc | Gather Description | Gather Defense Suggestion | Gather Squad Suggestion</p>
+<p>For better understanding, first let’s break down this kind of component into two key parts, focusing on how we handle data and answer questions using Large Language Models:</p>
+<ol>
+<li><strong>Retrieval-Augmented Generation (RAG)</strong>: This method uses a two-step process. First, it finds relevant information files (e.g.: Pokemon Wiki as PDF) related to the input. Then, it combines this information with the original request to create a response. This approach is great for generating detailed and enhanced descriptions.</li>
+<li><strong>RetrievalQA</strong>: This strategy is all about answering questions. It searches for and retrieves information related to the question from a knowledge base (e.g.: Vector Store). Then, it uses this information to either directly provide an answer or to create one. In such a system, when a question is asked, the model retrieves relevant documents or passages from a knowledge base and then either extracts or generates an answer based on this chunk of information.</li>
+</ol>
+<p>☑️ <strong>Vector Store</strong></p>
+<p>To implement these methods, we&rsquo;re using a tool Vector Store FAISS, created by <a href="https://engineering.fb.com/2017/03/29/data-infrastructure/faiss-a-library-for-efficient-similarity-search/" target="_blank" rel="noopener noreffer">Meta AI Research</a>. Faiss is designed for quickly finding information that&rsquo;s similar to your search query, even in huge databases. We chose to use FAISS for its features, explained simply:</p>
+<ul>
+<li>It can search multiple vectors simultaneously, even without a GPU enabled, thanks to its great multithreading capabilities.</li>
+<li>It finds not just the closest match but also the second closest, third closest, and so on, using a Euclidean distance (L2) to search for its similarity.</li>
+<li>It trades precision for speed, e.g.: <em>give an incorrect result 10% of the time with a method that&rsquo;s 10x faster or uses 10x less memory</em>.</li>
+<li>It saves data on the disk instead of using RAM.</li>
+<li>It works with binary vectors, which are simpler than the usual floating-point vectors.</li>
+</ul>
+<p>More details can be found at the <a href="https://github.com/facebookresearch/faiss/wiki" target="_blank" rel="noopener noreffer">Meta’s official wiki</a>.</p>
+<p>☑️ <strong>Process</strong></p>
+<p>After loading the files using Langchain <a href="https://python.langchain.com/docs/modules/data_connection/document_loaders/" target="_blank" rel="noopener noreffer">Document Loaders</a>.</p>
+<p></p>
+<p>Source: Langchain Documentation</p>
+<p><strong>Split</strong>:</p>
+<ul>
+<li>The first steps is to define the splitting strategy using <a href="https://python.langchain.com/docs/modules/data_connection/document_transformers/" target="_blank" rel="noopener noreffer">Text Splitters</a>. The decision between <a href="https://python.langchain.com/docs/modules/data_connection/document_transformers/recursive_text_splitter" target="_blank" rel="noopener noreffer">recursive or character-based text splitting</a> is a preprocessing step to divide the document into manageable chunks. This is important because FAISS operates on vectors, and the text must first be converted into a numerical format (vector representation) that FAISS can work with. The splitting helps in managing document size and ensuring each chunk is meaningful for the vectorization process.</li>
+</ul>
+<p><strong>Embed</strong>:</p>
+<p>Here are two process relevant to this step:</p>
+<ul>
+<li>Vectorization: While FAISS itself doesn&rsquo;t handle the text-to-vector conversion, this step is essential for preparing data for similarity search. The choice of embedding method (like <code>OpenAIEmbeddings</code>) significantly affects the quality of the search results, as it determines how well semantic similarities are captured in the vector space. Embeddings are high-dimensional vectors that represent the semantic content of the text. Each word, sentence, or document is mapped to a point in a high-dimensional space, where the distance between points corresponds to semantic similarity.</li>
+<li>Indexing: involves creating a structured representation of the files that allows for similarity searches.</li>
+</ul>
+<p><strong>Store</strong>:</p>
+<ul>
+<li>Saving the vector store locally means storing the indexed representation of the document chunks. This allows for persistent access to the indexed data for future similarity searches without needing to re-process the original documents. We chose to keep this index in the <a href="https://www.notion.so/GenAI-Driven-Pok-mon-Go-Companion-App-Augmenting-onboarding-experience-with-RAG-82532964edee48a2840355ccc1202585?pvs=21" target="_blank" rel="noopener noreffer">same repository</a> (<code>.faiss</code> &amp; <code>.pkl</code>) for simplicity, but it&rsquo;s also possible to store it in a artifact repository manager like <a href="https://jfrog.com/artifactory/" target="_blank" rel="noopener noreffer">JFrog</a>.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">_index_vector_store</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;Void Function to create an RAG index inside a vector store from the source
+</span><span class="s2">    file.&#34;&#34;&#34;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Loading &amp; Splitting Source File&#34;</span><span class="p">)</span>
+    <span class="n">pdf_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">global_conf</span><span class="p">[</span><span class="s1">&#39;SOURCE_PDF_PATH&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/pokedex_tabletop_content.pdf&#34;</span>
+
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">PyPDFLoader</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">pdf_path</span><span class="p">)</span>
+    <span class="n">documents</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+    <span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">doc</span>
+        <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&#34;&#34;</span>
+    <span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">global_conf</span><span class="p">[</span><span class="s2">&#34;RECURSIVE_SPLITTER&#34;</span><span class="p">]:</span>
+        <span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+            <span class="n">chunk_size</span><span class="o">=</span><span class="mi">1100</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">200</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">text_splitter</span> <span class="o">=</span> <span class="n">CharacterTextSplitter</span><span class="p">(</span>
+            <span class="n">chunk_size</span><span class="o">=</span><span class="mi">1100</span><span class="p">,</span>  <span class="c1"># 60</span>
+            <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+            <span class="n">separator</span><span class="o">=</span><span class="s2">&#34;^([0-9A-Z]+)\.\s([A-Z\s]+)$&#34;</span><span class="p">,</span>
+            <span class="n">is_separator_regex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">docs</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">documents</span><span class="o">=</span><span class="n">documents</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Embedding Source File&#34;</span><span class="p">)</span>
+    <span class="n">vectorstore</span> <span class="o">=</span> <span class="n">FAISS</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">documents</span><span class="o">=</span><span class="n">docs</span><span class="p">,</span> <span class="n">embedding</span><span class="o">=</span><span class="n">OpenAIEmbeddings</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>☑️ Retrieval Chain</p>
+<p>We had the option to utilize a vector store with either a <code>map-reduce</code> approach or a <code>parallel similarity search</code> based on the prompt&rsquo;s context.</p>
+<p>In our specific case, the PDF contains a wiki-style format with one Pokemon per page. This format enables the Recursive Text Splitter to efficiently separate and index each subject (Pokemon), each of which is unique. Therefore, we require only a single chunk per Pokemon || Question.</p>
+<ul>
+<li>A map-reduce approach is not suitable for our needs. Although it can identify and summarize groups of similar chunks, as described by <a href="https://www.perplexity.ai/search/0b752aa8-122c-44c8-a88a-267bde9da075" target="_blank" rel="noopener noreffer">Perplexity.ai</a>, we are only interested in extracting a single, relevant chunk.</li>
+<li>Consequently, we have decided to base our entire architecture on a <a href="https://python.langchain.com/docs/expression_language/how_to/map#parallelize-steps" target="_blank" rel="noopener noreffer">RunnableParallel</a> mechanism. This will allow us to make context searches and assign questions to each document in parallel.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">_get_retrieval_qa_chain</span><span class="p">(</span><span class="n">qa_prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RunnableParallel</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;Create a chain that can be used to performa semantic queries over FAISS Vector
+</span><span class="s2">    Store.
+</span><span class="s2">    Args:
+</span><span class="s2">        qa_prompt (str): QA prompt to be used.
+</span><span class="s2">    Returns:
+</span><span class="s2">        RunnableParallel: Language model chain structured as RunnableParallel.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">new_vectorstore</span> <span class="o">=</span> <span class="n">FAISS</span><span class="o">.</span><span class="n">load_local</span><span class="p">(</span>
+        <span class="n">folder_path</span><span class="o">=</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">global_conf</span><span class="p">[</span><span class="s1">&#39;VECTOR_STORE_PATH&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/pokedex_index_react&#34;</span><span class="p">,</span>
+        <span class="n">embeddings</span><span class="o">=</span><span class="n">OpenAIEmbeddings</span><span class="p">(),</span>
+    <span class="p">)</span>
+    <span class="n">retriever</span> <span class="o">=</span> <span class="n">new_vectorstore</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">()</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="p">(</span>
+        <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;context&#34;</span><span class="p">,</span> <span class="s2">&#34;question&#34;</span><span class="p">],</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">HumanMessagePromptTemplate</span><span class="p">(</span>
+                <span class="n">prompt</span><span class="o">=</span><span class="n">PromptTemplate</span><span class="p">(</span>
+                    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;context&#34;</span><span class="p">,</span> <span class="s2">&#34;question&#34;</span><span class="p">],</span>
+                    <span class="n">template</span><span class="o">=</span><span class="n">dedent</span><span class="p">(</span><span class="n">prompt_template_library</span><span class="p">[</span><span class="n">qa_prompt</span><span class="p">]),</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="n">rag_chain</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">RunnablePassthrough</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">format_docs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&#34;context&#34;</span><span class="p">])))</span>
+        <span class="o">|</span> <span class="n">prompt</span>
+        <span class="o">|</span> <span class="n">base_llm</span>
+        <span class="o">|</span> <span class="n">StrOutputParser</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="c1"># Adding sources to return</span>
+    <span class="n">rag_chain_with_source</span> <span class="o">=</span> <span class="n">RunnableParallel</span><span class="p">(</span>
+        <span class="p">{</span><span class="s2">&#34;context&#34;</span><span class="p">:</span> <span class="n">retriever</span><span class="p">,</span> <span class="s2">&#34;question&#34;</span><span class="p">:</span> <span class="n">RunnablePassthrough</span><span class="p">()}</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">answer</span><span class="o">=</span><span class="n">rag_chain</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">rag_chain_with_source</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="-api-endpoints">📦 API endpoints</h3>
+<p>The entire conditional process is consolidated into a single API endpoint, distinct from the UI&rsquo;s URL, ensuring the UI&rsquo;s independence from the computational resources required for the IntentHandler process. The infrastructure relies on <a href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener noreffer">FastAPI</a>, with a <a href="https://docs.pydantic.dev/latest/" target="_blank" rel="noopener noreffer">Pydantic</a> schema handling the I/O object.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Query</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Query model to handle the user query&#34;&#34;&#34;</span>
+
+    <span class="n">user_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&#34;User query to process&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&#34;/intent_query/&#34;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">process_query</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="n">Query</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Endpoint to handle the intent execution and return the response to the
+</span><span class="s2">    user.</span><span class="se">\n</span><span class="s2">
+</span><span class="s2">    All the responses will be structured same as defined by the corresponding
+</span><span class="s2">    agent in charge or the intent execution by using the `IntentHandler` class.</span><span class="se">\n</span><span class="s2">
+</span><span class="s2">    Finally the response will be returned with the format defined by the
+</span><span class="s2">    `ResponseTemplate` object.</span><span class="se">\n</span><span class="s2">
+</span><span class="s2">    **Note**: The response will be in JSON format which will be used by the streamlit
+</span><span class="s2">    app to display the response.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">intent_handler</span> <span class="o">=</span> <span class="n">IntentHandler</span><span class="p">()</span>
+        <span class="n">intent_handler</span><span class="o">.</span><span class="n">user_input</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">user_query</span>
+        <span class="n">raw_response</span> <span class="o">=</span> <span class="n">intent_handler</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+        <span class="n">final_response</span> <span class="o">=</span> <span class="n">raw_response</span><span class="o">.</span><span class="n">template_structure</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&#34;response&#34;</span><span class="p">:</span> <span class="n">final_response</span><span class="p">}</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&#34;error&#34;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>To separately test the API independently, start the server with the command <code>make api_server</code>, and then access the <a href="http://localhost:8000/docs" target="_blank" rel="noopener noreffer">Swagger UI</a>.</p>
+<h3 id="-user-interface">📦 User Interface</h3>
+<p>The UI dynamically adapts based on the response format, utilizing a custom template generator. This generator feeds data into the Streamlit UI, tailoring the display to match both the intent type and the syntactic structure of the user&rsquo;s prompt. The core of this functionality is a large Python <a href="https://docs.python.org/3/library/dataclasses.html" target="_blank" rel="noopener noreffer">@dataclass</a>, which serves as the response template generator and <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/src/common/response_template.py" target="_blank" rel="noopener noreffer">is accessible for reference</a>.</p>
+<h2 id="-application-workflow">⚡ Application Workflow</h2>
+<p>The application simplifies setting up and deploying APIs built with FastAPI. The <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/README.md" target="_blank" rel="noopener noreffer">README</a> file includes a series of <code>Make</code> targets with a range of functions, from environment setup to API configuration and UI deployment. This section focuses on explaining the workflow and functionalities, rather than the technical details behind them.</p>
+<p>The E2E process is guided by the prompt&rsquo;s <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/conf/prompt_template_library.yml#L6" target="_blank" rel="noopener noreffer">intent (type) and syntax (structure)</a>. Using these, the application with assistance from the LLM, directs the workflow to the appropriate tools. If the response is not recognized, it is redirected to GPT-4&rsquo;s general knowledge, with a banner citing the source on the final response.</p>
+<h3 id="ui-features">UI Features</h3>
+<p>The first step involves familiarizing the user with the response feature. After launching the UI on a local port, a side panel appears on the left (see image below, labeled as 1), featuring a toggle for activating or deactivating JSON mode, set to off by default. This mode presents responses in JSON format (labeled as 2), facilitating debugging or analysis of the response&rsquo;s target within the “Intent Handler” workflow or “Response Formatter” (core components). This by default is set to <code>False</code>.</p>
+<p></p>
+<p>Once we&rsquo;ve defined the output format, the next step involves sending a request to the API. However, the API&rsquo;s response can vary significantly based on the type of intent. As previously discussed in the &ldquo;Tagging&rdquo; component, the Intent Handler can detect multiple combinations of intents. We will detail each of these intents in the following section:</p>
+<h3 id="information-retrieval-intent">Information Retrieval Intent</h3>
+<p>This intent primarily seeks information on one or more Pokémon, with the process adapting to the syntactic structure of the request.</p>
+<p></p>
+<p>There are 3 types of syntactic structures:</p>
+<ol>
+<li><strong>Natural Language Question</strong>: A question about a Pokémon initiates a RetrievalQA process through the Vector Database to find an answer. The Pokémon&rsquo;s name is identified as an entity, triggering an API wrapper request to deliver the final response. <code>E.g.</code>: “<em>Do you know in what kind of habitats I can find a Psyduck?</em>”.</li>
+<li><strong>Natural Language Description</strong>: This involves inputting a description used at identifying a Pokémon. The process selects the most similar document chunk from the Vector Database, including the Pokémon&rsquo;s name. Next, a NER process identifies the Pokémon name within the text, using this entity to make an API request. This retrieves information and structures a description from the Vector Database to formulate the answer. <code>E.g.</code>: “<em>Can you guess which Pokémon is a dual-type Grass/Poison Pokémon known for the plant bulb on its back, which grows into a large plant as it evolves</em>”.</li>
+<li><strong>Single Named Entity</strong>: The simplest approach, it directly uses NER to detect the Pokémon&rsquo;s name. This entity then prompts an API request to obtain information, which is used to form a structured description from the Vector Database to provide the answer. <code>E.g.</code>: “<em>Alright, Pokédex! It&rsquo;s time to find out everything about Snorlax and Pikachu!</em>”.</li>
+</ol>
+<p>The expected structured output look as follows.</p>
+<p></p>
+<h3 id="defense-suggestion-intent">Defense Suggestion Intent</h3>
+<p>This intent aims to offer players advice on defending against Pokémon, useful for capturing Pokémon or winning battles against other players.</p>
+<p></p>
+<p>When a user encounters an unidentified Pokémon and requests a recommendation for a counter Pokémon, they must specify the name of the Pokémon. <code>E.g.</code>: “<em>I stumbled upon a wild Grovyle lounging in the park! Which Pokemon should I choose for an epic battle to defeat it?</em>”.</p>
+<ol>
+<li>Initially, we identify the Pokémon&rsquo;s name as a Named Entity using a <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/agents/pydantic_agent.py#L41" target="_blank" rel="noopener noreffer">Pydantic Class for extraction</a>. This entity is then processed by the system, which aligns the input schema with the corresponding API entry.</li>
+<li>Subsequently, we create an embedding request that highlights the opposing <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/agents/rag_qa_agent.py#L113" target="_blank" rel="noopener noreffer">Pokémon&rsquo;s vulnerabilities</a> based on its type.</li>
+<li>Leveraging this information, the <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/agents/rag_qa_agent.py#L113" target="_blank" rel="noopener noreffer">LLM augment the response</a> using Vector Database context to suggest the most effective Pokémon to use in battle.</li>
+</ol>
+<p>The expected structured output look as follows.</p>
+<p></p>
+<h3 id="squad-builder-intent">Squad Builder Intent</h3>
+<p>This intent facilitates the creation of a Pokémon squad tailored to counter the types of an opponent&rsquo;s Pokémon, in simple words it builds a squad. Users must input a list of the opponent&rsquo;s Pokémon names as part of the prompt. <code>E.g.</code>: “<em>Time to challenge the Fire Gym Leader! He&rsquo;s got a tough team with a Ninetales and Combusken, but I need your help to build a squad</em>”.</p>
+<p></p>
+<ol>
+<li>Initially, the language model identifies each Pokémon in the opponent&rsquo;s squad and creates a vulnerability template for each, similar to the approach in the &ldquo;defensive&rdquo; intent.</li>
+<li>Subsequently, it identifies suggested Pokémon entities and submits them to an API, which returns a structured response for each entity.</li>
+</ol>
+<p>The expected structured output look as follows.</p>
+<p></p>
+<h3 id="sprites-design">Sprites Design</h3>
+<p>Last but not least, each of the answers has a structure with the same format, which provides as part of the API wrapper the sprites of the classic designs of the series.</p>
+<p></p>
+<h2 id="-final-thoughts--takeaways">🗒️ Final thoughts &amp; takeaways</h2>
+<p><strong>What can the stakeholders understand and take in consideration?</strong></p>
+<p>Implementing a GenAI-driven chatbot for user onboarding is beneficial, but it&rsquo;s important to also focus on the quality of supplementary resources, such as wikis. These play a significant role in enhancing response augmentation process. Additionally, scalability demands may require evaluating <a href="https://www.datacamp.com/blog/the-top-5-vector-databases" target="_blank" rel="noopener noreffer">various Vector Database</a> services, including Pinecone, elasticsearch, Cassandra, among others.</p>
+<p>To assess the viability of this approach, it&rsquo;s essential to first evaluate the token consumption for all LLM calls related to each intent.</p>
+<p><strong>What could the stakeholders do to take action?</strong></p>
+<p>Prior to adopting such an approach, a thorough analysis of user needs is crucial. Examining user retention from D1 to D7 across different cohorts (e.g.: demography-based), supported by a <a href="https://www.is.com/community/blog/4-ways-to-boost-ad-monetization-with-user-segmentation/" target="_blank" rel="noopener noreffer">robust segmentation strategy,</a> provides valuable insights into user behavior and needs.</p>
+<p>The current integration serves as a preliminary demonstration. Developing a companion app will require addressing a distinct set of integration requirements.</p>
+<hr>
+<h2 id="ℹ-additional-information">ℹ️ Additional Information</h2>
+<p>Here you have a list of preferred materials for you to explore if you’re interested in similar topics:</p>
+<ul>
+<li><strong>Related Content</strong></li>
+</ul>
+<p>— About <a href="https://www.langchain.com/" target="_blank" rel="noopener noreffer">Langchain</a>.</p>
+<p>— OpenAI models <a href="https://openai.com/pricing" target="_blank" rel="noopener noreffer">Pricing page</a>.</p>
+<p>— Meta’s FAISS <a href="https://github.com/facebookresearch/faiss/wiki/Getting-started" target="_blank" rel="noopener noreffer">tutorials</a>.</p>
+<p>— User Segmentation Strategies by <a href="https://www.is.com/community/blog/4-ways-to-boost-ad-monetization-with-user-segmentation/" target="_blank" rel="noopener noreffer">IronSource from Unity</a>.</p>
+<p>— Pokémon Go <a href="https://niantic.helpshift.com/hc/en/6-pokemon-go/section/180-release-notes-known-issues/" target="_blank" rel="noopener noreffer">release notes</a> by Niantic.</p>
+<ul>
+<li><strong>Augmentation Assets</strong></li>
+</ul>
+<p>The RetrievalQA system was augmented using an unofficial Tabletop <a href="https://www.scribd.com/document/462604648/Pokemon-Tabletop-Adventures-GM-Guide-2-1" target="_blank" rel="noopener noreffer">Pokémon Guide</a>. An official resource is suggested to improve response quality and avoid any bias.</p>
+]]></description>
+</item>
+</channel>
+</rss>
