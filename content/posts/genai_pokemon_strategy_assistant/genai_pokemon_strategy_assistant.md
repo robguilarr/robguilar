@@ -31,6 +31,10 @@ seo:
 
 ---
 
+**:(fas fa-exclamation-circle fa-fw): Important: Any views, material or statements expressed are mines and not those of my employer, read the disclaimer to learn more.[^1]**
+
+---
+
 {{< admonition info "Looking for an interactive experience?" true >}}
 
 :rocket: Clone the source code from Github, available <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/tree/master">here</a>, then follow the instructions on the README file to install the Application on your local environment
@@ -47,7 +51,10 @@ In 2023, the game boasted [145 million MAU](https://playercounter.com/pokemon-go
 
 One key aspect of Pokémon Go's success is its broad and diverse player base. The demographics are varied, with a significant number of young adults playing the game. Additionally, there's a pretty balanced gender distribution among players, with 45.1% male and 54.9% female according to [Player Counter](https://playercounter.com/pokemon-go-player-count/). This diversity speaks volumes about the game's ability to attract and engage a wide range of people.
 
-![Untitled](GenAI-Driven%20Poke%CC%81mon%20Go%20Companion%20App%20Augmenting%20%2082532964edee48a2840355ccc1202585/Untitled.png)
+<figure align="middle">
+  <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_01.png" style="width: 60%">
+  <figcaption style="font-size: 70%;">Source: Statista</figcaption>
+</figure>
 
 The latest graph from [Statista](https://www.statista.com/statistics/589197/pokemon-go-players-us-age/) reveals an intriguing trend: a significant drop in the application's usage among users aged between 18 and 54, who previously used the app but now do not. Conversely, users above 55 have shown the opposite behavior, demonstrating increased engagement. This information is particularly crucial given that most users are young adults; however, daily engagement is something that should be measured using at least D1 to D7 Retention for a clearer diagnosis.
 
@@ -63,11 +70,14 @@ Drawing on these insights, it's clear that a GenAI companion app could fulfill s
 
 Following the perspective provided by the previous data, and given the limited availability of real data, it will be assumed as a base hypothesis that the creation of a complementary application will serve to substantially improve the key roles mentioned in the following hypothesis.
 
-- H_0 : The companion app will significantly support onboarding, and offer adaptive assistance, thereby facilitating a smoother introduction for new members to the Pokémon series.
+- $H_0:$ The companion app will significantly support onboarding, and offer adaptive assistance, thereby facilitating a smoother introduction for new members to the Pokémon series.
 
 Now, under the premise that there must be enough statistical evidence to reject the null hypothesis, the following technical article will be explained, which will show the architecture and development of this GenAI application, but is not intended to be used as professional advice or consultation.
 
-![Source: Remco Braas](GenAI-Driven%20Poke%CC%81mon%20Go%20Companion%20App%20Augmenting%20%2082532964edee48a2840355ccc1202585/Untitled%201.png)
+<figure align="middle">
+  <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_02.png" style="width: 60%">
+  <figcaption style="font-size: 70%;">Source: Remco Braas</figcaption>
+</figure>
 
 Source: Remco Braas
 
@@ -95,7 +105,9 @@ The customization option ensures that users can align application performance wi
 
 To grasp the application workflow, it's important to first familiarize with the components that make up the architecture and understand their functionalities. To aid in this explanation, let’s refer to the following architecture diagram, which provides a comprehensive overview.
 
-![Untitled](GenAI-Driven%20Poke%CC%81mon%20Go%20Companion%20App%20Augmenting%20%2082532964edee48a2840355ccc1202585/Untitled%202.png)
+<figure align="middle">
+  <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_03.png" style="width: 100%">
+</figure>
 
 ### 📦 Setup Loader
 
@@ -283,7 +295,10 @@ Langchain provides two solutions to [augment the output of LLMs](https://python.
 
 On the other hand, "Chains" offers a more [tailored approach](https://python.langchain.com/docs/use_cases/tool_use/prompting#choosing-from-multiple-tools), which is particularly beneficial for our specific needs. By employing "Chains", we can make a customized Pokemon API wrapper that functions as an OpenAI tool.
 
-![Source: Langchain Documentation](https://python.langchain.com/assets/images/tool_chain-3571e7fbc481d648aff93a2630f812ab.svg)
+<figure align="middle">
+  <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_12.png" style="width: 60%">
+  <figcaption style="font-size: 70%;">Source: Langchain Documentation</figcaption>
+</figure>
 
 Source: Langchain Documentation
 
@@ -377,7 +392,10 @@ More details can be found at the [Meta’s official wiki](https://github.com/fac
 
 After loading the files using Langchain [Document Loaders](https://python.langchain.com/docs/modules/data_connection/document_loaders/).
 
-![Source: Langchain Documentation](https://python.langchain.com/assets/images/rag_indexing-8160f90a90a33253d0154659cf7d453f.png)
+<figure align="middle">
+  <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_13.png" style="width: 60%">
+  <figcaption style="font-size: 70%;">Source: Langchain Documentation</figcaption>
+</figure>
 
 Source: Langchain Documentation
 
@@ -525,7 +543,9 @@ The E2E process is guided by the prompt's [intent (type) and syntax (structure)]
 
 The first step involves familiarizing the user with the response feature. After launching the UI on a local port, a side panel appears on the left (see image below, labeled as 1), featuring a toggle for activating or deactivating JSON mode, set to off by default. This mode presents responses in JSON format (labeled as 2), facilitating debugging or analysis of the response's target within the “Intent Handler” workflow or “Response Formatter” (core components). This by default is set to `False`.
 
-![Untitled](GenAI-Driven%20Poke%CC%81mon%20Go%20Companion%20App%20Augmenting%20%2082532964edee48a2840355ccc1202585/Untitled%203.png)
+<figure align="middle">
+  <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_04.png" style="width: 100%">
+</figure>
 
 Once we've defined the output format, the next step involves sending a request to the API. However, the API's response can vary significantly based on the type of intent. As previously discussed in the "Tagging" component, the Intent Handler can detect multiple combinations of intents. We will detail each of these intents in the following section:
 
@@ -533,7 +553,9 @@ Once we've defined the output format, the next step involves sending a request t
 
 This intent primarily seeks information on one or more Pokémon, with the process adapting to the syntactic structure of the request.
 
-![Untitled](GenAI-Driven%20Poke%CC%81mon%20Go%20Companion%20App%20Augmenting%20%2082532964edee48a2840355ccc1202585/Untitled%204.png)
+<figure align="middle">
+  <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_05.png" style="width: 100%">
+</figure>
 
 There are 3 types of syntactic structures:
 
@@ -543,13 +565,17 @@ There are 3 types of syntactic structures:
 
 The expected structured output look as follows.
 
-![Untitled](GenAI-Driven%20Poke%CC%81mon%20Go%20Companion%20App%20Augmenting%20%2082532964edee48a2840355ccc1202585/Untitled%205.png)
+<figure align="middle">
+  <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_06.png" style="width: 100%">
+</figure>
 
 ### Defense Suggestion Intent
 
 This intent aims to offer players advice on defending against Pokémon, useful for capturing Pokémon or winning battles against other players.
 
-![Untitled](GenAI-Driven%20Poke%CC%81mon%20Go%20Companion%20App%20Augmenting%20%2082532964edee48a2840355ccc1202585/Untitled%206.png)
+<figure align="middle">
+  <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_07.png" style="width: 100%">
+</figure>
 
 When a user encounters an unidentified Pokémon and requests a recommendation for a counter Pokémon, they must specify the name of the Pokémon. `E.g.`: “*I stumbled upon a wild Grovyle lounging in the park! Which Pokemon should I choose for an epic battle to defeat it?*”.
 
@@ -559,26 +585,34 @@ When a user encounters an unidentified Pokémon and requests a recommendation fo
 
 The expected structured output look as follows.
 
-![Untitled](GenAI-Driven%20Poke%CC%81mon%20Go%20Companion%20App%20Augmenting%20%2082532964edee48a2840355ccc1202585/Untitled%207.png)
+<figure align="middle">
+  <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_08.png" style="width: 100%">
+</figure>
 
 ### Squad Builder Intent
 
 This intent facilitates the creation of a Pokémon squad tailored to counter the types of an opponent's Pokémon, in simple words it builds a squad. Users must input a list of the opponent's Pokémon names as part of the prompt. `E.g.`: “*Time to challenge the Fire Gym Leader! He's got a tough team with a Ninetales and Combusken, but I need your help to build a squad*”.
 
-![Untitled](GenAI-Driven%20Poke%CC%81mon%20Go%20Companion%20App%20Augmenting%20%2082532964edee48a2840355ccc1202585/Untitled%208.png)
+<figure align="middle">
+  <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_09.png" style="width: 100%">
+</figure>
 
 1. Initially, the language model identifies each Pokémon in the opponent's squad and creates a vulnerability template for each, similar to the approach in the "defensive" intent.
 2. Subsequently, it identifies suggested Pokémon entities and submits them to an API, which returns a structured response for each entity.
 
 The expected structured output look as follows.
 
-![Untitled](GenAI-Driven%20Poke%CC%81mon%20Go%20Companion%20App%20Augmenting%20%2082532964edee48a2840355ccc1202585/Untitled%209.png)
+<figure align="middle">
+  <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_10.png" style="width: 100%">
+</figure>
 
 ### Sprites Design
 
 Last but not least, each of the answers has a structure with the same format, which provides as part of the API wrapper the sprites of the classic designs of the series.
 
-![Untitled](GenAI-Driven%20Poke%CC%81mon%20Go%20Companion%20App%20Augmenting%20%2082532964edee48a2840355ccc1202585/Untitled%2010.png)
+<figure align="middle">
+  <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_11.png" style="width: 70%">
+</figure>
 
 ## 🗒️ Final thoughts & takeaways
 
@@ -615,3 +649,5 @@ Here you have a list of preferred materials for you to explore if you’re inter
 - **Augmentation Assets**
 
 The RetrievalQA system was augmented using an unofficial Tabletop [Pokémon Guide](https://www.scribd.com/document/462604648/Pokemon-Tabletop-Adventures-GM-Guide-2-1). An official resource is suggested to improve response quality and avoid any bias.
+
+[^1]:**Article disclaimer**: The information presented in this article is solely intended for learning purposes and serves as a tool for the author's personal development. The content provided reflects the author's individual perspectives and does not rely on established or experienced methods commonly employed in the field. Please be aware that the practices and methodologies discussed in this article do not represent the opinions or views held by the author's employer. It is strongly advised not to utilize this article directly as a solution or consultation material.

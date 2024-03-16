@@ -159,6 +159,19 @@ Learn more about this academic degree {{< link href="https://global-uploads.webf
 
 ---
 
+#### :(fas fa-user-check fa-fw): Voluteering
+
+{{< admonition type=success title="NVIDIA AI Workbench Beta tester" open=true >}}
+<img width="80" height="80" src="images/nvidia_logo.png" align="left" hspace="10" vspace="10">Contributed to the beta testing of NVIDIA AI Workbench, identifying software issues and providing feedback to improve usability and performance.
+
+Product on testing: Unified, easy-to-use toolkit that allows developers to quickly create, test and customize pretrained generative AI models and LLMs on a PC or workstation, which can scale them to virtually any data center, public cloud or NVIDIA DGX Cloud. Using a simplified user interface enables collaboration across AI project teams and streamlined access to popular repositories like Hugging Face, GitHub and NVIDIA NGC.
+
+Learn more about the product {{< link href="https://www.solidworks.com/" content="here" >}}.
+
+{{< /admonition >}}
+
+---
+
 #### :(fas fa-hiking fa-fw): Personal life & Hobbies
 
 I’m a person who loves to read about issues related to the gaming industry, especially in companies such as Activision Blizzard, Ubisoft, Bethesda, Xbox Studios, Supercell, among others; also in matters of marketing and applicability of Data Analysis in development, design, research and postproduction -- That's why two of my main appeals are **Applied Data Science** and **Game Development**.

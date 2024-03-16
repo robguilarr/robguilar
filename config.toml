@@ -434,7 +434,7 @@ paginate = 20
     param = true
 
     # title for param layout
-    paramTitle = "Data Skill Tree"
+    paramTitle = "Core Interests"
 
     # general description of your site
     # can be write with markdown style
@@ -458,16 +458,16 @@ paginate = 20
 
     # description of your parameter
     [[params.about.parameter]]
-      language = "Engineering"
-      level = "90"
+      language = "AI & Gaming"
+      level = "95"
 
     [[params.about.parameter]]
-      language = "Science"
-      level = "90"
+      language = "Metaverse"
+      level = "95"
 
     [[params.about.parameter]]
-      language = "Analytics"
-      level = "90"
+      language = "F2P Monetization"
+      level = "95"
 
 
   #-----------------------------------------------------------------------

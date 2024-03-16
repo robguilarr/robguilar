@@ -9,6 +9,8 @@
     <pubDate>Mon, 15 Jan 2024 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/genai_pokemon_strategy_assistant/</guid>
     <description><![CDATA[<p><strong>Abstract</strong>: This article introduces an E2E application aimed at enhancing the onboarding experience for new Pokémon Go players through a Langchain-framework-based app that integrates with the OpenAI API, leveraging GPT-4&rsquo;s capabilities. Central to the application is a GenAI-powered Pokémon index, designed as a companion to reduce new user friction and deepen understanding of the game&rsquo;s universe. By employing a Retrieval-Augmented Generation system with FAISS, Meta&rsquo;s vector database, the app ensures information retrieval. With a workflow controlled entirely by a LLM, it offers functionalities such as Pokémon information, squad creation, and defense strategies. The app is aiming to improve user retention, widen the game&rsquo;s demographic reach, and ease the learning curve. The project shows the potential of linking AI with mobile gaming to craft intuitive, engaging platforms to improve user retention and game understanding among newcomers.</p>
 <hr>
+<p><strong><i class="fas fa-exclamation-circle fa-fw"></i>&nbsp;Important: Any views, material or statements expressed are mines and not those of my employer, read the disclaimer to learn more.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></strong></p>
+<hr>
 <div class="details admonition info open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-info-circle fa-fw"></i>Looking for an interactive experience?<i class="details-icon fas fa-angle-right fa-fw"></i>
@@ -26,7 +28,10 @@
 <p>Introducing a GenAI companion app for guiding new users in Pokémon Go makes a lot of sense when we look at the challenges the community faces. Pokémon Go isn&rsquo;t just a game; it&rsquo;s a phenomenon that has captured the attention of millions, combining engaging gameplay with real-world exploration.</p>
 <p>In 2023, the game boasted <a href="https://playercounter.com/pokemon-go-player-count/" target="_blank" rel="noopener noreffer">145 million MAU</a>, showcasing its massive appeal. Despite experiencing a dip in revenue in 2022, dropping to $0.77 billion from its peak, Pokémon Go continues to draw in a vast number of players as mentioned by <a href="https://www.businessofapps.com/data/pokemon-go-statistics/" target="_blank" rel="noopener noreffer">Mansoor Iqbal</a>.</p>
 <p>One key aspect of Pokémon Go&rsquo;s success is its broad and diverse player base. The demographics are varied, with a significant number of young adults playing the game. Additionally, there&rsquo;s a pretty balanced gender distribution among players, with 45.1% male and 54.9% female according to <a href="https://playercounter.com/pokemon-go-player-count/" target="_blank" rel="noopener noreffer">Player Counter</a>. This diversity speaks volumes about the game&rsquo;s ability to attract and engage a wide range of people.</p>
-<p></p>
+<figure align="middle">
+  
+  <figcaption style="font-size: 70%;">Source: Statista</figcaption>
+</figure>
 <p>The latest graph from <a href="https://www.statista.com/statistics/589197/pokemon-go-players-us-age/" target="_blank" rel="noopener noreffer">Statista</a> reveals an intriguing trend: a significant drop in the application&rsquo;s usage among users aged between 18 and 54, who previously used the app but now do not. Conversely, users above 55 have shown the opposite behavior, demonstrating increased engagement. This information is particularly crucial given that most users are young adults; however, daily engagement is something that should be measured using at least D1 to D7 Retention for a clearer diagnosis.</p>
 <p>Understanding DAU behavior is vital for a game generating $4 million in daily revenue, as reported by <a href="https://sensortower.com/" target="_blank" rel="noopener noreffer">SensorTower</a>. However, the graph does not suggest that <a href="https://nianticlabs.com/support/pokemongo?hl=en" target="_blank" rel="noopener noreffer">Niantic</a> may need to do more to help new users learn the game and keep them engaged.</p>
 <p>Drawing on these insights, it&rsquo;s clear that a GenAI companion app could fulfill several key roles:</p>
@@ -38,10 +43,13 @@
 <h3 id="hypothesis">Hypothesis</h3>
 <p>Following the perspective provided by the previous data, and given the limited availability of real data, it will be assumed as a base hypothesis that the creation of a complementary application will serve to substantially improve the key roles mentioned in the following hypothesis.</p>
 <ul>
-<li>H_0 : The companion app will significantly support onboarding, and offer adaptive assistance, thereby facilitating a smoother introduction for new members to the Pokémon series.</li>
+<li>$H_0:$ The companion app will significantly support onboarding, and offer adaptive assistance, thereby facilitating a smoother introduction for new members to the Pokémon series.</li>
 </ul>
 <p>Now, under the premise that there must be enough statistical evidence to reject the null hypothesis, the following technical article will be explained, which will show the architecture and development of this GenAI application, but is not intended to be used as professional advice or consultation.</p>
-<p></p>
+<figure align="middle">
+  
+  <figcaption style="font-size: 70%;">Source: Remco Braas</figcaption>
+</figure>
 <p>Source: Remco Braas</p>
 <h3 id="potential-stakeholders">Potential Stakeholders</h3>
 <ul>
@@ -58,7 +66,9 @@
 <p>The customization option ensures that users can align application performance with their specific requirements, balancing factors such as computational efficiency, cost, and task specificity, this one can be modified in the <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/1173db1f4137165db8115142812660ad365ba1bf/conf/global_conf.yml#L5" target="_blank" rel="noopener noreffer">global_conf.yml</a> file of the repository.</p>
 <h2 id="-architecture-components">🏗️ Architecture components</h2>
 <p>To grasp the application workflow, it&rsquo;s important to first familiarize with the components that make up the architecture and understand their functionalities. To aid in this explanation, let’s refer to the following architecture diagram, which provides a comprehensive overview.</p>
-<p></p>
+<figure align="middle">
+  
+</figure>
 <h3 id="-setup-loader">📦 Setup Loader</h3>
 <p>When initializing the application or invoking the LLM, the first step is crucial but might not be showed in the last diagram. This step ensures the consistent return of the same LLM model instance, along with essential components like the <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/.env" target="_blank" rel="noopener noreffer">environment configuration</a>, the logger, a <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/agents/callbacks_agent.py" target="_blank" rel="noopener noreffer">callback handler</a> for agent’s monitoring, and the <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/conf/prompt_template_library.yml" target="_blank" rel="noopener noreffer">prompt library</a>.</p>
 <p>This consistency is achieved through the Singleton design pattern. Essentially, this pattern ensures that every call to <code>SetupLoader()</code> results in the return of the identical instance configuration. By doing so, it guarantees the model&rsquo;s settings, such as temperature and other configurations remain uniform and constant across the server.</p>
@@ -356,7 +366,10 @@
 <p><strong>Components</strong>: Gather Information</p>
 <p>Langchain provides two solutions to <a href="https://python.langchain.com/docs/use_cases/tool_use/" target="_blank" rel="noopener noreffer">augment the output of LLMs</a> through two primary methods: &ldquo;Agents&rdquo; and &ldquo;Chains.&rdquo; The &ldquo;Agents&rdquo; method involves calling an agent that intelligently selects and utilizes the necessary tools as often as needed to fulfill a request. This process is automatic, leveraging the agent&rsquo;s ability to determine the most suitable tool for the task at hand.</p>
 <p>On the other hand, &ldquo;Chains&rdquo; offers a more <a href="https://python.langchain.com/docs/use_cases/tool_use/prompting#choosing-from-multiple-tools" target="_blank" rel="noopener noreffer">tailored approach</a>, which is particularly beneficial for our specific needs. By employing &ldquo;Chains&rdquo;, we can make a customized Pokemon API wrapper that functions as an OpenAI tool.</p>
-<p></p>
+<figure align="middle">
+  
+  <figcaption style="font-size: 70%;">Source: Langchain Documentation</figcaption>
+</figure>
 <p>Source: Langchain Documentation</p>
 <p>In the previous illustration, we outlined a process flow. Here, we can go deeper into each step:</p>
 <ol>
@@ -497,7 +510,10 @@
 <p>More details can be found at the <a href="https://github.com/facebookresearch/faiss/wiki" target="_blank" rel="noopener noreffer">Meta’s official wiki</a>.</p>
 <p>☑️ <strong>Process</strong></p>
 <p>After loading the files using Langchain <a href="https://python.langchain.com/docs/modules/data_connection/document_loaders/" target="_blank" rel="noopener noreffer">Document Loaders</a>.</p>
-<p></p>
+<figure align="middle">
+  
+  <figcaption style="font-size: 70%;">Source: Langchain Documentation</figcaption>
+</figure>
 <p>Source: Langchain Documentation</p>
 <p><strong>Split</strong>:</p>
 <ul>
@@ -730,11 +746,15 @@
 <p>The E2E process is guided by the prompt&rsquo;s <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/conf/prompt_template_library.yml#L6" target="_blank" rel="noopener noreffer">intent (type) and syntax (structure)</a>. Using these, the application with assistance from the LLM, directs the workflow to the appropriate tools. If the response is not recognized, it is redirected to GPT-4&rsquo;s general knowledge, with a banner citing the source on the final response.</p>
 <h3 id="ui-features">UI Features</h3>
 <p>The first step involves familiarizing the user with the response feature. After launching the UI on a local port, a side panel appears on the left (see image below, labeled as 1), featuring a toggle for activating or deactivating JSON mode, set to off by default. This mode presents responses in JSON format (labeled as 2), facilitating debugging or analysis of the response&rsquo;s target within the “Intent Handler” workflow or “Response Formatter” (core components). This by default is set to <code>False</code>.</p>
-<p></p>
+<figure align="middle">
+  
+</figure>
 <p>Once we&rsquo;ve defined the output format, the next step involves sending a request to the API. However, the API&rsquo;s response can vary significantly based on the type of intent. As previously discussed in the &ldquo;Tagging&rdquo; component, the Intent Handler can detect multiple combinations of intents. We will detail each of these intents in the following section:</p>
 <h3 id="information-retrieval-intent">Information Retrieval Intent</h3>
 <p>This intent primarily seeks information on one or more Pokémon, with the process adapting to the syntactic structure of the request.</p>
-<p></p>
+<figure align="middle">
+  
+</figure>
 <p>There are 3 types of syntactic structures:</p>
 <ol>
 <li><strong>Natural Language Question</strong>: A question about a Pokémon initiates a RetrievalQA process through the Vector Database to find an answer. The Pokémon&rsquo;s name is identified as an entity, triggering an API wrapper request to deliver the final response. <code>E.g.</code>: “<em>Do you know in what kind of habitats I can find a Psyduck?</em>”.</li>
@@ -742,10 +762,14 @@
 <li><strong>Single Named Entity</strong>: The simplest approach, it directly uses NER to detect the Pokémon&rsquo;s name. This entity then prompts an API request to obtain information, which is used to form a structured description from the Vector Database to provide the answer. <code>E.g.</code>: “<em>Alright, Pokédex! It&rsquo;s time to find out everything about Snorlax and Pikachu!</em>”.</li>
 </ol>
 <p>The expected structured output look as follows.</p>
-<p></p>
+<figure align="middle">
+  
+</figure>
 <h3 id="defense-suggestion-intent">Defense Suggestion Intent</h3>
 <p>This intent aims to offer players advice on defending against Pokémon, useful for capturing Pokémon or winning battles against other players.</p>
-<p></p>
+<figure align="middle">
+  
+</figure>
 <p>When a user encounters an unidentified Pokémon and requests a recommendation for a counter Pokémon, they must specify the name of the Pokémon. <code>E.g.</code>: “<em>I stumbled upon a wild Grovyle lounging in the park! Which Pokemon should I choose for an epic battle to defeat it?</em>”.</p>
 <ol>
 <li>Initially, we identify the Pokémon&rsquo;s name as a Named Entity using a <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/agents/pydantic_agent.py#L41" target="_blank" rel="noopener noreffer">Pydantic Class for extraction</a>. This entity is then processed by the system, which aligns the input schema with the corresponding API entry.</li>
@@ -753,19 +777,27 @@
 <li>Leveraging this information, the <a href="https://github.com/robguilarr/genai_pokemon_strategy_assistant/blob/master/agents/rag_qa_agent.py#L113" target="_blank" rel="noopener noreffer">LLM augment the response</a> using Vector Database context to suggest the most effective Pokémon to use in battle.</li>
 </ol>
 <p>The expected structured output look as follows.</p>
-<p></p>
+<figure align="middle">
+  
+</figure>
 <h3 id="squad-builder-intent">Squad Builder Intent</h3>
 <p>This intent facilitates the creation of a Pokémon squad tailored to counter the types of an opponent&rsquo;s Pokémon, in simple words it builds a squad. Users must input a list of the opponent&rsquo;s Pokémon names as part of the prompt. <code>E.g.</code>: “<em>Time to challenge the Fire Gym Leader! He&rsquo;s got a tough team with a Ninetales and Combusken, but I need your help to build a squad</em>”.</p>
-<p></p>
+<figure align="middle">
+  
+</figure>
 <ol>
 <li>Initially, the language model identifies each Pokémon in the opponent&rsquo;s squad and creates a vulnerability template for each, similar to the approach in the &ldquo;defensive&rdquo; intent.</li>
 <li>Subsequently, it identifies suggested Pokémon entities and submits them to an API, which returns a structured response for each entity.</li>
 </ol>
 <p>The expected structured output look as follows.</p>
-<p></p>
+<figure align="middle">
+  
+</figure>
 <h3 id="sprites-design">Sprites Design</h3>
 <p>Last but not least, each of the answers has a structure with the same format, which provides as part of the API wrapper the sprites of the classic designs of the series.</p>
-<p></p>
+<figure align="middle">
+  
+</figure>
 <h2 id="-final-thoughts--takeaways">🗒️ Final thoughts &amp; takeaways</h2>
 <p><strong>What can the stakeholders understand and take in consideration?</strong></p>
 <p>Implementing a GenAI-driven chatbot for user onboarding is beneficial, but it&rsquo;s important to also focus on the quality of supplementary resources, such as wikis. These play a significant role in enhancing response augmentation process. Additionally, scalability demands may require evaluating <a href="https://www.datacamp.com/blog/the-top-5-vector-databases" target="_blank" rel="noopener noreffer">various Vector Database</a> services, including Pinecone, elasticsearch, Cassandra, among others.</p>
@@ -788,6 +820,14 @@
 <li><strong>Augmentation Assets</strong></li>
 </ul>
 <p>The RetrievalQA system was augmented using an unofficial Tabletop <a href="https://www.scribd.com/document/462604648/Pokemon-Tabletop-Adventures-GM-Guide-2-1" target="_blank" rel="noopener noreffer">Pokémon Guide</a>. An official resource is suggested to improve response quality and avoid any bias.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><strong>Article disclaimer</strong>: The information presented in this article is solely intended for learning purposes and serves as a tool for the author&rsquo;s personal development. The content provided reflects the author&rsquo;s individual perspectives and does not rely on established or experienced methods commonly employed in the field. Please be aware that the practices and methodologies discussed in this article do not represent the opinions or views held by the author&rsquo;s employer. It is strongly advised not to utilize this article directly as a solution or consultation material.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
 ]]></description>
 </item>
 <item>
@@ -3239,7 +3279,7 @@ brawlers_collection &gt;&gt; [[CROW, MORTIS, BUZZ], [MORTIS, SURGE, DYNAMIKE]]
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p><strong>Article disclaimer</strong>: The information presented in this article is solely intended for learning purposes and serves as a tool for the author&rsquo;s personal development. The content provided reflects the author&rsquo;s individual perspectives and does not rely on established or experienced methods commonly employed in the field. Please be aware that the practices and methodologies discussed in this article do not represent the opinions or views held by the author&rsquo;s employer. It is strongly advised not to utilize this article directly as a solution or consultation material, as the process of data collection and utilization of Public APIs may introduce biases and inaccuracies. Users are cautioned to exercise caution and discretion when considering its use.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><strong>Article disclaimer</strong>: The information presented in this article is solely intended for learning purposes and serves as a tool for the author&rsquo;s personal development. The content provided reflects the author&rsquo;s individual perspectives and does not rely on established or experienced methods commonly employed in the field. Please be aware that the practices and methodologies discussed in this article do not represent the opinions or views held by the author&rsquo;s employer. It is strongly advised not to utilize this article directly as a solution or consultation material.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
