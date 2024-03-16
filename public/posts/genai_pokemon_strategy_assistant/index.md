@@ -53,8 +53,6 @@ Now, under the premise that there must be enough statistical evidence to reject 
   <figcaption style="font-size: 70%;">Source: Remco Braas</figcaption>
 </figure>
 
-Source: Remco Braas
-
 ### Potential Stakeholders
 
 - Programmers: Tasked with developing the technical infrastructure for GenAI integration, augmented reality features, and ensuring smooth app functionality across devices.
