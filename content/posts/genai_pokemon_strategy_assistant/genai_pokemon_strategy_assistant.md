@@ -298,8 +298,6 @@ On the other hand, "Chains" offers a more [tailored approach](https://python.lan
   <figcaption style="font-size: 70%;">Source: Langchain Documentation</figcaption>
 </figure>
 
-Source: Langchain Documentation
-
 In the previous illustration, we outlined a process flow. Here, we can go deeper into each step:
 
 1. **Input**: The system begins by reading the natural language input provided by the user. 
@@ -394,8 +392,6 @@ After loading the files using Langchain [Document Loaders](https://python.langch
   <img src="https://raw.githubusercontent.com/robguilarr/robguilar-website/main/content/posts/genai_pokemon_strategy_assistant/images/asset_13.png" style="width: 60%">
   <figcaption style="font-size: 70%;">Source: Langchain Documentation</figcaption>
 </figure>
-
-Source: Langchain Documentation
 
 **Split**:
 
