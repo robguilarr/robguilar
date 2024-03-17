@@ -160,7 +160,7 @@ Learn more about this academic degree {{< link href="https://global-uploads.webf
 
 Product on testing: Unified, easy-to-use toolkit that allows developers to quickly create, test and customize pretrained generative AI models and LLMs on a PC or workstation, which can scale them to virtually any data center, public cloud or NVIDIA DGX Cloud. Using a simplified user interface enables collaboration across AI project teams and streamlined access to popular repositories like Hugging Face, GitHub and NVIDIA NGC.
 
-Learn more about the product {{< link href="https://www.solidworks.com/" content="here" >}}.
+Learn more about the product {{< link href="https://www.nvidia.com/en-us/deep-learning-ai/solutions/data-science/workbench/" content="here" >}}.
 
 {{< /admonition >}}
 

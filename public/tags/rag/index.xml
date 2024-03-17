@@ -369,7 +369,6 @@
   
   <figcaption style="font-size: 70%;">Source: Langchain Documentation</figcaption>
 </figure>
-<p>Source: Langchain Documentation</p>
 <p>In the previous illustration, we outlined a process flow. Here, we can go deeper into each step:</p>
 <ol>
 <li><strong>Input</strong>: The system begins by reading the natural language input provided by the user.</li>
@@ -513,7 +512,6 @@
   
   <figcaption style="font-size: 70%;">Source: Langchain Documentation</figcaption>
 </figure>
-<p>Source: Langchain Documentation</p>
 <p><strong>Split</strong>:</p>
 <ul>
 <li>The first steps is to define the splitting strategy using <a href="https://python.langchain.com/docs/modules/data_connection/document_transformers/" target="_blank" rel="noopener noreffer">Text Splitters</a>. The decision between <a href="https://python.langchain.com/docs/modules/data_connection/document_transformers/recursive_text_splitter" target="_blank" rel="noopener noreffer">recursive or character-based text splitting</a> is a preprocessing step to divide the document into manageable chunks. This is important because FAISS operates on vectors, and the text must first be converted into a numerical format (vector representation) that FAISS can work with. The splitting helps in managing document size and ensuring each chunk is meaningful for the vectorization process.</li>
