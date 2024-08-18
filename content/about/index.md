@@ -31,37 +31,37 @@ This journey began with a self-taught venture into Unity as a Game Developer whe
 
 > Analyst, Growth AI - **[CustomerOne](https://www.mckinsey.com/capabilities/growth-marketing-and-sales/solutions/customerone/overview "Learn more")** | Aug 2024 - **Present**
 
-As a Data Scientist specializing in Customer Sales Growth and AI-driven CRM systems, I leverage data and advanced AI techniques to empower customer relationship management and drive sales growth within B2B functionalities.
+As a Data Scientist focused on Customer Sales Growth, I harness data, NLP (Entity Resolution), and AI to elevate AI-driven CRM systems and drive B2B sales growth. My role is all about deploying McKinsey's CustomerOne assets to enhance existing customer relationships, and identify new opportunities.
 
 
 > Data Scientist, Generative AI Core Tech - **[Lilli GenAI](https://www.mckinsey.com/about-us/new-at-mckinsey-blog/meet-lilli-our-generative-ai-tool "Learn more")** | Feb 2024 - Jul 2024
 
-As Data Scientist and Software Engineer at Lilli, McKinsey’s Generative AI live service. I led the creation of the core NER system powered by LLMs, spaCy and GLiNER, to enhance knowledge graph or any consumer queries. My work drove significant advances in document entities parsing and response accuracy, making a tangible impact on our GenAI capabilities.
+As Data Scientist and Software Engineer at Lilli, McKinsey’s Generative AI live service, I led the creation of the core NER system powered by LLMs, spaCy (Curated Transformer without Lemmatizer) and GLiNER, to enhance query parameters of a Knowledge Graph and other consumers. This drove significant advances in entities parsing from documents and response accuracy, making a distinctive impact on our GenAI Client Capabilities.
 
-- Reduced false-negative detection rates by 70% with a custom LLM-powered NER package, implemented on top of the RAG workflow on FastAPI.
-- Enhanced response speed by 71% through GLiNER, improving LLM-based NER processing.
-- Boosted adoption across 5+ workstreams with a few-shot prompt engineering module as a Python Package.
+- Reduced false-negative detection rates by 70% with a custom LLM-powered NER package implemented within the Lilli's RAG workflow using FastAPI.
+- Enhanced response speed by 71% through GLiNER implementation, improving LLM-based NER processing.
+- Boosted NER adoption across 5+ workstreams with a few-shot prompt engineering module as a Python Package.
 
 
 > Data Scientist, CommercialX - **[QuantumBlack AI](https://www.mckinsey.com/capabilities/quantumblack/how-we-help-clients "Learn more")** | Sep 2023 - Jan 2024 
 
-As a Data Scientist at CommercialX, QuantumBlack's retail verticals analytics engine, I focused on developing high-impact solutions in pricing and assortment optimization. My contributions played a critical role in supporting successful client deployments under a BOT model.
+As a Data Scientist at CommercialX, QuantumBlack's retail (B2C) vertical analytics engine, I focused on assetizing high-impact solutions in pricing and assortment optimization use cases, and supporting client deployments under a BOT model.
 
-- 5.2% gross margin uplift achieved for mid-demand products by developing a Python optimization algorithm for gross margin maximization, leveraging XGBoost pricing model outputs, within a 6 pp CPI variation.
-- 4+ hours of runtime reduction realized by engineering a high-performance distributed computing module using PySpark, optimizing data migration between Databricks DBFS and Azure Blob Storage while exporting Gensim-based neural network outputs for product complementarity.
+- 5.2% gross margin uplift achieved for mid-demand products by integrating a Python optimization algorithm for gross margin maximization, leveraging XGBoost pricing model outputs, within a 6 pp CPI variation scenarios.
+- 4+ hours of runtime reduction achieved by engineering a high-performance distributed computing module using PySpark, optimizing data migration between Databricks DBFS and Azure Blob Storage while exporting Gensim-based neural network outputs for product complementarity.
 
 
 > Data Analyst, Growth Marketing & Sales - **[Periscope](https://www.mckinsey.com/capabilities/growth-marketing-and-sales/solutions/periscope/overview "Learn more")** | April 2023 - Aug 2023 
 
-As a Data Engineer on Periscope's comprehensive suite for growth within pricing and promo solutions, I focused on migrating big data workflows for a Fortune 500 North American department store. My work was instrumental in optimizing data processes and infrastructure under a SaaS model.
+As a Data Engineer on Periscope's suite for growth within pricing and promo solutions, I contributed on the migration of inbound data workflows for a Fortune 500 North American department store, becoming instrumental in optimizing data processes and infrastructure under a SaaS model.
 
-- 25TB customer database migrated by seamlessly transitioning from ExasolDB to SparkSQL, optimizing critical inbound pipelines.
-- Enhanced data flow efficiency by implementing a robust infrastructure within Periscope, orchestrated with Jenkins, and integrated with secure SFTP protocols.
+- 25TB customer database migrated by transitioning from ExasolDB to SparkSQL, optimizing critical inbound pipelines.
+- Enhanced dataflow efficiency by securing a robust infrastructure within Periscope, orchestrated with Jenkins, and integrated with secure SFTP protocols.
 
 
 > Junior Data Analyst, Growth Marketing & Sales - **[Periscope](https://www.mckinsey.com/capabilities/growth-marketing-and-sales/solutions/periscope/overview "Learn more")** | March 2022 - Mar 2023
 
-As a Data Scientist and Developer at Periscope, I coded a NLP algorithm for product size and price recommendation management, delivering expert-tailored rule-based solutions for retail pricing and assortment use cases.
+As an Analytics Developer at Periscope, I collaborated with Experts to make a NLP algorithm for product size and price recommendation management, delivering a tailored rule-based solutions for retail pricing use cases.
 
 - 40% speed improvement achieved by optimizing the search and build of product-pricing relationships using a Python TreeNode algorithm, detecting over 5 relationship types in the client’s product shelf assortment.
 - 0.5% profit uplift realized by implementing an AA module that optimized the pricing process, recommending package size relationships within product families based on Cosine similarity clusters.
@@ -77,10 +77,10 @@ Learn more about the responsibilities of this role at {{< link href="https://www
 
 > Junior Business Intelligence Analyst - **[Belcorp](https://www.belcorp.biz/ "Learn more")** | February 2021 - Jul 2021
 
-As a Business Analyst at Belcorp, a leading multinational in Beauty and Personal Care Cosmetics, I supported data-driven solutions that empowered LatAM business teams and managers.
+As a Business Analyst at Belcorp, a leading multinational in Beauty and Personal Care packaged cosmetics, I supported data-driven solutions that empowered LatAM business teams and managers.
 
-- Enabled informed decision-making by developing data analysis tools for LatAM teams, driving actionable commercial insights within a B2C framework.
-- Enhanced service intelligence by integrating BI assets into CRM tasks and designing tailored data collection models for efficient regional visualization.
+- Enabled informed decision-making with data analysis Excel tools for LatAM teams, driving actionable commercial insights within a B2C framework.
+- Enhanced service intelligence by integrating BI assets into CRM tasks and designing tailored data collection models for efficient regional visualization using Tableau.
 - Improved data accessibility by creating user-friendly Tableau dashboards that addressed BI inquiries from Central American personnel, presenting information clearly and effectively.
 
 ---
@@ -93,11 +93,11 @@ Learn more about the responsibilities of this role at {{< link href="https://www
 
 > Enterprise Data & Analytics Intern - **[VMware](https://www.vmware.com/ "Learn more")** | June 2020 - Sep 2020
 
-As a Data Analyst at VMware (Broadcom Inc.), where I supported data analysis initiatives throughout the SaaS cycle, providing actionable insights.
+As a Data Analyst at VMware (Broadcom Inc.), I supported data analysis initiatives throughout the SaaS cycle, providing actionable insights.
 
-- Uncovered key trends and patterns by leading comprehensive data analyses throughout the SaaS cycle, utilizing Tableau for effective data visualization and presentation.
+- Uncovered key trends and patterns by making data analyses throughout the SaaS cycle, utilizing Tableau for effective data visualization and presentation.
 - Ensured compliance by applying diverse statistical techniques for accurate customer data analysis, conducting CTA predictive analysis in R to uphold PEME agreements.
-- Validated Customer 360° integrity by expertly managing data extraction, loading, and reconciliation in Amazon Redshift, directly contributing to the success of major projects.
+- Validated Customer 360° integrity by managing data extraction, loading, and reconciliation in Amazon Redshift, directly contributing to the success of major projects.
 
 ---
 
