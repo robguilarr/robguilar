@@ -234,48 +234,14 @@ paginate = 20
       # Whether to make the table of the contents in the sidebar automatically collapsed
       auto = true
 
-
-    #---------------------------------------------------------------------
-    # Mapbox GL JS config (Mapbox GL JS https://docs.mapbox.com/mapbox-gl-js)
-    #---------------------------------------------------------------------
-    [params.page.mapbox]
-      # Access token of Mapbox GL JS
-      accessToken = "pk.eyJ1IjoiZGlsbG9uenEiLCJhIjoiY2s2czd2M2x3MDA0NjNmcGxmcjVrZmc2cyJ9.aSjv2BNuZUfARvxRYjSVZQ"
-
-      # Style for the light theme
-      lightStyle = "mapbox://styles/mapbox/light-v10?optimize=true"
-
-      # Style for the dark theme
-      darkStyle = "mapbox://styles/mapbox/dark-v10?optimize=true"
-
-      # Whether to add NavigationControl (https://docs.mapbox.com/mapbox-gl-js/api/#navigationcontrol)
-      navigation = true
-
-      # Whether to add GeolocateControl (https://docs.mapbox.com/mapbox-gl-js/api/#geolocatecontrol)
-      geolocate = true
-
-      # Whether to add ScaleControl (https://docs.mapbox.com/mapbox-gl-js/api/#scalecontrol)
-      scale = true
-
-      # Whether to add FullscreenControl (https://docs.mapbox.com/mapbox-gl-js/api/#fullscreencontrol)
-      fullscreen = true
-
     #---------------------------------------------------------------------
     # Social share links in post page
     #---------------------------------------------------------------------
     [params.page.share]
       enable = true
       Twitter = true
-      Facebook = false
       Linkedin = true
-      Mastodon = true
-      Whatsapp = false
-      Pinterest = false
-      HackerNews = false
       Reddit = true
-      Flipboard = false
-      Blogger = false
-      Evernote = false
 
     #---------------------------------------------------------------------
     # Page SEO (Search Engine Optimization) config
@@ -394,7 +360,7 @@ paginate = 20
       title = "Roberto Aguilar"
 
       # Subtitle shown in home page
-      subtitle = "Analyst @ McKinsey & Company, AI & Gaming"
+      subtitle = "Data Scientist @ McKinsey & Company, AI & Gaming"
 
       # Whether to use typeit animation for subtitle
       typeit = false
@@ -431,7 +397,7 @@ paginate = 20
     enable = true
 
     # whether to enable param layout
-    param = true
+    param = false
 
     # title for param layout
     paramTitle = "Core Interests"
@@ -457,17 +423,17 @@ paginate = 20
       desc = "San Jose, CR"
 
     # description of your parameter
-    [[params.about.parameter]]
-      language = "AI & Gaming"
-      level = "95"
+     [[params.about.parameter]]
+       language = "AI & Gaming"
+       level = "95"
 
-    [[params.about.parameter]]
-      language = "Metaverse"
-      level = "95"
+     [[params.about.parameter]]
+       language = "Metaverse"
+       level = "95"
 
-    [[params.about.parameter]]
-      language = "F2P Monetization"
-      level = "95"
+     [[params.about.parameter]]
+       language = "F2P Monetization"
+       level = "95"
 
 
   #-----------------------------------------------------------------------
@@ -592,38 +558,6 @@ paginate = 20
 
       # content hovering on the icon
       title = "Linkedin"
-    
-    #---------------------------------------------------------------------
-    # Figma Specific config
-    #---------------------------------------------------------------------
-    [params.social.figma]
-      # weight when arranging icons (the greater the weight, the later the icon is positioned)
-      weight = 3
-
-      # social ID
-      id = "@robguilarr"
-
-      # prefix of your social link
-      prefix = "https://www.figma.com/"
-
-      # content hovering on the icon
-      title = "Figma"
-
-    #---------------------------------------------------------------------
-    # Instagram Specific config
-    #---------------------------------------------------------------------
-    [params.social.instagram]
-      # weight when arranging icons (the greater the weight, the later the icon is positioned)
-      weight = 4
-
-      # social ID
-      id = "robguilarr"
-
-      # prefix of your social link
-      prefix = "https://www.instagram.com/"
-
-      # content hovering on the icon
-      title = "Instagram"
 
     #---------------------------------------------------------------------
     # Unity Specific config

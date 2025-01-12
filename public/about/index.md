@@ -9,23 +9,23 @@
 
 As a Data Scientist within Growth, Marketing and Sales, I've made a significant impact across various commercial sectors, including tech, consumer goods, and retail. Working closely with clients to deliver production-level assets based on advanced analytics algorithms, deep learning, and GenAI RAG systems for scalable E2E solutions.
 
----
-
-#### :(fas fa-rocket fa-fw): Interests
-
 I've a lifelong interest in combining gaming growth and AI solutions for digital platforms, with a particular focus on free-to-play mobile gaming and the metaverse.
 
-This journey began with a self-taught venture into Unity as a Game Developer when I was young, which sparked my deep interest and laid the foundation for my technical skills in this sector.
+At 15, I taught myself game development in Unity, sparking a journey that evolved from software engineering to deep interests in statistics, algebra, calculus and AI/ML. Early on, I developed solutions to enhance mobile game monetization and retention.
 
 ---
 
 #### :(fas fa-briefcase fa-fw): Experience
 
-{{< admonition type=info title="McKinsey & Company" open=true >}}
+{{< admonition type=info title="McKinsey & Company" open=false >}}
 
-> Analyst, Growth AI - **[CustomerOne](https://www.mckinsey.com/capabilities/growth-marketing-and-sales/solutions/customerone/overview "Learn more")** | Aug 2024 - **Present**
+> Senior Data Scientist, Growth AI - **[CustomerOne](https://www.mckinsey.com/capabilities/growth-marketing-and-sales/solutions/customerone/overview "Learn more")** | Aug 2024 - **Present**
 
-As a Data Scientist focused on Customer Sales Growth, I harness data, NLP (Entity Resolution), and AI to elevate AI-driven CRM systems and drive B2B sales growth. My role is all about deploying McKinsey's CustomerOne assets to enhance existing customer relationships, and identify new opportunities.
+As a Data Scientist focused on Customer Sales Growth, harness NLP, Entity Resolution systems, and AI to drive CRM systems used for B2B sales growth. My role is about deploying McKinsey's CustomerOne assets to enhance existing customer relationships, and identify new opportunities.
+
+- Developed a Leads News scraper tool using Langchain and BingAPI crawler to pull near real-time market events via a GenAI agent, improving lead insights and customer engagement timing.
+- €80M in sales opportunities identified through the POC deployment of a lead generation and opportunity sizing solution using CustomerOne’s proprietary Python engine.
+- Validated customer acquisition potential for medium-sized leads by implementing predictive capture ratio modeling across industry cohort segments in the POC.
 
 
 > Data Scientist, Generative AI Core Tech - **[Lilli GenAI](https://www.mckinsey.com/about-us/new-at-mckinsey-blog/meet-lilli-our-generative-ai-tool "Learn more")** | Feb 2024 - Jul 2024
@@ -39,9 +39,9 @@ As Data Scientist and Software Engineer at Lilli, McKinsey’s Generative AI liv
 
 > Data Scientist, CommercialX - **[QuantumBlack AI](https://www.mckinsey.com/capabilities/quantumblack/how-we-help-clients "Learn more")** | Sep 2023 - Jan 2024 
 
-As a Data Scientist at CommercialX, QuantumBlack's retail (B2C) vertical analytics engine, I focused on assetizing high-impact solutions in pricing and assortment optimization use cases, and supporting client deployments under a BOT model.
+As a Data Scientist at CommercialX, QuantumBlack's retail (B2C) vertical analytics engine, focused on assetizing high-impact solutions in pricing and assortment optimization use cases, and supporting client deployments under a BOT model.
 
-- 5.2% gross margin uplift achieved for mid-demand products by integrating a Python optimization algorithm for gross margin maximization, leveraging XGBoost pricing model outputs, within a 6 pp CPI variation scenarios.
+- Integrated an engine capable to produce 5.2% gross margin uplift for mid-demand products using a Python optimization algorithm for gross margin maximization, leveraging XGBoost pricing model outputs, within a 6 pp CPI variation scenarios.
 - 4+ hours of runtime reduction achieved by engineering a high-performance distributed computing module using PySpark, optimizing data migration between Databricks DBFS and Azure Blob Storage while exporting Gensim-based neural network outputs for product complementarity.
 
 
@@ -66,22 +66,6 @@ Learn more about the responsibilities of this role at {{< link href="https://www
 
 {{< /admonition >}}
 
-{{< admonition type=info title="Belcorp" open=false >}}
-
-
-> Junior Business Intelligence Analyst - **[Belcorp](https://www.belcorp.biz/ "Learn more")** | February 2021 - Jul 2021
-
-As a Business Analyst at Belcorp, a leading multinational in Beauty and Personal Care packaged cosmetics, I supported data-driven solutions that empowered LatAM business teams and managers.
-
-- Enabled informed decision-making with data analysis Excel tools for LatAM teams, driving actionable commercial insights within a B2C framework.
-- Enhanced service intelligence by integrating BI assets into CRM tasks and designing tailored data collection models for efficient regional visualization using Tableau.
-- Improved data accessibility by creating user-friendly Tableau dashboards that addressed BI inquiries from Central American personnel, presenting information clearly and effectively.
-
----
-
-Learn more about the responsibilities of this role at {{< link href="https://www.linkedin.com/in/robguilarr/?locale=en_US" content=LinkedIn >}}.
-
-{{< /admonition >}}
 
 {{< admonition type=info title="VMware" open=false >}}
 
@@ -177,8 +161,4 @@ Among other personal hobbies, I like playing video games and practicing outdoor 
 - GitHub | [https://github.com](https://github.com/robguilarr "Visit GitHub Overview")
 
 - LinkedIn | [https://linkedin.com](https://www.linkedin.com/in/robguilarr/ "Visit LinkedIn Profile")
-
-- Instagram | [https://instagram.com](https://www.instagram.com/robguilarr/ "Visit Instagram Profile")
-
-- Figma | [https://www.figma.com](https://www.figma.com/@robguilarr "Visit Figma Profile")
 

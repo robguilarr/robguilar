@@ -8451,34 +8451,5 @@ details about the industry&rsquo;s history are covered.</p>
     </div>
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="750" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FOpjP1EKAhJRupQqxqQeyNM%2FGame-Development-Team-Structure%3Fnode-id%3D0%253A1" allowfullscreen></iframe>]]></description>
 </item>
-<item>
-    <title>Cloud Service Architecture for NLP in Google Cloud</title>
-    <link>https://robguilar.com/posts/gcp_academicsolution/</link>
-    <pubDate>Mon, 04 Oct 2021 21:57:40 &#43;0800</pubDate><guid>https://robguilar.com/posts/gcp_academicsolution/</guid>
-    <description><![CDATA[<h3 id="summary">Summary:</h3>
-<ul>
-<li>
-<p>This academic article was developed through my postgraduate course, <i>DAT-03 Data Analysis in Big Data Environments</i>, which presents a business case in which a company is interested in combining and migrating relational databases in <b>Microsoft SQL Server</b> and <b>Oracle DB</b>. Given the need to feed them with an NLP system output of social networks such as Instagram, Telegram, and Facebook Messenger.</p>
-</li>
-<li>
-<p>Initially, the vulnerabilities that the company has when managing its data in a Local Storage are shown, where it is compared with the advantages of implementing a <b>Cloud Service</b>. This service is compared with others such as Microsoft Azure and Amazon Cloud Services, showing why this solution is the one that best suits the business case.</p>
-</li>
-<li>
-<p>An architecture diagram was designed, covering the required APIs to the ingestion, storage, processing, and loading of the data in BI tools to ease access to the end-user.</p>
-</li>
-<li>
-<p>Finally, financial aspects are covered in terms of operating costs for the proposed solution.</p>
-</li>
-</ul>
-<hr>
-<p>In case you want to access it, next you will find a link where it was uploaded to my LinkedIn. Click <a href="https://www.linkedin.com/in/robguilarr/overlay/1635470662045/single-media-viewer/">HERE</a> to access or download.</p>
-<hr>
-<p align=center>
-    <a class="lightgallery" href="/images/posts/gcpcover.jpg" title="/images/posts/gcpcover.jpg" data-thumbnail="/images/posts/gcpcover.jpg">
-        
-    </a>
-</p>
-]]></description>
-</item>
 </channel>
 </rss>
